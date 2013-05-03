@@ -45,30 +45,19 @@
 
       <h3><b>手順4. よくない依存性を捨てる</b></h3>
       
-      <p>これは非常に重要な手順で<a href="http://www.theserverside.com/news/1373391/Dependency-Injection-in-Java-EE-6-Part-1">DI</a>のエキスパートが必要だ。不慣れな開発者に任せることはできない。かなりの熟練が必要だ。<a href="http://www.theserverside.com/feature/Effective-API-development-How-to-create-a-beautiful-Java-API">一貫したアプリケーションプログラミングインターフェース</a>を守るために命名規約を整えることが重要だ。物事を綺麗に片づけるには正しく名前を付けることが重要なのだ。It's important to keep in mind that certain steps along the way should be kept private.
+      <p>これは非常に重要な手順で<a href="http://www.theserverside.com/news/1373391/Dependency-Injection-in-Java-EE-6-Part-1">DIコンテナ</a>のエキスパートが必要だ。不慣れな開発者に任せることはできない。かなりの熟練が必要なのだ。<a href="http://www.theserverside.com/feature/Effective-API-development-How-to-create-a-beautiful-Java-API">一貫したアプリケーションプログラミングインターフェース</a>を守るために命名規約を整えることも重要だ。物事を綺麗に片づけるには正しく名前を付けることが重要なのだ。そのやり方における確かな手順は秘密にしなければならないということを心しておくことも重要だ。
       </p>
 
-      <p>Building the skills to really get this part right can be difficult, but is well worthwhile.
-      Sinha advises that senior developers practice coding dependency injection and inversion of code
-      without a framework on simple projects or hypothetical codebases. "It's not too hard to do
-      yourself," he said, "and it will get you very comfortable with doing it in tight spaces in your
-      codebase."</p>
+      <p>これらを本当の意味で正しく行うためにスキルを磨くことは本当に難しいことだろう。だがそれは価値のあることなのだ。Sinha は上級開発者が単純なプロジェクトや仮想的なコードベースを使って DI を使ったコーディングを練習することを勧めている。彼はこう述べている。「自分だけでやるのはそんなに難しいことではない。自分のコードベースという限られた空間でやることできっと快適さを得られるだろう。」
+      </p>
 
-      <p>When it comes to your actual codebase, be very conservative about making these changes. Start at
-      the most surface level and work your way deeper into the code, layer by layer. Keep in mind the
-      difference between compile-time dependencies and runtime dependencies. This can be particularly
-      important with database dependencies.</p>
+      <p>実際のコードベースの変更作業はとても保守的だ。最も表面的なところから始めてあなたなりのやり方でコードに深くレイヤからレイヤへ潜っていく。コンパイル時依存性と実行時依存性の違いを心に留めておくことだ。データベース依存性については特に重要になる。
+      </p>
 
-      <p>Apart from dependencies, there are other specific tasks that will require specialized attention.
-      Classloader challenges, for example, are their own discipline, according to Sinha, and require a
-      dedicated expert developer. "The code can be a complicated mess hiding a crumbling architecture,"
-      he warns. "Making changes can be a slippery slope for inexperienced developers." He suggests having
-      experienced members of the team lead coding talks to share their experience, and enforcing code
-      maintenance with <a href="http://searchsoftwarequality.techtarget.com/feature/FAQ-Automated-software-testing-basics" target="_blank">automated
-      tests</a> and code reviews.</p>
+      <p>依存性は別として他にも特別な注意を払わなければならないタスクがある。例えばクラスローダーへの挑戦は彼等のルールによれば飛び抜けて優秀なエキスパートが求められる。彼は次のように警告する。「コードはごちゃごちゃとした複雑なものになり、アーキテクチャも粉々になって隠蔽されてしまう。未熟な開発者にとって変更作業はまるで滑りやすいスロープを歩かされるようなものなのだ。」彼はチームのコーディングリーダーである熟練メンバーにその経験を共有してもらうことと<a href="http://searchsoftwarequality.techtarget.com/feature/FAQ-Automated-software-testing-basics" target="_blank">自動化テスト</a>やコードレビューによってコードの保守性を改善していくことを推奨している。
+      </p>
 
-      <p><i>Are you working on legacy Java applications? </i><a href="mailto:editor@theserverside.com?subject=Feedback%20on%20modularity%20in%20Java%20applications" target="_blank"><i>Let
-      us know what you think</i></a><i> about modularity in Java, or find me on Twitter </i><a href="https://twitter.com/TTJDenman" target="_blank"><i>@TTJDenman</i></a><i>.</i></p>
+      <p>あなたの仕事相手は Java のレガシーコードだろうか？Java のモジュラリティについて思うところがあればこちらまで教えてほしい。<a href="https://twitter.com/TTJDenman" target="_blank"><i>@TTJDenman</i></a>。
       <p><em>09 Apr 2013</em></p>
     </div>
   </body>
