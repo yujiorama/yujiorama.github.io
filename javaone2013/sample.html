@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="phi">
+        
+        <title>reveal.js を使ってみた.</title>
+        
+        <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="lib/zenburn.css">
+        
+    </head>
+    
+    <body>
+        
+        <div id="reveal">
+            <div class="slides">
+                <!-- スライド 00 -->
+                <section>
+                    <h1>Title</h1>
+                    <h3 class="inverted">sub title</h3>
+                </section>
+                <!-- スライド 01 -->
+                <section>
+                    <h2>page 01</h2>
+                    <p>Text Text Text Text Text Text Text Text</p>
+                    <p>Text Text Text Text Text Text Text Text</p>
+                    <p>Text Text Text Text Text Text Text Text</p>
+                </section>
+                <!-- スライド 02 -->
+                <section>
+                    <h2>page 02</h2>
+                    <p>Text Text Text Text Text Text Text Text</p>
+                    <p>Text Text Text Text Text Text Text Text</p>
+                    <p>Text Text Text Text Text Text Text Text</p>
+                </section>
+                <!-- スライド 02 -->
+                <section>
+                    <h2>page 02</h2>
+                    <p>Text Text Text Text Text Text Text Text</p>
+                    <p>Text Text Text Text Text Text Text Text</p>
+                    <p>Text Text Text Text Text Text Text Text</p>
+                </section>
+            </div>
+            
+            <!-- コントローラ(現状これがないと動かない) -->
+            <aside class="controls">
+                <a class="left" href="#">&#x25C4;</a>
+                <a class="right" href="#">&#x25BA;</a>
+                <a class="up" href="#">&#x25B2;</a>
+                <a class="down" href="#">&#x25BC;</a>
+            </aside>
+            
+            <!-- プログレスバー -->
+            <div class="progress"><span></span></div>
+            
+        </div>
+        
+        <script src="js/reveal.js"></script>
+        <script src="lib/highlight.js"></script>
+        <script>
+            Reveal.initialize();
+        </script>
+
+    </body>
+</html>

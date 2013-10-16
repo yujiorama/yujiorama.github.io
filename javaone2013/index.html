@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="phi">
+        
+        <title>reveal.js を使ってみた.</title>
+        
+        <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="lib/zenburn.css">
+        
+    </head>
+    
+    <body>
+        
+        <div id="reveal">
+            <div class="slides">
+                
+                <section>
+                    <h1>Reveal.js</h1>
+                    <h3 class="inverted">を使ってみた</h3>
+                </section>
+                
+                <section>
+                    <h2>Reveal.js を使ってみたの目次</h2>
+                    <ol>
+                        <li><a href="#/2">Reveal.js とは</a></li>
+                        <li><a href="#/3">Reveal.js の使い方</a></li>
+                        <li><a href="#/4">Reveal.js のパラメータ</a></li>
+                        <li><a href="#/5">Reveal.js をオーバービュー</a></li>
+                    </ol>
+                    <p>
+                        <strong>SPACE</strong>キーを押すと全体を見渡せます.
+                    </p>
+                </section>
+                
+                <section>
+                    <h2>Reveal.js とは</h2>
+                    <p>
+                        私も今日(2012/01/11)の朝に<a href="http://coliss.com/articles/build-websites/operation/javascript/js-css-3d-slide-show-reveal-js.html">コリスさんの記事</a>で知ったばかりなのでそんなに詳しくないのですがざっくり言うと,
+                    </p>
+                    <hr />
+                    <p class="fragment">
+                        <strong>CSS3 のアニメーションを使って簡単にオシャレなプレゼン用スライドショーを作ることができるライブラリ</strong>
+                    </p>
+                    <hr />
+                    <p>
+                        です. 中のコードを見る限りすんごい良くできています. JavaScript と CSS3 をうまく連携させて作ってあるので,
+                        3D による演出もスムーズですし, Transition や Theme の追加も簡単にできちゃいます.
+                    </p>
+                </section>
+                
+                <section>
+                    <section>
+                        <h2>Reveal.js の使い方</h2>
+                        <ol>
+                            <li><a href="#/3/1">Step 00 - reveal 用スタイルシート読み込み</a></li>
+                            <li><a href="#/3/2">Step 01 - reveal 用要素とスライダを設置</a></li>
+                            <li><a href="#/3/3">Step 02 - コントローラ用要素を設置</a></li>
+                            <li><a href="#/3/4">Step 03 - 進行バー用要素を設置</a></li>
+                            <li><a href="#/3/5">Step 04 - reveal 用スクリプト読み込み</a></li>
+                            <li><a href="#/3/6">Step 05 - reveal を初期化 & パラメータ設定</a></li>
+                            <li><a href="#/3/7">最少サンプル</a></li>
+                        </ol>
+                        <p>
+                            <a href="#/3/1" class="image">
+                                <img width="75" height="100" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
+                            </a>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Step 00 - reveal 用スタイルシート読み込み</h2>
+                        <p>
+                            必要なスタイルシートを読み込みます.
+                        </p>
+                        <pre><code contenteditable>
+&lt;link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css"&gt;
+&lt;link rel="stylesheet" href="css/reset.css"&gt;
+&lt;link rel="stylesheet" href="css/main.css"&gt;
+&lt;link rel="stylesheet" href="lib/zenburn.css"&gt;
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Step 01 - reveal 用要素とスライダを設置</h2>
+                        <p>
+                            id に reveal を持つ要素を設置しその中に, class に slides を持つ要素を設置してください.
+                            そのなかにスライドの内容を書きこんでいきます.
+                        </p>
+                        <pre><code contenteditable>
+&lt;body&gt;
+    &lt;div id="reveal"&gt;
+        &lt;div class="slides"&gt;
+            &lt;!-- スライド 00 --&gt;
+            &lt;section&gt;
+                &lt;h1&gt;Title&lt;/h1&gt;
+                &lt;h3 class="inverted"&gt;sub title&lt;/h3&gt;
+            &lt;/section&gt;
+            &lt;!-- スライド 01 --&gt;
+            &lt;section&gt;
+                &lt;h2&gt;page 01&lt;/h2&gt;
+                &lt;p&gt;Text Text Text Text&lt;/p&gt;
+            &lt;/section&gt;
+            &lt;!-- スライド 02 --&gt;
+            &lt;section&gt;
+                &lt;h2&gt;page 02&lt;/h2&gt;
+                &lt;p&gt;Text Text Text Text&lt;/p&gt;
+            &lt;/section&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Step 02 - コントローラ用要素を設置</h2>
+                        <p>
+                            画面右下に表示するコントローラを設置します. id に reveal を持つ要素の中に設置してください.
+                            表示する文字は自由に変えられます.
+                        </p>
+                        <pre><code contenteditable>
+&lt;aside class="controls"&gt;
+    &lt;a class="left" href="#"&gt;&#x25C4;&lt;/a&gt;
+    &lt;a class="right" href="#"&gt;&#x25BA;&lt;/a&gt;
+    &lt;a class="up" href="#"&gt;&#x25B2;&lt;/a&gt;
+    &lt;a class="down" href="#"&gt;&#x25BC;&lt;/a&gt;
+&lt;/aside&gt;
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Step 03 - 進行バー用要素を設置</h2>
+                        <p>
+                            画面下に表示する進行バー用要素を設置します. id に reveal を持つ要素の中に設置してください.
+                        </p>
+                        <pre><code contenteditable>
+&lt;div class="progress"&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Step 04 - reveal 用スクリプト読み込み</h2>
+                        <p>
+                            reveal 用スクリプトを読み込みます.
+                        </p>
+                        <pre><code contenteditable>
+&lt;script src="js/reveal.js"&gt;&lt;/script&gt;
+&lt;script src="lib/highlight.js"&gt;&lt;/script&gt;
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Step 05 - reveal を初期化 & パラメータ設定</h2>
+                        <pre><code contenteditable>
+&lt;script&gt;
+    Reveal.initialize();
+&lt;/script&gt;
+                        </code></pre>
+                        <p>
+                            reveal を初期化します. 下記のコードでは引数に何も渡していませんが, 色々なパラメータに対応しています.
+                            詳しくは<a href="#/4">こちらのスライド</a>を御覧ください.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>最少サンプル</h2>
+                        <p>上記のステップで最小限 reveal が動く環境が整います.</p>
+                        <p>
+                            実際に作った例は<a href="sample.html">こちら</a>で見ることができます.
+                        </p>
+                    </section>
+                </section>
+                
+                <section>
+                    <section>
+                        <h2>Reveal.js のパラメータ</h2>
+                        <ul>
+                            <li><a href="#/4/1">controls</a> … コントローラの表示/非表示フラグ</li>
+                            <li><a href="#/4/2">progress</a> … 進行バーの表示/非表示フラグ</li>
+                            <li><a href="#/4/3">history</a> … 履歴を url で記憶するかのフラグ</li>
+                            <li><a href="#/4/4">transition</a> … トランジションの種類</li>
+                            <li><a href="#/4/5">theme</a> … テーマの種類</li>
+                            <li><a href="#/4/6">rollingLinks</a> … リンクをルーリング演出するかのフラグ</li>
+                        </ul>
+                        <p>
+                            <a href="#/4/1" class="image">
+                                <img width="75" height="100" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
+                            </a>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>controls</h2>
+                        <p>
+                            画面右下にある十字キーみたいなやつの表示/非表示を切り替えることができます.
+                            デフォルト値は false です.
+                        </p>
+                        <p>
+                            <a href="./index.html?controls=true#/4/1">true</a> / <a href="./index.html?controls=false#/4/1">false</a>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>progress</h2>
+                        <p>
+                            画面下にあるページ進行状態を表すバーの表示/非表示を切り替えることができます.
+                            デフォルト値は false です.
+                        </p>
+                        <p>
+                            <a href="./index.html?progress=true#/4/2">true</a> / <a href="./index.html?progress=false#/4/2">false</a>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>history</h2>
+                        <p>
+                            ハッシュタグ(url の #~)でページ位置を記憶するかどうかのフラグです.
+                            デフォルト値は false です.
+                        </p>
+                        <p>
+                            <a href="./index.html?history=true#/4/3">true</a> / <a href="./index.html?history=false#/4/3">false</a>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>transition</h2>
+                        <p>
+                            transition の設定.
+                            設定に応じてデザインやページ切り替え時の演出が変わります.
+                        </p>
+                        <ul>
+                            <li><a href="./index.html?transition=default#/4/4">Default</a></li>
+                            <li><a href="./index.html?transition=concave#/4/4">Concave</a></li>
+                            <li><a href="./index.html?transition=linear#/4/4">Linear</a></li>
+                            <li><a href="./index.html?transition=cube#/4/4">Cube</a></li>
+                            <li><a href="./index.html?transition=page#/4/4">Page</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>theme</h2>
+                        <p>
+                            テーマ切り替え. 現状はリンクの色が変わるぐらい?です. 今後色々増えていくんじゃないかなと思います.
+                        </p>
+                        <ul>
+                            <li><a href="./index.html?theme=default#/4/5">Default</a></li>
+                            <li><a href="./index.html?theme=neon#/4/5">Neon</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>rollingLinks</h2>
+                        <p>
+                            リンク(aタグ)にマウスを乗っけた時に 3D 演出をするかどうかのフラグです.
+                            デフォルト値は true です.
+                        </p>
+                        <p>
+                            <a href="./index.html?rollingLinks=true#/4/6">true</a> / <a href="./index.html?rollingLinks=false#/4/6">false</a>
+                        </p>
+                    </section>
+                </section>
+                
+                <section>
+                    <h2>Reveal.js をオーバービュー</h2>
+                    <p>
+                        <strong>SPACE</strong>キーを押すとオーバービューモードになります.
+                    </p>
+                    <p>
+                        もう一度押すと元に戻ります. 全体を見渡せて便利です!!
+                    </p>
+                    <p>ちなみに初めからオーバービューモードにしたいときは</p>
+                    <pre><code contenteditable>
+&lt;div id="reveal"&gt; ... &lt;/div&gt;
+↓
+&lt;div id="reveal" class="overview"&gt; ... &lt;/div&gt;
+                    </code></pre>
+                    <p>とすれば OK!!</p>
+                </section>
+                
+                <section>
+                    <h2>Reveal.js 関連リンク</h2>
+                    <ul>
+                        <li><a href="http://lab.hakim.se/reveal-js/#/">Reveal.js 本家のスライドショー</a></li>
+                        <li><a href="https://github.com/hakimel/reveal.js">github にある Reveal.js のコード(オリジナル)</a></li>
+                        <li><a href="http://hakim.se/projects/reveal-js">Hakim El Hattab(制作者)さんのサイト</a></li>
+                        <li><a href="http://twitter.com/hakimel">Hakim El Hattab(制作者)さんのTwitter</a></li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>phi 関連リンクの紹介</h2>
+                    <p>
+                        私(phi)関連のリンクを少し紹介させてください.
+                    </p>
+                    <ul>
+                        <li><a href="http://tmlife.net">『TM Life』というブログやってます.</a></li>
+                        <li><a href="http://tmlife.net/tmlib">『tmlib.js』という JavaScriptライブラリ作ってます.</a></li>
+                        <li><a href="https://twitter.com/phi_jp">Twitter やってます.</a></li>
+                    </ul>
+                    <p>
+                        『TM Life』で書いた Reveal.js についての記事は<a href="http://tmlife.net/programming/javascript/reveal-js-guide.html">こちら</a>.
+                        このスライドのデータも<a href="http://tmlife.net/programming/javascript/reveal-js-guide.html">ここ</a>からダウンロードできます.
+                    </p>
+                </section>
+                
+                <section>
+                    <h1>おわり</h1>
+                    <h3 class="inverted">By Phi</h3>
+                </section>
+                
+            </div>
+            
+            <!-- コントローラ(現状これがないと動かない) -->
+            <aside class="controls">
+                <a class="left" href="#">&#x25C4;</a>
+                <a class="right" href="#">&#x25BA;</a>
+                <a class="up" href="#">&#x25B2;</a>
+                <a class="down" href="#">&#x25BC;</a>
+            </aside>
+            
+            <!-- プログレスバー -->
+            <div class="progress"><span></span></div>
+            
+        </div>
+        
+        <script src="js/reveal.js"></script>
+        <script src="lib/highlight.js"></script>
+        <script>
+            // クエリ優先
+            var query = {};
+            location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+                query[ a.split('=').shift() ] = a.split('=').pop();
+            } );
+            
+            // Reveal を初期化
+            Reveal.initialize({
+                // 画面右下にある十字キーみたいなやつの表示/非表示(false)
+                controls: (query.controls) ? (query.controls=="true") : true,
+
+                // 画面下にあるページ進行状態を表すバーの表示/非表示(false)
+                progress: (query.progress) ? (query.progress=="true") : true,
+
+                // ハッシュタグ(url の #~)でページ位置を記憶するかどうかのフラグ(false)
+                history: (query.history) ? (query.history=="true") : true,
+                
+                // transition の変化の感じ
+                transition: query.transition || "concave",  // default/concave/linear/cube/page
+                
+                // テーマ切り替え
+                theme: query.theme || "default",    // default/neon
+
+                // リンク(aタグ)にマウスを乗っけた時に 3D 演出をするかどうかのフラグ(true)
+                rollingLinks: (query.rollingLinks) ? (query.rollingLinks=="true") : true,
+            });
+            
+            // コードハイライト
+            hljs.initHighlightingOnLoad();
+        </script>
+
+    </body>
+</html>
