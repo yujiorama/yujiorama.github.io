@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="yuji okazawa">
+        
+        <title>スケールするアーキテクチャ -CON2328 Decompose That WAR! Architecting for Adaptability Scalability and Deployabilityのご紹介-</title>
+        
+        <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="lib/zenburn.css">
+        
+    </head>
+    
+    <body>
+        
+        <div id="reveal">
+            <div class="slides">
+                
+                <section>
+                    <h2>スケールするアーキテクチャ</h2>
+                    <h4 class="inverted">CON2328 Decompose That WAR! Architecting for Adaptability Scalability and Deployabilityのご紹介</h4>
+                    <h5>okazawa yuji</h5>
+                </section>
+                
+                <section>
+                    <h2>私信</h2>
+                    <ul>
+                        <li>各位様のおかげでサンフランシスコで路頭に迷わずにすみました（切実）。</li>
+                        <li>普段ぼんやりと感じていた壁の向こう側を見られたのでよかったです。</li>
+                        <li>このプレゼンツールは<a href="http://lab.hakim.se/reveal-js/">reveal.js</a>です。</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>本題</h2>
+                    <p>
+                        CON2328 が面白かったのであらましをご紹介します。
+                    </p>
+                </section>
+                <section>
+                    <h2>アジェンダ</h2>
+                    <ol>
+                        <li><a href="#/4">ざっくりとした概要</a></li>
+                        <li><a href="#/5">スピーカー</a></li>
+                        <li><a href="#/6">従来のアーキテクチャの限界</a></li>
+                        <li><a href="#/6">スケールするアーキテクチャへ</a></li>
+                        <li><a href="#/7">サービスの結合</a></li>
+                        <li><a href="#/8">API ゲートウェイ</a></li>
+                        <li><a href="#/9">レガシーアプリケーションのリファクタリング</a></li>
+                    </ol>
+                </section>
+
+                <section>
+                  <section>
+                    <h2>ざっくりとした概要</h2>
+                    <p>
+                      <a href="#/4/1" class="image">
+                        <img width="75" height="100" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
+                      </a>
+                    </p>
+                  </section>
+                  <section>
+                    <h2>ざっくりとした概要(1/3)</h2>
+                      <blockquote cite="https://oracleus.activeevents.com/2013/connect/sessionDetail.ww?SESSION_ID=2328">
+                        It's no longer acceptable to develop large, monolithic, single-language, single-framework Web applications. In this session, you will learn how to use the scale cube to decompose your monolithic Web application into a set of narrowly focused, independently deployable services.
+                        The presentation discusses how a modular architecture makes it easy to adopt newer and better languages and technologies. You will learn about the various communication mechanisms--synchronous and asynchronous--that these services can use.
+                      </blockquote>
+                      https://oracleus.activeevents.com/2013/connect/sessionDetail.ww?SESSION_ID=2328
+                  </section>
+                  
+                  <section>
+                    <h2>ざっくりとした概要(2/3)</h2>
+                      <blockquote>
+                        意訳：単純で無駄に大きい Web アプリケーションなんて今さら誰も作りたがらないよね？なので scale cube を使って Web アプリケーションをより小さくデプロイ可能なサービスで再構成するやり方を説明するよ。
+                        モジュールアーキテクチャによってより新しくより良い言語、技術を取り入れやすくなる理由についても解説するよ。
+                      </blockquote>
+                  </section>
+
+                  <section>
+                    <h2>ざっくりとした概要(3/3)</h2>
+                    <ul>
+                      <li>セッション資料は slideshare に上がっているのでご覧ください</li>
+                      <li>http://www.slideshare.net/chris.e.richardson/decompose-that-war-architecting-for-adaptability-scalability-and-deployability</li>
+                    </ul>
+                  </section>
+                </section>
+
+                <section>
+                  <section>
+                    <h2>スピーカー</h2>
+                    <p>
+                      <img height=250 src="https://si0.twimg.com/profile_images/1792802585/chrishead_large_cropped.jpg" />
+                      <img height=250 src="http://books.gigaimg.com/avaxhome/80/cd/0010cd80_medium.jpeg" />
+                    </p>
+                    <ul>
+                      <li>POJO in Action (<a href="http://www.manning.com/crichardson/">http://www.manning.com/crichardson/</a>) の著者</li>
+                      <li>Croud Foundary の共同出資者</li>
+                      <li>現在はビーチで悠々自適の生活 (羨しい)</li>
+                      <li>そろそろ社会復帰しようとしているらしい</li>
+                    </ul>
+                  </section>
+                </section>
+
+                <section>
+                  <section>
+                    <h2>従来のアーキテクチャの限界</h2>
+                    <p>
+                      <a href="#/5/1" class="image">
+                        <img width="75" height="100" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
+                      </a>
+                    </p>
+                  </section>
+                  <section>
+                    <h2>従来のアーキテクチャの限界(1/2)</h2>
+                    <ul>
+                      <li>レイヤードアーキテクチャはシンプルで開発者に都合のよいものだった</li>
+                      <li>一方でユーザはより高度な UI/UX を要求するようになってきた</li>
+                      <li>UI アーキテクチャはより動的に、サーバサイドとは疎結合な関係に進化してる</li>
+                    </ul>
+                    <hr />
+                    <p>
+                      <strong>ユーザからのフィードバックを直ちに反映 (デプロイ) できる仕組みが必要</strong>
+                    </p>
+                  </section>
+                  <section>
+                    <h2>従来のアーキテクチャの限界(2/2)</h2>
+                    <ul>
+                      <li>ビッグバン結合のリスクが素早いデプロイを妨げている</li>
+                      <li>そうこう言ってるうちにアーティファクトは肥大化して開発ペースも遅くなる</li>
+                    </ul>
+                    <hr />
+                    <p>
+                      <strong>コンポーネントを1つ変えただけで全部デプロイし直さなければならないのはつらい</strong>
+                    </p>
+                  </section>
+                </section>
+
+                <section>
+                  <section>
+                    <h2>スケールするアーキテクチャへ</h2>
+                    <p>
+                      <a href="#/6/1" class="image">
+                        <img width="75" height="100" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
+                      </a>
+                    </p>
+                  </section>
+                  <section>
+                    <h2>スケールするアーキテキクチャへ(1/3)</h2>
+                    <ul>
+                      <li>例えば：E-commerce アプリケーションの各部分は別のチームによって開発されている</li>
+                      <li>UIチーム <> フロント UI</li>
+                      <li>商品チーム <> 商品サービス</li>
+                      <li>レコメンドチーム <> レコメンドサービス</li>
+                      <li>レビューチーム <> レビューサービス</li>
+                      <li>受注チーム <> 受注サービス</li>
+                      <li>チーム同士が足を引っ張りあってしまうといつまでたっても war が作れないので開発は停滞する</li>
+                      <li>Javaに限定した仕組みだと長期的に見て技術スタックが制限されていることになる</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h2>スケールするアーキテキクチャへ(2/3)</h2>
+                    <ul>
+                      <li>scale cube</li>
+                      <li>y軸(機能分割)→アプリケーションを単機能サービスとして分割</li>
+                      <li>サービスごとにx軸(水平方向への複製)とz軸(データ分割)へ分割</li>
+                      <li>分割の戦略は動詞でくくる、名詞でくくる、単一責任の原則に従う、等々</li>
+                      <li>分割数が少なすぎる→モノリシックアーキテクチャの問題が解消されない</li>
+                      <li>分割数が多すぎる→アンチパターン (ナノサービス)</li>
+                  </section>
+                  <section>
+                    <h2>スケールするアーキテキクチャへ(3/3)</h2>
+                    <ul>
+                      <li>ただアプリケーションを小さく作ってつなぎ合わせればいい</li>
+                      <li>OSGi は些か困難‥</li>
+                      <li>サービスは独立なのでどこで何で書かれて動いていてもよい、という考え方</li>
+                      <li>システムレベルのアークテクチャはサービスの紐付けを考えるものでそんなに変化しない</li>
+                      <li>サービスレベルのアークテクチャは内部のことであり大胆に変化し得る</li>
+                    </ul>
+                    <hr />
+                    <p>
+                      <strong>世の中には出回ってるたくさんの道具がそれを支援する</strong>
+                    </p>
+                  </section>
+                </section>
+
+                <section>
+                  <section>
+                    <h2>サービスの結合</h2>
+                    <p>
+                      <a href="#/7/1" class="image">
+                        <img width="75" height="100" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
+                      </a>
+                    </p>
+                  </section>
+                  <section>
+                    <h2>サービスの結合(1/3)</h2>
+                    <ul>
+                      <li>プロトコル：HTTP, AMQP</li>
+                      <li>フォーマット：JSON, XML, Protocol Bufferes, Thrift, ...</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h2>サービスの結合(2/3)</h2>
+                    <ul>
+                      <li>非同期メッセージング</li>
+                      <li>開発時は一つの JVM に全部載せられる</li>
+                      <li>テストやプロダクション環境でコードを変えなくてもいい</li>
+                    </ul>
+                    <hr />
+                    <p>
+                      <strong>サービスの結合は難しいけどEnterprise Integration Patterns (EIP) でだいたいカバーできる</strong>
+                    </p>
+                  </section>
+                  <section>
+                    <h2>サービスの結合(3/3)</h2>
+                    <ul>
+                      <li>同期 REST</li>
+                    </ul>
+                  </section>
+                </section>
+
+                <section>
+                  <section>
+                    <h2>API ゲートウェイ</h2>
+                    <p>
+                      <a href="#/8/1" class="image">
+                        <img width="75" height="100" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
+                      </a>
+                    </p>
+                  </section>
+                  <section>
+                    <h2>API ゲートウェイ(1/3)</h2>
+                    <ul>
+                      <li>クライアント側から見たサービスのエントリポイント</li>
+                      <li>各種サービス間のプロトコル変換器</li>
+                    </ul>
+                    <hr />
+                    <p>
+                      <strong>Netflix API ではデバイスごとのエンドポイントを設けている (らしい)</strong>
+                    </p>
+                  </section>
+                  <section>
+                    <h2>API ゲートウェイ(2/3)</h2>
+                    <p>
+                      API ゲートウェイの構成要素は既存のツールであるこれら
+                    </p>
+                    <ul>
+                      <li>Java EE web technology</li>
+                      <li>Netty</li>
+                      <li>あるいは非 Java (Node.js など) のソリューション</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h2>API ゲートウェイ(3/3)</h2>
+                    <p>
+                      API ゲートウェイの設計で気にするところ
+                    </p>
+                    <ul>
+                      <li>すべてのサービスはメッセージングを経由するので並行処理になること</li>
+                      <li>部分的な失敗を考慮すること (Fault tolerance) </li>
+                      <li>実行主体の超過</li>
+                    </ul>
+                  </section>
+                </section>
+
+                <section>
+                  <section>
+                    <h2>レガシーアプリケーションのリファタリング</h2>
+                    <p>
+                      <a href="#/9/1" class="image">
+                        <img width="75" height="100" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
+                      </a>
+                    </p>
+                  </section>
+                  <section>
+                    <h2>レガシーアプリケーションのリファタリング(1/3)</h2>
+                    <p>
+                      <strong>step1：ともかくこれ以上肥大化させるの止めましょう</strong>
+                    </p>
+                    <ul>
+                      <li>新しい機能は <strong>サービス</strong> として実装しましょう</li>
+                      <li>既存アプリと新サービスの依存関係…</li>
+                      <li>腐敗防止層を設置するのは素敵</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h2>レガシーアプリケーションのリファタリング(2/3)</h2>
+                    <p>
+                      <strong>step2：サービスの抽出</strong>
+                    </p>
+                    <ul>
+                      <li>war を構成するモジュールを見つけて、腐敗防止層を通じてアクセスするサービスへ変換する</li>
+                      <li>サービスへの分割においては、目標とするアーキテクチャを意識しましょう</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h2>レガシーアプリケーションのリファタリング(2/3)</h2>
+                    <p>
+                      <strong>レガシーアプリケーションのリファクタリングは決して容易ではないけど、</strong>
+                      <strong>その代替手段にはもっとひどいものしかない</strong>
+                    </p>
+                  </section>
+                </section>
+
+                <section>
+                    <h2>まとめ</h2>
+                    <ol>
+                        <li><a href="#/4">ざっくりとした概要</a></li>
+                        <li><a href="#/5">スピーカー</a></li>
+                        <li><a href="#/6">従来のアーキテクチャの限界</a></li>
+                        <li><a href="#/6">スケールするアーキテクチャへ</a></li>
+                        <li><a href="#/7">サービスの結合</a></li>
+                        <li><a href="#/8">API ゲートウェイ</a></li>
+                        <li><a href="#/9">レガシーアプリケーションのリファクタリング</a></li>
+                    </ol>
+                    <p>
+                        関係各位様、とてもとてもありがとうございました。
+                    </p>
+                </section>
+                
+            </div>
+            
+            <!-- コントローラ(現状これがないと動かない) -->
+            <aside class="controls">
+                <a class="left" href="#">&#x25C4;</a>
+                <a class="right" href="#">&#x25BA;</a>
+                <a class="up" href="#">&#x25B2;</a>
+                <a class="down" href="#">&#x25BC;</a>
+            </aside>
+            
+            <!-- プログレスバー -->
+            <div class="progress"><span></span></div>
+            
+        </div>
+        
+        <script src="js/reveal.js"></script>
+        <script src="lib/highlight.js"></script>
+        <script>
+            // クエリ優先
+            var query = {};
+            location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+                query[ a.split('=').shift() ] = a.split('=').pop();
+            } );
+            
+            // Reveal を初期化
+            Reveal.initialize({
+                // 画面右下にある十字キーみたいなやつの表示/非表示(false)
+                controls: (query.controls) ? (query.controls=="true") : true,
+
+                // 画面下にあるページ進行状態を表すバーの表示/非表示(false)
+                progress: (query.progress) ? (query.progress=="true") : true,
+
+                // ハッシュタグ(url の #~)でページ位置を記憶するかどうかのフラグ(false)
+                history: (query.history) ? (query.history=="true") : true,
+                
+                // transition の変化の感じ
+                transition: query.transition || "linear",  // default/concave/linear/cube/page
+                
+                // テーマ切り替え
+                theme: query.theme || "default",    // default/neon
+
+                // リンク(aタグ)にマウスを乗っけた時に 3D 演出をするかどうかのフラグ(true)
+                rollingLinks: (query.rollingLinks) ? (query.rollingLinks=="true") : true,
+            });
+            
+            // コードハイライト
+            hljs.initHighlightingOnLoad();
+        </script>
+
+    </body>
+</html>
