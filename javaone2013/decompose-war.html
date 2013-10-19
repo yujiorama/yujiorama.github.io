@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="author" content="yuji okazawa">
         
-        <title>スケールするアーキテクチャ -CON2328 Decompose That WAR! Architecting for Adaptability Scalability and Deployabilityのご紹介-</title>
+        <title>WAR をばらしましょう! -CON2328 Decompose That WAR! Architecting for Adaptability Scalability and Deployabilityのご紹介-</title>
         
         <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="css/reset.css">
@@ -19,16 +19,16 @@
             <div class="slides">
                 
                 <section>
-                    <h2>スケールするアーキテクチャ</h2>
-                    <h4 class="inverted">CON2328 が面白かったのであらましをご紹介します。</h4>
-                    <h5>okazawa yuji</h5>
+                    <h2>WAR をばらしましょう!</h2>
+                    <h4 class="inverted">CON2328 Decompose That WAR! Architecting for Adaptability Scalability and Deployabilityのご紹介</h4>
+                    <h5>okazawa yuji (グロースエクスパートナーズ株式会社)</h5>
                 </section>
                 
                 <section>
                     <h2>私信</h2>
                     <ul>
                         <li>たくさんの人に助けられたおかげでサンフランシスコで路頭に迷わずにすみました（切実）。ありがとうございます。m(_ _)m</li>
-                        <li>アーキテクチャのモジュール化とか OSGi の話にお詳しい方、いろいろ教えてください。m(_ _)m</li>
+                        <li>アーキテクチャのモジュール化とか OSGi に興味のある方(アンチでもシンパでも)、いろいろ教えてください。m(_ _)m</li>
                         <li>このプレゼンツールは<a href="http://lab.hakim.se/reveal-js/">reveal.js</a>です。</li>
                     </ul>
                 </section>
@@ -56,11 +56,13 @@
                   </section>
                   <section>
                     <h2>ざっくりとした概要(1/4)</h2>
+                      <p>
+                        https://oracleus.activeevents.com/2013/connect/sessionDetail.ww?SESSION_ID=2328
+                      </p>
                       <blockquote cite="https://oracleus.activeevents.com/2013/connect/sessionDetail.ww?SESSION_ID=2328">
                         It's no longer acceptable to develop large, monolithic, single-language, single-framework Web applications. In this session, you will learn how to use the scale cube to decompose your monolithic Web application into a set of narrowly focused, independently deployable services.
                         The presentation discusses how a modular architecture makes it easy to adopt newer and better languages and technologies. You will learn about the various communication mechanisms--synchronous and asynchronous--that these services can use.
                       </blockquote>
-                      https://oracleus.activeevents.com/2013/connect/sessionDetail.ww?SESSION_ID=2328
                   </section>
                   
                   <section>
@@ -300,9 +302,11 @@
                   </section>
                   <section>
                     <h2>レガシーアプリケーションのリファタリング(3/3)</h2>
+                    <h3>Refactoring a monolith is not easy</h3>
+                    <h3>BUT</h3>
+                    <h3>the alternative is far worse</h3>
                     <p>
-                      <strong>レガシーアプリケーションのリファクタリングは決して容易ではないけど、</strong>
-                      <strong>その代替手段にはもっとひどいものしかない</strong>
+                      意訳：容易なことではなけれど、諦めたらそこで試合終了ですよ。
                     </p>
                   </section>
                 </section>
@@ -319,7 +323,6 @@
                         <li><a href="#/9">レガシーアプリケーションのリファクタリング</a></li>
                     </ol>
                 </section>
-                
             </div>
             
             <!-- コントローラ(現状これがないと動かない) -->
