@@ -20,34 +20,28 @@
                 
                 <section>
                     <h2>スケールするアーキテクチャ</h2>
-                    <h4 class="inverted">CON2328 Decompose That WAR! Architecting for Adaptability Scalability and Deployabilityのご紹介</h4>
+                    <h4 class="inverted">CON2328 が面白かったのであらましをご紹介します。</h4>
                     <h5>okazawa yuji</h5>
                 </section>
                 
                 <section>
                     <h2>私信</h2>
                     <ul>
-                        <li>たくさんの人に助けられたおかげでサンフランシスコで路頭に迷わずにすみました（切実）。</li>
-                        <li>普段ぼんやりと感じていた壁の向こう側を見られたのでよかったです。</li>
+                        <li>たくさんの人に助けられたおかげでサンフランシスコで路頭に迷わずにすみました（切実）。ありがとうございます。m(_ _)m</li>
+                        <li>アーキテクチャのモジュール化とか OSGi の話にお詳しい方、いろいろ教えてください。m(_ _)m</li>
                         <li>このプレゼンツールは<a href="http://lab.hakim.se/reveal-js/">reveal.js</a>です。</li>
                     </ul>
                 </section>
                 <section>
-                    <h2>本題</h2>
-                    <p>
-                        CON2328 が面白かったのであらましをご紹介します。
-                    </p>
-                </section>
-                <section>
                     <h2>アジェンダ</h2>
                     <ol>
-                        <li><a href="#/4">ざっくりとした概要</a></li>
-                        <li><a href="#/5">スピーカー</a></li>
-                        <li><a href="#/6">従来のアーキテクチャの限界</a></li>
-                        <li><a href="#/7">スケールするアーキテクチャへ</a></li>
-                        <li><a href="#/8">サービスの結合</a></li>
-                        <li><a href="#/9">API ゲートウェイ</a></li>
-                        <li><a href="#/10">レガシーアプリケーションのリファクタリング</a></li>
+                        <li><a href="#/3">ざっくりとした概要</a></li>
+                        <li><a href="#/4">スピーカー</a></li>
+                        <li><a href="#/5">従来のアーキテクチャの限界</a></li>
+                        <li><a href="#/6">スケールするアーキテクチャへ</a></li>
+                        <li><a href="#/7">サービスの結合</a></li>
+                        <li><a href="#/8">API ゲートウェイ</a></li>
+                        <li><a href="#/9">レガシーアプリケーションのリファクタリング</a></li>
                     </ol>
                 </section>
 
@@ -55,13 +49,13 @@
                   <section>
                     <h2>ざっくりとした概要</h2>
                     <p>
-                      <a href="#/4/1" class="image">
+                      <a href="#/3/1" class="image">
                         <img width="75" height="100" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
                       </a>
                     </p>
                   </section>
                   <section>
-                    <h2>ざっくりとした概要(1/3)</h2>
+                    <h2>ざっくりとした概要(1/4)</h2>
                       <blockquote cite="https://oracleus.activeevents.com/2013/connect/sessionDetail.ww?SESSION_ID=2328">
                         It's no longer acceptable to develop large, monolithic, single-language, single-framework Web applications. In this session, you will learn how to use the scale cube to decompose your monolithic Web application into a set of narrowly focused, independently deployable services.
                         The presentation discusses how a modular architecture makes it easy to adopt newer and better languages and technologies. You will learn about the various communication mechanisms--synchronous and asynchronous--that these services can use.
@@ -70,7 +64,7 @@
                   </section>
                   
                   <section>
-                    <h2>ざっくりとした概要(2/3)</h2>
+                    <h2>ざっくりとした概要(2/4)</h2>
                       <blockquote>
                         意訳：単純で無駄に大きい Web アプリケーションなんて今さら誰も作りたがらないよね？なので scale cube を使って Web アプリケーションをより小さくデプロイ可能なサービスで再構成するやり方を説明するよ。
                         モジュールアーキテクチャによってより新しくより良い言語、技術を取り入れやすくなる理由についても解説するよ。
@@ -78,10 +72,20 @@
                   </section>
 
                   <section>
-                    <h2>ざっくりとした概要(3/3)</h2>
+                    <h2>ざっくりとした概要(3/4)</h2>
                     <ul>
                       <li>セッション資料は slideshare に上がっているのでご覧ください</li>
                       <li>http://www.slideshare.net/chris.e.richardson/decompose-that-war-architecting-for-adaptability-scalability-and-deployability</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h2>ざっくりとした概要(4/4)</h2>
+                    <h3>個人的な所感</h3>
+                    <ul>
+                      <li>Java の Web アプリケーション開発に対する固定観念から脱却できた気がします(Fat な war、古くさい JSP とかで実装された UI、jar 単位でのモジュール化)</li>
+                      <li>個別にデプロイ可能なモジュール</li>
+                      <li>REST や非同期メッセージングによる疎結合アーキテクチャ</li>
+                      <li>全然古くないしなんかかっこいい雰囲気がある。仕事でやりたい(というかやる)</li>
                     </ul>
                   </section>
                 </section>
@@ -106,7 +110,7 @@
                   <section>
                     <h2>従来のアーキテクチャの限界</h2>
                     <p>
-                      <a href="#/6/1" class="image">
+                      <a href="#/4/1" class="image">
                         <img width="75" height="100" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
                       </a>
                     </p>
@@ -140,7 +144,7 @@
                   <section>
                     <h2>スケールするアーキテクチャへ</h2>
                     <p>
-                      <a href="#/7/1" class="image">
+                      <a href="#/6/1" class="image">
                         <img width="75" height="100" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
                       </a>
                     </p>
@@ -188,7 +192,7 @@
                   <section>
                     <h2>サービスの結合</h2>
                     <p>
-                      <a href="#/8/1" class="image">
+                      <a href="#/7/1" class="image">
                         <img width="75" height="100" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
                       </a>
                     </p>
@@ -224,7 +228,7 @@
                   <section>
                     <h2>API ゲートウェイ</h2>
                     <p>
-                      <a href="#/9/1" class="image">
+                      <a href="#/8/1" class="image">
                         <img width="75" height="100" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
                       </a>
                     </p>
@@ -268,7 +272,7 @@
                   <section>
                     <h2>レガシーアプリケーションのリファタリング</h2>
                     <p>
-                      <a href="#/10/1" class="image">
+                      <a href="#/9/1" class="image">
                         <img width="75" height="100" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
                       </a>
                     </p>
@@ -306,17 +310,14 @@
                 <section>
                     <h2>まとめ</h2>
                     <ol>
-                        <li><a href="#/4">ざっくりとした概要</a></li>
-                        <li><a href="#/5">スピーカー</a></li>
-                        <li><a href="#/6">従来のアーキテクチャの限界</a></li>
-                        <li><a href="#/7">スケールするアーキテクチャへ</a></li>
-                        <li><a href="#/8">サービスの結合</a></li>
-                        <li><a href="#/9">API ゲートウェイ</a></li>
-                        <li><a href="#/10">レガシーアプリケーションのリファクタリング</a></li>
+                        <li><a href="#/3">ざっくりとした概要</a></li>
+                        <li><a href="#/4">スピーカー</a></li>
+                        <li><a href="#/5">従来のアーキテクチャの限界</a></li>
+                        <li><a href="#/6">スケールするアーキテクチャへ</a></li>
+                        <li><a href="#/7">サービスの結合</a></li>
+                        <li><a href="#/8">API ゲートウェイ</a></li>
+                        <li><a href="#/9">レガシーアプリケーションのリファクタリング</a></li>
                     </ol>
-                    <p>
-                        お世話になった皆様、とてもとてもありがとうございました。
-                    </p>
                 </section>
                 
             </div>
