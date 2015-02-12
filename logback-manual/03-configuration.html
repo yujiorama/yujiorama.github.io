@@ -54,7 +54,7 @@
       </li>
 
       <li>
-        <p>見つからなかったら、今度は<a href="./faq.html#configFileLocation">クラスパス</a>上で<em>logback-のtest.xml</em>というファイルを探します。</p>
+        <p>見つからなかったら、今度は<a href="./faq.html#configFileLocation">クラスパス</a>上で<em>logback-test.xml</em>というファイルを探します。</p>
       </li>
 
       <li><p>見つからなかったら、今度は<a href="./faq.html#configFileLocation">クラスパス</a>上で<em>logback.xml</em>というファイルを探します。</p>
@@ -66,11 +66,11 @@
 
     </ol>
 
-    <p>四番目のステップは、設定ファイルが見つからなかった場合デフォルトの（ごく基本的な）設定をするということです。
+    <p>四番目のステップは、設定ファイルが見つからなかった場合デフォルトの（ごく基本的な）設定をする、ということです。
     </p>
 
 
-    <p>もし Maven を使用していて、<em>src/test/resources</em> フォルダの下に <em>logback-test.xml</em>を置いていた場合、Maven はそれがアーティファクトに入り込まないことを保証します。したがって、テスト用と実際の環境用で、<em>logback-test.xml</em>と<em>logback.xml</em>を使い分けることができます。Antでも原則的に同じことができます。
+    <p>もし Maven を使用しているなら、<em>src/test/resources</em> フォルダの下に <em>logback-test.xml</em>を置いている場合でも、それがアーティファクトに入り込まないことは Maven によって保証されます。したがって、テスト用と実際の環境用で、<em>logback-test.xml</em>と<em>logback.xml</em>を使い分けることができます。Antでも原則的に同じことができます。
     </p>
 
 
@@ -120,7 +120,7 @@ public class Foo {
     <p>この章で紹介しているサンプルプログラムを実行するには、クラスパスに所定のjarファイルを置いておかなければなりません。詳しくは<a href="http://logback.qos.ch/setup.html">セットアップ</a>の説明をを参照してください。
     </p>
 
-    <p><em>logback-test.xml</em>も<em>logback.xml</em>も無い場合、logback は<a href="http://logback.qos.ch/xref/ch/qos/logback/classic/BasicConfigurator.html"><code>BasicConfigurator</code></a>によって最小限の設定を行います。最小限の設定としてやることは、ルートロガーに<code>ConsoleAppender</code>を割り当てることだけです。出力は<code>PatternLayoutEncoder</code>によって書式化されます。<code>PatternLayoutEncoder</code>には、<em>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%nという書式化パターンが設定されています。また、ルートロガーにはデフォルトで<code>DEBUG</code>レベルが割り当てられます。
+    <p><em>logback-test.xml</em>も<em>logback.xml</em>も無い場合、logback は<a href="http://logback.qos.ch/xref/ch/qos/logback/classic/BasicConfigurator.html"><code>BasicConfigurator</code></a>によって最小限の設定を行います。最小限の設定としてやることは、ルートロガーに<code>ConsoleAppender</code>を割り当てることだけです。出力は<code>PatternLayoutEncoder</code>によって書式化されます。<code>PatternLayoutEncoder</code>には、<em>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</em>という書式化パターンが設定されています。また、ルートロガーにはデフォルトで<code>DEBUG</code>レベルが割り当てられます。
     </p>
 
     <p><em>java chapters.configuration.MyApp1</em>を実行すると次のような出力が得られます。</p>
