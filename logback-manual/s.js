@@ -1,8 +1,6 @@
 
-document.write('		<p class="highlight">');
-document.write('      In order to run the examples in this chapter, you need');
-document.write('      to make sure that certain jar files are present on the');
-document.write('      classpath.');
-document.write('    	Please refer to the <a href="../setup.html">setup page</a>');
-document.write('    	for further details.');
-document.write('    </p>');
+document.write('<p class="highlight">');
+document.write('この章で紹介している例を実行するには、');
+document.write('クラスパス上に所定のjarファイルを配置しなければなりません。');
+document.write('詳しくは<a href="http://logback.qos.ch/setup.html">設定</a>を参照してください。');
+document.write('</p>');
