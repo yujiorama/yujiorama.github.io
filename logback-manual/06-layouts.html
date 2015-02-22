@@ -34,7 +34,7 @@
 
 		<h2 class="doAnchor">レイアウトとは何か</h2>
 
-		<p>レイアウトは、フロリダ州の大規模集合住宅とは何の関係もありません。レイアウトはlogbackのコンポーネントであり、受け取ったロギングイベントを文字列に変換する役割を担っています。<a href="http://logback.qos.ch/xref/ch/qos/logback/core/Layout.html"><code>Layout</code></a>インターフェイスの<code>format()</code>メソッドは、引数としてロギングイベントとみなされる（任意の型の）オブジェクトを受け取り、文字列を返します。<code>Layout</code>インターフェイスの概要を次に示します。
+		<p>レイアウトといってもフロリダ州の大規模集合住宅とは何の関係もありません。レイアウトはlogbackのコンポーネントであり、受け取ったロギングイベントを文字列に変換する役割を担っています。<a href="http://logback.qos.ch/xref/ch/qos/logback/core/Layout.html"><code>Layout</code></a>インターフェイスの<code>format()</code>メソッドは、引数としてロギングイベントとみなされる（任意の型の）オブジェクトを受け取り、文字列を返します。<code>Layout</code>インターフェイスの概要を次に示します。
 		</p>
 
 		<pre class="prettyprint source">public interface Layout&lt;E&gt; extends ContextAware, LifeCycle {
@@ -92,7 +92,7 @@ public class MySampleLayout extends LayoutBase&lt;ILoggingEvent&gt; {
 		<p><code>MySampleLayout</code>は<a href="http://logback.qos.ch/xref/ch/qos/logback/core/LayoutBase.html"><code>LayoutBase</code></a>を継承しているのに気付きましたか。このクラスは全てのレイアウトのインスタンスに共通する内部状態を管理するものです。例えば、レイアウトが開始しているか、停止しているか、ヘッダーはあるか、フッターはあるか、コンテンツタイプはあるか、といったものです。おかげで、開発者は書式化の方法にだけ集中することができるのです。<code>LayoutBase</code>はジェネリッククラスです。上記のコードでは、<code>MySampleLayout</code>は<code>LayoutBase&lt;ILoggingEvent&gt;</code>を継承しています。
 		</p>
 
-		<p><code>doLayout(ILoggingEvent event)</code>メソッド（<code>MySampleLayout</code>の実装する唯一のメソッドです）では、最初に空の<code>StringBuffer</code>を生成している。このStringBufferにロギングイベントのパラメータを付け足していく。テキサスの開拓者はメッセージを慎重に書式化したようです。ロギング要求で1つ以上のパラメータが渡されることを考えればこれは大事なことです。</p>
+		<p><code>doLayout(ILoggingEvent event)</code>メソッド（<code>MySampleLayout</code>の実装する唯一のメソッドです）では、最初に空の<code>StringBuffer</code>を生成して、ロギングイベントのパラメータを付け足していきます。開拓者らしく、慎重に書式化したようです。ロギング要求で1つ以上のパラメータが渡されることを考えればこれは大事なことです。</p>
 
     <p><code>doLayout()</code>メソッドでは、StringBufferにいろいろな文字列を追加したあとで1つの文字列に変換して、その文字列を呼び出し元に返します。
 		</p>
@@ -181,7 +181,7 @@ public class MySampleLayout2 extends LayoutBase&lt;ILoggingEvent&gt; {
 }</pre>
 
 
-    <p>プロパティのセッターメソッドを追加すれば設定ファイルから指定できるようになります。<code>PrintThreadName</code>プロパティの型は真偽値（boolean）であって文字列（<code>String</code>）ではないので注意してください。logbackのコンポーネントの設定については、<a href="http://logback.qos.ch/manual/configuration.html">設定に関する章</a>で詳しく説明しています。<a href="http://logback.qos.ch/manual/onJoran.html">Joranの章</a>にはより詳細な説明があります。<code>MySampleLayout2</code>のために特別に誂えた設定ファイルは次のとおりです。
+    <p>プロパティのセッターメソッドを追加すれば設定ファイルから指定できるようになります。<code>printThreadName</code>プロパティの型は真偽値（boolean）であって文字列（<code>String</code>）ではないので注意してください。logbackのコンポーネントの設定については、<a href="http://logback.qos.ch/manual/configuration.html">設定に関する章</a>で詳しく説明しています。<a href="http://logback.qos.ch/manual/onJoran.html">Joranの章</a>にはより詳細な説明があります。<code>MySampleLayout2</code>のために特別に誂えた設定ファイルは次のとおりです。
     </p>
 
 
@@ -210,7 +210,7 @@ public class MySampleLayout2 extends LayoutBase&lt;ILoggingEvent&gt; {
 		<p>logback-classic の配布物には、<code><a href="http://logback.qos.ch/xref/ch/qos/logback/classic/PatternLayout.html">PatternLayout</a></code>と呼ばれる柔軟性のあるレイアウトが含まれています。他のレイアウトと同じく、<code>PatternLayout</code>はロギングイベントを受け取って<code>文字列</code>を返します。<code>文字列</code>は、変換パターン文字列を調整してカスタマイズすることができます。
 		</p>
 
-    <p><code>PatternLayout</code>の変換パターン文字列はC言語の<code>printf()</code>関数と非常によく密接の変換パターンに関連している<code>printf()</code> Cプログラミング言語の機能。変換パターン文字列は、文字列リテラルと、<em>変換指定子</em>と呼ばれる書式制御式で構成されています。変換パターン文字列には、どんな文字列リテラルでも入れることができます。変換指定子はパーセント記号"%"で始まり、オプションの<em>形式修飾子</em>、<em>変換指示語</em>、括弧で囲まれたパラメータが続いたものです。変換指示語には変換したいデータフィールドを指定します。例えばロガー名、レベル、日付、スレッド名などです。形式修飾子には、フィールド幅、パディング、左揃えや右揃えを指定します。
+    <p><code>PatternLayout</code>の変換パターン文字列はC言語の<code>printf()</code>関数と非常によく似たもので、文字列リテラルと<em>変換指定</em>と呼ばれる書式制御式で構成されています。変換パターン文字列には、どんな文字列リテラルでも入れることができます。変換指定はパーセント記号"%"で始まり、オプションの<em>書式修飾子</em>、<em>変換指定子</em>、括弧で囲まれたパラメータが続いたものです。変換指定子には変換したいデータフィールドを指定します。例えばロガー名、レベル、日付、スレッド名などです。書式修飾子には、フィールド幅、パディング、左揃えや右揃えを指定します。
 		</p>
 
     <p>既に何度か述べたとおり、<code>FileAppender</code>とその派生クラスにはエンコーダーが必要です。結局、<code>FileAppender</code>やその派生クラスと<code>PatternLayout</code>を一緒に使うには、エンコーダーでラップしなければなりません。<code>FileAppender</code>と<code>PatternLayout</code>を組み合わせることがあまりにも一般的になってしまったことを考慮して、logback の配布物には<code>PatternLayoutEncoder</code>を含めるようになりました。これは単に<code>PatternLayout</code>をラップするだけのエンコーダーなので、エンコーダーであるにも関わらずPatternLayoutのように扱えるようになっています。プログラム的に<code>ConsoleAppender</code>と<code>PatternLayoutEncoder</code>を設定する例を示します。</p>
@@ -253,7 +253,7 @@ public class PatternSample {
   }
 }</pre>
 
-		<p>この例では、変換パターン文字列として<b>"％-5level [％thread] %msg％n"</b>が設定されています。logbackに組み込みの変換指示語については後で簡単に説明します。<code>PatternSample</code>アプリケーションを実行してみましょう。</p>
+		<p>この例では、変換パターン文字列として<b>"％-5level [％thread] %msg％n"</b>が設定されています。logbackに組み込みの変換指定子については後で簡単に説明します。<code>PatternSample</code>アプリケーションを実行してみましょう。</p>
 
     <p class="source">java java chapters.layouts.PatternSample</p>
 
@@ -262,21 +262,21 @@ public class PatternSample {
 		<p class="source">DEBUG [main]: Message 1
 WARN  [main]: Message 2</p>
 
-    <p>変換パターン文字列の<b>"%-5level [％thread] %msg%n"</b>には、文字列リテラルと変換指示子を明示的に区切る文字が無いことに気付きましたか。変換パターン文字列を解析する際、<code>PatternLayout</code>は文字列リテラル（空白文字、括弧、コロンなど）と変換指定子を分離することができます。上記の例では、変換指定子％-5levelは、ロギングイベントのレベルを5文字の幅に左揃えすることを意味します。書式指定子については後で説明します。
+    <p>変換パターン文字列の<b>"%-5level [％thread] %msg%n"</b>には、文字列リテラルと変換指定子を明示的に区切る文字が無いことに気付きましたか。変換パターン文字列を解析する際、<code>PatternLayout</code>は文字列リテラル（空白文字、括弧、コロンなど）と変換指定を分離することができます。上記の例では、変換指定％-5levelは、ロギングイベントのレベルを5文字の幅に左揃えすることを意味します。書式指定子については後で説明します。
 		</p>
 
-		<p><code>PatternLayout</code>は変換パターン文字列をグループ化するために括弧を使います。<b>つまり '（'と '）'には特別な意味があるので、リテラル文字列として使いたければエスケープしなければならないということです。</b> 括弧の特殊な性質について詳しくは<a href="http://logback.qos.ch/manual/layouts.html#Parentheses">後で説明</a>します。
+		<p><code>PatternLayout</code>は変換パターン文字列をグループ化するために括弧を使います。<b>つまり '（'と '）'には特別な意味があるので、リテラル文字列として使うときはエスケープしなければならないということです。</b> 括弧の特殊な性質について詳しくは<a href="http://logback.qos.ch/manual/layouts.html#Parentheses">後で説明</a>します。
 		</p>
 
-		<p>前述のとおり、変換指定子によっては括弧で囲んでオプションの引数を指定することができます。例えばこういう書き方です。<code>%logger{10}</code>"logger" が変換指示子で、10が引数です。オプションの指定の仕方について詳しくは<a href="http://logback.qos.ch/manual/layouts.html#cwOptions">後で説明</a>します。
+		<p>前述のとおり、変換指定によっては括弧で囲んでオプションの引数を指定することができます。例えばこういう書き方です。<code>%logger{10}</code>"logger" が変換指定子で、10が引数です。オプションの指定の仕方について詳しくは<a href="http://logback.qos.ch/manual/layouts.html#cwOptions">後で説明</a>します。
 		</p>
 
-		<p>利用できる変換指定子とオプションを表にまとめました。1つのセルに複数の変換指示子が登場する場合、それらは別名という意味です。
+		<p>利用できる変換指定とオプションを表にまとめました。1つのセルに複数の変換指定子が登場する場合、それらは別名という意味です。
 		</p>
 
 		<table class="bodyTable properties striped" border="0">
       <tr>
-        <th><a name="conversionWord" href="http://logback.qos.ch/manual/layouts.html#conversionWord">変換指示子</a></th>
+        <th><a name="conversionWord" href="http://logback.qos.ch/manual/layouts.html#conversionWord">変換指定子</a></th>
         <th>効果</th>
       </tr>
 
@@ -290,12 +290,12 @@ WARN  [main]: Message 2</p>
 
 				<td>ロギングイベントを生成する一番元になったロガーの名前を出力します。
 
-					<p>この変換指示子に指定できるオプションは整数値だけです。ロガー名は省略アルゴリズムに従って、意味が通る程度に短縮されます。0を指定すると特別な振る舞いをします。ロガー名文字列の中で一番右端のドット（.）から右側だけを残すようになります。省略アルゴリズムの例を表にまとめました。
+					<p>この変換指定子に指定できるオプションは整数値だけです。ロガー名は省略アルゴリズムに従って、意味が通る程度に短縮されます。0を指定すると特別な振る舞いをします。ロガー名文字列の中で一番右端のドット（.）から右側だけを残すようになります。省略アルゴリズムの例を表にまとめました。
           </p>
 
 					<table class="bodyTable dark" border="0" cellpadding="8">
 						<tr>
-							<th>変換指定子</th>
+							<th>変換指定</th>
 							<th>ロガー名</th>
 							<th>結果</th>
 						</tr>
@@ -517,7 +517,7 @@ method</b>
 
 				<td>
 					<p>プラットフォーム依存の行区切り文字を出力します。</p>
-					<p>この変換指定子を使っても、行区切り文字として可搬性の無い"\n" や"\r\n" を指定した場合と性能は変わりません。したがって、常に行区切り文字そのものではなくこの変換指定子を使うべきです。
+					<p>この変換指定を使っても、行区切り文字として可搬性の無い"\n" や"\r\n" を指定した場合と性能は変わりません。したがって、常に行区切り文字そのものではなくこの変換指定を使うべきです。
 					</p>
 				</td>
 
@@ -566,7 +566,7 @@ thread</b>
 					<p>ロギングイベントを生成したスレッドに関連付けられていたMDC（診断コンテキスト）の値を出力します。
 					</p>
 
-					<p><b>%mdc{uesrid}</b>のように<b>mdc</b>変換指定子にキーが指定されている場合、対応するMDCの値が出力されます。MDCの値がnullの場合、 <b>:-</b>演算子で指定したデフォルト値が出力されます。デフォルト値が無かったら空文字列が出力されます。
+					<p><b>%mdc{uesrid}</b>のように<b>mdc</b>変換指定にキーが指定されている場合、対応するMDCの値が出力されます。MDCの値がnullの場合、 <b>:-</b>演算子で指定したデフォルト値が出力されます。デフォルト値が無かったら空文字列が出力されます。
 					</p>
 
 					<p>キーが未指定のときは、MDCの内容がすべて出力されます。そのときの書式は"key1=val1,key2=val2"のようになります。
@@ -591,7 +591,7 @@ thread</b>
 					<p>ロギングイベントに例外オブジェクトが関連付けられていたら、その例外オブジェクトのスタックトレースを出力します。デフォルトでは完全なスタックトレースを出力します。
 				 </p>
 
-				 <p><em></em>throwable変換指定子に指定できるオプションは次のとおりです。</p>
+				 <p><em></em>throwable変換指定に指定できるオプションは次のとおりです。</p>
 				 <ul>
 				   <li><em>short</em> ：スタックトレースの一行目だけを出力します</li>
 				   <li><em>full</em> ：完全なスタックトレースを出力します</li>
@@ -602,7 +602,7 @@ thread</b>
 
 				 <table class="bodyTable">
 						<tr class="a">
-							<th>変換指定子</th>
+							<th>変換指定</th>
 							<th>結果</th>
 						</tr>
 						<tr class="b">
@@ -651,7 +651,7 @@ thread</b>
 				<td>
 					<p>クラスのパッケージングに関する情報が追加されていること以外は%throwableと同様です。</p>
 
-          <p>変換パターン文字列に%xThrowableや他のthrowable関連の変換指定子を指定しなかった場合、<code>PatternLayout</code>が自動的に末尾に追加します。スタックトレースの情報は非常に重要だからです。スタックトレースを出力したくなければ、%xThrowableの代わりに%nopexを指定すればよいです。％nopexの説明も参照してください。
+          <p>変換パターン文字列に%xThrowableや他のthrowable関連の変換指定を指定しなかった場合、<code>PatternLayout</code>が自動的に末尾に追加します。スタックトレースの情報は非常に重要だからです。スタックトレースを出力したくなければ、%xThrowableの代わりに%nopexを指定すればよいです。％nopexの説明も参照してください。
          </p>
 
           <p>例外のスタックトレースの各行の終わりに、そのクラスが含まれるjarファイル名とMANIFESTに書かれた"Implementation-Version"が追加されます。この画期的なテクニックを考案したのは<a href="http://macstrac.blogspot.com/2008/09/better-stack-traces-in-java-with-log4j.html">James Strachan</a>です。パッケージングの情報が不確かな場合、先頭にチルダ（~）が付きます。
@@ -688,7 +688,7 @@ thread</b>
           <p>スタックトレースの情報を<em>扱うように見えます</em>が、実際は何も出力しません。つまり、うまく例外を無視できるのです。
           </p>
 
-          <p>％nopex変換指示子を使うと、<code>PatternLayout</code>が内部的に実装している安全弁を無かったことにします。安全弁とは、変換パターン文字列に例外を扱う変換指示子が含まれていなかったらこっそり最後に%xThrowableを追加することです。
+          <p>％nopex変換指定子を使うと、<code>PatternLayout</code>が内部的に実装している安全弁を無かったことにします。安全弁とは、変換パターン文字列に例外を扱う変換指定子が含まれていなかったらこっそり最後に%xThrowableを追加することです。
           </p>
         </td>
       </tr>
@@ -734,7 +734,7 @@ thread</b>
           <p>変換パターン文字列"p"について、正規表現'r'にマッチした部分を文字列't'で置き換えます。たとえば、"%replace(%msg){'\s',''}" とすると、ロギングイベントに設定されたメッセージに含まれるすべての空白文字を削除します。
           </p>
 
-          <p>変換パターン文字列"p"はどれだけ複雑になってもいいですし、複数の変換指定子を含めることもできます。たとえば、"%replace(%logger %msg)'\.','/'}" とすると、ロガー名とメッセージに含まれる全てのドット（.）をスラッシュ（/）で置き換えます。
+          <p>変換パターン文字列"p"はどれだけ複雑になってもいいですし、複数の変換指定を含めることもできます。たとえば、"%replace(%logger %msg)'\.','/'}" とすると、ロガー名とメッセージに含まれる全てのドット（.）をスラッシュ（/）で置き換えます。
           </p>
 
         </td>
@@ -778,9 +778,9 @@ Wrapped by: org.springframework.BeanCreationException: Error creating bean with 
     <p>変換パターン文字列としてのコンテキストにおいて%文字には特別な意味があります。文字列リテラルとして使用するにはバックスラッシュ（\）を前につけてエスケープしなければなりません。たとえば "%d %p \%%m%n" といったようにします。
     </p>
 
-    <h4 class="doAnchor" name="restrictionsOnLiterals">変換指定子の直後の文字列リテラルの制限</h4>
+    <h4 class="doAnchor" name="restrictionsOnLiterals">変換指定の直後の文字列リテラルの制限</h4>
 
-    <p>ほとんどの場合文字列リテラルにはスペースや他の区切り文字が含まれるので、変換指定子と混同されることはありません。例えば、変換パターン文字列"%level [%thread] - %mmessage%n" には文字列リテラル <code>" ["</code>と<code>"] - "</code>が含まれています。しかし、Javaの識別子に使える文字リテラルが変換指定子の直後に現れると、logbackの文字列パターン解析器はその文字リテラルも変換指定子の一部だと勘違いしてしまいます。例えば、変換パターン文字列 "%date<b>%nHello</b>" は、%date と %nHello という二つの変換指示子として解釈されてしまいます。もちろん、%nHello は変換指示子に存在しないため、logback は %PARSER_ERROR[nHello] というエラーを出力するでしょう。%nのすぐ後に文字列リテラル "Hello" を出したければ、%nに空の引数リストを指定すればよいでしょう。たとえば、"%date<b>%n{}</b>Hello" とすれば、%date %n 文字列リテラル "Hello" という順に解釈させることができるでしょう。
+    <p>ほとんどの場合文字列リテラルにはスペースや他の区切り文字が含まれるので、変換指定と混同されることはありません。例えば、変換パターン文字列"%level [%thread] - %mmessage%n" には文字列リテラル <code>" ["</code>と<code>"] - "</code>が含まれています。しかし、Javaの識別子に使える文字リテラルが変換指定の直後に現れると、logbackの文字列パターン解析器はその文字リテラルも変換指定の一部だと勘違いしてしまいます。例えば、変換パターン文字列 "%date<b>%nHello</b>" は、%date と %nHello という二つの変換指定子として解釈されてしまいます。もちろん、%nHello は変換指定子に存在しないため、logback は %PARSER_ERROR[nHello] というエラーを出力するでしょう。%nのすぐ後に文字列リテラル "Hello" を出したければ、%nに空の引数リストを指定すればよいでしょう。たとえば、"%date<b>%n{}</b>Hello" とすれば、%date %n 文字列リテラル "Hello" という順に解釈させることができるでしょう。
 
     </p>
 
@@ -898,12 +898,12 @@ Wrapped by: org.springframework.BeanCreationException: Error creating bean with 
     <p>ロギングレベルをTRACE、DEBUG、WARN、INFO、ERRORのような文字列として出力するのではなく、T、D、W、I、Eのように一文字だけ出力したい場合もあるでしょう。<a href="http://logback.qos.ch/manual/layouts.html#customConversionSpecifier">カスタムコンバーター</a>を実装してもできるでしょうし、書式修飾子を使うこともできます。書式修飾子を使うなら<code>"%.-1level"</code>とすればよいでしょう。
     </p>
 
-		<h2 class="doAnchor" name="cwOptions">変換指示子のオプション</h2>
+		<h2 class="doAnchor" name="cwOptions">変換指定子のオプション</h2>
 
-		<p>変換指示子にはオプションを指定することができます。オプションは必ず中括弧で囲むようにします。オプションで何ができるのか、すでに目にしてきたものがあります。たとえば、<em>％mdc {someKey}</em>のようにMDC変換指示子と組み合わせることができます。
+		<p>変換指定子にはオプションを指定することができます。オプションは必ず中括弧で囲むようにします。オプションで何ができるのか、すでに目にしてきたものがあります。たとえば、<em>％mdc {someKey}</em>のようにMDC変換指定子と組み合わせることができます。
 		</p>
 
-    <p>変換指示子のオプションは複数になるかもしれません。たとえば、評価器を使う変換指示子があります。すぐ後で説明しますが、こんな風に評価器の名前を複数並べることがあるかもしれません。</p>
+    <p>変換指定子のオプションは複数になるかもしれません。たとえば、評価器を使う変換指定子があります。すぐ後で説明しますが、こんな風に評価器の名前を複数並べることがあるかもしれません。</p>
 
 		<pre class="prettyprint source">&lt;pattern&gt;%-4relative [%thread] %-5level - %msg%n \
   <b>%caller{2, DISP_CALLER_EVAL, OTHER_EVAL_NAME, THIRD_EVAL_NAME}</b>&lt;/pattern&gt;</pre>
@@ -913,12 +913,12 @@ Wrapped by: org.springframework.BeanCreationException: Error creating bean with 
 		<pre class="prettyprint source">&lt;pattern&gt;%-5level - %replace(%msg)<b>{'\d{14,16}', 'XXXX'}</b>%n&lt;/pattern&gt;</pre>
 
 
-    <p>この例では、<code>replace</code>変換指示子にオプションとして<code>\d{14,16}</code>と<code>XXXX</code>を指定しています。これは、メッセージ中に14桁から16桁の数字文字列があったらそれをXXXXで置き換えるものです。クレジットカード番号をわかりにくくするのに役立ちます。"\d"は一桁の数字を表す正規表現の省略形です。後ろに"{14,16}"をつけているので、一つ前の文字、つまり一桁の数字が14個から16個繰り返される場合にマッチすることになります。
+    <p>この例では、<code>replace</code>変換指定子にオプションとして<code>\d{14,16}</code>と<code>XXXX</code>を指定しています。これは、メッセージ中に14桁から16桁の数字文字列があったらそれをXXXXで置き換えるものです。クレジットカード番号をわかりにくくするのに役立ちます。"\d"は一桁の数字を表す正規表現の省略形です。後ろに"{14,16}"をつけているので、一つ前の文字、つまり一桁の数字が14個から16個繰り返される場合にマッチすることになります。
     </p>
 
 		<h2 class="doAnchor" name="Parentheses">括弧は特別扱い</h2>
 
-    <p>logbackでは、パターン文字列の中の括弧は、トークンをグループ化するものとして扱います。それぞれのグループはそれ自体を1つのパターン文字列として扱うことができます。logback0.9.27から、<a href="http://logback.qos.ch/manual/layouts.html#replace">%replace</a>のような変換指定子を組み合わせて部分パターン文字列を作れるようになりました。
+    <p>logbackでは、パターン文字列の中の括弧は、トークンをグループ化するものとして扱います。それぞれのグループはそれ自体を1つのパターン文字列として扱うことができます。logback0.9.27から、<a href="http://logback.qos.ch/manual/layouts.html#replace">%replace</a>のような変換指定を組み合わせて部分パターン文字列を作れるようになりました。
     </p>
 
     <p>こんなパターン文字列があるとします。</p>
@@ -961,14 +961,14 @@ Wrapped by: org.springframework.BeanCreationException: Error creating bean with 
 
     <h2 class="doAnchor" name="coloring">カラー化</h2>
 
-    <p><a href="http://logback.qos.ch/manual/layouts.html#Parentheses">括弧</a>でグループ化した部分パターン文字列には色を指定することができます。logback1.0.5から<code>PatternLayout</code>で指定できるようになった色付け用の変換指示子は次のとおりです。
+    <p><a href="http://logback.qos.ch/manual/layouts.html#Parentheses">括弧</a>でグループ化した部分パターン文字列には色を指定することができます。logback1.0.5から<code>PatternLayout</code>で指定できるようになった色付け用の変換指定子は次のとおりです。
 "%black", "%red",
     "%green","%yellow","%blue", "%magenta","%cyan", "%white", "%gray",
     "%boldRed","%boldGreen", "%boldYellow", "%boldBlue",
-    "%boldMagenta""%boldCyan", "%boldWhite" and "%highlight"これらの変換指示子にはオプションとして部分パターン文字列を指定することが想定されています。そしてその部分パターン文字列から生成された出力には色が付きます。
+    "%boldMagenta""%boldCyan", "%boldWhite" and "%highlight"これらの変換指定子にはオプションとして部分パターン文字列を指定することが想定されています。そしてその部分パターン文字列から生成された出力には色が付きます。
     </p>
 
-    <p>色付けをわかりやすく説明する設定ファイルを次に示します。%cyan変換指定子には部分パターン文字列として"%logger{15}"を指定してあるのがわかりますか。こうすると、ロガー名は15文字に短縮されるだけでなく、シアン色になります。%highlight変換指示子を使うと、部分パターン文字列の出力がログレベルがERRORなら赤太字、ログレベルがWARNなら赤字、ログレベルがINFOなら青字、それ以外のログレベルならデフォルトの色になります。</p>
+    <p>色付けをわかりやすく説明する設定ファイルを次に示します。%cyan変換指定には部分パターン文字列として"%logger{15}"を指定してあるのがわかりますか。こうすると、ロガー名は15文字に短縮されるだけでなく、シアン色になります。%highlight変換指定子を使うと、部分パターン文字列の出力がログレベルがERRORなら赤太字、ログレベルがWARNなら赤字、ログレベルがINFOなら青字、それ以外のログレベルならデフォルトの色になります。</p>
 
   <p class="example">例：ログレベルに応じた強調表示（<a href="http://logback.qos.ch/xref/chapters/layouts/highlighed.xml">logback-examples/src/main/java/chapters/layouts/highlighed.xml</a>）</p>
 
@@ -1002,11 +1002,11 @@ Wrapped by: org.springframework.BeanCreationException: Error creating bean with 
 [main] <span style="color:#611">WARN</span>  <span style="color:#2bd">c.l.TrivialMain</span> - a warning message 5
 [main] <span style="color:#f00">ERROR</span> <span style="color:#2bd">c.l.TrivialMain</span> - Finish off with fireworks</pre>
 
-    <p>色付け用変換指示子を使うとパターン文字列が複数行になってしまうこともあります。<a href="http://logback.qos.ch/manual/layouts.html#customConversionSpecifier">変換指定子を自作する</a>では設定ファイルで使用できる変換指示子を登録する手順について議論しています。</p>
+    <p>色付け用変換指定子を使うとパターン文字列が複数行になってしまうこともあります。<a href="http://logback.qos.ch/manual/layouts.html#customConversionSpecifier">変換指定を自作する</a>では設定ファイルで使用できる変換指定子を登録する手順について議論しています。</p>
 
 		<h2 class="doAnchor" name="Evaluators">評価器</h2>
 
-		<p>前述したように、オプションをリストで指定できると、変換指定子に<a href="http://logback.qos.ch/xref/ch/qos/logback/core/boolex/EventEvaluator.html">EventEvaluator</a>に基づく動的な振る舞いを複数指定できる必要があるときは便利です。
+		<p>前述したように、オプションをリストで指定できると、変換指定に<a href="http://logback.qos.ch/xref/ch/qos/logback/core/boolex/EventEvaluator.html">EventEvaluator</a>に基づく動的な振る舞いを複数指定できる必要があるときは便利です。
 		<code>EventEvaluator</code>の役割は、ロギングイベントが基準に合致するかどうかを判定することです。
 		</p>
 
@@ -1102,7 +1102,7 @@ Caller+0   at chapters.layouts.CallerEvaluatorExample.main(CallerEvaluatorExampl
 		<p>現実世界のシナリオに対応できるように評価式を変更することにしましょう。例えばロガー名とロギング要求のレベルを組み合わせることもできます。そうすれば、ロギング要求のレベルが<em>WARN</em>より高くて、かつ、アプリケーションの重要部品、例えばお金に絡むトランザクションを処理するモジュールで生成された場合にだけ送信者情報を出力する、といったことができるでしょう。
 		</p>
 
-		<p><b>重要：</b> <em>caller変換指定子</em>によって送信者情報が出力されるのは、評価式が<b>true</b>と<em>評価された</em>ときだけです。</p>
+		<p><b>重要：</b> <em>caller変換指定</em>によって送信者情報が出力されるのは、評価式が<b>true</b>と<em>評価された</em>ときだけです。</p>
 
 		<p>別の状況を考えてみましょう。ロギング要求に例外オブジェクトが設定されていると、スタックトレースも出力されます。しかし、特定の例外オブジェクトのスタックトレースは出力したくないこともあります。
 		</p>
@@ -1189,22 +1189,22 @@ java.lang.Exception: display
 
     <p>二つ目のロギング要求による出力にはスタックトレースが含まれていないことがわかりますか。うまく<code>TestException</code>のスタックトレースを出力しないようにできました。スタックトレースの各行の最後にある角括弧で囲まれた部分は<a href="http://logback.qos.ch/manual/layouts.html#xThrowable">パッケージング情報</a>です。</p>
 
-		<p><b><em>%ex</em></b>変換指定子があるので、<em>評価式</em>の結果が<b>false</b>になったときだけスタックトレースが出力されるようになっています。</p>
+		<p><b><em>%ex</em></b>変換指定があるので、<em>評価式</em>の結果が<b>false</b>になったときだけスタックトレースが出力されるようになっています。</p>
 
 
 
-		<h2 class="doAnchor" name="customConversionSpecifier">変換指定子を自作する</h2>
+		<h2 class="doAnchor" name="customConversionSpecifier">変換指定を自作する</h2>
 
-		<p>ここまでに、<code>PatternLayout</code>に組み込みの変換指定子を見てきました。ですが、変換指定子を自作することもできるのです。</p>
+		<p>ここまでに、<code>PatternLayout</code>に組み込みの変換指定を見てきました。ですが、変換指定を自作することもできるのです。</p>
 
-		<p>カスタム変換指定子を作るには2つの手順を踏みます。
+		<p>カスタム変換指定を作るには2つの手順を踏みます。
     </p>
 
     <h4>ステップ1</h4>
 
-		<p>まず、<code>ClassicConverter</code>を継承したクラスを作ります。<code><a href="http://logback.qos.ch/xref/ch/qos/logback/classic/pattern/ClassicConverter.html">ClassicConverter</a></code>の役割は、<code>ILoggingEvent</code>から情報を抽出して出力する文字列を生成することです。たとえば、 %logger変換指定子を実装した<code><a href="http://logback.qos.ch/xref/ch/qos/logback/classic/pattern/LoggerConverter.html">LoggerConverter</a></code>は、<code>ILoggingEvent</code>から抽出したロガーの名前を文字列として返します。ロガー名の省略はこの手順で行います。</p>
+		<p>まず、<code>ClassicConverter</code>を継承したクラスを作ります。<code><a href="http://logback.qos.ch/xref/ch/qos/logback/classic/pattern/ClassicConverter.html">ClassicConverter</a></code>の役割は、<code>ILoggingEvent</code>から情報を抽出して出力する文字列を生成することです。たとえば、 %logger変換指定を実装した<code><a href="http://logback.qos.ch/xref/ch/qos/logback/classic/pattern/LoggerConverter.html">LoggerConverter</a></code>は、<code>ILoggingEvent</code>から抽出したロガーの名前を文字列として返します。ロガー名の省略はこの手順で行います。</p>
 
-		<p>アプリケーションが起動してからの経過時間をナノ秒単位で返すカスタム変換指定子の実装を見てみましょう。</p>
+		<p>アプリケーションが起動してからの経過時間をナノ秒単位で返すカスタム変換指定の実装を見てみましょう。</p>
 
   <p class="example">例：自作コンバーターの例（<a href="http://logback.qos.ch/xref/chapters/MySampleConverter.html">logback-examples/src/main/java/chapters/MySampleConverter.java</a>）</p>
 <pre class="prettyprint source">public class MySampleConverter extends ClassicConverter {
@@ -1223,7 +1223,7 @@ java.lang.Exception: display
 
     <h4>ステップ2</h4>
 
-		<p>logback に自作した<code>Converter</code>のことを教えなければいけません。そのためには、設定ファイルで新しい変換指定子を宣言する必要があります。</p>
+		<p>logback に自作した<code>Converter</code>のことを教えなければいけません。そのためには、設定ファイルで新しい変換指定を宣言する必要があります。</p>
 
   <p class="example">例：自作コンバーターの設定例（<a href="http://logback.qos.ch/xref/chapters/mySampleConverterConfig.xml">logback-examples/src/main/java/chapters/mySampleConverterConfig.xml</a>）</p>
 <span class="asGroovy" onclick="return asGroovy(&#39;mySampleConverterConfig&#39;);">Groovyとして表示</span>
@@ -1243,7 +1243,7 @@ java.lang.Exception: display
   &lt;/root&gt;
 &lt;/configuration&gt;</pre>
 
-		<p>設定ファイルで宣言した新しい変換指定子は、<code>PatternLayout</code>に指定する変換パターン文字列の中で他の変換指定子と同じように使うことが出来ます。</p>
+		<p>設定ファイルで宣言した新しい変換指定は、<code>PatternLayout</code>に指定する変換パターン文字列の中で他の変換指定と同じように使うことが出来ます。</p>
 
     <p>実行してみましょう。</p>
 
@@ -1270,7 +1270,7 @@ java.lang.Exception: display
 		<p>テーブルの列は変換パターン文字列で指定します。<a href="http://logback.qos.ch/manual/layouts.html#ClassicPatternLayout"><code>PatternLayout</code></a>のドキュメントに書かれた変換パターン文字列の説明を見てください。テーブルの形も内容も全て制御することができます。<code>PatternLayout</code>で使えるあらゆるコンバーターを使うことができます。
 		</p>
 
-		<p>自由に使えるとはいえ一つだけ例外的な制限があります。<code>PatternLayout</code>と<code>HTMLLayout</code>を使うときは、変換パターン文字列中で変換指定子を半角スペースで区切ってはいけません。もっというと文字列リテラルを使ってはいけないのです。変換パターン文字列中の変換指定子はそれぞれがテーブルの列になるからです。同様に、変換指定子を区切るつもりの文字列リテラルはそれぞれが列になってしまいます。下手をすると、横に超長いテーブルが出力されてしまうかもしれません。</p>
+		<p>自由に使えるとはいえ一つだけ例外的な制限があります。<code>PatternLayout</code>と<code>HTMLLayout</code>を使うときは、変換パターン文字列中で変換指定を半角スペースで区切ってはいけません。もっというと文字列リテラルを使ってはいけないのです。変換パターン文字列中の変換指定はそれぞれがテーブルの列になるからです。同様に、変換指定を区切るつもりの文字列リテラルはそれぞれが列になってしまいます。下手をすると、横に超長いテーブルが出力されてしまうかもしれません。</p>
 
     <p><code>HTMLLayout</code>の使い方を説明する設定ファイルを見てください。
     </p>
@@ -1303,7 +1303,7 @@ java.lang.Exception: display
 
     <h3>スタックトレース</h3>
 
-		<p>スタックトレースを出力するには<em>%ex変換指定子</em>を指定します。そうすると専用の列が追加されます。ほとんどの場合スタックトレースの列は空なので、無駄に画面を専有することでしょう。さらに、スタックトレースを専用の列に出力したところで読みやすくはならないです。なお、スタックトレースを出力するには、<em>%ex変換指定子</em>を指定する以外の方法があります。
+		<p>スタックトレースを出力するには<em>%ex変換指定</em>を指定します。そうすると専用の列が追加されます。ほとんどの場合スタックトレースの列は空なので、無駄に画面を専有することでしょう。さらに、スタックトレースを専用の列に出力したところで読みやすくはならないです。なお、スタックトレースを出力するには、<em>%ex変換指定</em>を指定する以外の方法があります。
 		</p>
 
 		<p>よりよい解決策は、自分で<code>IThrowableRenderer</code>インターフェイスを実装することです。実装したクラスは、例外オブジェクトに関係する情報を出力するため、<code>HTMLLayout</code>に割り当てることができます。デフォルトでは、<code>HTMLLayout</code>インスタンスに<code><a href="http://logback.qos.ch/xref/ch/qos/logback/classic/html/DefaultThrowableRenderer.html">DefaultThrowableRenderer</a></code>が割り当てられています。これは例外オブジェクトのスタックトレースを<em>新しい行</em>に出力します。前の図を見るとわかりますが多少読みやすいです。
@@ -1369,14 +1369,14 @@ java.lang.Exception: display
 
 		<h3 class="doAnchor" name="AccessPatternLayout">PatternLayout</h3>
 
-		<p>logback-access の<code><a href="http://logback.qos.ch/xref/ch/qos/logback/access/PatternLayout.html">PatternLayout</a></code>は、logback-classic とほとんど同じように設定することができます。ですが、HTTPリクエストやHTTPレスポンスにしか無い、ロギングに適した情報のための変換指定子が追加されています。
+		<p>logback-access の<code><a href="http://logback.qos.ch/xref/ch/qos/logback/access/PatternLayout.html">PatternLayout</a></code>は、logback-classic とほとんど同じように設定することができます。ですが、HTTPリクエストやHTTPレスポンスにしか無い、ロギングに適した情報のための変換指定が追加されています。
     </p>
 
-		<p>logback-accessの<code>PatternLayout</code>で使える変換指定子を表にまとめました。</p>
+		<p>logback-accessの<code>PatternLayout</code>で使える変換指定を表にまとめました。</p>
 
 		<table class="bodyTable striped" border="0" cellpadding="8">
       <tr>
-        <th align="center">変換指定子</th>
+        <th align="center">変換指定</th>
         <th align="center">効果</th>
       </tr>
       <tr>
@@ -1431,7 +1431,7 @@ protocol</b></td>
         <td class="word" name="reqParameter"><b>reqParameter{paramName}</b></td>
         <td>
           <p>リクエストパラメータ。</p>
-          <p>この変換指定子はオプションで指定されたリクエストパラメータを探します。</p>
+          <p>この変換指定はオプションで指定されたリクエストパラメータを探します。</p>
           <p><b>%reqParameter{input_data}</b>とすると、リクエストパラメータのinput_dataの値を出力します。</p>
         </td>
       </tr>
@@ -1440,7 +1440,7 @@ protocol</b></td>
 header{header}</b></td>
         <td>
           <p>リクエストヘッダ。</p>
-          <p>この変換指定子はオプションで指定されたリクエストヘッダを探します。</p>
+          <p>この変換指定はオプションで指定されたリクエストヘッダを探します。</p>
           <p><b>％header{Referer}</b>とすると、リクエストヘッダのRefererの値を出力します。</p>
           <p>オプションを指定しなかったら、利用可能なヘッダを全て出力します。
           </p>
@@ -1518,7 +1518,7 @@ server</b></td>
         <td class="word" name="reqAttribute"><b>reqAttribute{attributeName}</b></td>
         <td>
           <p>リクエストの属性。</p>
-          <p>この変換指定子はオプションで指定された属性を探します。
+          <p>この変換指定はオプションで指定された属性を探します。
 </p>
           <p><b>％reqAttribute{SOME_ATTRIBUTE}</b>とすると、リクエスト属性SOME_ATTRIBUTEの値を出力します。</p>
         </td>
@@ -1527,7 +1527,7 @@ server</b></td>
         <td class="word" name="reqCookie"><b>reqCookie{cookie}</b></td>
         <td>
           <p>リクエストクッキー。</p>
-          <p>この変換指定子はオプションで指定されたリクエストクッキーを探します。
+          <p>この変換指定はオプションで指定されたリクエストクッキーを探します。
 </p>
           <p><b>％cookie{COOKIE_NAME}</b>とすると、クッキーCOOKIE_NAMEの値を出力します。</p>
         </td>
@@ -1537,7 +1537,7 @@ server</b></td>
         <td>
           <p>レスポンスヘッダー。
           </p>
-          <p>この変換指定子はオプションで指定されたレスポンスヘッダを探します。
+          <p>この変換指定はオプションで指定されたレスポンスヘッダを探します。
 </p>
           <p><b>%responseHeader{Server}</b>とすると、レスポンスヘッダServerの値を出力します。</p>
         </td>
@@ -1545,7 +1545,7 @@ server</b></td>
       <tr class="b">
         <td class="word" name="requestContent"><b>requestContent</b></td>
         <td>
-          <p>この変換指定子はリクエストの中身、つまり、リクエストの<code>InputStream</code>を出力します。実際は、<code><a href="http://logback.qos.ch/xref/ch/qos/logback/access/servlet/TeeFilter.html">TeeFilter</a></code>によって元の<code>HttpServletRequest</code>を<code>TeeHttpServletRequest</code>に置き換えます。だから、データを失わずに何度でもリクエストの<code>InputStream</code>にアクセスできるのです。
+          <p>この変換指定はリクエストの中身、つまり、リクエストの<code>InputStream</code>を出力します。実際は、<code><a href="http://logback.qos.ch/xref/ch/qos/logback/access/servlet/TeeFilter.html">TeeFilter</a></code>によって元の<code>HttpServletRequest</code>を<code>TeeHttpServletRequest</code>に置き換えます。だから、データを失わずに何度でもリクエストの<code>InputStream</code>にアクセスできるのです。
           </p>
         </td>
       </tr>
