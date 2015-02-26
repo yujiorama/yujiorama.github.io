@@ -1,6 +1,6 @@
-﻿<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1"></meta>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"></meta>
     <title>第8章 診断コンテキスト</title>
     <link rel="stylesheet" type="text/css" href="./c.css"></link>
     <link rel="stylesheet" type="text/css" href="./s.css" media="screen"></link>
@@ -373,7 +373,7 @@ public class NumberCruncherServer extends UnicastRemoteObject
 		
 		<h3 class="doAnchor" name="autoMDC"><code>MDC</code>への自動的なアクセス</h3>
 		
-		<p>これまでに見てきたように、<code>MDC</code>があると複数のクライアントの相手をするとき便利です。ユーザー認証のあるWebアプリケーションなら、<code>MDC</code>にユーザー名を設定して、ログアウトするときにそれを削除するようにしておくのが、1つの簡単なソリューションになるでしょう。残念ながら、そのテクニックを使っていても常に確実な結果を得られるわけではありません。<code></code>MDC[/0}がスレッド毎にデータを管理している限り、サーバがスレッドをリサイクするようになっていると、間違った情報が設定されていることがあるかもしれません。</p>
+		<p>これまでに見てきたように、<code>MDC</code>があると複数のクライアントの相手をするとき便利です。ユーザー認証のあるWebアプリケーションなら、<code>MDC</code>にユーザー名を設定して、ログアウトするときにそれを削除するようにしておくのが、1つの簡単なソリューションになるでしょう。残念ながら、そのテクニックを使っていても常に確実な結果を得られるわけではありません。<code>MDC</code>がスレッド毎にデータを管理している限り、サーバがスレッドをリサイクするようになっていると、間違った情報が設定されていることがあるかもしれません。</p>
 		
 		<p>リクエストを処理するとき、いつでも<code>MDC</code>に正しい情報が設定されていることを確実にするためにできるのは、処理の始めにユーザー名を設定して、処理の終わりに削除することです。こういう場合サーブレット<code><a href="http://java.sun.com/javaee/5/docs/api/javax/servlet/Filter.html">Filter</a></code>を使うとよいでしょう。
 		</p>
