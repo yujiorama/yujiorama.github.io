@@ -66,7 +66,7 @@ public class MDC {
 
 		<p><code><a href="http://logback.qos.ch/xref/chapters/mdc/SimpleMDC.html">SimpleMDC</a></code>アプリケーションを使ってこの基本原則を説明しましょう。
 		</p>
-<em>例7.1：MDCの基本的な使い方（<a href="http://logback.qos.ch/xref/chapters/mdc/SimpleMDC.html">logback-examples/src/main/java/chapters/mdc/SimpleMDC.java</a>）</em>
+    <p class="example">例7.1：MDCの基本的な使い方（<a href="http://logback.qos.ch/xref/chapters/mdc/SimpleMDC.html">logback-examples/src/main/java/chapters/mdc/SimpleMDC.java</a>）</p>
 <pre class="prettyprint source">package chapters.mdc;
 
 import org.slf4j.Logger;
@@ -136,7 +136,8 @@ Richard Nixon - Attributed to the former US president. 17 Nov 1973.</pre></div>
 		<p>次の例は少し凝っています。クライアント・サーバ環境でどのように<code>MDC</code>を使うのか説明したものです。サーバーは例7.2の<code>NumberCrucher</code>インターフェイスを実装します。<code>The NumberCruncher</code>インターフェイスには、<code>factor()</code>というメソッドが1つあるだけです。クライアントは、RMIによってサーバアプリケーションの<code>factor()</code>メソッドを呼び出して、指定した整数の素因数を取得します。
 		</p>
 
-<em>例7.2：サービスインターフェイス（<a href="http://logback.qos.ch/xref/chapters/mdc/NumberCruncher.html">logback-examples/src/main/java/chapters/mdc/NumberCruncher.java</a>）</em>
+    <p class="example">例7.2：サービスインターフェイス（<a href="http://logback.qos.ch/xref/chapters/mdc/NumberCruncher.html">logback-examples/src/main/java/chapters/mdc/NumberCruncher.java</a>）</p>
+
 <pre class="prettyprint source">package chapters.mdc;
 
 import java.rmi.Remote;
@@ -156,7 +157,8 @@ public interface NumberCruncher extends Remote {
 		<p>例7.3の<code>NumberCruncherServer</code>アプリケーションが<code>NumberCruncher</code>インターフェイスを実装しています。mainメソッドはlocalhost上でRMIレジストリを公開して、well-knownポートでリクエストを待ち受けます。
 		</p>
 
-<em>例7.3：サーバー実装（<a href="http://logback.qos.ch/xref/chapters/mdc/NumberCruncherServer.html">logback-examples/src/main/java/chapters/mdc/NumberCruncherServer.java</a>）</em>
+    <p class="example">例7.3：サーバー実装（<a href="http://logback.qos.ch/xref/chapters/mdc/NumberCruncherServer.html">logback-examples/src/main/java/chapters/mdc/NumberCruncherServer.java</a>）</p>
+
 <pre class="prettyprint source">package chapters.mdc;
 
 import java.rmi.RemoteException;
@@ -315,7 +317,9 @@ public class NumberCruncherServer extends UnicastRemoteObject
 <div class="source"><pre>java chapters.mdc.NumberCruncherServer src/main/java/chapters/mdc/mdc1.xml</pre></div>
 		
 		<p><em>mdc1.xml</em>の内容は次のとおりです。</p>
-<em>例7.4：設定ファイル（logback-examples/src/main/java/chapters/mdc/mdc1.xml）</em>
+
+    <p class="example">例7.4：設定ファイル（<a href="http://logback.qos.ch/xref/chapters/mdc/mdc1.xml">logback-examples/src/main/java/chapters/mdc/mdc1.xml</a>）</p>
+
 <pre class="prettyprint source">&lt;configuration&gt;
   &lt;appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender"&gt;
     &lt;layout&gt;
@@ -383,7 +387,8 @@ public class NumberCruncherServer extends UnicastRemoteObject
 		
 		<p>フィルターの実装例を見てみましょう。</p>
 
-<em>例7.5：ユーザー名サーブレットフィルター（ <a href="http://logback.qos.ch/xref/chapters/mdc/UserServletFilter.html">logback-examples/src/main/java/chapters/mdc/UserServletFilter.java）</a></em>
+    <p class="example">例7.5：ユーザー名サーブレットフィルター（<a href="http://logback.qos.ch/xref/chapters/mdc/UserServletFilter.html">logback-examples/src/main/java/chapters/mdc/UserServletFilter.html</a>）</p>
+
 <pre class="prettyprint source">package chapters.mdc;
 
 import java.io.IOException;
