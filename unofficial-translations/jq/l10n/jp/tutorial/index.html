@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="jp">
+  <head>
+    <meta charset="utf-8">
+    <title>チュートリアル</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="canonical" href="https://yujiorama.github.io/unofficial-translations/jq/l10n/jp/tutorial/" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/spacelab/bootstrap.min.css" rel="stylesheet" integrity="sha256-j7Dtnd7ZjexEiPNbscbopFn9+Cs0b3TLipKsWAPHZIM= sha512-RFhfi6P8zWMAJrEGU+CPjuxPh3r/UUBGqQ+/o6WKPIVZmQqeOipGotH2ihRULuQ8wsMBoK15TSZqc/7VYWyuIw==" crossorigin="anonymous">
+    <link rel="stylesheet" href="/unofficial-translations/jq/css/base.css" type="text/css">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body id="tutorial">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/unofficial-translations/jq/">jq</a>
+        </div>
+
+        <div class="navbar-collapse collapse" id="nav-collapse">
+          <ul class="nav navbar-nav">
+
+            
+              
+                <li class="nav-item dropdown ">
+                  <a class="nav-link dropdown-toggle" data-target="#" data-toggle="dropdown" href="#">Tutorial<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    
+                    <li><a href="https://stedolan.github.io/jq/tutorial/">Tutorial</a></li>
+                    
+                    <li><a href="/unofficial-translations/jq/l10n/jp/tutorial/">Tutorial(jp)</a></li>
+                    
+                  </ul>
+                </li>
+              
+            
+              
+                <li class="nav-item dropdown ">
+                  <a class="nav-link dropdown-toggle" data-target="#" data-toggle="dropdown" href="#">Manual<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    
+                    <li><a href="https://stedolan.github.io/jq/manual/">Manual</a></li>
+                    
+                    <li><a href="/unofficial-translations/jq/l10n/jp/manual/">Manual(jp)</a></li>
+                    
+                  </ul>
+                </li>
+              
+            
+              
+                <li >
+                  <a href="https://stedolan.github.io/jq/download/">Download</a>
+                </li>
+              
+            
+
+            <li><a href="https://github.com/stedolan/jq/issues">Issues</a></li>
+            <li><a href="https://github.com/stedolan/jq">Source</a></li>
+            <li><a href="https://jqplay.org">Try online!</a></li>
+            <li><a href="https://raw.githubusercontent.com/stedolan/jq/master/NEWS">News</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="notice">
+          <p>
+            このドキュメントはStephen Dolan氏が権利を有するコマンドラインプロセッサー<a href="https://github.com/stedolan/jq">jq</a>のマニュアルおよびチュートリアルを、CC-BY-3.0の条件に基づき日本語へ翻訳したものです。
+          </p>
+          <p>
+            Stephen Dolan氏は日本語版の公開や翻訳について関与するものではありません。
+          </p>
+          <p>
+            翻訳により混入した誤りや誤字の責任は<a href="https://github.com/yujiorama">Yuji Okazawa</a>に帰属します。
+          </p>
+        </div>
+        <h1>チュートリアル</h1>
+        
+          
+            <p>GitHubの提供するJSON APIを利用してみましょう。
+次のURLにアクセスするとjqのGitHubリポジトリから最新のコミットを5つ取得します。</p>
+          
+
+          
+        
+          
+
+          
+            
+            <div class="tutorial-example">
+              <div class="accordion-heading">
+                <pre>curl &#39;https://api.github.com/repos/stedolan/jq/commits?per_page=5&#39;</pre>
+                <a data-toggle="collapse" href="#result1">Show result</a>
+              </div>
+              <div id="result1" class="accordion-body collapse">
+                <pre>[
+  {
+    &#34;sha&#34;: &#34;d25341478381063d1c76e81b3a52e0592a7c997f&#34;,
+    &#34;commit&#34;: {
+      &#34;author&#34;: {
+        &#34;name&#34;: &#34;Stephen Dolan&#34;,
+        &#34;email&#34;: &#34;mu@netsoc.tcd.ie&#34;,
+        &#34;date&#34;: &#34;2013-06-22T16:30:59Z&#34;
+      },
+      &#34;committer&#34;: {
+        &#34;name&#34;: &#34;Stephen Dolan&#34;,
+        &#34;email&#34;: &#34;mu@netsoc.tcd.ie&#34;,
+        &#34;date&#34;: &#34;2013-06-22T16:30:59Z&#34;
+      },
+      &#34;message&#34;: &#34;Merge pull request #162 from stedolan/utf8-fixes\n\nUtf8 fixes. Closes #161&#34;,
+      &#34;tree&#34;: {
+        &#34;sha&#34;: &#34;6ab697a8dfb5a96e124666bf6d6213822599fb40&#34;,
+        &#34;url&#34;: &#34;https://api.github.com/repos/stedolan/jq/git/trees/6ab697a8dfb5a96e124666bf6d6213822599fb40&#34;
+      },
+      &#34;url&#34;: &#34;https://api.github.com/repos/stedolan/jq/git/commits/d25341478381063d1c76e81b3a52e0592a7c997f&#34;,
+      &#34;comment_count&#34;: 0
+    },
+    &#34;url&#34;: &#34;https://api.github.com/repos/stedolan/jq/commits/d25341478381063d1c76e81b3a52e0592a7c997f&#34;,
+    &#34;html_url&#34;: &#34;https://github.com/stedolan/jq/commit/d25341478381063d1c76e81b3a52e0592a7c997f&#34;,
+    &#34;comments_url&#34;: &#34;https://api.github.com/repos/stedolan/jq/commits/d25341478381063d1c76e81b3a52e0592a7c997f/comments&#34;,
+    &#34;author&#34;: {
+      &#34;login&#34;: &#34;stedolan&#34;,
+...
+</pre>
+              </div>
+            </div>
+          
+        
+          
+            <p>GitHubはきれいに整理されたJSONを返します。
+きれいでない応答を返すサーバーがあるときは整形するためにjqとパイプで連結すると便利です。
+jqで最も簡潔な式は<code>.</code>です。
+入力を変更せずそのまま出力します。</p>
+          
+
+          
+        
+          
+
+          
+            
+            <div class="tutorial-example">
+              <div class="accordion-heading">
+                <pre>curl &#39;https://api.github.com/repos/stedolan/jq/commits?per_page=5&#39; | jq &#39;.&#39;</pre>
+                <a data-toggle="collapse" href="#result2">Show result</a>
+              </div>
+              <div id="result2" class="accordion-body collapse">
+                <pre>[
+  {
+    &#34;sha&#34;: &#34;d25341478381063d1c76e81b3a52e0592a7c997f&#34;,
+    &#34;commit&#34;: {
+      &#34;author&#34;: {
+        &#34;name&#34;: &#34;Stephen Dolan&#34;,
+        &#34;email&#34;: &#34;mu@netsoc.tcd.ie&#34;,
+        &#34;date&#34;: &#34;2013-06-22T16:30:59Z&#34;
+      },
+      &#34;committer&#34;: {
+        &#34;name&#34;: &#34;Stephen Dolan&#34;,
+        &#34;email&#34;: &#34;mu@netsoc.tcd.ie&#34;,
+        &#34;date&#34;: &#34;2013-06-22T16:30:59Z&#34;
+      },
+      &#34;message&#34;: &#34;Merge pull request #162 from stedolan/utf8-fixes\n\nUtf8 fixes. Closes #161&#34;,
+      &#34;tree&#34;: {
+        &#34;sha&#34;: &#34;6ab697a8dfb5a96e124666bf6d6213822599fb40&#34;,
+        &#34;url&#34;: &#34;https://api.github.com/repos/stedolan/jq/git/trees/6ab697a8dfb5a96e124666bf6d6213822599fb40&#34;
+      },
+      &#34;url&#34;: &#34;https://api.github.com/repos/stedolan/jq/git/commits/d25341478381063d1c76e81b3a52e0592a7c997f&#34;,
+      &#34;comment_count&#34;: 0
+    },
+    &#34;url&#34;: &#34;https://api.github.com/repos/stedolan/jq/commits/d25341478381063d1c76e81b3a52e0592a7c997f&#34;,
+    &#34;html_url&#34;: &#34;https://github.com/stedolan/jq/commit/d25341478381063d1c76e81b3a52e0592a7c997f&#34;,
+    &#34;comments_url&#34;: &#34;https://api.github.com/repos/stedolan/jq/commits/d25341478381063d1c76e81b3a52e0592a7c997f/comments&#34;,
+    &#34;author&#34;: {
+      &#34;login&#34;: &#34;stedolan&#34;,
+...
+</pre>
+              </div>
+            </div>
+          
+        
+          
+            <p>次のようにすると最初のコミットを取り出すことができます。</p>
+          
+
+          
+        
+          
+
+          
+            
+            <div class="tutorial-example">
+              <div class="accordion-heading">
+                <pre>curl &#39;https://api.github.com/repos/stedolan/jq/commits?per_page=5&#39; | jq &#39;.[0]&#39;</pre>
+                <a data-toggle="collapse" href="#result3">Show result</a>
+              </div>
+              <div id="result3" class="accordion-body collapse">
+                <pre>{
+  &#34;sha&#34;: &#34;d25341478381063d1c76e81b3a52e0592a7c997f&#34;,
+  &#34;commit&#34;: {
+    &#34;author&#34;: {
+      &#34;name&#34;: &#34;Stephen Dolan&#34;,
+      &#34;email&#34;: &#34;mu@netsoc.tcd.ie&#34;,
+      &#34;date&#34;: &#34;2013-06-22T16:30:59Z&#34;
+    },
+    &#34;committer&#34;: {
+      &#34;name&#34;: &#34;Stephen Dolan&#34;,
+      &#34;email&#34;: &#34;mu@netsoc.tcd.ie&#34;,
+      &#34;date&#34;: &#34;2013-06-22T16:30:59Z&#34;
+    },
+    &#34;message&#34;: &#34;Merge pull request #162 from stedolan/utf8-fixes\n\nUtf8 fixes. Closes #161&#34;,
+    &#34;tree&#34;: {
+      &#34;sha&#34;: &#34;6ab697a8dfb5a96e124666bf6d6213822599fb40&#34;,
+      &#34;url&#34;: &#34;https://api.github.com/repos/stedolan/jq/git/trees/6ab697a8dfb5a96e124666bf6d6213822599fb40&#34;
+    },
+    &#34;url&#34;: &#34;https://api.github.com/repos/stedolan/jq/git/commits/d25341478381063d1c76e81b3a52e0592a7c997f&#34;,
+    &#34;comment_count&#34;: 0
+  },
+  &#34;url&#34;: &#34;https://api.github.com/repos/stedolan/jq/commits/d25341478381063d1c76e81b3a52e0592a7c997f&#34;,
+  &#34;html_url&#34;: &#34;https://github.com/stedolan/jq/commit/d25341478381063d1c76e81b3a52e0592a7c997f&#34;,
+  &#34;comments_url&#34;: &#34;https://api.github.com/repos/stedolan/jq/commits/d25341478381063d1c76e81b3a52e0592a7c997f/comments&#34;,
+  &#34;author&#34;: {
+    &#34;login&#34;: &#34;stedolan&#34;,
+    &#34;id&#34;: 79765,
+    &#34;avatar_url&#34;: &#34;https://avatars.githubusercontent.com/u/79765?v=3&#34;,
+    &#34;gravatar_id&#34;: &#34;&#34;,
+    &#34;url&#34;: &#34;https://api.github.com/users/stedolan&#34;,
+    &#34;html_url&#34;: &#34;https://github.com/stedolan&#34;,
+    &#34;followers_url&#34;: &#34;https://api.github.com/users/stedolan/followers&#34;,
+    &#34;following_url&#34;: &#34;https://api.github.com/users/stedolan/following{/other_user}&#34;,
+    &#34;gists_url&#34;: &#34;https://api.github.com/users/stedolan/gists{/gist_id}&#34;,
+    &#34;starred_url&#34;: &#34;https://api.github.com/users/stedolan/starred{/owner}{/repo}&#34;,
+    &#34;subscriptions_url&#34;: &#34;https://api.github.com/users/stedolan/subscriptions&#34;,
+    &#34;organizations_url&#34;: &#34;https://api.github.com/users/stedolan/orgs&#34;,
+    &#34;repos_url&#34;: &#34;https://api.github.com/users/stedolan/repos&#34;,
+    &#34;events_url&#34;: &#34;https://api.github.com/users/stedolan/events{/privacy}&#34;,
+    &#34;received_events_url&#34;: &#34;https://api.github.com/users/stedolan/received_events&#34;,
+    &#34;type&#34;: &#34;User&#34;,
+    &#34;site_admin&#34;: false
+  },
+  &#34;committer&#34;: {
+    &#34;login&#34;: &#34;stedolan&#34;,
+    &#34;id&#34;: 79765,
+    &#34;avatar_url&#34;: &#34;https://avatars.githubusercontent.com/u/79765?v=3&#34;,
+    &#34;gravatar_id&#34;: &#34;&#34;,
+    &#34;url&#34;: &#34;https://api.github.com/users/stedolan&#34;,
+    &#34;html_url&#34;: &#34;https://github.com/stedolan&#34;,
+    &#34;followers_url&#34;: &#34;https://api.github.com/users/stedolan/followers&#34;,
+    &#34;following_url&#34;: &#34;https://api.github.com/users/stedolan/following{/other_user}&#34;,
+    &#34;gists_url&#34;: &#34;https://api.github.com/users/stedolan/gists{/gist_id}&#34;,
+    &#34;starred_url&#34;: &#34;https://api.github.com/users/stedolan/starred{/owner}{/repo}&#34;,
+    &#34;subscriptions_url&#34;: &#34;https://api.github.com/users/stedolan/subscriptions&#34;,
+    &#34;organizations_url&#34;: &#34;https://api.github.com/users/stedolan/orgs&#34;,
+    &#34;repos_url&#34;: &#34;https://api.github.com/users/stedolan/repos&#34;,
+    &#34;events_url&#34;: &#34;https://api.github.com/users/stedolan/events{/privacy}&#34;,
+    &#34;received_events_url&#34;: &#34;https://api.github.com/users/stedolan/received_events&#34;,
+    &#34;type&#34;: &#34;User&#34;,
+    &#34;site_admin&#34;: false
+  },
+  &#34;parents&#34;: [
+    {
+      &#34;sha&#34;: &#34;54b9c9bdb225af5d886466d72f47eafc51acb4f7&#34;,
+      &#34;url&#34;: &#34;https://api.github.com/repos/stedolan/jq/commits/54b9c9bdb225af5d886466d72f47eafc51acb4f7&#34;,
+      &#34;html_url&#34;: &#34;https://github.com/stedolan/jq/commit/54b9c9bdb225af5d886466d72f47eafc51acb4f7&#34;
+    },
+    {
+      &#34;sha&#34;: &#34;8b1b503609c161fea4b003a7179b3fbb2dd4345a&#34;,
+      &#34;url&#34;: &#34;https://api.github.com/repos/stedolan/jq/commits/8b1b503609c161fea4b003a7179b3fbb2dd4345a&#34;,
+      &#34;html_url&#34;: &#34;https://github.com/stedolan/jq/commit/8b1b503609c161fea4b003a7179b3fbb2dd4345a&#34;
+    }
+  ]
+}
+</pre>
+              </div>
+            </div>
+          
+        
+          
+            <p>以降の例でもずっと同じなので<code>curl</code>コマンドの記述は省略します。</p>
+<p>GitHubの応答には気にしないでいい部分がたくさんあるので、最も重要なフィールドだけを残すことにします。</p>
+          
+
+          
+        
+          
+
+          
+            
+            <div class="tutorial-example">
+              <div class="accordion-heading">
+                <pre>jq &#39;.[0] | {message: .commit.message, name: .commit.committer.name}&#39;</pre>
+                <a data-toggle="collapse" href="#result4">Show result</a>
+              </div>
+              <div id="result4" class="accordion-body collapse">
+                <pre>{
+  &#34;message&#34;: &#34;Merge pull request #162 from stedolan/utf8-fixes\n\nUtf8 fixes. Closes #161&#34;,
+  &#34;name&#34;: &#34;Stephen Dolan&#34;
+}
+</pre>
+              </div>
+            </div>
+          
+        
+          
+            <p>jqの<code>|</code>演算子は前のフィルター<code>.[0]</code>（GitHubの応答から配列の最初の要素を取り出します）の出力を
+次のフィルター<code>{...}</code>（指定したフィールドを持つオブジェクトを生成します）へ入力します。
+<code>.commit.message</code>のように記述するとネストしたフィールドにアクセスできます。</p>
+<p>他のコミットも取得してみましょう。</p>
+          
+
+          
+        
+          
+
+          
+            
+            <div class="tutorial-example">
+              <div class="accordion-heading">
+                <pre>jq &#39;.[] | {message: .commit.message, name: .commit.committer.name}&#39;</pre>
+                <a data-toggle="collapse" href="#result5">Show result</a>
+              </div>
+              <div id="result5" class="accordion-body collapse">
+                <pre>{
+  &#34;message&#34;: &#34;Merge pull request #162 from stedolan/utf8-fixes\n\nUtf8 fixes. Closes #161&#34;,
+  &#34;name&#34;: &#34;Stephen Dolan&#34;
+}
+{
+  &#34;message&#34;: &#34;Reject all overlong UTF8 sequences.&#34;,
+  &#34;name&#34;: &#34;Stephen Dolan&#34;
+}
+{
+  &#34;message&#34;: &#34;Fix various UTF8 parsing bugs.\n\nIn particular, parse bad UTF8 by replacing the broken bits with U+FFFD\nand resychronise correctly after broken sequences.&#34;,
+  &#34;name&#34;: &#34;Stephen Dolan&#34;
+}
+{
+  &#34;message&#34;: &#34;Fix example in manual for `floor`. See #155.&#34;,
+  &#34;name&#34;: &#34;Stephen Dolan&#34;
+}
+{
+  &#34;message&#34;: &#34;Document floor&#34;,
+  &#34;name&#34;: &#34;Nicolas Williams&#34;
+}
+</pre>
+              </div>
+            </div>
+          
+        
+          
+            <p><code>.[]</code>は配列のそれぞれの要素を1つずつ取り出して、フィルター<code>{message: .commit.message, name: .commit.committer.name}</code>に入力します。</p>
+<p>jqはデータをJSON値のストリームとして扱います。
+全ての式は入力ストリームのそれぞれの値について実行します。
+式は任意の数の値を生成し、出力ストリームへ出力します。</p>
+<p>ストリームは空白文字（U+0020）で区切られたJSON値としてシリアライズされます。
+<code>cat</code>コマンドで扱いやすい形式です。
+ですから、ただ2つのJSONストリームを連結しただけでも有効なJSONストリームになります。</p>
+<p>出力を単一の配列にしたければ、指定したフィルターを角括弧で囲めばjqに「集約」させることができます。</p>
+          
+
+          
+        
+          
+
+          
+            
+            <div class="tutorial-example">
+              <div class="accordion-heading">
+                <pre>jq &#39;[.[] | {message: .commit.message, name: .commit.committer.name}]&#39;</pre>
+                <a data-toggle="collapse" href="#result6">Show result</a>
+              </div>
+              <div id="result6" class="accordion-body collapse">
+                <pre>[
+  {
+    &#34;message&#34;: &#34;Merge pull request #163 from stedolan/utf8-fixes\n\nUtf8 fixes. Closes #161&#34;,
+    &#34;name&#34;: &#34;Stephen Dolan&#34;
+  },
+  {
+    &#34;message&#34;: &#34;Reject all overlong UTF8 sequences.&#34;,
+    &#34;name&#34;: &#34;Stephen Dolan&#34;
+  },
+  {
+    &#34;message&#34;: &#34;Fix various UTF8 parsing bugs.\n\nIn particular, parse bad UTF8 by replacing the broken bits with U+FFFD\nand resychronise correctly after broken sequences.&#34;,
+    &#34;name&#34;: &#34;Stephen Dolan&#34;
+  },
+  {
+    &#34;message&#34;: &#34;Fix example in manual for `floor`. See #155.&#34;,
+    &#34;name&#34;: &#34;Stephen Dolan&#34;
+  },
+  {
+    &#34;message&#34;: &#34;Document floor&#34;,
+    &#34;name&#34;: &#34;Nicolas Williams&#34;
+  }
+]
+</pre>
+              </div>
+            </div>
+          
+        
+          
+            <hr />
+<p>次は、GitHub APIの応答から「親コミット」のURLを抽出してみましょう。
+GitHub APIの応答にはそれぞれのコミットに「親コミット」の情報が含まれています。
+「親コミット」は1つの場合もあるし、複数の場合もあります。</p>
+<pre><code>"parents": [
+  {
+    "sha": "54b9c9bdb225af5d886466d72f47eafc51acb4f7",
+    "url": "https://api.github.com/repos/stedolan/jq/commits/54b9c9bdb225af5d886466d72f47eafc51acb4f7",
+    "html_url": "https://github.com/stedolan/jq/commit/54b9c9bdb225af5d886466d72f47eafc51acb4f7"
+  },
+  {
+    "sha": "8b1b503609c161fea4b003a7179b3fbb2dd4345a",
+    "url": "https://api.github.com/repos/stedolan/jq/commits/8b1b503609c161fea4b003a7179b3fbb2dd4345a",
+    "html_url": "https://github.com/stedolan/jq/commit/8b1b503609c161fea4b003a7179b3fbb2dd4345a"
+  }
+]
+</code></pre>
+<p>やりたいのは、「親コミット」配列の全ての要素についてフィールド"html_url"を取り出して、
+すでに取得できているフィールド"message"や"author"と一緒に、単純な文字列の配列として出力することです。</p>
+          
+
+          
+        
+          
+
+          
+            
+            <div class="tutorial-example">
+              <div class="accordion-heading">
+                <pre>jq &#39;[.[] | {message: .commit.message, name: .commit.committer.name, parents: [.parents[].html_url]}]&#39;</pre>
+                <a data-toggle="collapse" href="#result7">Show result</a>
+              </div>
+              <div id="result7" class="accordion-body collapse">
+                <pre>[
+  {
+    &#34;message&#34;: &#34;Merge pull request #162 from stedolan/utf8-fixes\n\nUtf8 fixes. Closes #161&#34;,
+    &#34;name&#34;: &#34;Stephen Dolan&#34;,
+    &#34;parents&#34;: [
+      &#34;https://github.com/stedolan/jq/commit/54b9c9bdb225af5d886466d72f47eafc51acb4f7&#34;,
+      &#34;https://github.com/stedolan/jq/commit/8b1b503609c161fea4b003a7179b3fbb2dd4345a&#34;
+    ]
+  },
+  {
+    &#34;message&#34;: &#34;Reject all overlong UTF8 sequences.&#34;,
+    &#34;name&#34;: &#34;Stephen Dolan&#34;,
+    &#34;parents&#34;: [
+      &#34;https://github.com/stedolan/jq/commit/ff48bd6ec538b01d1057be8e93b94eef6914e9ef&#34;
+    ]
+  },
+  {
+    &#34;message&#34;: &#34;Fix various UTF8 parsing bugs.\n\nIn particular, parse bad UTF8 by replacing the broken bits with U+FFFD\nand resychronise correctly after broken sequences.&#34;,
+    &#34;name&#34;: &#34;Stephen Dolan&#34;,
+    &#34;parents&#34;: [
+      &#34;https://github.com/stedolan/jq/commit/54b9c9bdb225af5d886466d72f47eafc51acb4f7&#34;
+    ]
+  },
+  {
+    &#34;message&#34;: &#34;Fix example in manual for `floor`. See #155.&#34;,
+    &#34;name&#34;: &#34;Stephen Dolan&#34;,
+    &#34;parents&#34;: [
+      &#34;https://github.com/stedolan/jq/commit/3dcdc582ea993afea3f5503a78a77675967ecdfa&#34;
+    ]
+  },
+  {
+    &#34;message&#34;: &#34;Document floor&#34;,
+    &#34;name&#34;: &#34;Nicolas Williams&#34;,
+    &#34;parents&#34;: [
+      &#34;https://github.com/stedolan/jq/commit/7c4171d414f647ab08bcd20c76a4d8ed68d9c602&#34;
+    ]
+  }
+]
+</pre>
+              </div>
+            </div>
+          
+        
+          
+            <p>前の例と同じようにオブジェクトを作成していますが、ここではフィールド<code>parents</code>に<code>.parents[].html_url]</code>を設定しています。
+このように記述すると「親コミット」に存在する全てのコミットのURLを集約できます。</p>
+          
+
+          
+        
+          
+            <hr />
+<p>チュートリアルはここまでです。
+他にもいろいろな使い方があるので、興味があれば<a href="../manual">マニュアル</a>を読んでみましょう。
+まだダウンロードしていなければ<a href="https://stedolan.github.io/jq/download/">download jq</a>からダウンロードしましょう。</p>
+          
+
+          
+        
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <p>This website is made with <a href="http://getbootstrap.com">Bootstrap</a>, themed with <a href="https://bootswatch.com">Bootswatch</a>.</p>
+        <p>jq is licensed under the MIT license (code) and the <a href="https://creativecommons.org/licenses/by/3.0/">CC-BY-3.0</a> license (docs).</p>
+      </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <script src="https://twitter.github.io/typeahead.js/releases/0.11.1/typeahead.bundle.js"></script>
+  </body>
+</html>
