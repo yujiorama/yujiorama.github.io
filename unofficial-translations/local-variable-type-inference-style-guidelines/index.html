@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>local-variable-type-inference-style-guidelines</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="local-variable-type-inference-style-guidelines">Local Variable Type Inference: Style Guidelines</h1>
+<p>原文 <a href="https://openjdk.java.net/projects/amber/LVTIstyle.html">https://openjdk.java.net/projects/amber/LVTIstyle.html</a></p>
+<p>Stuart W. Marks 2018-03-22</p>
+<h2 id="初めに">初めに</h2>
+<p>Java SE 10 はローカル変数の型を推論する機能を導入しました。 以前は、全てのローカル変数の宣言の左側に明示的な型が必要でした。 型推論機能により、初期化子のあるローカル変数の宣言には、明示的な型の代わりに予約済みの型名<code>var</code>を使えるようになりました。 変数の型は初期化子の型から推論されるのです。</p>
+<p>この機能について多くの議論が重ねられてきました。 簡潔な記述ができることを歓迎する人もいれば、重要な型情報を失うことが可読性を損ねることにつながることを危惧する人もいました。 どちらも正しい意見です。 冗長な情報を無くすことでソースコードを読みやすくできると同時に、役に立つ情報を省略して可読性を損ねてしまう場合もあるからです。 型推論機能に頼りきった不適切なソースコードが氾濫してしまうことを懸念する人もいます。 それもまた正しい意見ですが、同じように適切なソースコードが増える可能性もあるのです。 どんな機能も使い手が適切に判断しなければなりません。 なんらかの機能を利用するべきかどうかを判断するための画一的な決まりは存在しないのです。</p>
+<p>ローカル変数の宣言が単独で使用されることはありません。 <code>var</code> の導入は周辺のソースコードに影響を与えるでしょうし、劇的な影響を与える可能性もあります。 このドキュメントの目的は、周辺のソースコードに<code>var</code>の宣言がもたらす影響を検討することです。 いくつかのトレードオフを説明し、効果的に<code>var</code>を使うためのガイドラインを提示します。</p>
+<h2 id="原則">原則</h2>
+<h3 id="p1-ソースコードは書くより読むほうが重要">P1. ソースコードは書くより読むほうが重要</h3>
+<p>ソースコードを書く機会より、ソースコードを読む機会のほうがずっと多いです。 たいていの場合、私たちがソースコードを書くときは、全体的な文脈を頭の中に把握し、集中しています。ソースコードを読むときは、頻繁にコンテキストを切り替えながら、少なからず急いでいることでしょう。 特定の言語機能を使用するかどうか、また、どのように使用するかは、そのプログラムの作者ではなく「将来の読者」に与える影響を考慮して判断するべきです。 長すぎるより短いほうが望ましいのですが、短すぎるとプログラムを理解するのに役立つ情報が取り除かれてしまうかもしれません。 重要な課題は、分かりやすさを最大化する適切な大きさを特定することなのです。</p>
+<p>私たちは、プログラムを入力したり編集したりするために必要なキーボードの打鍵量のことを特に考慮していません。 簡潔さはプログラムの作者にとって予期せぬ贈り物かもしれませんが、そこにこだわると本来の目的を見失ってしまいます。 プログラムの分かりやすさを改善することが重要です。</p>
+<h3 id="p2-ソースコードの局所的な論理展開を明確にする">P2. ソースコードの局所的な論理展開を明確にする</h3>
+<p><code>var</code>の変数宣言を見つけたプログラムの読者が、その変数をどのように利用しているのかすぐに理解できるようにしなければなりません。 ソースコードのスニペットやパッチを読むだけで、容易に理解できるのが理想的です。 読者がソースコードのあちこちを見回らないと<code>var</code>の変数宣言を理解できないとしたら、おそらく間違った使い方をしています。 ソースコード自体に問題があることを示していると言えるでしょう。</p>
+<h3 id="p3-ソースコードの可読性はideの使用を前提にするべきではありません">P3. ソースコードの可読性はIDEの使用を前提にするべきではありません</h3>
+<p>ソースコードを読み書きするためにIDEを使う場合は多いので、IDEのソースコード分析機能を過度に多用してしまうこともあるでしょう。 型宣言について言えば、IDEがポイントした変数の型を教えてくれるせいで、全ての変数宣言を<code>var</code>にしたくなってしまうかもしれません。</p>
+<p>問題が2つあります。 1つ目は、IDEを使わずにソースコードを読む機会も多いことです。 ドキュメント中のスニペットや、Webブラウザで閲覧するソースコードリポジトリや、パッチファイルなど、ソースコードはIDEが使えないさまざまな場所に登場します。 単純にソースコードがやっていることを理解したいだけなのに、いちいちIDEへインポートしなければならないとしたら、それは逆効果です。</p>
+<p>2つ目は、IDEでソースコードを読んでいるとしても、変数に関する詳細な情報が知りたければ、IDEを明示的に操作したり、問い合わせたりしなければならないことです。 具体的には、<code>var</code>で宣言した変数の型を確認するには、マウスポインタを変数の上に重ねて、情報がポップアップされるのを待たなければなりません。 少しだけとはいえ待ち時間が生じるため、ソースコードを読むフローを中断してしまいます。</p>
+<p>ソースコードは自分自身を説明できるようにするべきです。 ツールの助けがなくても見たままで理解できるようにするべきなのです。</p>
+<h3 id="p4-明示的な型を使うときはトレードオフを考慮する">P4. 明示的な型を使うときはトレードオフを考慮する</h3>
+<p>歴史的な経緯により、Javaでローカル変数を宣言するときは明示的な型が必要とされてきました。 明示的な型があることで助かる場合もありますが、たいして重要でない場合もありますし、邪魔になる場合もあります。 明示的な型のせいでソースコードが賑やかになり、重要な情報が埋もれてしまう場合があるのです。 明示的な型を無くせばソースコードはおとなしくなりますが、分かりやすさを損なうことが無い場合に限られます。 型だけがプログラムの読者に情報を伝える手段ではありません。 変数名や初期化子なども利用できます。 利用できる全てのチャンネルを考慮して、どれが使わなくていいチャンネルなのか判断するようにしましょう。</p>
+<h2 id="ガイドライン">ガイドライン</h2>
+<h3 id="g1-変数名が役に立つ情報を伝えられるようにする">G1. 変数名が役に立つ情報を伝えられるようにする</h3>
+<p>一般的ですが、<code>var</code>で変数宣言をするときはより重要なプラクティスです。 <code>var</code>で変数を宣言するときは、変数の意味や使い方を名前で表現することになります。 明示的な型を<code>var</code>に置き換えると、より良い名前を付けられるようになることが多いようです。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ORIGINAL</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">List</span><span class="op">&lt;</span>Customer<span class="op">&gt;</span> x <span class="op">=</span> dbconn<span class="op">.</span><span class="fu">executeQuery</span><span class="op">(</span>query<span class="op">);</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// GOOD</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> custList <span class="op">=</span> dbconn<span class="op">.</span><span class="fu">executeQuery</span><span class="op">(</span>query<span class="op">);</span></span></code></pre></div>
+<p>この例では、無意味な名前から変数の型を意識させる名前へ置き換えています。 <code>var</code>の変数宣言が名前に暗黙的な意味を持たせたのです。</p>
+<p>論理的な帰結として、名前に変数の型を埋め込むようにしたのがいわゆる「ハンガリアン記法」です。 明示的な型と同じように役立つ場合もあるのですが、ソースコードを賑やかにしすぎてしまうでしょう。 前の例に登場する変数名 <code>custList</code> は、返り値が<code>List</code>であることを示唆しています。 たいした意味があるとは思えません。 明示的な型ではなく、”customers” のように変数の役割や性質を表す名前にしたほうがいいでしょう。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ORIGINAL</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span> <span class="op">(</span>Stream<span class="op">&lt;</span>Customer<span class="op">&gt;</span> result <span class="op">=</span> dbconn<span class="op">.</span><span class="fu">executeQuery</span><span class="op">(</span>query<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result<span class="op">.</span><span class="fu">map</span><span class="op">(</span><span class="kw">...</span><span class="op">)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                     <span class="op">.</span><span class="fu">filter</span><span class="op">(</span><span class="kw">...</span><span class="op">)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                     <span class="op">.</span><span class="fu">findAny</span><span class="op">();</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// GOOD</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span> <span class="op">(</span><span class="dt">var</span> customers <span class="op">=</span> dbconn<span class="op">.</span><span class="fu">executeQuery</span><span class="op">(</span>query<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> customers<span class="op">.</span><span class="fu">map</span><span class="op">(</span><span class="kw">...</span><span class="op">)</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                        <span class="op">.</span><span class="fu">filter</span><span class="op">(</span><span class="kw">...</span><span class="op">)</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                        <span class="op">.</span><span class="fu">findAny</span><span class="op">();</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code></pre></div>
+<h3 id="g2-ローカル変数のスコープは最小限にする">G2. ローカル変数のスコープは最小限にする</h3>
+<p>ローカル変数のスコープを狭くするのは一般的に良いとされているプラクティスです。 Effective Java(3rd edition) の Item 57 でも、<code>var</code> を使うときは特に注意するべきだと述べています。</p>
+<p>次のコード例では、<code>add</code> メソッドへ最後の要素を表す特別な要素を渡しているのが分かります。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> items <span class="op">=</span> <span class="kw">new</span> <span class="bu">ArrayList</span><span class="op">&lt;</span>Item<span class="op">&gt;(</span><span class="kw">...</span><span class="op">);</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    items<span class="op">.</span><span class="fu">add</span><span class="op">(</span>MUST_BE_PROCESSED_LAST<span class="op">);</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">var</span> item <span class="op">:</span> items<span class="op">)</span> <span class="kw">...</span></span></code></pre></div>
+<p>そして、重複する要素を取り除くため、プログラマーは <code>ArrayList</code> から <code>HashSet</code> へ変更しました。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> items <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashSet</span><span class="op">&lt;</span>Item<span class="op">&gt;(</span><span class="kw">...</span><span class="op">);</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    items<span class="op">.</span><span class="fu">add</span><span class="op">(</span>MUST_BE_PROCESSED_LAST<span class="op">);</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">var</span> item <span class="op">:</span> items<span class="op">)</span> <span class="kw">...</span></span></code></pre></div>
+<p>このソースコードには明らかなバグがあります。 <code>Set</code> はイテレータの順序を保証しないからです。 しかし、<code>items</code> 変数を使っているのは宣言の周辺だけなので、プログラマーはすぐにバグを修正できるでしょう。</p>
+<p>次に、このコード片が大きなメソッドの一部分で、<code>items</code> 変数のスコープがもっと広かった場合を考えてみましょう。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> items <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashSet</span><span class="op">&lt;</span>Item<span class="op">&gt;(</span><span class="kw">...</span><span class="op">);</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ... 100 lines of code ...</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    items<span class="op">.</span><span class="fu">add</span><span class="op">(</span>MUST_BE_PROCESSED_LAST<span class="op">);</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">var</span> item <span class="op">:</span> items<span class="op">)</span> <span class="kw">...</span></span></code></pre></div>
+<p><code>ArrayList</code> から <code>HashSet</code> への変更による影響は一見して分からなくなってしまいました。 <code>items</code> を宣言している場所と使っている場所が離れてしまったからです。 このような場合、バグは長く残ってしまうことでしょう。</p>
+<p><code>items</code> を明示的な型の <code>List&lt;String&gt;</code> で宣言していれば、初期化子の変更に応じて <code>Set&lt;String&gt;</code> に変更しなければなりませんでした。 その場合、プログラマーはメソッドの中で <code>items</code> を使っている部分に影響があることに気づいたはずです（気づかないかもしれませんが）。 <code>var</code> で変数を宣言したために、バグの混入リスクを高めてしまったのです。</p>
+<p><code>var</code> の使用に対する反対意見に聞こえるかもしれませんが、そういうつもりではありません。 最初のコード例における <code>var</code> の使い方は間違いなく適切なものでした。 問題になるのは変数のスコープが広すぎる場合です。 そういう場合は単純に <code>var</code> を使わないようにするのではなく、ローカル変数のスコープが狭くなるように修正するといいでしょう。</p>
+<h3 id="g3-読者にとって初期化子が十分な情報を伝えられているときはvarで変数を宣言するか検討する">G3. 読者にとって初期化子が十分な情報を伝えられているときは<code>var</code>で変数を宣言するか検討する</h3>
+<p>ローカル変数はコンストラクタを呼び出して初期化することが多いです。 変数の左側には、明示的な型として、生成されるオブジェクトのクラス名が繰り返し登場することになります。 クラス名がとても長い場合、<code>var</code>を使うと情報を失うことなく簡潔に表現できる場合があります。</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ORIGINAL</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">ByteArrayOutputStream</span> outputStream <span class="op">=</span> <span class="kw">new</span> <span class="bu">ByteArrayOutputStream</span><span class="op">();</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// GOOD</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> outputStream <span class="op">=</span> <span class="kw">new</span> <span class="bu">ByteArrayOutputStream</span><span class="op">();</span></span></code></pre></div>
+<p>コンストラクタではなくても静的ファクトリメソッドのように、初期化子で型の情報を十分に伝える名前のメソッドを呼び出している場合も、<code>var</code> を使用するのは適切でしょう。</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ORIGINAL</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">BufferedReader</span> reader <span class="op">=</span> Files<span class="op">.</span><span class="fu">newBufferedReader</span><span class="op">(</span><span class="kw">...</span><span class="op">);</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">List</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;</span> stringList <span class="op">=</span> <span class="bu">List</span><span class="op">.</span><span class="fu">of</span><span class="op">(</span><span class="st">&quot;a&quot;</span><span class="op">,</span> <span class="st">&quot;b&quot;</span><span class="op">,</span> <span class="st">&quot;c&quot;</span><span class="op">);</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// GOOD</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> reader <span class="op">=</span> Files<span class="op">.</span><span class="fu">newBufferedReader</span><span class="op">(</span><span class="kw">...</span><span class="op">);</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> stringList <span class="op">=</span> <span class="bu">List</span><span class="op">.</span><span class="fu">of</span><span class="op">(</span><span class="st">&quot;a&quot;</span><span class="op">,</span> <span class="st">&quot;b&quot;</span><span class="op">,</span> <span class="st">&quot;c&quot;</span><span class="op">);</span></span></code></pre></div>
+<p>メソッドの名前が返り値の型を強く示唆するようになっているため、変数の型を推測するのに役立ちます。</p>
+<h3 id="g4-メソッド呼び出しの連鎖や入れ子のメソッド呼び出しを分解するためvarでローカル変数を宣言する">G4. メソッド呼び出しの連鎖や入れ子のメソッド呼び出しを分解するため<code>var</code>でローカル変数を宣言する</h3>
+<p>次のように、文字列のコレクションから登場回数の一番多い文字列を発見するコードについて考えてみましょう。</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> strings<span class="op">.</span><span class="fu">stream</span><span class="op">()</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                  <span class="op">.</span><span class="fu">collect</span><span class="op">(</span><span class="fu">groupingBy</span><span class="op">(</span>s <span class="op">-&gt;</span> s<span class="op">,</span> <span class="fu">counting</span><span class="op">()))</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                  <span class="op">.</span><span class="fu">entrySet</span><span class="op">()</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                  <span class="op">.</span><span class="fu">stream</span><span class="op">()</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                  <span class="op">.</span><span class="fu">max</span><span class="op">(</span><span class="bu">Map</span><span class="op">.</span><span class="fu">Entry</span><span class="op">.</span><span class="fu">comparingByValue</span><span class="op">())</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                  <span class="op">.</span><span class="fu">map</span><span class="op">(</span><span class="bu">Map</span><span class="op">.</span><span class="fu">Entry</span><span class="op">::</span>getKey<span class="op">);</span></span></code></pre></div>
+<p>正しいコードですが、単独のストリームであるかのように混乱させてしまう可能性もあります。 実際には短いストリームの結果に、2つ目のストリームが続いてから、その結果である <code>Optional</code> を処理しています。 このコードの可読性を最大化するには、少なくとも2つか3つの式に分割したほうがいいでしょう。 最初のグループを map にして、その map を reduce して、存在する key を取得するのです。</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>    <span class="bu">Map</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">Long</span><span class="op">&gt;</span> freqMap <span class="op">=</span> strings<span class="op">.</span><span class="fu">stream</span><span class="op">()</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                                       <span class="op">.</span><span class="fu">collect</span><span class="op">(</span><span class="fu">groupingBy</span><span class="op">(</span>s <span class="op">-&gt;</span> s<span class="op">,</span> <span class="fu">counting</span><span class="op">()));</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    Optional<span class="op">&lt;</span><span class="bu">Map</span><span class="op">.</span><span class="fu">Entry</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span> <span class="bu">Long</span><span class="op">&gt;&gt;</span> maxEntryOpt <span class="op">=</span> freqMap<span class="op">.</span><span class="fu">entrySet</span><span class="op">()</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                                                           <span class="op">.</span><span class="fu">stream</span><span class="op">()</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                                                           <span class="op">.</span><span class="fu">max</span><span class="op">(</span><span class="bu">Map</span><span class="op">.</span><span class="fu">Entry</span><span class="op">.</span><span class="fu">comparingByValue</span><span class="op">());</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> maxEntryOpt<span class="op">.</span><span class="fu">map</span><span class="op">(</span><span class="bu">Map</span><span class="op">.</span><span class="fu">Entry</span><span class="op">::</span>getKey<span class="op">);</span></span></code></pre></div>
+<p>プログラムの作者は、制御フローを分解する代わりに中間変数を導入することについて、型名を記述するのが煩雑すぎると反対するでしょう。 <code>var</code>を使えば、中間変数の明示的な型を記述することなく、自然に表現できるようになります。</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> freqMap <span class="op">=</span> strings<span class="op">.</span><span class="fu">stream</span><span class="op">()</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                         <span class="op">.</span><span class="fu">collect</span><span class="op">(</span><span class="fu">groupingBy</span><span class="op">(</span>s <span class="op">-&gt;</span> s<span class="op">,</span> <span class="fu">counting</span><span class="op">()));</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> maxEntryOpt <span class="op">=</span> freqMap<span class="op">.</span><span class="fu">entrySet</span><span class="op">()</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                             <span class="op">.</span><span class="fu">stream</span><span class="op">()</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                             <span class="op">.</span><span class="fu">max</span><span class="op">(</span><span class="bu">Map</span><span class="op">.</span><span class="fu">Entry</span><span class="op">.</span><span class="fu">comparingByValue</span><span class="op">());</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> maxEntryOpt<span class="op">.</span><span class="fu">map</span><span class="op">(</span><span class="bu">Map</span><span class="op">.</span><span class="fu">Entry</span><span class="op">::</span>getKey<span class="op">);</span></span></code></pre></div>
+<p>最初のコードスニペットのような長いメソッド呼び出しの連鎖は正当な記述だし、そのほうがよいと主張する人もいるでしょう。 しかし、長いメソッド呼び出しの連鎖は分解したほうがよいです。 そういう場合、それぞれの中間変数を<code>var</code>で宣言するのは適切な使い方です。 2つ目のコードスニペットのように、明示的に完全な型を宣言するのは代替案として受け入れにくいでしょう。 その他さまざまな場合において、適切な<code>var</code>の使用には何らかの対価（明示的な型）と見返り（より良い名前、より良い構造）が伴うものなのです。</p>
+<h3 id="g5-ローカル変数を使うときはインターフェイスに対してプログラミングすることに固執しない">G5. ローカル変数を使うときは「インターフェイスに対してプログラミングする」ことに固執しない</h3>
+<p>Java のプログラミングにおいて、具象型のインスタンスを生成してインターフェイス型の変数に代入するのは基本的なイディオムとして知られています。 実装ではなく抽象に依存することで、ソースコードの将来的な柔軟性を確保するのが目的です。</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ORIGINAL</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">List</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;</span> list <span class="op">=</span> <span class="kw">new</span> <span class="bu">ArrayList</span><span class="op">&lt;&gt;();</span></span></code></pre></div>
+<p><code>var</code>を使用すると、変数の型として推論されるのはインターフェイス型ではなく具象型になります。</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Inferred type of list is ArrayList&lt;String&gt;.</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> list <span class="op">=</span> <span class="kw">new</span> <span class="bu">ArrayList</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;();</span></span></code></pre></div>
+<p><strong>繰り返して強調しますが</strong>、<code>var</code> はローカル変数にしか使えません。 フィールドの型やメソッド引数の型、メソッドの返り値の型を推論するためには使えません。 それらのコンテキストでは、「インターフェイスに対してプログラミングする」という原則は今までのように重要です。</p>
+<p>問題は、変数を使用するソースコードが具体的な実装に依存してしまうことです。 変数の初期化子を変更すると、推論される型が変化し、その変数を使用するコードにおけるエラーやバグの原因になります。</p>
+<p>ガイドラインG2で推奨しているように、ローカル変数のスコープを狭くしていれば、具体的な実装が「漏洩」し、変数を使用するソースコードに影響を与えるリスクを限定的にできるでしょう。 変数がたった数行のソースコードでしか使われていなければ、たとえ問題が発生しても解決したり緩和したりするのは簡単です。</p>
+<p>前のコード例の場合、<code>ArrayList</code>が持っている<code>List</code>に無いメソッドは<code>ensureCapacity</code>と<code>trimToSize</code>だけです。 これらのメソッドはリストの要素に影響しないので、たとえ呼び出していてもプログラムの正確性には影響しません。 したがって、インターフェイス型ではなく具象型を推論する影響はさらに軽減されるでしょう。</p>
+<h3 id="g6-varをダイアモンド演算子や総称型メソッドと一緒に使うときは注意する">G6. <code>var</code>をダイアモンド演算子や総称型メソッドと一緒に使うときは注意する</h3>
+<p><code>var</code>と「ダイアモンド演算子」は、どちらも既存の情報から導出できるなら明示的な型情報を省略できる機能です。 ところで、これらは同じ場所で宣言できるのでしょうか。 次の例で考えてみましょう。</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>    <span class="bu">PriorityQueue</span><span class="op">&lt;</span>Item<span class="op">&gt;</span> itemQueue <span class="op">=</span> <span class="kw">new</span> <span class="bu">PriorityQueue</span><span class="op">&lt;</span>Item<span class="op">&gt;();</span></span></code></pre></div>
+<p>次のようにすれば、型情報を失わずにダイアモンド演算子と<code>var</code>で書き換えることができます。</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">// OK: both declare variables of type PriorityQueue&lt;Item&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">PriorityQueue</span><span class="op">&lt;</span>Item<span class="op">&gt;</span> itemQueue <span class="op">=</span> <span class="kw">new</span> <span class="bu">PriorityQueue</span><span class="op">&lt;&gt;();</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> itemQueue <span class="op">=</span> <span class="kw">new</span> <span class="bu">PriorityQueue</span><span class="op">&lt;</span>Item<span class="op">&gt;();</span></span></code></pre></div>
+<p><code>var</code>とダイアモンド演算子を同時に記述することもできますが、推論されるのは別の型になってしまいます。</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">// DANGEROUS: infers as PriorityQueue&lt;Object&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> itemQueue <span class="op">=</span> <span class="kw">new</span> <span class="bu">PriorityQueue</span><span class="op">&lt;&gt;();</span></span></code></pre></div>
+<p>ダイアモンド演算子は、変数宣言の左側に登場する型か、コンストラクタ引数の型を対象の型として、型推論を行います。 どちらにも型が存在しなければ、より広く適用できる型にフォールバックします。 たいていは <code>Object</code> になりますが、普通はそうなることを意図していません。</p>
+<p>総称型メソッドには型推論機能が備わっているため、プログラマーが明示的に型引数を指定しなければならない場面はほとんどありません。 総称型メソッドは、必要な型情報を提供するメソッド引数が存在しない場合、対象の型に基づいて型推論を行います。 <code>var</code> の変数宣言には対象の型がないため、ダイアモンド演算子と同じような問題が発生します。</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">// DANGEROUS: infers as List&lt;Object&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> list <span class="op">=</span> <span class="bu">List</span><span class="op">.</span><span class="fu">of</span><span class="op">();</span></span></code></pre></div>
+<p>ダイアモンド演算子と総称型メソッドのどちらも、コンストラクタやメソッドの引数により、推論させたい型の情報を提供できます。</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">// OK: itemQueue infers as PriorityQueue&lt;String&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">Comparator</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;</span> comp <span class="op">=</span> <span class="kw">...</span> <span class="op">;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> itemQueue <span class="op">=</span> <span class="kw">new</span> <span class="bu">PriorityQueue</span><span class="op">&lt;&gt;(</span>comp<span class="op">);</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// OK: infers as List&lt;BigInteger&gt;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> list <span class="op">=</span> <span class="bu">List</span><span class="op">.</span><span class="fu">of</span><span class="op">(</span><span class="bu">BigInteger</span><span class="op">.</span><span class="fu">ZERO</span><span class="op">);</span></span></code></pre></div>
+<p><code>var</code>の変数宣言とダイアモンド演算子あるいは総称型メソッドを組み合わせて使う場合、意図した型を推論できるだけの十分な情報を提供できるよう、コンストラクタやメソッドの引数を指定しましょう。 それができない場合、<code>var</code>の変数宣言とダイアモンド演算子あるいは総称型メソッドを同時に記述するのはやめましょう。</p>
+<h3 id="g7-varの変数にリテラルを代入するときは注意する">G7. <code>var</code>の変数にリテラルを代入するときは注意する</h3>
+<p><code>var</code>の変数宣言では、プリミティブ型のリテラルを初期化子に指定できます。 ほとんどのプリミティブ型の型名は短いため、<code>var</code>を使うだけの利点はほとんどありません。 しかし、変数名の縦の並びを揃えたいときは便利です。</p>
+<p>論理値リテラル、文字リテラル、文字列リテラル、整数リテラル(long)については何も問題ありません。 正確な型を推論できるので、<code>var</code>で宣言した変数の型は明らかです。</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ORIGINAL</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">boolean</span> ready <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> ch <span class="op">=</span> <span class="ch">&#39;\ufffd&#39;</span><span class="op">;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> sum <span class="op">=</span> <span class="dv">0L</span><span class="op">;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">String</span> label <span class="op">=</span> <span class="st">&quot;wombat&quot;</span><span class="op">;</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// GOOD</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> ready <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> ch    <span class="op">=</span> <span class="ch">&#39;\ufffd&#39;</span><span class="op">;</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> sum   <span class="op">=</span> <span class="dv">0L</span><span class="op">;</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> label <span class="op">=</span> <span class="st">&quot;wombat&quot;</span><span class="op">;</span></span></code></pre></div>
+<p>特に注意が必要なのは初期化子に数値を、中でも整数リテラルを記述するときです。 変数宣言の左側に明示的な型を記述する場合、数値の型は<code>int</code>以外へ暗黙的に拡大および縮小されるでしょう。 <code>var</code>で変数を宣言した場合、その型は予想と違って<code>int</code>になります。</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ORIGINAL</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">byte</span> flags <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">short</span> mask <span class="op">=</span> <span class="bn">0x7fff</span><span class="op">;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> base <span class="op">=</span> <span class="dv">17</span><span class="op">;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// DANGEROUS: all infer as int</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> flags <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> mask <span class="op">=</span> <span class="bn">0x7fff</span><span class="op">;</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> base <span class="op">=</span> <span class="dv">17</span><span class="op">;</span></span></code></pre></div>
+<p>浮動小数リテラルから推論される型は基本的に明らかです。</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ORIGINAL</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> f <span class="op">=</span> <span class="fl">1.0f</span><span class="op">;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> d <span class="op">=</span> <span class="fl">2.0</span><span class="op">;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// GOOD</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> f <span class="op">=</span> <span class="fl">1.0f</span><span class="op">;</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> d <span class="op">=</span> <span class="fl">2.0</span><span class="op">;</span></span></code></pre></div>
+<p><code>float</code>型リテラルは暗黙的に<code>double</code>型へ拡大されるので気を付けましょう。 これは、<code>double</code>型の変数に対する初期化子へ、明示的に<code>3.0f</code>のような<code>float</code>型リテラルを記述した場合にも起きる振る舞いですが、<code>double</code>型の変数を<code>float</code>型の変数で初期化する場合にも発生します。 <code>var</code>の変数を推論した型は<code>float</code>型になるため注意してください。</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ORIGINAL</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">static</span> <span class="dt">final</span> <span class="dt">float</span> INITIAL <span class="op">=</span> <span class="fl">3.0f</span><span class="op">;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">...</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> temp <span class="op">=</span> INITIAL<span class="op">;</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// DANGEROUS: now infers as float</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> temp <span class="op">=</span> INITIAL<span class="op">;</span></span></code></pre></div>
+<p>（とはいえ、これらの例はガイドラインG3に違反しています。つまり、初期化子は読者が型を推測するのに十分な情報を提供できていないのです）</p>
+<h2 id="具体例">具体例</h2>
+<p>このセクションでは<code>var</code>による変数宣言が最も役に立つ使い方を紹介します。</p>
+<p>次のコードはMapについてマッチした要素を最大で<code>max</code>個削除します。 メソッドの柔軟性を高めるため、仮型引数はワイルドカードになっていますが、結果として冗長な記述になっています。 おかげで、Iteratorの型引数はワイルドカードをネストしなければならないため、より一層冗長な記述が増えてしまいます。 型の宣言が長くてforループの先頭部分が1行に入りきらなくなっており、読みにくさは悪化しています。</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ORIGINAL</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> <span class="fu">removeMatches</span><span class="op">(</span><span class="bu">Map</span><span class="op">&lt;?</span> <span class="kw">extends</span> <span class="bu">String</span><span class="op">,</span> <span class="op">?</span> <span class="kw">extends</span> <span class="bu">Number</span><span class="op">&gt;</span> map<span class="op">,</span> <span class="dt">int</span> max<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="bu">Iterator</span><span class="op">&lt;?</span> <span class="kw">extends</span> <span class="bu">Map</span><span class="op">.</span><span class="fu">Entry</span><span class="op">&lt;?</span> <span class="kw">extends</span> <span class="bu">String</span><span class="op">,</span> <span class="op">?</span> <span class="kw">extends</span> <span class="bu">Number</span><span class="op">&gt;&gt;</span> iterator <span class="op">=</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                 map<span class="op">.</span><span class="fu">entrySet</span><span class="op">().</span><span class="fu">iterator</span><span class="op">();</span> iterator<span class="op">.</span><span class="fu">hasNext</span><span class="op">();)</span> <span class="op">{</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>            <span class="bu">Map</span><span class="op">.</span><span class="fu">Entry</span><span class="op">&lt;?</span> <span class="kw">extends</span> <span class="bu">String</span><span class="op">,</span> <span class="op">?</span> <span class="kw">extends</span> <span class="bu">Number</span><span class="op">&gt;</span> entry <span class="op">=</span> iterator<span class="op">.</span><span class="fu">next</span><span class="op">();</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>max <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> <span class="fu">matches</span><span class="op">(</span>entry<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>                iterator<span class="op">.</span><span class="fu">remove</span><span class="op">();</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>                max<span class="op">--;</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code></pre></div>
+<p>ローカル変数を<code>var</code>で宣言すると過剰な型の宣言を削減できます。 このような構造のループなら、IteratorやMap.Entryのローカル変数に明示的な型は必要ありません。 forループも一行に入るようになり、読みやすさはさらに改善しています。</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">// GOOD</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> <span class="fu">removeMatches</span><span class="op">(</span><span class="bu">Map</span><span class="op">&lt;?</span> <span class="kw">extends</span> <span class="bu">String</span><span class="op">,</span> <span class="op">?</span> <span class="kw">extends</span> <span class="bu">Number</span><span class="op">&gt;</span> map<span class="op">,</span> <span class="dt">int</span> max<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">var</span> iterator <span class="op">=</span> map<span class="op">.</span><span class="fu">entrySet</span><span class="op">().</span><span class="fu">iterator</span><span class="op">();</span> iterator<span class="op">.</span><span class="fu">hasNext</span><span class="op">();)</span> <span class="op">{</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>            <span class="dt">var</span> entry <span class="op">=</span> iterator<span class="op">.</span><span class="fu">next</span><span class="op">();</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>max <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> <span class="fu">matches</span><span class="op">(</span>entry<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                iterator<span class="op">.</span><span class="fu">remove</span><span class="op">();</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>                max<span class="op">--;</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code></pre></div>
+<p>try-with-resources文を使っている、ソケットから1行のテキストを読み取るコードについて検討してみましょう。 ネットワークなどの各種入出力を行う API は、オブジェクトをラップするイディオムで記述します。 それぞれの中間オブジェクトはリソース変数として宣言し、後に続けてopenするラッパーでエラーが発生しても、適切にcloseできるようにしなければなりません。 慣習的なコードの書き方をするときは、変数宣言の左側と右側の両方にクラス名を書かなければなりません。 結果として、ソースコードはかなり賑やかになってしまいます。</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ORIGINAL</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span> <span class="op">(</span><span class="bu">InputStream</span> is <span class="op">=</span> socket<span class="op">.</span><span class="fu">getInputStream</span><span class="op">();</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>         <span class="bu">InputStreamReader</span> isr <span class="op">=</span> <span class="kw">new</span> <span class="bu">InputStreamReader</span><span class="op">(</span>is<span class="op">,</span> charsetName<span class="op">);</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>         <span class="bu">BufferedReader</span> buf <span class="op">=</span> <span class="kw">new</span> <span class="bu">BufferedReader</span><span class="op">(</span>isr<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> buf<span class="op">.</span><span class="fu">readLine</span><span class="op">();</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code></pre></div>
+<p>変数を<code>var</code>で宣言すればとてもおとなしくなります。</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">// GOOD</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span> <span class="op">(</span><span class="dt">var</span> inputStream <span class="op">=</span> socket<span class="op">.</span><span class="fu">getInputStream</span><span class="op">();</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>         <span class="dt">var</span> reader <span class="op">=</span> <span class="kw">new</span> <span class="bu">InputStreamReader</span><span class="op">(</span>inputStream<span class="op">,</span> charsetName<span class="op">);</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>         <span class="dt">var</span> bufReader <span class="op">=</span> <span class="kw">new</span> <span class="bu">BufferedReader</span><span class="op">(</span>reader<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> bufReader<span class="op">.</span><span class="fu">readLine</span><span class="op">();</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code></pre></div>
+<h2 id="まとめ">まとめ</h2>
+<p><code>var</code>の変数宣言は賑やかすぎるソースコードをおとなしくしてくれます。 そうすれば、より重要な情報を際立たせることができるため、ソースコードは改善します。 一方、見境なく<code>var</code>の変数宣言を使うとソースコードは悪化します。 適切に使用すれば、分かりやすさを損なうことなく、より短く、より明白なコードを書けるようになるでしょう。</p>
+<h2 id="references">References</h2>
+<p><a href="https://openjdk.java.net/jeps/286">JEP 286: Local-Variable Type Inference</a> <a href="https://en.wikipedia.org/wiki/Hungarian_notation">Wikipedia: Hungarian Notation</a> <a href="https://www.pearson.com/us/higher-education/program/Bloch-Effective-Java-3rd-Edition/PGM1763855.html">Bloch, Joshua. Effective Java, 3rd Edition. Addison-Wesley Professional, 2018.</a></p>
+</body>
+</html>
