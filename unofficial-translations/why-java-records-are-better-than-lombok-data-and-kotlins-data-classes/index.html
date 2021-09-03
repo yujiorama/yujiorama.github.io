@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>why-java-records-are-better-than-lombok-data-and-kotlins-data-classes</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="why-javas-records-are-better-than-lomboks-data-and-kotlins-data-classes">Why Java's Records Are Better* Than Lombok's <code>@Data</code> and Kotlin's Data Classes</h1>
+<pre>
+この文章はNicolai Parlogによる「Why Java's Records Are Better* Than Lombok's `@Data` and Kotlin's Data Classes」を日本語に翻訳したものです。
+元の文章は https://nipafx.dev/java-record-semantics/ からアクセス可能です。
+著者のライセンス表示は https://nipafx.dev/license/  からアクセス可能です。
+CC-By-NC 4.0 でライセンスされています。
+</pre>
+
+<hr />
+<p>Javaの<code>Record</code>、Lombokの<code>@Data</code>、Kotlinの<code>Data class</code>はどれも定型的なコードを削減してくれる機能を実現しますが、お互いにそれほど似ていません。 そして、<code>Record</code>の強力なセマンティクスと生成物に関する重要な利益は、他の2種類の機能よりも優れています（クリック数を稼ぎたかったので大げさに書きました。状況によって変化します。どんな場合でも優れているわけではありません）。</p>
+<p>伝統的なPOJOクラスを<code>Record</code>に変換できることはすでにご存じだと思います。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> Range <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>            <span class="kw">private</span> <span class="dt">final</span> <span class="dt">int</span> low<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>            <span class="kw">private</span> <span class="dt">final</span> <span class="dt">int</span> high<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>            <span class="kw">public</span> <span class="fu">Range</span><span class="op">(</span><span class="dt">int</span> low<span class="op">,</span> <span class="dt">int</span> high<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">this</span><span class="op">.</span><span class="fu">low</span> <span class="op">=</span> low<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">this</span><span class="op">.</span><span class="fu">high</span> <span class="op">=</span> high<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getLow</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">return</span> low<span class="op">;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>            <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getHigh</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">return</span> high<span class="op">;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">@Override</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>            <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">equals</span><span class="op">(</span><span class="bu">Object</span> o<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> <span class="op">(</span><span class="kw">this</span> <span class="op">==</span> o<span class="op">)</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                            <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> <span class="op">(</span>o <span class="op">==</span> <span class="kw">null</span> <span class="op">||</span> <span class="fu">getClass</span><span class="op">()</span> <span class="op">!=</span> o<span class="op">.</span><span class="fu">getClass</span><span class="op">())</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>                            <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                    Range range <span class="op">=</span> <span class="op">(</span>Range<span class="op">)</span> o<span class="op">;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">return</span> low <span class="op">==</span> range<span class="op">.</span><span class="fu">low</span> <span class="op">&amp;&amp;</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                                    high <span class="op">==</span> range<span class="op">.</span><span class="fu">high</span><span class="op">;</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>            <span class="at">@Override</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>            <span class="kw">public</span> <span class="dt">int</span> <span class="fu">hashCode</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">return</span> Objects<span class="op">.</span><span class="fu">hash</span><span class="op">(</span>low<span class="op">,</span> high<span class="op">);</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>            <span class="at">@Override</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>            <span class="kw">public</span> <span class="bu">String</span> <span class="fu">toString</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">return</span> <span class="st">&quot;[&quot;</span> <span class="op">+</span> low <span class="op">+</span> <span class="st">&quot;; &quot;</span> <span class="op">+</span> high <span class="op">+</span> <span class="st">&quot;]&quot;</span><span class="op">;</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code></pre></div>
+<p>これを、次のように1行で表現できるようになるのです。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">//          these are &quot;components&quot;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    record <span class="fu">Range</span> <span class="op">(</span><span class="dt">int</span> low<span class="op">,</span> <span class="dt">int</span> hight<span class="op">)</span> <span class="op">{</span> <span class="op">}</span></span></code></pre></div>
+<p>もちろん、Lombok の <code>@Data</code> や <code>@Value</code> アノテーション（必要に応じて使い分けます）は数年前から数行で同じことを表現できるようになっています。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="at">@Data</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> Range <span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>            <span class="kw">private</span> <span class="dt">final</span> <span class="dt">int</span> low<span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>            <span class="kw">private</span> <span class="dt">final</span> <span class="dt">int</span> high<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code></pre></div>
+<p>Kotlin に慣れている人なら、<code>Data class</code> で同じことを表現できるのをご存じでしょう。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode kotlin"><code class="sourceCode kotlin"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">data</span> <span class="kw">class</span> Range<span class="op">(</span><span class="kw">val</span> <span class="va">low</span><span class="op">:</span> <span class="dt">Int</span><span class="op">,</span> <span class="kw">val</span> <span class="va">high</span><span class="op">:</span> <span class="dt">Int</span><span class="op">)</span></span></code></pre></div>
+<p>基本的にはどれも同じ機能であると理解して大丈夫だと思いますか。 もちろんだめです。本質的に異なる機能だからです。 <code>Record</code> は定型的なコードを削減することを目的にしていません。 それはセマンティクスのもたらす単なる（好ましい）結果でしかありません。</p>
+<blockquote>
+<p>実際に、同じ機能ではないのです</p>
+</blockquote>
+<p>残念ながらこの事実は簡単に忘れられてしまう場合がほとんどです。 定型的なコードの削減は疑う余地のない素敵な効果で、実演して見せるのも簡単なため、人目を惹きやすいのです。 一方、セマンティクスやその利益が目立つことはありません。 <a href="https://docs.oracle.com/en/java/javase/16/language/records.html">公式ドキュメント</a>ですら定型的なコードを削減できることに着目しています。 <a href="https://openjdk.java.net/jeps/395">JEP 395</a>のほうがセマンティクスをちゃんと説明しているほどです。 生成物に関する利益の説明が本質的に曖昧になりやすいのは原因と言えるでしょう。 だから、この記事でその説明を試みたいと思います。</p>
+<p>最初にセマンティクスを、それから利益について説明します。</p>
+<hr />
+<h2 id="record-のセマンティクス"><code>Record</code> のセマンティクス</h2>
+<p>JEP 395 には次のように記述されています。</p>
+<blockquote>
+<p>[<code>Records</code>] は不変データを透過的に運搬する運び手となるクラスです</p>
+</blockquote>
+<p>つまり、<code>Record</code> を作るということは、その型がデータを表すものであるということを、コンパイラやあなたの同僚や世界中に表明していることになるのです。 正確に言うと、データに浅い不変性と透過的なアクセスを与えるという意味になります。 これが中心的なセマンティクスで、他の要素は全てここを起点にします。</p>
+<p>作りたい型がこのセマンティクスに適合しないなら、<code>Record</code>として作るべきではありません。 定型的なコードを削減できるとか、<code>@Data/@Value</code> や <code>Data class</code> と同じだとか、そういう嘘に騙されると、設計はぼろぼろになってしまうし、いつかしっぺ返しを食らうことになるでしょう。 気を付けてください。 （きつい言葉を使ってしまい申し訳ありません。どうしても説明しておかなければならないことなんです）</p>
+<h3 id="透過性と制約">透過性と制約</h3>
+<p>透過性について詳しく検討してみましょう。 <code>Record</code> の透過性に関する考え方は、<a href="https://cr.openjdk.java.net/~briangoetz/amber/datum.html">プロジェクト Amber の設計ドキュメント</a>に次のように記述されています。</p>
+<blockquote>
+<p><code>Record</code> のための API は個々の状態と総合的な状態をモデル化するためのものです</p>
+</blockquote>
+<p>この考え方を実現するにはいろいろな制約条件が必要になります。</p>
+<ul>
+<li>それぞれのコンポーネントのアクセサは、コンポーネントと同じ名前、同じデータ型にして、コンポーネントの値そのものを返す（これが無いと状態をモデル化したことになりません）</li>
+<li>参照可能なコンストラクタは全てのコンポーネントに対応する引数を持つ（「正準形コンストラクタ（canonical constructor）」と呼ばれています。これが無いと状態をモデル化したことになりません）</li>
+<li>不要なフィールドを持たない（そうしないと総合的な状態をモデル化したことになりません）</li>
+<li>クラス継承を認めない（継承により一部のコンポーネントが隠蔽されてしまうと、総合的な状態をモデル化したことになりません）</li>
+</ul>
+<p>これはいったいなぜでしょうか。 Lombok なら余分なフィールドを定義できます。 Kotlin の <code>Data class</code> でも private コンポーネント（これは <code>Record</code> の用語です。Kotlin では「主コンストラクタ引数（primary constructor parameters）」と呼びます）として余分なフィールドを定義できます。 どうして <code>Record</code> にそれほど厳しい制約が必要なのでしょうか。 その答えを知るには少しばかり数学の知識が必要です。</p>
+<h3 id="数学の話苦手な人はごめんなさい">数学の話（苦手な人はごめんなさい）</h3>
+<p>多数の要素の集まりを「集合」と呼びます。 <strong>C</strong> は全ての色 <code>{ blue, gold, … }</code>からなる集合、<strong>N</strong> は全ての自然数 <code>{ 0, 1, …}</code> からなる集合、というように使うことができます。 Java では <code>{ -2147483648, …, 0, …, 2147483647}</code> からなる有限集合を <strong>int</strong> と呼びます。そして <strong>Integer</strong> を期待したところに <code>null</code> が表れると例外を送出します。 同様に、あらゆる全ての文字列と <code>null</code> を加えた無限集合を <strong>String</strong> と呼びます。</p>
+<p>型とは集合のことです。 そして、集合の値はその集合に対応する型の合法的な値です。 集合論「集合に関する学問は、数理論理学の一分野」（<a href="https://en.wikipedia.org/wiki/Set_theory">Wikipedia の説明</a>）は、型理論「型システムに関する学術的な研究」（<a href="https://en.wikipedia.org/wiki/Type_theory">Wikipedia の説明</a>）と結びついています。 そして、プログラミング言語の設計は型理論に基づいています。</p>
+<blockquote>
+<p>型は集合</p>
+</blockquote>
+<p>簡単な例として整数の対 <code>{ (0, 0), (0, 1), … }</code> について考えてみましょう。 簡単な Java のクラスなら次のようになるでしょう。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> Pair <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>            <span class="kw">private</span> <span class="dt">final</span> <span class="dt">int</span> first<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>            <span class="kw">private</span> <span class="dt">final</span> <span class="dt">int</span> second<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code></pre></div>
+<p>それぞれの対に対応する <strong>Pair</strong> オブジェクトを用意すれば上手く表現できそうです。 しかし、集合の構造に関するより多くの知識があれば、それ以上の洞察が得られることが分かるでしょう。 具体的には、今表現したい集合は、全ての整数と全ての整数の組み合わせからなる集合だということです。 集合論ではこれを積と呼び、 $$int \times int$$ と記述します（乗算演算子の左右の型は被作用子と呼びます）。</p>
+<p>とても簡潔な表現ですね。 集合論は、この積集合に関数を適用することを表現するためのあらゆる道具がそろっています。 例えば、単独の被作用子に作用する1つ以上の関数を合成した関数が、元の性質を維持した全ての被作用子により特徴付けられた関数になる、ということが挙げられます（<a href="https://en.wikipedia.org/wiki/Injective_function">単射</a>や<a href="https://en.wikipedia.org/wiki/Bijection">全単射</a>など）。</p>
+<p>例えば次のようなコードです。</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">// given: bijective function from int to int</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    IntUnaryOperator increment <span class="op">=</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>            i <span class="op">-&gt;</span> i <span class="op">==</span> <span class="bu">Integer</span><span class="op">.</span><span class="fu">MAX_VALUE</span> <span class="op">?</span> <span class="bu">Integer</span><span class="op">.</span><span class="fu">MIN_VALUE</span> <span class="op">:</span> <span class="op">++</span>i<span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// then: combining two `increment`s yields a bijective function</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">//       (this requires no additional proof or consideration)</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    UnaryOperator<span class="op">&lt;</span>Pair<span class="op">&gt;</span> incrementPair <span class="op">=</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>            pair <span class="op">-&gt;</span> <span class="kw">new</span> <span class="fu">Pair</span><span class="op">(</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                    increment<span class="op">.</span><span class="fu">applyAsInt</span><span class="op">(</span>pair<span class="op">.</span><span class="fu">first</span><span class="op">()),</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>                    increment<span class="op">.</span><span class="fu">applyAsInt</span><span class="op">(</span>pair<span class="op">.</span><span class="fu">second</span><span class="op">()));</span></span></code></pre></div>
+<p><code>Pair::first</code> と <code>Pair::second</code> というアクセサに注目してください。 これらのアクセサは前のクラス定義に存在しないため、追加しなければなりません。 そうしないとそれぞれのコンポーネント（被作用子）へ別々に関数を適用できないので、<code>Pair</code> クラスを <code>int</code> の対として扱うことができません。 同様に、対を再構築するため、それぞれのコンポーネントを引数とするコンストラクタも必要です。</p>
+<p>もう少し一般的な言葉で説明しましょう。 ある型を集合論で扱うということは、全ての被作用子へアクセスできるようにしなければならないし、被作用子の組（タプル）から型のインスタンスを復元できるようにしなければなりません。 どちらも可能な型のことを型理論では直積型と呼びます（直積型のインスタンスをタプルと呼びます）。 直積型はいくつかの用途で役立ちます。</p>
+<p>JEP 395 でも言及されているように、<code>Record</code> はタプルよりも便利です。</p>
+<blockquote>
+<p><code>Record</code> は名前付きのタプル（nominal tuples）と見做すことができます</p>
+</blockquote>
+<p><code>Record</code> は構造ではなく名前（クラス名）で識別するから「名前付きの（nominal）」という言葉で修飾しています。 つまり、$$int \times int$$ をモデル化した2種類の <code>record</code> 型があるとしても、同一の集合として扱うことはできないということです（例えば <code>Pair(int first, int second)</code> と <code>Range(int low, int hight)</code>）。 また、<code>Record</code> のコンポーネントには添え字でアクセスできません（<code>range.get1()</code> はダメです）。名前でアクセスします（<code>record.low()</code> はOKです）。 （他にも、<code>Record</code> のアクセサと正準形コンストラクタは embedding-projection pair を形成することになっています。ちゃんと理解できてないので説明もできません）</p>
+<h3 id="まとめ">まとめ</h3>
+<p>要点を整理します。 <code>Record</code> は直積型を表現するために設計された機能です。 全てのコンポーネントにアクセスできるし、隠蔽された状態もなく、同じ状態を再構築できます。 だから <code>Record</code> は不変データを透過的に運搬する運び手になれるのです。</p>
+<blockquote>
+<p><code>Record</code> は直積型だから透過的な振る舞いを実現できるのです</p>
+</blockquote>
+<p>そういう理由があるから、コンパイラーはアクセサを生成します。 そういう理由があるから、アクセサの名前や返り値のデータ型を変更できません。 そういう理由があるから、オーバーライドするときはできるだけ慎重にやらなければなりません。 そういう理由があるから、コンパイラーは正準形コンストラクタを生成します。 そういう理由があるから、継承が禁止されています。</p>
+<hr />
+<h2 id="record-の優れているところ"><code>Record</code> の優れているところ</h2>
+<p>代数構造のもたらす最大の利点は、アクセサと正準形コンストラクタの構成する構造が、情報量を減らすことなく、構造化された方法でインスタンスを再作成できるようになることです。</p>
+<h3 id="分解パターン">分解パターン</h3>
+<p><a href="https://openjdk.java.net/jeps/405">JEP 405</a> は、Java のパターンマッチング機能を拡張した <code>Record</code> パターンと配列パターンを提案しています。 この提案が実現すると、<code>Record</code> と配列を構成するコンポーネントを別々に取り出してチェックできるようになります。</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>range <span class="kw">instanceof</span> <span class="fu">Range</span><span class="op">(</span><span class="dt">int</span> low<span class="op">,</span> <span class="dt">int</span> high<span class="op">)</span> <span class="op">&amp;&amp;</span> high <span class="op">&lt;</span> low<span class="op">)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="kw">new</span> <span class="fu">Range</span><span class="op">(</span>high<span class="op">,</span> low<span class="op">);</span></span></code></pre></div>
+<p>完全な透明性が保証されているため、隠蔽された状態を見逃すことはありません。 つまり、返り値のインスタンスは、渡された <code>range</code> の <code>low</code> と <code>hight</code> を正確に入れ替えた値になるということです。</p>
+<h3 id="with-ブロック"><code>with</code> ブロック</h3>
+<p>将来 Java にはインスタンス（基本的には不変オブジェクト）の複製を簡単に作成するための <code>with</code> ブロックの導入が予定されています。 次のような記法になるでしょう。</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>    Range range <span class="op">=</span> <span class="kw">new</span> <span class="fu">Range</span><span class="op">(</span><span class="dv">5</span><span class="op">,</span> <span class="dv">10</span><span class="op">);</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// SYNTAX IS MADE UP!</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    Range newRange <span class="op">=</span> range with <span class="op">{</span> low <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// range: [5; 10]</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// newRange: [0; 10]</span></span></code></pre></div>
+<p><code>with</code> 記法を導入する動機は、<code>Range</code> の API が宣言と結びついていることです。 前の例と同様に、<code>newRange</code> は <code>low</code> コンポーネントを除いて <code>range</code> と同一であることが保証されています。 運搬が失敗するような隠蔽された状態は存在しません。 それに、言語として行う処理も限られています。</p>
+<ul>
+<li>コンポーネントに対応する変数（<code>low</code> と<code>hight</code>）を宣言し、アクセサを介して値を代入します</li>
+<li><code>with</code> ブロックを実行します</li>
+<li>変数を正準形コンストラクタへ渡します</li>
+</ul>
+<p>（この機能が実際に導入されるのはかなり先のことですし、取り下げられる場合や、劇的に変化する場合もあり得ます）</p>
+<h3 id="直列化">直列化</h3>
+<p>あるインスタンスをバイト列、あるいは JSON や XML、あるいは何らかの外部表現へ変換したり、復元したりするには、インスタンスをばらばらの値へ分解したり、ばらばらの値を統合する方法が必要です。 <code>Record</code> を使えばそれが容易に実現できることが分かるでしょう。 全ての状態を公開し、正準形コンストラクタを提供するだけでなく、それらを扱う構造化された方法を提供しているため、そのためのリフレクション API を非常に簡単に利用できるからです。</p>
+<p><a href="https://inside.java/2021/03/08/podcast-014/">the Inside Java Podcast のエピソード 14</a> では、<code>Record</code> がどれだけ直列化の処理を変化させたのか詳しく説明しています（<a href="https://open.spotify.com/episode/6lmaaDwvV7NaJ3YFrid3ww">Spotify</a> でも視聴できます）。 <a href="https://twitter.com/nipafx/status/1371093883631833092">この Twitter のスレッド</a>なら短い文章で説明しています。</p>
+<h3 id="定型的なコードについて">定型的なコードについて</h3>
+<p>少しだけ定型的なコードの話をしましょう。 前のほうで説明したように、<code>Record</code> を直積型として扱うためには次のようなコードが必要になります。</p>
+<ul>
+<li>正準形コンストラクタ</li>
+<li>アクセサ</li>
+<li>継承の禁止</li>
+</ul>
+<p>明示的に説明していませんが、これらは <code>(0, 0) = (0, 0)</code> の場合でも適切に動作しなければなりません。 つまり適切な <code>equals</code> の実装が必要になるので、同時に適切な <code>hashCode</code> の実装も必要になるということです。 そしてコンパイラーは必要な全てのコードを生成してくれます（<code>toString</code> も生成してくれます）。 代数構造に基づいて考えれば自然に導かれる結論なので、自分で実装するとしてもたいした手間ではありません。</p>
+<hr />
+<h2 id="record-の劣っているところ"><code>Record</code> の劣っているところ</h2>
+<p><code>Record</code> のセマンティクスは利用するツールによって制限されることになります。 前に説明したとおり、不要なフィールドにより隠蔽された状態を追加することはできませんし、アクセサの名前や返り値のデータ型も変更できません。 おそらく、返り値として返す値を変更するのもやめたほうがいいでしょう。 <code>Record</code> はコンポーネントの値を再代入することを認めていません。 つまりコンポーネントを実装するフィールドは <code>final</code> になるということです。 それに、クラスを継承することもできません（インターフェイスを実装することはできます）。</p>
+<p>では、そういう禁止されたことが必要になったらどうすればいいでしょうか。 その場合、あなたに必要なのは <code>Record</code> ではなく普通のクラスです。 そのせいで何らかの機能の10%を変更することになるとしたら、残りの90%は <code>Record</code> なら避けられたはずの定型的なコードになるでしょう。</p>
+<h3 id="lombokの-datavalue-のほうが優れている理由">Lombokの <code>**@Data/@Value**</code> のほうが優れている理由</h3>
+<p>Lombok は単純にソースコードを生成するだけで、何らかのセマンティクスを追加することはありません。 必要に応じて自由にクラスを変更できるようになっています。 より強い保証に基づく恩恵を受けられるわけではありませんが、Lombokは将来的に分解のためのメソッドを生成できるようになる予定です。</p>
+<blockquote>
+<p>Lombok はセマンティクスを追加しません</p>
+</blockquote>
+<p>（著者としてはLombokを使うことを推奨していません。コンパイラーの内部APIに強く依存しているからです。内部APIはいつでも変化する可能性があるので、Javaをマイナーアップデートするだけでプロジェクトはビルドできなくなってしまうかもしれないのです）</p>
+<h3 id="kotlinの-data-class-のほうが優れている理由">Kotlinの <code>Data class</code> のほうが優れている理由</h3>
+<p><a href="https://kotlinlang.org/docs/data-classes.html">Kotlinのドキュメント</a>には次のように記述されています。</p>
+<blockquote>
+<p>データを保持するためのクラスを作成する場合はよくあります。 そういうクラスの基本的な機能やユーティリティ機能はデータそのものから機械的に導出できる場合がほとんどです。</p>
+</blockquote>
+<p>データを保持するというセマンティクスは理解しているでしょうけど、それよりも、ソースコードの生成など機能を導出することに注目しましょう。 実際のところ、<code>Data class</code>は<code>Record</code>（不変の「コンポーネント」、状態の隠蔽等）よりも強力なクラス構築ツールですが、Lombokのようになんでもできるわけではありません（継承できないし、独自の<code>copy</code>メソッドも定義できません）。 その代わり、<code>Data class</code> は <code>Record</code> のように強力なセマンティクスを与えてくれません。 だから、Kotlinでは<code>Record</code>と完全に同じ機能を構築できないのです。</p>
+<blockquote>
+<p><code>Data class</code> は弱いセマンティクスを追加します。</p>
+</blockquote>
+<p>頭に血が上ったコメントを入力し始める前に少し落ち着いてください。 価値観を押し付けたいわけじゃありません。 全く別のコストと利点のトレードオフに関する話であって、あなたにとってKotlinが役に立っているならそれで充分です。</p>
+<p><strong>注意</strong>：<a href="https://kotlinlang.org/docs/jvm-records.html#declare-records-in-kotlin">Kotlinの@JvmRecord</a>には大きな落とし穴があるので注意してください。 「見てよ。<code>Data class</code> が<code>Record</code>になるんだって。完璧じゃん」（ちょっと何を言ってるのか分からないですね） 同じように考えている人がいれば、止めたほうがいいと伝えるし、できるだけ再検討してもらうようにします。 自分が何をしようとしているのかちゃんと理解して欲しいのです。</p>
+<p><code>Data class</code>を<code>Record</code>の要求する全てのルールに従わせたところで、結局<code>Record</code>以上の機能を提供することはできません。 Kotlinにはまだ透過的なタプルという概念が存在しませんし、<code>@JvmRecord data class</code>には普通の<code>Data class</code>以上の仕事はできません。 <code>Record</code>に自由を与え、<code>Data class</code>に強い保証を与えるのは、どちらにとっても最悪の状況になります。</p>
+<p><code>@JvmRecord</code>は相互互換性のためだけに存在しています。<a href="https://github.com/Kotlin/KEEP/blob/master/proposals/jvm-records.md">提案仕様</a>にもそう書かれています。</p>
+<blockquote>
+<p>次のような2種類のユースケースを除いて、Kotlinで <code>JVM record</code> の宣言が必要になる場面はほとんどありません。 ・ABI（アプリケーションバイナリインターフェイス）を保ちつつ、既存の<code>Java record</code>をKotlinへ移植するため ・Kotlinのクラスに<code>Record</code>の属性やコンポーネントを生成するのは、将来 Java のリフレクションフレームワークが<code>Record</code>をイントロスペクションするときに使う可能性があるため</p>
+</blockquote>
+<hr />
+<h2 id="まとめ-1">まとめ</h2>
+<p>今の<code>Record</code>は、全体的にLombokの<code>@Data/@Value</code>やKotlinの<code>Data class</code>、Scalaの<code>case class</code>と比べて優れているとも劣っているとも言えません。 しかし、<code>Record</code>の数学に基づく強力なセマンティクスはクラス設計の対象範囲を狭くしてくれるし、他の候補に提供できない、たとえできても不確かになる強力な機能を実現します。</p>
+<p>開発者の自由とプログラミング言語の機能はトレードオフの関係にあります。 著者はそういう関係に満足しているし、今後数年間でその可能性が最大限に発揮されることを楽しみにしています。</p>
+</body>
+</html>
