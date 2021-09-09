@@ -1,0 +1,13 @@
+= REST Assured Usage Guide
+Johan Haleby
+:toc: left
+:toclevels: 3
+:source-highlighter: coderay
+:numbered:
+:hardbreaks:
+:revnumber: 4.4.0
+:revdate: 2021-05-21
+:icons: font
+:pagenums:
+
+include::Usage.adoc[]
