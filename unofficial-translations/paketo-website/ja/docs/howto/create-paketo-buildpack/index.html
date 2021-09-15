@@ -1,0 +1,1097 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Paketo Buildpack を作成する - Paketo Buildpacks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1 viewport-fit=cover">
+
+
+
+
+<meta name="og:site_name" content="Paketo Buildpacks">
+<meta name="og:title" content="Paketo Buildpack を作成する">
+<meta name="og:url" content="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/create-paketo-buildpack/">
+<meta name="twitter:title" content="Paketo Buildpacks" />
+<meta name="twitter:url" content="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/create-paketo-buildpack/" />
+<meta name="twitter:card" content="" />
+
+
+
+<link rel="stylesheet" href="/unofficial-translations/paketo-website/css/main.min.e65e899d7edbb046f43d58e402eca40ec1064082b810ea2ea4f62b1e70614850.css">
+
+</head>
+
+<body>
+    
+    <div id="header-skip-link" class="screenreader-container">
+    <a href="#title" class="screenreader-text">Skip to Content</a>
+</div>
+
+    
+
+
+
+
+<header class="header--narrow">
+    
+    <a class="paketo-p-logo" href="/">
+        <img class="paketo-p-logo__image" src="/v2/images/logo-paketo-p.svg" alt="Paketo Buildpacks Homepage">
+    </a>
+    
+    <div id="navigation" class="right-overlay">
+        <div class="nav-opener">
+            <span class="nav-opener__bar nav-opener__bar-top"></span>
+            <span class="nav-opener__bar nav-opener__bar-middle"></span>
+            <span class="nav-opener__bar nav-opener__bar-bottom"></span>
+        </div>
+        <div class="nav-container" id="nav-container">
+            <nav class="nav" id="nav-tray" >
+                <div class="nav__linkarea text--400">
+                    <a class="nav-link" href="/docs">docs</a>
+                    <a class="nav-link" href="/community">community</a>
+                    <a class="nav-link" href="https://blog.paketo.io">blog</a>
+                    <a class="nav-link" href="https://github.com/paketo-buildpacks">github</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="desktop-nav">
+        
+        
+        
+        <a class="nav-link nav-link--desktop  nav-link--desktop--active" href="/docs">docs</a>
+        
+        <a class="nav-link nav-link--desktop   " href="/community">community</a>
+        <a class="nav-link nav-link--desktop " href="https://blog.paketo.io">blog</a>
+        <a class="nav-link nav-link--desktop " href="https://github.com/paketo-buildpacks">github</a>
+    </div>
+</header>
+
+
+    <div class="docs">
+    <div class="docs-sidebar">
+        
+<input type="text" id="docs-search" class="algolia-autocomplete__search-bar" placeholder="Search docs..." data-api-key="bf2d426728685665ceaf22fac947f10f" data-index="paketo"/>
+<nav class="docs-menu">
+    <ul class="docs-menu__top-level-list">
+        
+        
+            
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Paketo Buildpacks 入門</span>
+            </a>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header docs-menu__section-header--opened">
+                
+                <span>使い方</span>
+                <button class="expander-button expander-button--opened docs-menu__expander-button">
+                    <svg class="expander-button__triangle expander-button__triangle--opened" width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list docs-menu__children-list--opened">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/dotnet-core/" class="docs-menu__item docs-menu__link ">
+                
+                <span>.NET Core</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/go/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Go</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/web-servers/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Web Servers</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/java/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/nodejs/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Node.js</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/python/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Python</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/php/" class="docs-menu__item docs-menu__link ">
+                
+                <span>PHP</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/ruby/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Ruby</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/create-paketo-buildpack/" class="docs-menu__item docs-menu__link docs-menu__link--active">
+                
+                <span>Paketo Buildpack を作成する</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/bom/" class="docs-menu__item docs-menu__link ">
+                
+                <span>部品表（Bill of Materials）へアクセスする</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header ">
+                
+                <span>考え方</span>
+                <button class="expander-button  docs-menu__expander-button">
+                    <svg class="expander-button__triangle " width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list ">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/buildpacks/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Buildpacks</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/builders/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Builders</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/stacks/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Stacks</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/bom/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Bill of Materials</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header ">
+                
+                <span>リファレンス</span>
+                <button class="expander-button  docs-menu__expander-button">
+                    <svg class="expander-button__triangle " width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list ">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/httpd-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>HTTPD Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/configuration/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Paketo Buildpacks の設定</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/dotnet-core-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>.NET Core Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/go-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Go Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/java-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/java-native-image-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java Native Image Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/nginx-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>NGINX Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/nodejs-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Node.js Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/php-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>PHP Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/python-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Python Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/ruby-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Ruby Buildpack</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+    </ul>
+</nav>
+
+
+
+    </div>
+    <div class="docs-body">
+        <div class="docs-body__container">
+            
+  <a href="http://github.com/paketo-buildpacks/paketo-website/edit/main/content/docs%5chowto%5ccreate-paketo-buildpack.ja.md" target="_blank" class="github-edit" style="text-decoration:none">
+    <div class="github-edit__content">
+      <div class="github-edit__logo-container">
+        <img class="github-edit__logo" src="/images/github-mark.png">
+      </div>
+        <div class="github-edit__text">Edit</div>
+    </div>
+</a>
+
+            <h1 id="title">Paketo Buildpack を作成する</h1>
+            
+<div class="docs-body__table-of-contents-container docs-body__table-of-contents-container--mobile">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#packithttpsgithubcompaketo-buildpackspackit"><a href="https://github.com/paketo-buildpacks/packit">Packit</a></a></li>
+    <li><a href="#前提条件">前提条件</a></li>
+    <li><a href="#それでは始めましょう">それでは始めましょう</a>
+      <ul>
+        <li><a href="#buildpacktoml"><code>buildpack.toml</code></a></li>
+        <li><a href="#bindetect"><code>bin/detect</code></a></li>
+        <li><a href="#binbuild"><code>bin/build</code></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+
+            <div class="docs-body__markdown">
+                <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>初めて Cloud Native Buildpack を使うなら、最初に <a href="https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/">Cloud Native Buildpack(CNB) の作り方</a> を読んでください。
+Packit は <a href="https://github.com/buildpacks/spec">CNB の仕様</a> を満たす Buildpack を作成するために必要な抽象を提供する Go 言語のライブラリです。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>このチュートリアルの目標は、ファイルシステム上に1つの依存関係を要求するだけの Buildpack を作成することです。
+早速やっていきましょう。</p>
+<h2 id="packithttpsgithubcompaketo-buildpackspackit" class="markup-heading">
+    <a class="markup-heading__link" href="#packithttpsgithubcompaketo-buildpackspackit">
+        <a href="https://github.com/paketo-buildpacks/packit">Packit</a>
+    </a>
+</h2><p><a href="https://pkg.go.dev/github.com/paketo-buildpacks/packit"><img src="https://img.shields.io/badge/pkg.go.dev-doc-blue" alt="GoDoc"></a></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Packit の完全なドキュメントは手前のリンクから参照してください。
+読者の時間を無駄にさせないためにも、ここではこれから作成する Buildpack に含める3種類のアーティファクトについて説明します。
+CNB の仕様を満たすために最低限必要なのは、 <code>buildpack.toml</code> と <code>bin/detect</code> と <code>bin/build</code> です。</p>
+<h2 id="前提条件" class="markup-heading">
+    <a class="markup-heading__link" href="#%e5%89%8d%e6%8f%90%e6%9d%a1%e4%bb%b6">
+        前提条件
+    </a>
+</h2><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Buildpack をビルドし、テストするには、ローカルPCに次のようなツールが必要です。</p>
+<ul>
+<li><a href="https://docs.docker.com/install/">Docker</a></li>
+<li><a href="https://buildpacks.io/docs/install-pack/">Pack</a></li>
+<li><a href="https://golang.org/doc/install">Go</a></li>
+</ul>
+<h2 id="それでは始めましょう" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%81%9d%e3%82%8c%e3%81%a7%e3%81%af%e5%a7%8b%e3%82%81%e3%81%be%e3%81%97%e3%82%87%e3%81%86">
+        それでは始めましょう
+    </a>
+</h2><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><a href="https://github.com/paketo-buildpacks/node-engine">Node Engine Cloud Native Buildpack</a> で Node.js エンジンをインストールするだけの Buildpack を作成する様子を説明します。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><a href="https://github.com/ForestEckhardt/tutorial-cnb">サンプルリポジトリ</a> には全てのソースコードが残っています。
+新しい Go 言語のプロジェクトを作成するには、ディレクトリを作成して、そこで次のコマンドを実行します。</p>
+<pre class="copyable"><code class="copyable__code">go mod init &lt;/path/to/project&gt;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h3 id="buildpacktoml" class="markup-heading">
+    <a class="markup-heading__link" href="#buildpacktoml">
+        <code>buildpack.toml</code>
+    </a>
+</h3><!-- raw HTML omitted -->
+<p><code>buildpack.toml</code> を作成します。
+次のような内容を記述しましょう。</p>
+<pre class="copyable"><code class="copyable__code"># ライフサイクルと互換性のあるバージョンを定義します
+api = &#34;0.2&#34;
+
+# ライフサイフルに対する Buildpack の基本的なメタデータを記述します
+[buildpack]
+  id = &#34;com.example.node-engine&#34;
+  name = &#34;Node Engine Buildpack&#34;
+  version = &#34;0.0.1&#34;
+
+# Buildpack と互換性のあるスタックを記述します
+[[stacks]]
+  id = &#34;io.buildpacks.stacks.bionic&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h3 id="bindetect" class="markup-heading">
+    <a class="markup-heading__link" href="#bindetect">
+        <code>bin/detect</code>
+    </a>
+</h3><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><strong>注意</strong>：検出フェーズの詳細な説明は <a href="https://pkg.go.dev/github.com/paketo-buildpacks/packit">packit の godocs</a> の <code>Detect Phase</code> セクションを参照してください。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Packit には <a href="https://pkg.go.dev/github.com/paketo-buildpacks/packit#DetectFunc"><code>packit.DetectFunc</code></a> を引数とする関数 <a href="https://pkg.go.dev/github.com/paketo-buildpacks/packit#Detect"><code>packit.Detect()</code></a> があります。
+<code>packit.DetectFunc</code> は Buildpack の作者が実装する関数で、Buildpack に必要な全ての検出ロジックを内包する関数です。
+具体的な実装を説明していきましょう。</p>
+<p><code>cmd/detect/main.go</code></p>
+<pre class="copyable"><code class="copyable__code">package main
+
+import (
+    &#34;&lt;path/to/project&gt;&#34;
+    &#34;github.com/paketo-buildpacks/packit&#34;
+)
+
+func main() {
+    packit.Detect(node.Detect())
+}
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<p><code>node/detect.go</code></p>
+<pre class="copyable"><code class="copyable__code">package node
+
+import (
+    &#34;fmt&#34;
+    &#34;github.com/paketo-buildpacks/packit&#34;
+)
+
+func Detect() packit.DetectFunc {
+	return func(context packit.DetectContext) (packit.DetectResult, error) {
+		return packit.DetectResult{}, fmt.Errorf(&#34;always fail&#34;)
+	}
+}
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>この時点の Buildpack は常に検出に失敗します。
+<code>packit.DetectFunc</code> を独自パッケージで実装することにしたのは、Buildpack のビジネスロジックを Packit に関連する実装と分離するためです。
+つまり、Buildpack の全てのビジネスロジックは <code>node</code> パッケージで実装することになります。
+将来的に Buildpack を拡張していく可能性があるなら、こういう構造にしておくことをお勧めします。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><code>detect</code> コマンドをビルドして、ここまでの状態を確かめてみましょう。</p>
+<pre class="copyable"><code class="copyable__code">GOOS=linux go build -ldflags=&#34;-s -w&#34; -o ./bin/detect ./cmd/detect/main.go
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>そうしたら、<code>pack</code> コマンドで Node.js アプリケーションのコンテナイメージをビルドしてみましょう。
+ここでは、 <a href="https://github.com/paketo-buildpacks/node-engine/tree/main/integration/testdata/simple_app">Node Engine Cloud Native Buildpack の simple app</a> で試しています。</p>
+<pre class="copyable"><code class="copyable__code">pack build &lt;app-name&gt; \
+  --path &lt;path/to/app&gt; \
+  --buildpack &lt;path/to/project&gt; \
+  --builder paketobuildpacks/builder:base \
+  --verbose
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<div class="code-output">
+    <div class="btn code-output__btn code-output__btn">View Output</div>
+    <pre class="code-output__output-container">
+        <code class="code-output__output">===&gt; DETECTING
+[detector] ======== Output: com.example.node-engine@0.0.1 ========
+[detector]
+[detector] always fail
+[detector] ======== Results ========
+[detector] err:  com.example.node-engine@0.0.1 (1)
+[detector] ERROR: No buildpack groups passed detection.
+[detector] ERROR: Please check that you are running against the correct path.
+[detector] ERROR: failed to detect: no buildpacks participating
+ERROR: failed with status code: 6
+</code>
+    </pre>
+</div>
+
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>骨格が出来たことを確認できたので、「常に失敗する」のをまともに動作するするようにしてみましょう。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>provides と requires という考え方に取り組まなければなりません。
+詳しくは <a href="https://github.com/buildpacks/spec/blob/master/buildpack.md#phase-1-detection">CNB の仕様</a> を参照してください。</p>
+<!-- raw HTML omitted -->
+<p><strong>簡単な説明</strong>：Buildpack の detect コマンドの構成要素</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><a href="https://pkg.go.dev/github.com/paketo-buildpacks/packit#DetectResult"><code>packit.DetectResult</code></a> から参照できる <a href="https://pkg.go.dev/github.com/paketo-buildpacks/packit#BuildPlan"><code>packit.BuildPlan</code></a> は provisions と requirements のリストを持っています。
+provisions と requirements は、その Buildpack が依存対象として使用できる成果物を提供するのか、依存対象を要求するのか、あるいはその両方になるのかを説明します。
+Buildpack の detect コマンドが true になるのは次の両方の条件を満たした場合だけです。
+1つ目の条件は、Buildpack の全ての provides が、自分自身と後に続く全ての Buildpack の requires にマッチした場合。
+2つ目の条件は、Buildpack の全ての requires が、自分自身と前に並ぶ全ての Buildpack の provides にマッチした場合。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>このチュートリアルの場合、他に実行している Buildpack はないので、detect コマンドを true にするには、依存対象として <code>node</code> を提供し、同様に <code>node</code> を必須としなければなりません。
+detect コマンドに実装してみましょう。</p>
+<p><code>node/detect.go</code></p>
+<pre class="copyable"><code class="copyable__code">package node
+
+import (
+	&#34;github.com/paketo-buildpacks/packit&#34;
+)
+
+func Detect() packit.DetectFunc {
+	return func(context packit.DetectContext) (packit.DetectResult, error) {
+		return packit.DetectResult{
+			Plan: packit.BuildPlan{
+				Provides: []packit.BuildPlanProvision{
+					{Name: &#34;node&#34;},
+				},
+				Requires: []packit.BuildPlanRequirement{
+					{Name: &#34;node&#34;},
+				},
+			},
+		}, nil
+	}
+}
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>何をしているのか簡単に説明していきます。
+まず、 <code>packit.DetectResult</code> のフィールド <code>Plan</code> に値を詰めるようにしました。
+値は provides に依存対象として <code>node</code> を、requires に依存対象として <code>node</code> を持つオブジェクトです。
+前の例のように detect コマンドをビルドして、pack コマンドを実行してみましょう。</p>
+<pre class="copyable"><code class="copyable__code">GOOS=linux go build -ldflags=&#34;-s -w&#34; -o ./bin/detect ./cmd/detect/main.go
+pack build &lt;app-name&gt; \
+  --path &lt;path/to/app&gt; \
+  --buildpack &lt;path/to/project&gt; \
+  --builder paketobuildpacks/builder:base \
+  --verbose
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<div class="code-output">
+    <div class="btn code-output__btn code-output__btn">View Output</div>
+    <pre class="code-output__output-container">
+        <code class="code-output__output">===&gt; DETECTING
+[detector] ======== Results ========
+[detector] pass: com.example.node-engine@0.0.1
+[detector] Resolving plan... (try #1)
+[detector] com.example.node-engine 0.0.1
+===&gt; ANALYZING
+[analyzer] Previous image with name &#34;index.docker.io/library/test-node:latest&#34; not found
+===&gt; RESTORING
+===&gt; BUILDING
+[builder] ERROR: failed to build: fork/exec /cnb/buildpacks/com.example.node-engine/0.0.1/bin/build: no such file or directory
+ERROR: failed with status code: 7
+</code>
+    </pre>
+</div>
+
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>検出フェーズ（DETECTING）を通過していることがわかりますね。
+そして、<code>build</code> コマンドが存在しないせいでエラーになっています。
+修正してきいきましょう。</p>
+<h3 id="binbuild" class="markup-heading">
+    <a class="markup-heading__link" href="#binbuild">
+        <code>bin/build</code>
+    </a>
+</h3><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>ビルドフェーズの詳細な説明は <a href="https://pkg.go.dev/github.com/paketo-buildpacks/packit">packit の godocs</a> の <code>Build Phase</code> セクションを参照してください。
+Packit には <a href="https://pkg.go.dev/github.com/paketo-buildpacks/packit#BuildFunc"><code>packit.BuildFunc</code></a> を引数とする関数 <a href="https://pkg.go.dev/github.com/paketo-buildpacks/packit#Build"><code>packit.Build()</code></a> があります。
+<code>packit.BuildFunc</code> は Buildpack の作者が実装する関数で、Buildpack に必要な全てのビルドロジックを内包する関数です。
+スケルトンコードを作ってみましょう。</p>
+<p><code>cmd/build/main.go</code></p>
+<pre class="copyable"><code class="copyable__code">package main
+
+import (
+	&#34;&lt;path/to/project or github.com/&lt;some-org or some-user&gt;/&lt;some-repo&gt;&gt;/node&#34;
+	&#34;github.com/paketo-buildpacks/packit&#34;
+)
+
+func main() {
+	packit.Build(node.Build())
+}
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<p><code>node/build.go</code></p>
+<pre class="copyable"><code class="copyable__code">package node
+
+import (
+	&#34;fmt&#34;
+
+	&#34;github.com/paketo-buildpacks/packit&#34;
+)
+
+func Build() packit.BuildFunc {
+	return func(context packit.BuildContext) (packit.BuildResult, error) {
+		return packit.BuildResult{}, fmt.Errorf(&#34;always fail&#34;)
+	}
+}
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>この実装はビルドプロセスで常に失敗します。
+detect コマンドと同じように build コマンドをビルドしましょう。
+それから pack コマンドを実行してみましょう。</p>
+<pre class="copyable"><code class="copyable__code">GOOS=linux go build -ldflags=&#34;-s -w&#34; -o ./bin/build ./cmd/build/main.go
+pack build &lt;app-name&gt; \
+  --path &lt;path/to/app&gt; \
+  --buildpack &lt;path/to/project&gt; \
+  --builder paketobuildpacks/builder:base \
+  --verbose
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<div class="code-output">
+    <div class="btn code-output__btn code-output__btn">View Output</div>
+    <pre class="code-output__output-container">
+        <code class="code-output__output">===&gt; DETECTING
+[detector] ======== Results ========
+[detector] pass: com.example.node-engine@0.0.1
+[detector] Resolving plan... (try #1)
+[detector] com.example.node-engine 0.0.1
+===&gt; ANALYZING
+[analyzer] Previous image with name &#34;index.docker.io/library/test-node:latest&#34; not found
+===&gt; RESTORING
+===&gt; BUILDING
+[builder]
+[builder] always fail
+[builder] ERROR: failed to build: exit status 1
+ERROR: failed with status code: 7
+</code>
+    </pre>
+</div>
+
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>これで、最終的なイメージへ格納する成果物を、ビルドプロセスでどのように作成するのか説明できるようになりました。
+ビルドプロセスに依存対象に関するメタデータを渡すには <code>buildpack.toml</code> を使用します。
+ファイルを作成して次のようなフィールドを記述しましょう。</p>
+<pre class="copyable"><code class="copyable__code">[metadata]
+  [[metadata.dependencies]]
+    uri = &#34;https://nodejs.org/dist/v12.16.1/node-v12.16.1-linux-x64.tar.xz&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<p>記述したのは次のような内容です。</p>
+<pre class="copyable"><code class="copyable__code"># Buildpack 固有のメタデータを記述します
+[metadata]
+  [[metadata.dependencies]]
+    # 実行している stack と互換性のある依存対象の URI
+    uri = &#34;https://nodejs.org/dist/v12.16.1/node-v12.16.1-linux-x64.tar.xz&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>uri フィールドを参照する実装を追加しましょう。
+ここでは <a href="https://www.godoc.org/github.com/BurntSushi/toml">BurntSushi&rsquo;s TOML Library</a> で TOML をパースしています。</p>
+<p><code>node/build.go</code></p>
+<pre class="copyable"><code class="copyable__code">package node
+
+import (
+	&#34;fmt&#34;
+	&#34;os&#34;
+	&#34;path/filepath&#34;
+
+	&#34;github.com/BurntSushi/toml&#34;
+	&#34;github.com/paketo-buildpacks/packit&#34;
+)
+
+func Build() packit.BuildFunc {
+	return func(context packit.BuildContext) (packit.BuildResult, error) {
+		file, err := os.Open(filepath.Join(context.CNBPath, &#34;buildpack.toml&#34;))
+		if err != nil {
+			return packit.BuildResult{}, err
+		}
+
+		var m struct {
+			Metadata struct {
+				Dependencies []struct {
+					URI string `toml:&#34;uri&#34;`
+				} `toml:&#34;dependencies&#34;`
+			} `toml:&#34;metadata&#34;`
+		}
+		_, err = toml.DecodeReader(file, &amp;m)
+		if err != nil {
+			return packit.BuildResult{}, err
+		}
+
+		uri := m.Metadata.Dependencies[0].URI
+		fmt.Printf(&#34;URI -&gt; %s&#34;, uri)
+
+		return packit.BuildResult{}, fmt.Errorf(&#34;always fail&#34;)
+	}
+}
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<p>build コマンドをビルドして、<code>pack build</code> コマンドを実行してみましょう。</p>
+<pre class="copyable"><code class="copyable__code">GOOS=linux go build -ldflags=&#34;-s -w&#34; -o ./bin/build ./cmd/build/main.go
+pack build &lt;app-name&gt; \
+  --path &lt;path/to/app&gt; \
+  --buildpack &lt;path/to/project&gt; \
+  --builder paketobuildpacks/builder:base \
+  --verbose
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<div class="code-output">
+    <div class="btn code-output__btn code-output__btn">View Output</div>
+    <pre class="code-output__output-container">
+        <code class="code-output__output">===&gt; DETECTING
+[detector] ======== Results ========
+[detector] pass: com.example.node-engine@0.0.1
+[detector] Resolving plan... (try #1)
+[detector] com.example.node-engine 0.0.1
+===&gt; ANALYZING
+[analyzer] Previous image with name &#34;index.docker.io/library/test-node:latest&#34; not found
+===&gt; RESTORING
+===&gt; BUILDING
+[builder] URI -&gt; https://nodejs.org/dist/v12.16.1/node-v12.16.1-linux-x64.tar.xz
+[builder] ERROR: failed to build: exit status 1
+[builder] always fail
+ERROR: failed with status code: 7
+</code>
+    </pre>
+</div>
+
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>ダウンロードすべき依存対象の URI が取得できるようになりました。
+次は、依存対象をインストールするためのレイヤー構造を準備しましょう。</p>
+<pre class="copyable"><code class="copyable__code">package node
+
+import (
+	&#34;fmt&#34;
+	&#34;os&#34;
+	&#34;path/filepath&#34;
+
+	&#34;github.com/BurntSushi/toml&#34;
+	&#34;github.com/paketo-buildpacks/packit&#34;
+)
+
+func Build() packit.BuildFunc {
+	return func(context packit.BuildContext) (packit.BuildResult, error) {
+		file, err := os.Open(filepath.Join(context.CNBPath, &#34;buildpack.toml&#34;))
+		if err != nil {
+			return packit.BuildResult{}, err
+		}
+
+		var m struct {
+			Metadata struct {
+				Dependencies []struct {
+					URI string `toml:&#34;uri&#34;`
+				} `toml:&#34;dependencies&#34;`
+			} `toml:&#34;metadata&#34;`
+		}
+		_, err = toml.DecodeReader(file, &amp;m)
+		if err != nil {
+			return packit.BuildResult{}, err
+		}
+
+		uri := m.Metadata.Dependencies[0].URI
+		fmt.Printf(&#34;URI -&gt; %s&#34;, uri)
+
+		nodeLayer, err := context.Layers.Get(&#34;node&#34;)
+		if err != nil {
+			return packit.BuildResult{}, err
+		}
+
+		nodeLayer, err = nodeLayer.Reset()
+		if err != nil {
+			return packit.BuildResult{}, err
+		}
+
+		nodeLayer.Launch = true
+
+		return packit.BuildResult{}, fmt.Errorf(&#34;always fail&#34;)
+	}
+}
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><a href="https://pkg.go.dev/github.com/paketo-buildpacks/packit#Layers.Get"><code>packit.Layers.Get()</code></a> 関数にはレイヤー名を渡します。
+返り値の <a href="https://pkg.go.dev/github.com/paketo-buildpacks/packit#Layer"><code>packit.Layer</code></a> には前回ビルドしたときの情報が設定されています。
+このメタデータを参照すると、レイヤーを再利用できるか判断できるのですが、ここでは無視しています。
+<a href="https://pkg.go.dev/github.com/paketo-buildpacks/packit#Layer.Reset"><code>packit.Layer.Reset()</code></a> 関数は、取得したレイヤーの関するキャッシュや過去の情報を初期化します。
+<a href="https://pkg.go.dev/github.com/paketo-buildpacks/packit#Layer"><code>nodeLayer.Launch = true</code></a> とするのは、そのレイヤーが起動フェーズで利用可能であることを教えるためです。
+レイヤーが準備できたので、依存対象をダウンロードして展開してみましょう。</p>
+<pre class="copyable"><code class="copyable__code">package node
+
+import (
+	&#34;fmt&#34;
+	&#34;io/ioutil&#34;
+	&#34;os&#34;
+	&#34;os/exec&#34;
+	&#34;path/filepath&#34;
+
+	&#34;github.com/BurntSushi/toml&#34;
+	&#34;github.com/paketo-buildpacks/packit&#34;
+)
+
+func Build() packit.BuildFunc {
+	return func(context packit.BuildContext) (packit.BuildResult, error) {
+		file, err := os.Open(filepath.Join(context.CNBPath, &#34;buildpack.toml&#34;))
+		if err != nil {
+			return packit.BuildResult{}, err
+		}
+
+		var m struct {
+			Metadata struct {
+				Dependencies []struct {
+					URI string `toml:&#34;uri&#34;`
+				} `toml:&#34;dependencies&#34;`
+			} `toml:&#34;metadata&#34;`
+		}
+		_, err = toml.DecodeReader(file, &amp;m)
+		if err != nil {
+			return packit.BuildResult{}, err
+		}
+
+		uri := m.Metadata.Dependencies[0].URI
+		fmt.Printf(&#34;URI -&gt; %s\n&#34;, uri)
+
+		nodeLayer, err := context.Layers.Get(&#34;node&#34;)
+		if err != nil {
+			return packit.BuildResult{}, err
+		}
+
+		nodeLayer, err = nodeLayer.Reset()
+		if err != nil {
+			return packit.BuildResult{}, err
+		}
+
+		nodeLayer.Launch = true
+
+		downloadDir, err := ioutil.TempDir(&#34;&#34;, &#34;downloadDir&#34;)
+		if err != nil {
+			return packit.BuildResult{}, err
+		}
+		defer os.RemoveAll(downloadDir)
+
+		fmt.Println(&#34;Downloading dependency...&#34;)
+		err = exec.Command(&#34;curl&#34;,
+			uri,
+			&#34;-o&#34;, filepath.Join(downloadDir, &#34;node.tar.xz&#34;),
+		).Run()
+		if err != nil {
+			return packit.BuildResult{}, err
+		}
+
+		fmt.Println(&#34;Untaring dependency...&#34;)
+		err = exec.Command(&#34;tar&#34;,
+			&#34;-xf&#34;,
+			filepath.Join(downloadDir, &#34;node.tar.xz&#34;),
+			&#34;--strip-components=1&#34;,
+			&#34;-C&#34;, nodeLayer.Path,
+		).Run()
+		if err != nil {
+			return packit.BuildResult{}, err
+		}
+
+		return packit.BuildResult{
+			Plan: context.Plan,
+			Layers: []packit.Layer{
+				nodeLayer,
+			},
+		}, nil
+	}
+}
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>build コマンドを再びビルドして、<code>pack build</code> コマンドを実行すると、今度は成功するはずです。</p>
+<pre class="copyable"><code class="copyable__code">GOOS=linux go build -ldflags=&#34;-s -w&#34; -o ./bin/build ./cmd/build/main.go
+pack build &lt;app-name&gt; \
+  --path &lt;path/to/app&gt; \
+  --buildpack &lt;path/to/project&gt; \
+  --builder paketobuildpacks/builder:base \
+  --verbose
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>追加したコードは単純で特に説明する必要はないと思います。
+一時ディレクトリを作成して、<code>curl</code> コマンドで取得した tar.gz ファイルを保存しています。
+そして、<code>nodeLayer</code> の対応するパスへ <code>tar</code> コマンドで tar.gz ファイルを展開しています。
+Go 言語の実装としては非効率ですが、とても分かりやすいと思います。
+tar コマンドの引数に <code>--strip-components</code> を付けているのは、ライフサイクルの参照する <code>lib</code> や <code>bin</code> や <code>include</code> ディレクトリの前に存在するディレクトリを無視するためです（ライフサイクルについて詳しくは <a href="https://github.com/buildpacks/spec/blob/master/buildpack.md#environment">CNB の仕様</a> を参照してください）。</p>
+<p>これで、完全に機能する Buildpack が作成できました。
+<code>pack build</code> コマンドで作成したコンテナイメージを <code>docker</code> コマンドで実行してみましょう。</p>
+<pre class="copyable"><code class="copyable__code">docker run -d -p 8080:8080 -e PORT=8080 &lt;app-name&gt; &#34;node server.js&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<p>実行したコンテナイメージに <code>curl</code> コマンドでアクセスして確かめてみましょう。</p>
+<pre class="copyable"><code class="copyable__code">curl http://localhost:8080
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<div class="code-output">
+    <div class="btn code-output__btn code-output__btn">View Output</div>
+    <pre class="code-output__output-container">
+        <code class="code-output__output">hello world
+</code>
+    </pre>
+</div>
+
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Webブラウザで <a href="http://localhost:8080"><code>http://localhost:8080</code></a> にアクセスしても確認できるはずです。
+どちらにしても &ldquo;hellow world&rdquo; と表示されれば成功です。</p>
+
+            </div>
+            
+  <a href="http://github.com/paketo-buildpacks/paketo-website/edit/main/content/docs%5chowto%5ccreate-paketo-buildpack.ja.md" target="_blank" class="github-edit" style="text-decoration:none">
+    <div class="github-edit__content">
+      <div class="github-edit__logo-container">
+        <img class="github-edit__logo" src="/images/github-mark.png">
+      </div>
+        <div class="github-edit__text">Edit</div>
+    </div>
+</a>
+
+            <p class="docs-mod-time"><strong>Last modified:</strong> September 13, 2021</p>
+        </div>
+        
+<div class="docs-body__table-of-contents-container docs-body__table-of-contents-container--desktop">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#packithttpsgithubcompaketo-buildpackspackit"><a href="https://github.com/paketo-buildpacks/packit">Packit</a></a></li>
+    <li><a href="#前提条件">前提条件</a></li>
+    <li><a href="#それでは始めましょう">それでは始めましょう</a>
+      <ul>
+        <li><a href="#buildpacktoml"><code>buildpack.toml</code></a></li>
+        <li><a href="#bindetect"><code>bin/detect</code></a></li>
+        <li><a href="#binbuild"><code>bin/build</code></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+
+    </div>
+</div>
+
+
+    <footer class="footer text--light">
+    <div class="footer-social-links-container">
+        <a class="footer-social-link" href="https://twitter.com/Paketo_io">
+            <div class="footer-social-link__image-container">
+                <div class="logo">
+                    <img class="logo__image" src="/v2/images/logo-twitter.svg" alt="Blue Twitter bird logo">
+                </div>
+            </div>
+            <div class="text--light text--400">
+                Twitter
+            </div>
+        </a>
+        <a class="footer-social-link" href="https://slack.paketo.io/">
+            <div class="footer-social-link__image-container">
+                <div class="logo">
+                    <img class="logo__image" src="/v2/images/logo-slack.svg" alt="Slack logo">
+                </div>
+            </div>
+            <div class="text--light text--400">
+                Slack
+            </div>
+        </a>
+        <a class="footer-social-link" href="https://github.com/paketo-buildpacks">
+            <div class="footer-social-link__image-container">
+                <div class="logo logo--github">
+                    <img class="logo__image"  src="/v2/images/logo-github-cropped.svg" alt="GitHub Octocat logo"/>
+                </div>
+            </div>
+            <div class="text--light text--400">
+                GitHub
+            </div>
+        </a>
+    </div>
+    <div class="footer-privacy-policy">
+        <div class="footer-text--small">Paketo Buildpacks is a <a class="text--light" href="https://www.cloudfoundry.org/">Cloud Foundry</a> Project</div>
+        <img class="cloudfoundry-logo" src="/v2/images/logo-cloudfoundry-light.svg" alt="Cloud Foundry logo" />
+        <a class="footer-text--small text--light" href="https://www.linuxfoundation.org/privacy">Privacy Policy</a>
+    </div>
+</footer><script src="/unofficial-translations/paketo-website/js/main.7b2c859f76ebea65f7468883b2f720537f395fc48d504f5e3b4d33c389e860f2.js"></script>
+
+    <div id="footer-skip-link" class="screenreader-container">
+    <a href="#header-skip-link" class="screenreader-text">Skip to Header</a>
+</div>
+
+</body>
+
+</html>

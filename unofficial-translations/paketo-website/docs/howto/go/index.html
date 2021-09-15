@@ -1,0 +1,900 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>How to Build Go Apps with Paketo Buildpacks - Paketo Buildpacks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1 viewport-fit=cover">
+
+
+
+
+<meta name="og:site_name" content="Paketo Buildpacks">
+<meta name="og:title" content="How to Build Go Apps with Paketo Buildpacks">
+<meta name="og:url" content="https://yujiorama.github.io/unofficial-translations/paketo-website/docs/howto/go/">
+<meta name="twitter:title" content="Paketo Buildpacks" />
+<meta name="twitter:url" content="https://yujiorama.github.io/unofficial-translations/paketo-website/docs/howto/go/" />
+<meta name="twitter:card" content="" />
+
+
+
+<link rel="stylesheet" href="/unofficial-translations/paketo-website/css/main.min.e65e899d7edbb046f43d58e402eca40ec1064082b810ea2ea4f62b1e70614850.css">
+
+</head>
+
+<body>
+    
+    <div id="header-skip-link" class="screenreader-container">
+    <a href="#title" class="screenreader-text">Skip to Content</a>
+</div>
+
+    
+
+
+
+
+<header class="header--narrow">
+    
+    <a class="paketo-p-logo" href="/">
+        <img class="paketo-p-logo__image" src="/v2/images/logo-paketo-p.svg" alt="Paketo Buildpacks Homepage">
+    </a>
+    
+    <div id="navigation" class="right-overlay">
+        <div class="nav-opener">
+            <span class="nav-opener__bar nav-opener__bar-top"></span>
+            <span class="nav-opener__bar nav-opener__bar-middle"></span>
+            <span class="nav-opener__bar nav-opener__bar-bottom"></span>
+        </div>
+        <div class="nav-container" id="nav-container">
+            <nav class="nav" id="nav-tray" >
+                <div class="nav__linkarea text--400">
+                    <a class="nav-link" href="/docs">docs</a>
+                    <a class="nav-link" href="/community">community</a>
+                    <a class="nav-link" href="https://blog.paketo.io">blog</a>
+                    <a class="nav-link" href="https://github.com/paketo-buildpacks">github</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="desktop-nav">
+        
+        
+        
+        <a class="nav-link nav-link--desktop  nav-link--desktop--active" href="/docs">docs</a>
+        
+        <a class="nav-link nav-link--desktop   " href="/community">community</a>
+        <a class="nav-link nav-link--desktop " href="https://blog.paketo.io">blog</a>
+        <a class="nav-link nav-link--desktop " href="https://github.com/paketo-buildpacks">github</a>
+    </div>
+</header>
+
+
+    <div class="docs">
+    <div class="docs-sidebar">
+        
+<input type="text" id="docs-search" class="algolia-autocomplete__search-bar" placeholder="Search docs..." data-api-key="bf2d426728685665ceaf22fac947f10f" data-index="paketo"/>
+<nav class="docs-menu">
+    <ul class="docs-menu__top-level-list">
+        
+        
+            
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Getting Started</span>
+            </a>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header docs-menu__section-header--opened">
+                
+                <span>How To</span>
+                <button class="expander-button expander-button--opened docs-menu__expander-button">
+                    <svg class="expander-button__triangle expander-button__triangle--opened" width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list docs-menu__children-list--opened">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/dotnet-core/" class="docs-menu__item docs-menu__link ">
+                
+                <span>.NET Core</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/go/" class="docs-menu__item docs-menu__link docs-menu__link--active">
+                
+                <span>Go</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/web-servers/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Web Servers</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/java/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/nodejs/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Node.js</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/python/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Python</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/php/" class="docs-menu__item docs-menu__link ">
+                
+                <span>PHP</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/ruby/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Ruby</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/create-paketo-buildpack/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Create a Paketo Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/bom/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Access the Bill of Materials</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header ">
+                
+                <span>Concepts</span>
+                <button class="expander-button  docs-menu__expander-button">
+                    <svg class="expander-button__triangle " width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list ">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/concepts/buildpacks/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Buildpacks</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/concepts/builders/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Builders</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/concepts/stacks/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Stacks</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/concepts/bom/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Bill of Materials</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header ">
+                
+                <span>Reference</span>
+                <button class="expander-button  docs-menu__expander-button">
+                    <svg class="expander-button__triangle " width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list ">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/configuration/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Configuring Paketo Buildpacks</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/httpd-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>HTTPD Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/dotnet-core-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>.NET Core Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/go-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Go Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/java-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/java-native-image-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java Native Image Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/nginx-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>NGINX Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/nodejs-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Node.js Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/php-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>PHP Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/python-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Python Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/ruby-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Ruby Buildpack</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+    </ul>
+</nav>
+
+
+
+    </div>
+    <div class="docs-body">
+        <div class="docs-body__container">
+            
+  <a href="http://github.com/paketo-buildpacks/paketo-website/edit/main/content/docs%5chowto%5cgo.md" target="_blank" class="github-edit" style="text-decoration:none">
+    <div class="github-edit__content">
+      <div class="github-edit__logo-container">
+        <img class="github-edit__logo" src="/images/github-mark.png">
+      </div>
+        <div class="github-edit__text">Edit</div>
+    </div>
+</a>
+
+            <h1 id="title">How to Build Go Apps with Paketo Buildpacks</h1>
+            
+<div class="docs-body__table-of-contents-container docs-body__table-of-contents-container--mobile">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#build-a-sample-go-application">Build a Sample Go Application</a></li>
+    <li><a href="#override-the-detected-go-version">Override the Detected Go Version</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#configure-the-go-build-command">Configure the <code>go build</code> Command</a>
+      <ul>
+        <li><a href="#set--ldflags-for-go-build">Set <code>-ldflags</code> for <code>go build</code></a></li>
+        <li><a href="#set-other-flags-for-go-build">Set Other Flags for <code>go build</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#build-non-default-packages">Build Non-Default Package(s)</a>
+      <ul>
+        <li></li>
+        <li><a href="#build-multiple-packages-in-one-app-image">Build Multiple Packages In One App Image</a></li>
+      </ul>
+    </li>
+    <li><a href="#build-an-app-that-imports-its-own-sub-packages">Build an App that Imports Its Own Sub-Packages</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#prevent-source-files-from-being-deleted">Prevent Source Files From Being Deleted</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#install-a-custom-ca-certificate">Install a Custom CA Certificate</a></li>
+    <li><a href="#override-the-start-process-set-by-the-buildpack">Override the Start Process Set by the Buildpack</a></li>
+    <li><a href="#set-environment-variables-for-app-launch-time">Set Environment Variables for App Launch Time</a></li>
+    <li><a href="#add-custom-labels-to-the-app-image">Add Custom Labels to the App Image</a></li>
+  </ul>
+</nav>
+</div>
+
+            <div class="docs-body__markdown">
+                <p>This documentation explains how to use the
+<a href="https://github.com/paketo-buildpacks/go">Paketo Go Buildpack</a>
+to build applications for several common use-cases. For more in-depth
+description of the buildpack&rsquo;s behavior and configuration see the  Paketo Go Buildpack
+Reference <a href="/docs/reference/go-reference">documentation</a>.</p>
+<h2 id="build-a-sample-go-application" class="markup-heading">
+    <a class="markup-heading__link" href="#build-a-sample-go-application">
+        Build a Sample Go Application
+    </a>
+</h2><p>You can quickly build a sample Go app into a runnable OCI image on your
+local machine with Paketo buildpacks.</p>
+<p><em>Prerequisites</em></p>
+<ul>
+<li>docker CLI</li>
+<li>pack CLI</li>
+</ul>
+<ol>
+<li>
+<p>Clone the Paketo samples and navigate to a Go sample app.
+<pre class="copyable"><code class="copyable__code">git clone https://github.com/paketo-buildpacks/samples
+cd samples/go/mod
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+</p>
+</li>
+<li>
+<p>Use the pack CLI with the Paketo Go Buildpack to build the sample app.
+<pre class="copyable"><code class="copyable__code">pack build my-app --buildpack gcr.io/paketo-buildpacks/go \
+  --builder paketobuildpacks/builder:base
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+</p>
+</li>
+<li>
+<p>Run the app using instructions found in its <code>README</code>.</p>
+</li>
+</ol>
+<p><em>Note: Though the example above uses the Paketo Base Builder, this buildpack is
+also compatible with the Paketo Full Builder and Paketo Tiny Builder.</em></p>
+<h2 id="override-the-detected-go-version" class="markup-heading">
+    <a class="markup-heading__link" href="#override-the-detected-go-version">
+        Override the Detected Go Version
+    </a>
+</h2><p>The Paketo Go buildpack will attempt to automatically detect the correct version
+of Go to install based on the version in your app&rsquo;s <code>go.mod</code>. It is possible to
+override this version by setting the <code>BP_GO_VERSION</code> environment variable at build time.</p>
+<p><code>BP_GO_VERSION</code> can be set to any valid semver version or version constraint (e.g. <code>1.14.1</code>, <code>1.14.*</code>).
+For the versions available in the buildpack, see the buildpack&rsquo;s <a href="https://github.com/paketo-buildpacks/go/releases/latest">releases page</a>. Specifying a version of Go is not required. In the case that is not specified,
+the buildpack will provide the default version, which can be seen in the
+<code>buildpack.toml</code> file.</p>
+<h4 id="with-pack-and-a-command-line-flag" class="markup-heading">
+    <a class="markup-heading__link" href="#with-pack-and-a-command-line-flag">
+        With pack and a Command-Line Flag
+    </a>
+</h4><p>When building with the pack CLI, set <code>BP_GO_VERSION</code> at build time with the <code>--env</code> flag.
+<pre class="copyable"><code class="copyable__code">pack build my-app --buildpack gcr.io/paketo-buildpacks/go \
+  --env BP_GO_VERSION=&#34;1.14.1&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+</p>
+<h4 id="with-pack-and-a-projecttoml" class="markup-heading">
+    <a class="markup-heading__link" href="#with-pack-and-a-projecttoml">
+        With pack and a <code>project.toml</code>
+    </a>
+</h4><p>When building with the pack CLI, create a <a href="https://buildpacks.io/docs/app-developer-guide/using-project-descriptor">project.toml</a> file in your app directory that sets <code>BP_GO_VERSION</code> at build time.
+<pre class="copyable"><code class="copyable__code"># project.toml
+[ build ]
+  [[ build.env ]]
+    name=&#34;BP_GO_VERSION&#34;
+    value=&#34;1.41.1&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+</p>
+<p>The pack CLI will automatically detect the project file at build time.</p>
+<h4 id="deprecated-with-pack-and-a-buildpackyml" class="markup-heading">
+    <a class="markup-heading__link" href="#deprecated-with-pack-and-a-buildpackyml">
+        Deprecated: With pack and a <code>buildpack.yml</code>
+    </a>
+</h4><p>Please note that setting the Go version through a buildpack.yml file will be
+deprecated in Go Dist Buildpack v1.0.0.</p>
+<h2 id="configure-the-go-build-command" class="markup-heading">
+    <a class="markup-heading__link" href="#configure-the-go-build-command">
+        Configure the <code>go build</code> Command
+    </a>
+</h2><p>The Paketo Go buildpack compiles Go source code with the <code>go build</code> command, with certain opinionated flags by default. (See reference <a href="https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/go-reference/">documentation</a> for information about the default flagset.) It is possible to override or add to these defaults by setting the <code>BP_GO_BUILD_FLAGS</code> and <code>BP_GO_BUILD_LDFLAGS</code>
+environment variables at build time.</p>
+<h3 id="set--ldflags-for-go-build" class="markup-heading">
+    <a class="markup-heading__link" href="#set--ldflags-for-go-build">
+        Set <code>-ldflags</code> for <code>go build</code>
+    </a>
+</h3><p>The Paketo Go buildpack has a dedicated environment variable for setting the value of <code>-ldflags</code>.</p>
+<h4 id="with-pack-and-a-command-line-flag-1" class="markup-heading">
+    <a class="markup-heading__link" href="#with-pack-and-a-command-line-flag-1">
+        With pack and a Command-Line Flag
+    </a>
+</h4><p>When building with the pack CLI, set <code>BP_GO_BUILD_LDFLAGS</code> at build time with the <code>--env</code> flag. For example, to add <code>-ldflags=&quot;-X main.variable=some-value&quot;</code> to the build flagset, set the environment variable as follows:
+<pre class="copyable"><code class="copyable__code">pack build my-app --buildpack gcr.io/paketo-buildpacks/go \
+  --env BP_GO_BUILD_LDFLAGS=&#34;-X main.variable=some-value&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+</p>
+<h4 id="with-pack-and-a-projecttoml-1" class="markup-heading">
+    <a class="markup-heading__link" href="#with-pack-and-a-projecttoml-1">
+        With pack and a <code>project.toml</code>
+    </a>
+</h4><p>When building with the pack CLI, create a <a href="https://buildpacks.io/docs/app-developer-guide/using-project-descriptor">project.toml</a> file in your app directory that sets <code>BP_GO_BUILD_LDFLAGS</code> at build time. For example, to add <code>-ldflags=&quot;-X main.variable=some-value&quot;</code> to the build flagset, set the environment variable as follows:
+<pre class="copyable"><code class="copyable__code"># project.toml
+[ build ]
+  [[ build.env ]]
+    name=&#34;BP_GO_BUILD_LDFLAGS&#34;
+    value=&#34;-X main.variable=some-value&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+</p>
+<p>The pack CLI will automatically detect the project file at build time.</p>
+<h3 id="set-other-flags-for-go-build" class="markup-heading">
+    <a class="markup-heading__link" href="#set-other-flags-for-go-build">
+        Set Other Flags for <code>go build</code>
+    </a>
+</h3><p>Setting <code>BP_GO_BUILD_FLAGS</code> will add to the Paketo Go buildpack&rsquo;s default flagset. Any value that you set for a given flag will override the value set by the buildpack. See reference <a href="/docs/reference/go-reference">documentation</a> for information about default configuration.</p>
+<h4 id="with-pack-and-a-command-line-flag-2" class="markup-heading">
+    <a class="markup-heading__link" href="#with-pack-and-a-command-line-flag-2">
+        With pack and a Command-Line Flag
+    </a>
+</h4><p>When building with the pack CLI, set <code>BP_GO_BUILD_FLAGS</code> at build time with the <code>--env</code> flag. For example, to add <code>-buildmode=default -tags=paketo</code> to the build flagset, set the environment variable as follows:
+<pre class="copyable"><code class="copyable__code">pack build my-app --buildpack gcr.io/paketo-buildpacks/go \
+  --env BP_GO_BUILD_FLAGS=&#34;-buildmode=default -tags=paketo&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+</p>
+<h4 id="with-pack-and-a-projecttoml-2" class="markup-heading">
+    <a class="markup-heading__link" href="#with-pack-and-a-projecttoml-2">
+        With pack and a <code>project.toml</code>
+    </a>
+</h4><p>When building with the pack CLI, create a <a href="https://buildpacks.io/docs/app-developer-guide/using-project-descriptor">project.toml</a> file in your app directory that sets <code>BP_GO_BUILD_FLAGS</code> at build time. For example, to add <code>-buildmode=default -tags=paketo</code> to the build flagset, set the environment variable as follows:
+<pre class="copyable"><code class="copyable__code"># project.toml
+[ build ]
+  [[ build.env ]]
+    name=&#34;BP_GO_BUILD_FLAGS&#34;
+    value=&#34;-buildmode=default -tags=paketo&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+</p>
+<h4 id="deprecated-with-buildpackyml" class="markup-heading">
+    <a class="markup-heading__link" href="#deprecated-with-buildpackyml">
+        Deprecated: With buildpack.yml
+    </a>
+</h4><p>Specifying the Go Build flags through buildpack.yml configuration will be
+deprecated in Go Build Buildpack v1.0.0. To migrate from using buildpack.yml
+please set the <code>$BP_GO_BUILD_FLAGS</code> environment variable.</p>
+<p>The pack CLI will automatically detect the project file at build time.</p>
+<h2 id="build-non-default-packages" class="markup-heading">
+    <a class="markup-heading__link" href="#build-non-default-packages">
+        Build Non-Default Package(s)
+    </a>
+</h2><p>The Paketo Go Buildpack will compile the package in the app&rsquo;s root directory
+by default. It is possible to build a non-default package (or packages) by
+setting the <code>BP_GO_TARGETS</code> environment variable at build time.</p>
+<p>The following examples will build the <code>second</code> package in an app source directory with the structure:</p>
+<pre tabindex="0"><code>app-directory
+├── first
+│   └── main.go
+├── second
+│   └── main.go
+└── third
+    └── main.go
+</code></pre><h4 id="with-pack-and-a-command-line-flag-3" class="markup-heading">
+    <a class="markup-heading__link" href="#with-pack-and-a-command-line-flag-3">
+        With pack and a Command-Line Flag
+    </a>
+</h4><p>When building with the pack CLI, set <code>BP_GO_TARGETS</code> at build time with the <code>--env</code> flag.</p>
+<pre class="copyable"><code class="copyable__code">pack build my-app --buildpack gcr.io/paketo-buildpacks/go \
+  --env BP_GO_TARGETS=&#34;./second&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h4 id="with-pack-and-a-projecttoml-3" class="markup-heading">
+    <a class="markup-heading__link" href="#with-pack-and-a-projecttoml-3">
+        With pack and a <code>project.toml</code>
+    </a>
+</h4><p>When building with the pack CLI, create a <a href="https://buildpacks.io/docs/app-developer-guide/using-project-descriptor">project.toml</a> file in your app directory that sets <code>BP_GO_TARGETS</code> at build time.
+<pre class="copyable"><code class="copyable__code"># project.toml
+[ build ]
+  [[ build.env ]]
+    name=&#34;BP_GO_TARGETS&#34;
+    value=&#34;./second&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+</p>
+<p>The pack CLI will automatically detect the project file at build time.</p>
+<h4 id="deprecated-with-buildpackyml-1" class="markup-heading">
+    <a class="markup-heading__link" href="#deprecated-with-buildpackyml-1">
+        Deprecated: With buildpack.yml
+    </a>
+</h4><p>Specifying the Go Build targets through buildpack.yml configuration will be
+deprecated in Go Build Buildpack v1.0.0. To migrate from using buildpack.yml
+please set the <code>$BP_GO_TARGETS</code> environment variable.</p>
+<h3 id="build-multiple-packages-in-one-app-image" class="markup-heading">
+    <a class="markup-heading__link" href="#build-multiple-packages-in-one-app-image">
+        Build Multiple Packages In One App Image
+    </a>
+</h3><p>The <code>BP_GO_TARGETS</code> evironment variable can accept a colon-delimited list of
+target packages. Each binary will be set as a <a href="https://buildpacks.io/docs/app-developer-guide/run-an-app/">launch process</a> of the same name in
+the app image. The following examples will build <em>both</em> the <code>first</code> and <code>second</code> packages in the same multi-package app directory as <a href="#build-non-default-packages">above</a>.</p>
+<h4 id="with-pack-and-a-command-line-flag-4" class="markup-heading">
+    <a class="markup-heading__link" href="#with-pack-and-a-command-line-flag-4">
+        With pack and a Command-Line Flag
+    </a>
+</h4><p>When building with the pack CLI, set <code>BP_GO_TARGETS</code> at build time with the <code>--env</code> flag.</p>
+<pre class="copyable"><code class="copyable__code">pack build my-app --buildpack gcr.io/paketo-buildpacks/go \
+  --env BP_GO_TARGETS=&#34;./first:./second&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h4 id="with-pack-and-a-projecttoml-4" class="markup-heading">
+    <a class="markup-heading__link" href="#with-pack-and-a-projecttoml-4">
+        With pack and a <code>project.toml</code>
+    </a>
+</h4><p>When building with the pack CLI, create a <a href="https://buildpacks.io/docs/app-developer-guide/using-project-descriptor">project.toml</a> file in your app directory that sets <code>BP_GO_TARGETS</code> at build time.
+<pre class="copyable"><code class="copyable__code"># project.toml
+[ build ]
+  [[ build.env ]]
+    name=&#34;BP_GO_TARGETS&#34;
+    value=&#34;./first:./second&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+</p>
+<h4 id="deprecated-with-buildpackyml-2" class="markup-heading">
+    <a class="markup-heading__link" href="#deprecated-with-buildpackyml-2">
+        Deprecated: With buildpack.yml
+    </a>
+</h4><p>Specifying the Go Build targets through buildpack.yml configuration will be
+deprecated in Go Build Buildpack v1.0.0. To migrate from using buildpack.yml
+please set the <code>$BP_GO_TARGETS</code> environment variable.</p>
+<h2 id="build-an-app-that-imports-its-own-sub-packages" class="markup-heading">
+    <a class="markup-heading__link" href="#build-an-app-that-imports-its-own-sub-packages">
+        Build an App that Imports Its Own Sub-Packages
+    </a>
+</h2><p>If you are building a <code>$GOPATH</code> application that imports its own sub-packages,
+you will need to specify the import paths for those sub-packages. The Paketo Go Buildpack supports setting these import paths with the <code>$BP_GO_BUILD_IMPORT_PATH</code>
+environment variable at build time.</p>
+<p>The following examples will configure the buildpack to build an app whose
+directory structure looks like:</p>
+<pre tabindex="0"><code>app-directory
+├── handlers
+│   └── details.go
+└── main.go
+</code></pre><p>and whose <code>main.go</code> imports:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;github.com/app-developer/app-directory/handlers&#34;</span>
+<span class="p">)</span>
+</code></pre></div><h4 id="with-pack-and-a-command-line-flag-5" class="markup-heading">
+    <a class="markup-heading__link" href="#with-pack-and-a-command-line-flag-5">
+        With pack and a Command-Line Flag
+    </a>
+</h4><p>When building with the pack CLI, set <code>$BP_GO_BUILD_IMPORT_PATH</code> at build time with the <code>--env</code> flag.</p>
+<pre class="copyable"><code class="copyable__code">pack build my-app --buildpack gcr.io/paketo-buildpacks/go \
+  --env BP_GO_BUILD_IMPORT_PATH=&#34;github.com/app-developer/app-directory&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h4 id="with-pack-and-a-projecttoml-5" class="markup-heading">
+    <a class="markup-heading__link" href="#with-pack-and-a-projecttoml-5">
+        With pack and a <code>project.toml</code>
+    </a>
+</h4><p>When building with the pack CLI, create a <a href="https://buildpacks.io/docs/app-developer-guide/using-project-descriptor">project.toml</a> file in your app directory that sets <code>$BP_GO_BUILD_IMPORT_PATH</code> at build time.
+<pre class="copyable"><code class="copyable__code"># project.toml
+[ build ]
+  [[ build.env ]]
+    name=&#34;BP_GO_BUILD_IMPORT_PATH&#34;
+    value=&#34;github.com/app-developer/app-directory&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+</p>
+<h4 id="deprecated-with-buildpackyml-3" class="markup-heading">
+    <a class="markup-heading__link" href="#deprecated-with-buildpackyml-3">
+        Deprecated: With buildpack.yml
+    </a>
+</h4><p>Specifying the Go Build import path through buildpack.yml configuration will be
+deprecated in Go Build Buildpack v1.0.0. To migrate from using buildpack.yml
+please set the <code>$BP_GO_BUILD_IMPORT_PATH</code> environment variable.</p>
+<h2 id="prevent-source-files-from-being-deleted" class="markup-heading">
+    <a class="markup-heading__link" href="#prevent-source-files-from-being-deleted">
+        Prevent Source Files From Being Deleted
+    </a>
+</h2><p>By default, the Paketo Go Buildpack deletes the contents of your app source directory (except for built artifacts). To preserve certain static assets that
+are needed in the app image, you can set the <code>BP_KEEP_FILES</code> environment
+variable at build time.</p>
+<p>The following examples configure the buildpack to prevent the <code>assets/</code> and
+<code>public/</code> directories from being removed in the app image.</p>
+<h4 id="with-pack-and-a-command-line-flag-6" class="markup-heading">
+    <a class="markup-heading__link" href="#with-pack-and-a-command-line-flag-6">
+        With pack and a Command-Line Flag
+    </a>
+</h4><p>When building with the pack CLI, set <code>$BP_KEEP_FILES</code> at build time with the
+<code>--env</code> flag.</p>
+<pre class="copyable"><code class="copyable__code">pack build my-app --buildpack gcr.io/paketo-buildpacks/go \
+  --env BP_KEEP_FILES=&#34;assets/*:public/*&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h4 id="with-pack-and-a-projecttoml-6" class="markup-heading">
+    <a class="markup-heading__link" href="#with-pack-and-a-projecttoml-6">
+        With pack and a <code>project.toml</code>
+    </a>
+</h4><p>When building with the pack CLI, create a <a href="https://buildpacks.io/docs/app-developer-guide/using-project-descriptor">project.toml</a> file in your app directory that sets <code>$BP_KEEP_FILES</code> at build time.
+<pre class="copyable"><code class="copyable__code"># project.toml
+[ build ]
+  [[ build.env ]]
+    name=&#34;BP_KEEP_FILES&#34;
+    value=&#34;assets/*:public/*&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+</p>
+<h2 id="install-a-custom-ca-certificate" class="markup-heading">
+    <a class="markup-heading__link" href="#install-a-custom-ca-certificate">
+        Install a Custom CA Certificate
+    </a>
+</h2><p>Go buildpack users can provide their own CA certificates and have them
+included in the container root truststore at build-time and runtime by
+following the instructions outlined in the <a href="https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/configuration/#ca-certificates">CA
+Certificates</a>
+section of our configuration docs.</p>
+<h2 id="override-the-start-process-set-by-the-buildpack" class="markup-heading">
+    <a class="markup-heading__link" href="#override-the-start-process-set-by-the-buildpack">
+        Override the Start Process Set by the Buildpack
+    </a>
+</h2><p>Go buildpack users can set custom start processes for their app image by
+following the instructions in the
+<a href="https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/configuration/#procfiles">Procfiles</a> section
+of our configuration docs.</p>
+<h2 id="set-environment-variables-for-app-launch-time" class="markup-heading">
+    <a class="markup-heading__link" href="#set-environment-variables-for-app-launch-time">
+        Set Environment Variables for App Launch Time
+    </a>
+</h2><p>Go buildpack users can embed launch-time environment variables in their
+app image by following the documentation for the <a href="https://github.com/paketo-buildpacks/environment-variables/blob/main/README.md">Environment Variables
+Buildpack</a>.</p>
+<h2 id="add-custom-labels-to-the-app-image" class="markup-heading">
+    <a class="markup-heading__link" href="#add-custom-labels-to-the-app-image">
+        Add Custom Labels to the App Image
+    </a>
+</h2><p>Go buildpack users can add labels to their app image by following the
+instructions in the <a href="https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/configuration/#applying-custom-labels">Applying Custom
+Labels</a>
+section of our configuration docs.</p>
+<!-- raw HTML omitted -->
+
+            </div>
+            
+  <a href="http://github.com/paketo-buildpacks/paketo-website/edit/main/content/docs%5chowto%5cgo.md" target="_blank" class="github-edit" style="text-decoration:none">
+    <div class="github-edit__content">
+      <div class="github-edit__logo-container">
+        <img class="github-edit__logo" src="/images/github-mark.png">
+      </div>
+        <div class="github-edit__text">Edit</div>
+    </div>
+</a>
+
+            <p class="docs-mod-time"><strong>Last modified:</strong> September 9, 2021</p>
+        </div>
+        
+<div class="docs-body__table-of-contents-container docs-body__table-of-contents-container--desktop">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#build-a-sample-go-application">Build a Sample Go Application</a></li>
+    <li><a href="#override-the-detected-go-version">Override the Detected Go Version</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#configure-the-go-build-command">Configure the <code>go build</code> Command</a>
+      <ul>
+        <li><a href="#set--ldflags-for-go-build">Set <code>-ldflags</code> for <code>go build</code></a></li>
+        <li><a href="#set-other-flags-for-go-build">Set Other Flags for <code>go build</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#build-non-default-packages">Build Non-Default Package(s)</a>
+      <ul>
+        <li></li>
+        <li><a href="#build-multiple-packages-in-one-app-image">Build Multiple Packages In One App Image</a></li>
+      </ul>
+    </li>
+    <li><a href="#build-an-app-that-imports-its-own-sub-packages">Build an App that Imports Its Own Sub-Packages</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#prevent-source-files-from-being-deleted">Prevent Source Files From Being Deleted</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#install-a-custom-ca-certificate">Install a Custom CA Certificate</a></li>
+    <li><a href="#override-the-start-process-set-by-the-buildpack">Override the Start Process Set by the Buildpack</a></li>
+    <li><a href="#set-environment-variables-for-app-launch-time">Set Environment Variables for App Launch Time</a></li>
+    <li><a href="#add-custom-labels-to-the-app-image">Add Custom Labels to the App Image</a></li>
+  </ul>
+</nav>
+</div>
+
+    </div>
+</div>
+
+
+    <footer class="footer text--light">
+    <div class="footer-social-links-container">
+        <a class="footer-social-link" href="https://twitter.com/Paketo_io">
+            <div class="footer-social-link__image-container">
+                <div class="logo">
+                    <img class="logo__image" src="/v2/images/logo-twitter.svg" alt="Blue Twitter bird logo">
+                </div>
+            </div>
+            <div class="text--light text--400">
+                Twitter
+            </div>
+        </a>
+        <a class="footer-social-link" href="https://slack.paketo.io/">
+            <div class="footer-social-link__image-container">
+                <div class="logo">
+                    <img class="logo__image" src="/v2/images/logo-slack.svg" alt="Slack logo">
+                </div>
+            </div>
+            <div class="text--light text--400">
+                Slack
+            </div>
+        </a>
+        <a class="footer-social-link" href="https://github.com/paketo-buildpacks">
+            <div class="footer-social-link__image-container">
+                <div class="logo logo--github">
+                    <img class="logo__image"  src="/v2/images/logo-github-cropped.svg" alt="GitHub Octocat logo"/>
+                </div>
+            </div>
+            <div class="text--light text--400">
+                GitHub
+            </div>
+        </a>
+    </div>
+    <div class="footer-privacy-policy">
+        <div class="footer-text--small">Paketo Buildpacks is a <a class="text--light" href="https://www.cloudfoundry.org/">Cloud Foundry</a> Project</div>
+        <img class="cloudfoundry-logo" src="/v2/images/logo-cloudfoundry-light.svg" alt="Cloud Foundry logo" />
+        <a class="footer-text--small text--light" href="https://www.linuxfoundation.org/privacy">Privacy Policy</a>
+    </div>
+</footer><script src="/unofficial-translations/paketo-website/js/main.7b2c859f76ebea65f7468883b2f720537f395fc48d504f5e3b4d33c389e860f2.js"></script>
+
+    <div id="footer-skip-link" class="screenreader-container">
+    <a href="#header-skip-link" class="screenreader-text">Skip to Header</a>
+</div>
+
+</body>
+
+</html>

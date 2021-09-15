@@ -1,0 +1,744 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Paketo Buildpacks で Web Server をビルドする - Paketo Buildpacks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1 viewport-fit=cover">
+
+
+
+
+<meta name="og:site_name" content="Paketo Buildpacks">
+<meta name="og:title" content="Paketo Buildpacks で Web Server をビルドする">
+<meta name="og:url" content="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/web-servers/">
+<meta name="twitter:title" content="Paketo Buildpacks" />
+<meta name="twitter:url" content="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/web-servers/" />
+<meta name="twitter:card" content="" />
+
+
+
+<link rel="stylesheet" href="/unofficial-translations/paketo-website/css/main.min.e65e899d7edbb046f43d58e402eca40ec1064082b810ea2ea4f62b1e70614850.css">
+
+</head>
+
+<body>
+    
+    <div id="header-skip-link" class="screenreader-container">
+    <a href="#title" class="screenreader-text">Skip to Content</a>
+</div>
+
+    
+
+
+
+
+<header class="header--narrow">
+    
+    <a class="paketo-p-logo" href="/">
+        <img class="paketo-p-logo__image" src="/v2/images/logo-paketo-p.svg" alt="Paketo Buildpacks Homepage">
+    </a>
+    
+    <div id="navigation" class="right-overlay">
+        <div class="nav-opener">
+            <span class="nav-opener__bar nav-opener__bar-top"></span>
+            <span class="nav-opener__bar nav-opener__bar-middle"></span>
+            <span class="nav-opener__bar nav-opener__bar-bottom"></span>
+        </div>
+        <div class="nav-container" id="nav-container">
+            <nav class="nav" id="nav-tray" >
+                <div class="nav__linkarea text--400">
+                    <a class="nav-link" href="/docs">docs</a>
+                    <a class="nav-link" href="/community">community</a>
+                    <a class="nav-link" href="https://blog.paketo.io">blog</a>
+                    <a class="nav-link" href="https://github.com/paketo-buildpacks">github</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="desktop-nav">
+        
+        
+        
+        <a class="nav-link nav-link--desktop  nav-link--desktop--active" href="/docs">docs</a>
+        
+        <a class="nav-link nav-link--desktop   " href="/community">community</a>
+        <a class="nav-link nav-link--desktop " href="https://blog.paketo.io">blog</a>
+        <a class="nav-link nav-link--desktop " href="https://github.com/paketo-buildpacks">github</a>
+    </div>
+</header>
+
+
+    <div class="docs">
+    <div class="docs-sidebar">
+        
+<input type="text" id="docs-search" class="algolia-autocomplete__search-bar" placeholder="Search docs..." data-api-key="bf2d426728685665ceaf22fac947f10f" data-index="paketo"/>
+<nav class="docs-menu">
+    <ul class="docs-menu__top-level-list">
+        
+        
+            
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Paketo Buildpacks 入門</span>
+            </a>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header docs-menu__section-header--opened">
+                
+                <span>使い方</span>
+                <button class="expander-button expander-button--opened docs-menu__expander-button">
+                    <svg class="expander-button__triangle expander-button__triangle--opened" width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list docs-menu__children-list--opened">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/dotnet-core/" class="docs-menu__item docs-menu__link ">
+                
+                <span>.NET Core</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/go/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Go</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/web-servers/" class="docs-menu__item docs-menu__link docs-menu__link--active">
+                
+                <span>Web Servers</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/java/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/nodejs/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Node.js</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/python/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Python</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/php/" class="docs-menu__item docs-menu__link ">
+                
+                <span>PHP</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/ruby/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Ruby</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/create-paketo-buildpack/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Paketo Buildpack を作成する</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/bom/" class="docs-menu__item docs-menu__link ">
+                
+                <span>部品表（Bill of Materials）へアクセスする</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header ">
+                
+                <span>考え方</span>
+                <button class="expander-button  docs-menu__expander-button">
+                    <svg class="expander-button__triangle " width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list ">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/buildpacks/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Buildpacks</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/builders/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Builders</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/stacks/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Stacks</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/bom/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Bill of Materials</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header ">
+                
+                <span>リファレンス</span>
+                <button class="expander-button  docs-menu__expander-button">
+                    <svg class="expander-button__triangle " width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list ">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/httpd-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>HTTPD Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/configuration/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Paketo Buildpacks の設定</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/dotnet-core-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>.NET Core Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/go-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Go Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/java-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/java-native-image-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java Native Image Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/nginx-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>NGINX Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/nodejs-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Node.js Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/php-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>PHP Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/python-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Python Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/ruby-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Ruby Buildpack</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+    </ul>
+</nav>
+
+
+
+    </div>
+    <div class="docs-body">
+        <div class="docs-body__container">
+            
+  <a href="http://github.com/paketo-buildpacks/paketo-website/edit/main/content/docs%5chowto%5cweb-servers.ja.md" target="_blank" class="github-edit" style="text-decoration:none">
+    <div class="github-edit__content">
+      <div class="github-edit__logo-container">
+        <img class="github-edit__logo" src="/images/github-mark.png">
+      </div>
+        <div class="github-edit__text">Edit</div>
+    </div>
+</a>
+
+            <h1 id="title">Paketo Buildpacks で Web Server をビルドする</h1>
+            
+<div class="docs-body__table-of-contents-container docs-body__table-of-contents-container--mobile">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#httpd">HTTPD</a>
+      <ul>
+        <li><a href="#サンプルアプリをビルドする">サンプルアプリをビルドする</a></li>
+        <li><a href="#インストールするバージョンを指定する">インストールするバージョンを指定する</a></li>
+        <li><a href="#コンテナイメージを実行するときに-httpd-server-を起動する">コンテナイメージを実行するときに HTTPD Server を起動する</a></li>
+      </ul>
+    </li>
+    <li><a href="#nginx">NGINX</a>
+      <ul>
+        <li><a href="#サンプルアプリをビルドする-1">サンプルアプリをビルドする</a></li>
+        <li><a href="#インストールするバージョンを指定する-1">インストールするバージョンを指定する</a></li>
+        <li><a href="#コンテナイメージを実行するときに-nginx-server-を起動する">コンテナイメージを実行するときに NGINX Server を起動する</a></li>
+        <li><a href="#nginx-server-の設定値を起動時に構成する">NGINX Server の設定値を起動時に構成する</a></li>
+        <li><a href="#nginx-server-の動的モジュールを起動時に構成する">NGINX Server の動的モジュールを起動時に構成する</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+
+            <div class="docs-body__markdown">
+                <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>このドキュメントでは Paketo Buildpack を使用して HTTPD や NGINX で実行するアプリケーションのコンテナイメージを作成する方法を説明します。
+一般的な手順を説明しているだけなので、Buildpack の振る舞いや設定方法を詳しく知りたいときは、それぞれの Web Server 用 Buildpack のリファレンスを参照してください。</p>
+<h2 id="httpd" class="markup-heading">
+    <a class="markup-heading__link" href="#httpd">
+        HTTPD
+    </a>
+</h2><p>This documentation explains how to use the
+<a href="https://github.com/paketo-buildpacks/httpd">Paketo HTTPD Buildpack</a>
+to build applications for several common use-cases. For more in-depth
+description of the buildpack&rsquo;s behavior and configuration see the  Paketo HTTPD Buildpack
+Reference <a href="/docs/reference/httpd-reference">documentation</a>.</p>
+<h3 id="サンプルアプリをビルドする" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%82%b5%e3%83%b3%e3%83%97%e3%83%ab%e3%82%a2%e3%83%97%e3%83%aa%e3%82%92%e3%83%93%e3%83%ab%e3%83%89%e3%81%99%e3%82%8b">
+        サンプルアプリをビルドする
+    </a>
+</h3><!-- raw HTML omitted -->
+<p><code>pack</code> コマンドを使うと、Apache HTTP Server Cloud Native Buildpack で次のようにサンプルアプリケーションをビルドできます。</p>
+<pre class="copyable"><code class="copyable__code">git clone https://github.com/paketo-buildpacks/samples
+cd samples/httpd
+pack build my-app --buildpack gcr.io/paketo-buildpacks/httpd \
+  --builder paketobuildpacks/builder:full
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>アプリケーションの実行方法は <a href="https://github.com/paketo-buildpacks/samples/tree/main/httpd">ソースコードリポジトリの README</a> を参照してください。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><strong>注意：Apache HTTP Server Cloud Native Buildpack は Paketo Full ビルダーが必要です。Full ビルダーにしか含まれないOSのシステムライブラリを使用するからです。</strong></p>
+<h3 id="インストールするバージョンを指定する" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab%e3%81%99%e3%82%8b%e3%83%90%e3%83%bc%e3%82%b8%e3%83%a7%e3%83%b3%e3%82%92%e6%8c%87%e5%ae%9a%e3%81%99%e3%82%8b">
+        インストールするバージョンを指定する
+    </a>
+</h3><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Apache HTTPD Server Cloud Native Buildpack では、デプロイする Apache HTTP Server のバージョンを環境変数 <code>BP_HTTPD_VERSION</code> で指定できます。
+Apache HTTPD Server Cloud Native Buildpack で使用できるバージョンは、 <a href="https://github.com/paketo-buildpacks/httpd/releases">Apache HTTPD Server Cloud Native Buildpack のリリースノート</a> で確認できます。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><code>httpd</code> のバージョンは明示的に指定しなくても構いません。
+その場合、Apache HTTPD Server Cloud Native Buildpack のリリースノートに記述された既定のバージョンを使用します。</p>
+<h4 id="環境変数-bp_httpd_version-を使用する" class="markup-heading">
+    <a class="markup-heading__link" href="#%e7%92%b0%e5%a2%83%e5%a4%89%e6%95%b0-bp_httpd_version-%e3%82%92%e4%bd%bf%e7%94%a8%e3%81%99%e3%82%8b">
+        環境変数 BP_HTTPD_VERSION を使用する
+    </a>
+</h4><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>アプリケーションを HTTPD v2.4.46 でデプロイするときは、ビルド時に環境変数 <code>BP_HTTPD_VERSION</code> を指定します。
+pack コマンドの <code>--env</code> フラグでも指定できますし、 <a href="https://github.com/buildpacks/spec/blob/main/extensions/project-descriptor.md">project.toml</a> でも指定できます。</p>
+<pre class="copyable"><code class="copyable__code">BP_HTTPD_VERSION=&#34;2.4.46&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h4 id="非推奨buildpackyml-で指定する" class="markup-heading">
+    <a class="markup-heading__link" href="#%e9%9d%9e%e6%8e%a8%e5%a5%a8buildpackyml-%e3%81%a7%e6%8c%87%e5%ae%9a%e3%81%99%e3%82%8b">
+        非推奨：<code>buildpack.yml</code> で指定する
+    </a>
+</h4><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Apache HTTP Server Buildpack の v1.0.0 から、<code>buildpack.yml</code> でバージョンを指定するのは非推奨になりました。
+環境変数 <code>$BP_HTTPD_VERSION</code> を使用してください。</p>
+<h3 id="コンテナイメージを実行するときに-httpd-server-を起動する" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%82%b3%e3%83%b3%e3%83%86%e3%83%8a%e3%82%a4%e3%83%a1%e3%83%bc%e3%82%b8%e3%82%92%e5%ae%9f%e8%a1%8c%e3%81%99%e3%82%8b%e3%81%a8%e3%81%8d%e3%81%ab-httpd-server-%e3%82%92%e8%b5%b7%e5%8b%95%e3%81%99%e3%82%8b">
+        コンテナイメージを実行するときに HTTPD Server を起動する
+    </a>
+</h3><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>アプリケーションのソースコードに <code>httpd.conf</code> を含めるようにします。
+Apache HTTPD Server Cloud Native Buildpack は、Apache HTTPD Server の実行可能ファイルをインストールするだけでなく、コンテナイメージを実行するときに起動できるように構成します。</p>
+<h2 id="nginx" class="markup-heading">
+    <a class="markup-heading__link" href="#nginx">
+        NGINX
+    </a>
+</h2><p>This documentation explains how to use the
+<a href="https://github.com/paketo-buildpacks/nginx">Paketo NGINX Buildpack</a>
+to build applications for several common use-cases. For more in-depth
+description of the buildpack&rsquo;s behavior and configuration see the  Paketo NGINX Buildpack
+Reference <a href="/docs/reference/nginx-reference">documentation</a>.</p>
+<h3 id="サンプルアプリをビルドする-1" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%82%b5%e3%83%b3%e3%83%97%e3%83%ab%e3%82%a2%e3%83%97%e3%83%aa%e3%82%92%e3%83%93%e3%83%ab%e3%83%89%e3%81%99%e3%82%8b-1">
+        サンプルアプリをビルドする
+    </a>
+</h3><!-- raw HTML omitted -->
+<p><code>pack</code> コマンドを使うと、NGINX Server Cloud Native Buildpack で次のようにサンプルアプリケーションをビルドできます。</p>
+<pre class="copyable"><code class="copyable__code">git clone https://github.com/paketo-buildpacks/samples
+cd samples/nginx
+pack build my-app --buildpack gcr.io/paketo-buildpacks/nginx \
+  --builder paketobuildpacks/builder:base
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>アプリケーションの実行方法は <a href="https://github.com/paketo-buildpacks/samples/tree/main/nginx">ソースコードリポジトリの README</a> を参照してください。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><strong>注意：この例では Paketo Base ビルダーを使っていますが、NGINX Server Cloud Native Buildpack は Paketo Full ビルダーと互換性があります</strong></p>
+<h3 id="インストールするバージョンを指定する-1" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab%e3%81%99%e3%82%8b%e3%83%90%e3%83%bc%e3%82%b8%e3%83%a7%e3%83%b3%e3%82%92%e6%8c%87%e5%ae%9a%e3%81%99%e3%82%8b-1">
+        インストールするバージョンを指定する
+    </a>
+</h3><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>NGINX Server Cloud Native Buildpack では、デプロイする NGINX のバージョンを変更できます。
+NGINX Server Cloud Native Buildpack で使用できるバージョンは、 <a href="https://github.com/paketo-buildpacks/httpd/releases">Apache HTTPD Server Cloud Native Buildpack のリリースノート</a> で確認できます。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><code>nginx</code> のバージョンは明示的に指定しなくても構いません。
+その場合、NGINX Server Cloud Native Buildpack のリリースノートに記述された既定のバージョンを使用します。</p>
+<h4 id="環境変数-bp_nginx_version-を使用する" class="markup-heading">
+    <a class="markup-heading__link" href="#%e7%92%b0%e5%a2%83%e5%a4%89%e6%95%b0-bp_nginx_version-%e3%82%92%e4%bd%bf%e7%94%a8%e3%81%99%e3%82%8b">
+        環境変数 BP_NGINX_VERSION を使用する
+    </a>
+</h4><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>アプリケーションを NGINX v1.19.8 でデプロイするときは、ビルド時に環境変数 <code>BP_NGINX_VERSION</code> を指定します。
+pack コマンドの <code>--env</code> フラグでも指定できますし、 <a href="https://github.com/buildpacks/spec/blob/main/extensions/project-descriptor.md">project.toml</a> でも指定できます。</p>
+<pre class="copyable"><code class="copyable__code">BP_NGINX_VERSION=&#34;1.19.8&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h4 id="非推奨buildpackyml-で指定する-1" class="markup-heading">
+    <a class="markup-heading__link" href="#%e9%9d%9e%e6%8e%a8%e5%a5%a8buildpackyml-%e3%81%a7%e6%8c%87%e5%ae%9a%e3%81%99%e3%82%8b-1">
+        非推奨：<code>buildpack.yml</code> で指定する
+    </a>
+</h4><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>NGINX Server Buildpack の v1.0.0 から、<code>buildpack.yml</code> でバージョンを指定するのは非推奨になりました。
+環境変数 <code>$BP_NGINX_VERSION</code> を使用してください。</p>
+<h3 id="コンテナイメージを実行するときに-nginx-server-を起動する" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%82%b3%e3%83%b3%e3%83%86%e3%83%8a%e3%82%a4%e3%83%a1%e3%83%bc%e3%82%b8%e3%82%92%e5%ae%9f%e8%a1%8c%e3%81%99%e3%82%8b%e3%81%a8%e3%81%8d%e3%81%ab-nginx-server-%e3%82%92%e8%b5%b7%e5%8b%95%e3%81%99%e3%82%8b">
+        コンテナイメージを実行するときに NGINX Server を起動する
+    </a>
+</h3><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>アプリケーションのソースコードに <code>nginx.conf</code> を含めるようにします。
+NGINX Server Cloud Native Buildpack は、NGINX の実行可能ファイルをインストールするだけでなく、コンテナイメージを実行するときに起動できるように構成します。</p>
+<h3 id="nginx-server-の設定値を起動時に構成する" class="markup-heading">
+    <a class="markup-heading__link" href="#nginx-server-%e3%81%ae%e8%a8%ad%e5%ae%9a%e5%80%a4%e3%82%92%e8%b5%b7%e5%8b%95%e6%99%82%e3%81%ab%e6%a7%8b%e6%88%90%e3%81%99%e3%82%8b">
+        NGINX Server の設定値を起動時に構成する
+    </a>
+</h3><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>NGINX Server Cloud Native Buildpack ではテンプレート形式の設定ファイルに対応しています。
+<code>nginx.conf</code> の中で、<code>{{port}}</code> や <code>{{env &quot;FOO&quot;}}</code> や <code>{{module &quot;ngx_stream_module}}</code> のように、起動時に決定できる値を変数として記述できます。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>具体的な使い方は <a href="https://github.com/paketo-buildpacks/samples/tree/main/nginx">サンプルアプリケーション</a> を参照してください。</p>
+<h4 id="ポート番号" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%83%9d%e3%83%bc%e3%83%88%e7%95%aa%e5%8f%b7">
+        ポート番号
+    </a>
+</h4><!-- raw HTML omitted -->
+<p>設定ファイルに <code>{{port}}</code> と記述すると、Buildpack で作成したコンテナイメージを実行するとき、環境変数 <code>$PORT</code> を読み取った値に展開します。
+サーバーがリクエストを待ち受けするポート番号を動的に指定する方法として利用できます。</p>
+<!-- raw HTML omitted -->
+<p>具体的には次のように記述できます。</p>
+<pre class="copyable"><code class="copyable__code">server {
+  listen {{port}};
+}
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<p>コンテナイメージを実行するときに環境変数で <code>PORT</code> を指定するときは次のようにします。</p>
+<pre class="copyable"><code class="copyable__code">docker run --tty --env PORT=8080 --publish 8080:8080 my-nginx-image
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h4 id="環境変数" class="markup-heading">
+    <a class="markup-heading__link" href="#%e7%92%b0%e5%a2%83%e5%a4%89%e6%95%b0">
+        環境変数
+    </a>
+</h4><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><code>{{port}}</code> は分かりやすい例でした。
+プロセスの起動時に指定された環境変数を参照するときは <code>{{env &quot;FOOVAR&quot;}}</code> のように記述します。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>レスポンスの GZIP 圧縮機能を環境変数 <code>GZIP_DOWNLOADS</code> で切り替えられるようにするには、次のように記述します。</p>
+<pre class="copyable"><code class="copyable__code">gzip {{env &#34;GZIP_DOWNLOADS&#34;}};
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<p>コンテナイメージを実行するときに環境変数で <code>GZIP_DOWNLOADS</code> を指定するときは次のようにします。</p>
+<pre class="copyable"><code class="copyable__code">docker run --tty --env PORT=8080 --env GZIP_DOWNLOADS=off --publish 8080:8080 my-nginx-image
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h3 id="nginx-server-の動的モジュールを起動時に構成する" class="markup-heading">
+    <a class="markup-heading__link" href="#nginx-server-%e3%81%ae%e5%8b%95%e7%9a%84%e3%83%a2%e3%82%b8%e3%83%a5%e3%83%bc%e3%83%ab%e3%82%92%e8%b5%b7%e5%8b%95%e6%99%82%e3%81%ab%e6%a7%8b%e6%88%90%e3%81%99%e3%82%8b">
+        NGINX Server の動的モジュールを起動時に構成する
+    </a>
+</h3><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><code>load_module</code> に指定する動的モジュールのパスも、テンプレート変数で指定できます。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>アプリケーションディレクトリに <code>modules/ngx_foo_module.so</code> というモジュールがあるときは、<code>nginx.conf</code> を次のように記述します。</p>
+<pre class="copyable"><code class="copyable__code">{{module &#34;ngx_foo_module&#34;}}
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Buildpack が準備した <code>ngx_stream_module</code> というモジュールがあるときは、<code>nginx.conf</code> を次のように記述します。</p>
+<pre class="copyable"><code class="copyable__code">{{module &#34;ngx_stream_module&#34;}}
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><code>nginx.conf</code> の詳しい内容については <a href="https://nginx.org/en/docs/beginners_guide.html#conf_structure">NGINX のドキュメント</a> を参照してください。</p>
+
+            </div>
+            
+  <a href="http://github.com/paketo-buildpacks/paketo-website/edit/main/content/docs%5chowto%5cweb-servers.ja.md" target="_blank" class="github-edit" style="text-decoration:none">
+    <div class="github-edit__content">
+      <div class="github-edit__logo-container">
+        <img class="github-edit__logo" src="/images/github-mark.png">
+      </div>
+        <div class="github-edit__text">Edit</div>
+    </div>
+</a>
+
+            <p class="docs-mod-time"><strong>Last modified:</strong> September 10, 2021</p>
+        </div>
+        
+<div class="docs-body__table-of-contents-container docs-body__table-of-contents-container--desktop">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#httpd">HTTPD</a>
+      <ul>
+        <li><a href="#サンプルアプリをビルドする">サンプルアプリをビルドする</a></li>
+        <li><a href="#インストールするバージョンを指定する">インストールするバージョンを指定する</a></li>
+        <li><a href="#コンテナイメージを実行するときに-httpd-server-を起動する">コンテナイメージを実行するときに HTTPD Server を起動する</a></li>
+      </ul>
+    </li>
+    <li><a href="#nginx">NGINX</a>
+      <ul>
+        <li><a href="#サンプルアプリをビルドする-1">サンプルアプリをビルドする</a></li>
+        <li><a href="#インストールするバージョンを指定する-1">インストールするバージョンを指定する</a></li>
+        <li><a href="#コンテナイメージを実行するときに-nginx-server-を起動する">コンテナイメージを実行するときに NGINX Server を起動する</a></li>
+        <li><a href="#nginx-server-の設定値を起動時に構成する">NGINX Server の設定値を起動時に構成する</a></li>
+        <li><a href="#nginx-server-の動的モジュールを起動時に構成する">NGINX Server の動的モジュールを起動時に構成する</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+
+    </div>
+</div>
+
+
+    <footer class="footer text--light">
+    <div class="footer-social-links-container">
+        <a class="footer-social-link" href="https://twitter.com/Paketo_io">
+            <div class="footer-social-link__image-container">
+                <div class="logo">
+                    <img class="logo__image" src="/v2/images/logo-twitter.svg" alt="Blue Twitter bird logo">
+                </div>
+            </div>
+            <div class="text--light text--400">
+                Twitter
+            </div>
+        </a>
+        <a class="footer-social-link" href="https://slack.paketo.io/">
+            <div class="footer-social-link__image-container">
+                <div class="logo">
+                    <img class="logo__image" src="/v2/images/logo-slack.svg" alt="Slack logo">
+                </div>
+            </div>
+            <div class="text--light text--400">
+                Slack
+            </div>
+        </a>
+        <a class="footer-social-link" href="https://github.com/paketo-buildpacks">
+            <div class="footer-social-link__image-container">
+                <div class="logo logo--github">
+                    <img class="logo__image"  src="/v2/images/logo-github-cropped.svg" alt="GitHub Octocat logo"/>
+                </div>
+            </div>
+            <div class="text--light text--400">
+                GitHub
+            </div>
+        </a>
+    </div>
+    <div class="footer-privacy-policy">
+        <div class="footer-text--small">Paketo Buildpacks is a <a class="text--light" href="https://www.cloudfoundry.org/">Cloud Foundry</a> Project</div>
+        <img class="cloudfoundry-logo" src="/v2/images/logo-cloudfoundry-light.svg" alt="Cloud Foundry logo" />
+        <a class="footer-text--small text--light" href="https://www.linuxfoundation.org/privacy">Privacy Policy</a>
+    </div>
+</footer><script src="/unofficial-translations/paketo-website/js/main.7b2c859f76ebea65f7468883b2f720537f395fc48d504f5e3b4d33c389e860f2.js"></script>
+
+    <div id="footer-skip-link" class="screenreader-container">
+    <a href="#header-skip-link" class="screenreader-text">Skip to Header</a>
+</div>
+
+</body>
+
+</html>

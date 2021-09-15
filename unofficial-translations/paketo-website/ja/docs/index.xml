@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Paketo Buildpacks 入門 on Paketo Buildpacks</title>
+    <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/</link>
+    <description>Recent content in Paketo Buildpacks 入門 on Paketo Buildpacks</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HTTPD Buildpack リファレンス</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/httpd-reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/httpd-reference/</guid>
+      <description>This reference documentation offers an in-depth description of the behavior and configuration options of the Paketo HTTPD Buildpack. For explanations of how to use the buildpack for several common use-cases, see the Paketo HTTPD Buildpack How To documentation.
+HTTPD Paketo Buildpack はコンテナの $PATH に含まれるディレクトリへ Apache HTTP Server のバイナリアーカイブを展開します。 展開した内容は後に続く Buildpack から利用できます。
+対応している依存対象  HTTPD Paketo Buildpack は Apache HTTP Server の複数のバージョンに対応しています。 具体的なバージョンは Buildpack のリリースノート で確認してください。
+振る舞い  HTTPD Buildpack を使用すると次のいずれかの処理を実行します。</description>
+    </item>
+    
+    <item>
+      <title>Paketo Buildpacks の設定</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/configuration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/configuration/</guid>
+      <description>設定例について  サンプルアプリケーション で設定例を説明します。
+それぞれの例では、サンプルアプリケーションのリポジトリのルートディレクトリを作業ディレクトリとします。
+git clone https://github.com/paketo-buildpacks/samples cd samples Copied! 全ての例で使用する pack CLI は、Paketo Buildpack を使用してコンテナイメージをビルドできる Cloud Native Buildpack Platform の1つです。
+それぞれの例では、既定のビルダーとして Paketo Base ビルダー を使用します。
+pack config default-builder paketobuildpacks/builder:base Copied! 設定の種類  Paketo Buildpack は次のような仕組みを通じて設定できます。
+ 環境変数 - ビルド時点 と 実行時点 の両方で使用できる汎用的な設定方法です buildpack.yml - ビルド時点 で使用できる汎用的な設定方法です バインディング - ビルド時点 と 実行時点 の両方で、秘匿情報 の設定に使用できる設定方法です Procfiles - ビルド時点 で独自の プロセス種類 を指定できる設定方法です  環境変数  ビルド時に環境変数を指定する  利用者は、Buildpack の環境で使用する環境変数を指定することでビルドの仕方を変更できます。 ビルド時に使用できるのは名前が BP_ で始まる変数や、Paketo Buildpack の外部で慣習的に使用されている変数（http_proxy など）です。</description>
+    </item>
+    
+    <item>
+      <title>Paketo Buildpacks で .NET Core アプリケーションをビルドする</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/dotnet-core/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/dotnet-core/</guid>
+      <description>This documentation explains how to use the Paketo .NET Core Buildpack to build applications for several common use-cases. For more in-depth description of the buildpack&amp;rsquo;s behavior and configuration see the Paketo .NET Core Buildpack Reference documentation.
+サンプルアプリをビルドする  pack コマンドを使って、Paketo .NET Core Buildpack でサンプルアプリをビルドします。
+git clone https://github.com/paketo-buildpacks/samples cd samples/dotnet-core/aspnet pack build my-app --buildpack gcr.io/paketo-buildpacks/dotnet-core \ --builder paketobuildpacks/builder:base Copied! アプリケーションの実行方法は README ファイル を参照してください。
+注意：この例では Paketo Base ビルダーを使っていますが、Paketo .NET Core Buildpack は Paketo Full ビルダーと互換性があります</description>
+    </item>
+    
+    <item>
+      <title>Paketo Buildpacks で Go アプリケーションをビルドする</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/go/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/go/</guid>
+      <description>This documentation explains how to use the Paketo Go Buildpack to build applications for several common use-cases. For more in-depth description of the buildpack&amp;rsquo;s behavior and configuration see the Paketo Go Buildpack Reference documentation.
+サンプルアプリをビルドする  Paketo Buildpacks を使用すると、ローカル PC で Go 言語のサンプルアプリケーションの OCI イメージを簡単にビルドできます。
+必要なもの
+ docker コマンド pack コマンド   サンプルプロジェクトのリポジトリをローカル PC に clone して、Go 言語のアプリケーションのソースコードが入っているディレクトリへ移動します。 git clone https://github.com/paketo-buildpacks/samples cd samples/go/mod Copied!    移動したディレクトリで pack コマンドを実行し、Paketo Go Buildpack でアプリケーションのコンテナイメージを作成します。 pack build my-app --buildpack gcr.</description>
+    </item>
+    
+    <item>
+      <title>Paketo Buildpacks で Web Server をビルドする</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/web-servers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/web-servers/</guid>
+      <description>このドキュメントでは Paketo Buildpack を使用して HTTPD や NGINX で実行するアプリケーションのコンテナイメージを作成する方法を説明します。 一般的な手順を説明しているだけなので、Buildpack の振る舞いや設定方法を詳しく知りたいときは、それぞれの Web Server 用 Buildpack のリファレンスを参照してください。
+HTTPD  This documentation explains how to use the Paketo HTTPD Buildpack to build applications for several common use-cases. For more in-depth description of the buildpack&amp;rsquo;s behavior and configuration see the Paketo HTTPD Buildpack Reference documentation.
+サンプルアプリをビルドする  pack コマンドを使うと、Apache HTTP Server Cloud Native Buildpack で次のようにサンプルアプリケーションをビルドできます。
+git clone https://github.com/paketo-buildpacks/samples cd samples/httpd pack build my-app --buildpack gcr.</description>
+    </item>
+    
+    <item>
+      <title>Paketo Buildpacks で Java アプリケーションをビルドする</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/java/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/java/</guid>
+      <description>このドキュメントでは Paketo Buildpack を使用して Java アプリケーションのコンテナイメージを作成する方法を説明します。 Buildpack の振る舞いや設定方法を詳しく知りたいときは、Paketo Java Buildpack や Paketo Java Native Image Buildpack のリファレンスを参照してください。
+サンプルアプリをビルドする  このドキュメントでは Paketo Buildpacs サンプルアプリ を使用します。
+それぞれの例では、リポジトリ直下を作業ディレクトリとしています。
+git clone https://github.com/paketo-buildpacks/samples cd samples Copied! pack コマンド も使用します。 pack は Java Buildpack でビルドを実行できる Cloud Native Buildpack [platform][platform] の1つです。 例えば、Spring Boot アプリケーションの開発者なら Spring Boot Maven Plugin や Spring Boot Gradle Plugin を使用できます。
+それぞれの例では、 Paketo Base ビルダー を初期値にしています。
+pack config default-builder paketobuildpacks/builder:base Copied! Java アプリケーションのサンプルは、どれも actuator health endpoint で {&amp;quot;status&amp;quot;:&amp;quot;UP&amp;quot;} を返すようになっています。</description>
+    </item>
+    
+    <item>
+      <title>Paketo Buildpacks で Node.js アプリケーションをビルドする</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/nodejs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/nodejs/</guid>
+      <description>このドキュメントでは Paketo Node.js Buildpack を使用してアプリケーションのコンテナイメージを作成する方法を説明します。 Buildpack の振る舞いや設定方法を詳しく知りたいときは リファレンス を参照してください。
+サンプルアプリをビルドする  ローカルPCで pack コマンドを実行して、サンプルアプリのコンテナイメージを Buildpack で作成するには次のように実行します。
+git clone https://github.com/paketo-buildpacks/samples cd samples/nodejs/npm pack build my-app --buildpack gcr.io/paketo-buildpacks/nodejs \ --builder paketobuildpacks/builder:base Copied! アプリケーションの実行方法は README ファイル を参照してください。
+注意：この例では Paketo Base ビルダーを使っていますが、Paketo Node.js Buildpack は Paketo Full ビルダーと互換性があります。アプリケーションが一般的なCライブラリ関数を呼び出している場合は Full ビルダーが必要です。
+Node Engine のインストールするバージョンを指定する  Paketo Node.js Buildpack では、デプロイするときに使用する Node.js のバージョンを指定できるようになっています。 バージョンを指定する方法はいろいろあります。 環境変数 BP_NODE_VERSION や、コードベースに配置したファイル（package.json, .nvmrc, .node-version）で指定できるのです。 指定できるバージョンは、使用する Buildpack の対応しているバージョンだけです。 Paketo Node.js Buildpack の使用できる Node.js Engine のバージョンについては、Paketo Node.</description>
+    </item>
+    
+    <item>
+      <title>Paketo Buildpacks で Python アプリケーションをビルドする</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/python/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/python/</guid>
+      <description>This documentation explains how to use the Paketo Python Buildpack to build applications for several common use-cases. For more in-depth description of the buildpack&amp;rsquo;s behavior and configuration see the Paketo Python Buildpack Reference documentation.
+サンプルアプリをビルドする  pack コマンドを使って、Paketo Python Buildpack でサンプルアプリをビルドします。
+git clone https://github.com/paketo-buildpacks/python cd samples/python/pip pack build my-app --buildpack gcr.io/paketo-buildpacks/python \ --builder paketobuildpacks/builder:base Copied! アプリケーションの実行方法は README ファイル を参照してください。
+Paketo Python Buildpack は、さまざまな種類の Python アプリケーションに対応しています。
+CPython のインストールするバージョンを指定する  Python Cloud Native Buildpack では、デプロイ時に使用する CPython 3 （Python 3 の参照実装）のバージョンを指定できるようになっています。 バージョンは環境変数 BP_CPYTHON_VERSION で指定できます。 指定できるバージョンは、Python Cloud Native Buildpack のリリースノート で確認できます。</description>
+    </item>
+    
+    <item>
+      <title>Paketo Buildpacks で PHP アプリケーションをビルドする</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/php/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/php/</guid>
+      <description>This documentation explains how to use the Paketo PHP Buildpack to build applications for several common use-cases. For more in-depth description of the buildpack&amp;rsquo;s behavior and configuration see the Paketo PHP Buildpack Reference documentation.
+サンプルアプリをビルドする  pack コマンドを使って、PHP Paketo Buildpack でサンプルアプリをビルドします。
+git clone https://github.com/paketo-buildpacks/samples cd samples/php/webserver pack build my-app --buildpack gcr.io/paketo-buildpacks/php \ --builder paketobuildpacks/builder:full Copied! アプリケーションの実行方法は README ファイル を参照してください。
+注意：PHP Paketo Buildpack は Paketo Full ビルダーが必要です。Full ビルダーにしか含まれないOSのシステムライブラリを使用するからです。
+PHP のインストールするバージョンを指定する  PHP Distribution Cloud Native Buildpack では、デプロイするときに使用する PHP のバージョンを、いろいろな方法で変更できます。 例えば、buildpack.</description>
+    </item>
+    
+    <item>
+      <title>Paketo Buildpacks で Ruby アプリケーションをビルドする</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/ruby/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/ruby/</guid>
+      <description>This documentation explains how to use the Paketo Ruby Buildpack to build applications for several common use-cases. For more in-depth description of the buildpack&amp;rsquo;s behavior and configuration see the Paketo Ruby Buildpack Reference documentation.
+サンプルアプリをビルドする  pack コマンドを使って、PHP Paketo Buildpack でサンプルアプリをビルドします。
+git clone &amp;lt;https://github.com/paketo-buildpacks/samples&amp;gt; cd samples/ruby/puma pack build my-app --buildpack gcr.io/paketo-buildpacks/ruby \ --builder paketobuildpacks/builder:base Copied! アプリケーションの実行方法は README ファイル を参照してください。
+注意：この例では Paketo Base ビルダーを使っていますが、Ruby Paketo Buildpack は Paketo Full ビルダーと互換性があります
+Ruby のインストールするバージョンを指定する  Ruby Paketo Buildpack では、デプロイするときに使用する CRuby のバージョンを、環境変数 BP_MRI_VERSION や Gemfile で指定できます。 指定できるバージョンは、使用する Buildpack の対応しているバージョンだけです。 Ruby Paketo Buildpack の使用できる CRuby のバージョンについては、Ruby Paketo Buildpack のリリースノート を参照してください。</description>
+    </item>
+    
+    <item>
+      <title>Paketo Buildpack を作成する</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/create-paketo-buildpack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/create-paketo-buildpack/</guid>
+      <description>初めて Cloud Native Buildpack を使うなら、最初に Cloud Native Buildpack(CNB) の作り方 を読んでください。 Packit は CNB の仕様 を満たす Buildpack を作成するために必要な抽象を提供する Go 言語のライブラリです。
+このチュートリアルの目標は、ファイルシステム上に1つの依存関係を要求するだけの Buildpack を作成することです。 早速やっていきましょう。
+Packit  
+Packit の完全なドキュメントは手前のリンクから参照してください。 読者の時間を無駄にさせないためにも、ここではこれから作成する Buildpack に含める3種類のアーティファクトについて説明します。 CNB の仕様を満たすために最低限必要なのは、 buildpack.toml と bin/detect と bin/build です。
+前提条件  Buildpack をビルドし、テストするには、ローカルPCに次のようなツールが必要です。
+ Docker Pack Go  それでは始めましょう  Node Engine Cloud Native Buildpack で Node.js エンジンをインストールするだけの Buildpack を作成する様子を説明します。
+サンプルリポジトリ には全てのソースコードが残っています。 新しい Go 言語のプロジェクトを作成するには、ディレクトリを作成して、そこで次のコマンドを実行します。
+go mod init &amp;lt;/path/to/project&amp;gt; Copied! buildpack.</description>
+    </item>
+    
+    <item>
+      <title>部品表（Bill of Materials）へアクセスする</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/bom/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/bom/</guid>
+      <description>このドキュメントでは、Paketo Buildpacks で作成したコンテナイメージの部品表（BOM：Bill of Materials）へアクセスする方法を説明します。 フィールドの定義について詳しくはBOM の考え方を参照してください。
+Node.js のサンプルアプリケーションの BOM にアクセスする  Paketo Buildpacks で作成したコンテナイメージは、メタデータから BOM にアクセスできます。
+ [Node.js のチュートリアル]でコンテナイメージ paketo-demo-app を作成します。 pack コマンドでメタデータの BOM にアクセスします  pack inspect-image paketo-demo-app --bom Copied! View Output { &amp;#34;remote&amp;#34;: null, &amp;#34;local&amp;#34;: [ { &amp;#34;name&amp;#34;: &amp;#34;Node Engine&amp;#34;, &amp;#34;metadata&amp;#34;: { &amp;#34;checksum&amp;#34;: { &amp;#34;algorithm&amp;#34;: &amp;#34;SHA-256&amp;#34;, &amp;#34;hash&amp;#34;: &amp;#34;a50ee095f936b51fffe5c032a7377a156723145c1ab0291ccc882f04719f1b54&amp;#34; }, &amp;#34;cpe&amp;#34;: &amp;#34;cpe:2.3:a:nodejs:node.js:16.7.0:*:*:*:*:*:*:*&amp;#34;, &amp;#34;deprecation-date&amp;#34;: &amp;#34;2024-04-30T00:00:00Z&amp;#34;, &amp;#34;licenses&amp;#34;: [ &amp;#34;0BSD&amp;#34;, &amp;#34;Apache-2.0&amp;#34;, &amp;#34;Artistic-2.0&amp;#34;, &amp;#34;BSD-2-Clause&amp;#34;, &amp;#34;BSD-3-Clause&amp;#34;, &amp;#34;BSD-3-Clause-Clear&amp;#34;, &amp;#34;CC0-1.0&amp;#34;, &amp;#34;MIT&amp;#34;, &amp;#34;MIT-0&amp;#34;, &amp;#34;Unicode-TOU&amp;#34; ], &amp;#34;purl&amp;#34;: &amp;#34;pkg:generic/node@v16.</description>
+    </item>
+    
+    <item>
+      <title>Buildpacks</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/concepts/buildpacks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/concepts/buildpacks/</guid>
+      <description>チュートリアルでコンテナイメージを作成するために実行した pack build コマンドは、次のような出力をしていたはずです。
+... ===&amp;gt; DETECTING paketo-buildpacks/node-engine 0.1.1 paketo-buildpacks/npm-install 0.2.0 paketo-buildpacks/npm-start 0.0.2 ... ===&amp;gt; BUILDING Paketo Node Engine Buildpack 0.1.1 ... Paketo NPM Install Buildpack 0.2.0 ... Paketo NPM Start Buildpack 0.0.2 ... このドキュメントでは出力している内容の意味を説明し、Buildpack が実行可能なコンテナイメージをビルドするために必要な依存対象をどのように検出しているのか説明します。
+Buildpack とは何か  Buildpack はアプリケーションのソースコードを調査し、依存対象を特定、収集します。 そして、依存対象をレイヤーとして積み重ねた、OCI に準拠したコンテナイメージを作成します。
+Paketo Buildpack は利用者の要求するプログラミング言語のランタイムを提供します
+それぞれの Buildpack は単一の依存対象を提供する、独立したモジュールです。 複数の Buildpack を組み合わせることで、アプリケーションの要求する全ての依存対象を提供します。
+Buildpack はアプリケーションのソースコードを 検出（detect） と 構築（build） の2段階のフェーズで処理します。
+検出フェーズ  detect フェーズでは、アプリケーションのコンテナイメージに含めなければならない依存対象を特定する印を発見するため、ソースコードを調査します。
+チュートリアルで実行した pack build コマンドの出力より、paketo-buildpacks/npm-install が使われていることが分かるでしょう。 これは、NPM Install Buildpack がソースコードから package.</description>
+    </item>
+    
+    <item>
+      <title>Builders</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/concepts/builders/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/concepts/builders/</guid>
+      <description>チュートリアルでは Paketo base ビルダーでコンテナイメージを作成しました。 このドキュメントではビルダーと、Paketo プロジェクトのリリースしているビルダーについて説明します。
+ビルダーとは何か  builder とは、次の3種類のコンポーネントを含むコンテナイメージです。
+ アプリケーションに必要な依存対象を提供する Buildpack の集合 コンテナイメージの OS レイヤーを提供するスタック（Stack） 最終的なコンテナイメージを作成するために全てを統合する CNB ライフサイクル  Builder について詳しく知りたければ buildpacks.io を参照してください。
+Paket プロジェクトのリリースしているビルダーについて  Paketo プロジェクトではアプリケーションに応じて選択できるよう、いくつかのビルダーを公開しています。
+Full  スタックは ubuntu:bionic で構成されています。 ほとんどのプログラミング言語やWebサーバー（PHP, Java, Node.js, Go, .NET Core, Ruby, NGINX, HTTPD）で実行するアプリケーションをビルドする Buildpack で構成されており、標準的な C ライブラリを 同梱しています。 pack コマンドでアプリケーションのコンテナイメージをビルドするときは次のように実行します。
+pack build my-app-image --builder paketobuildpacks/builder:full Copied! Paketo Full ビルダーの GitHub リポジトリ
+Base  スタックは ubuntu:bionic で構成されています。 ほとんどのプログラミング言語やWebサーバー（Java, Node.js, Go, Ruby, NGINX）で実行するアプリケーションをビルドする Buildpack で構成されており、標準的な C ライブラリを 同梱していません。 pack コマンドでアプリケーションのコンテナイメージをビルドするときは次のように実行します。</description>
+    </item>
+    
+    <item>
+      <title>Stacks</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/concepts/stacks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/concepts/stacks/</guid>
+      <description>チュートリアルでは、Paketo ビルダーで Node.js のアプリケーションのコンテナイメージをビルドしました。 Buildpack と Builder に欠かせない構成要素がスタック（Stack）です。 スタックは、Buildpack のライフサイクルで使用するビルド時の環境と実行時の環境を提供するコンテナイメージです。
+スタックとは何か  スタックは2種類のイメージで構成されています。
+ build image: アプリケーションをビルドするための環境です run image: アプリケーションのコンテナイメージを実行するときの OS レイヤーです  Stack について詳しく知りたければ buildpacks.io を参照してください。
+Paketo プロジェクトのリリースしているスタックについて  Paketo プロジェクトではいくつかのスタックを公開しています。
+Tiny  Build Image  index.docker.io/paketobuildpacks/build:tiny-cnb Copied! Run Images  index.docker.io/paketobuildpacks/run:tiny-cnb Copied! gcr.io/paketo-buildpacks/run:tiny-cnb Copied! 内容   Build: ubuntu:bionic + openssl + CA certs + compilers + shell utilities Run: distroless-like bionic + glibc + openssl + CA certs  Base  Build Image  index.</description>
+    </item>
+    
+    <item>
+      <title>Bill of Materials</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/concepts/bom/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/concepts/bom/</guid>
+      <description>部品表（bill of materials）を使用すると、作成したコンテナイメージの使用する全ての依存ライブラリに関する情報をメタデータとして参照できます。
+部品表（bill of materials）とは何か  部品表（BOM：bill of materials）とは、コンテナイメージやアプリケーションの依存対象に関する情報をメタデータとして公開する、業界標準の仕組みのことです。 メタデータは次のようなフィールドで構成されています。
+ version: 依存対象のバージョン uri: コンパイル済みファイルへアクセスできる URI checksum: CycloneDX が対応しているハッシュアルゴリズム（SHA-256 など）、および、依存対象に関するチェックサムの値 licenses: 依存対象の、SPDX 形式のライセンス deprecation-date: 依存対象（のバージョン）が非推奨になる日時 source uri: 依存対象の上流の元データへアクセスできる URI source checksum: CycloneDX が対応しているハッシュアルゴリズム（SHA-256 など）、および、依存対象の上流の元データに関するチェックサムの値 CPE: 共通するプラットフォームの一覧 pURL: パッケージの URL  BOM が役に立つ理由  BOM の情報は、主に、アプリケーションのセキュリティサプライチェインに含まれる依存対象を理解するのに役立ちます。
+脆弱性スキャン  世の中には、BOM を入力として使用できるさまざまな脆弱性スキャンツールがあります。 例えば、Dependency Track や Trivy で脆弱性を発見できます。
+主に脆弱性を特定するために使用するフィールドが CPE と pURL です。
+CPEs  共通プラットフォーム一覧（CPE：common platform enumeration）は、NIST National Vulnerabilty Database で依存対象の特定のバージョンに関する脆弱性と修正パッチを検索できる標準的な記法です。
+pURLs  pURL はベンダーやプロジェクトやエコシステムに依存しない、汎用的なパッケージ URL 表現 です。</description>
+    </item>
+    
+    <item>
+      <title>.NET Core Buildpack リファレンス</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/dotnet-core-reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/dotnet-core-reference/</guid>
+      <description>This reference documentation offers an in-depth description of the behavior and configuration options of the Paketo .NET Core Buildpack. For explanations of how to use the buildpack for several common use-cases, see the Paketo .NET Core Buildpack How To documentation.
+対応している依存対象  .Net Core Paketo Buildpack は .Net Core Framework の複数のバージョンに対応しています。 具体的なバージョンは Buildpack のリリースノート で確認してください。
+.Net Core Framework のバージョン選択  .Net Core Buildpack はインストールすべき .NET Runtime のバージョンを検出すると、Microsoft が .Net Core Framework に実装したポリシーと同じようにバージョンを選択します。 詳しくは Microsoft のドキュメント を参照してください。</description>
+    </item>
+    
+    <item>
+      <title>Go Buildpack リファレンス</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/go-reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/go-reference/</guid>
+      <description>This reference documentation offers an in-depth description of the behavior and configuration options of the Paketo Go Buildpack. For explanations of how to use the buildpack for several common use-cases, see the Paketo Go Buildpack How To documentation.
+対応している依存対象  Go Paketo Buildpack は Go 処理系の複数のバージョンに対応しています。 具体的なバージョンは Buildpack のリリースノート で確認してください。
+振る舞い  Paketo Go Buildpack は Go アプリケーションをビルドするために設計された 合成 Buildpack です。
+パッケージ管理  Go CNB の対応しているアプリケーションのパッケージ管理方法は次のとおりです。
+ Go 処理系の Go モジュール dep パッケージ管理しない  アプリケーションのパッケージ管理方法は二者択一です。 以降の内容は、それぞれの管理方法に関する説明です。</description>
+    </item>
+    
+    <item>
+      <title>Java Buildpack リファレンス</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/java-reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/java-reference/</guid>
+      <description>This reference documentation offers an in-depth description of the behavior and configuration options of the Paketo Java Buildpack. For explanations of how to use the buildpack for several common use-cases, see the Paketo Java Buildpack How To documentation.
+Paketo Java Buildpack はコンパイル済みのアーティファクトやソースコードから JVM アプリケーションのコンテナイメージを作成します。
+Java Buildpack は [合成 Buildpack][paketo/composite-buildpack] です。 ビルドのそれぞれの処理を対応する コンポーネント Buildpack が実行します。 全ての設定項目や機能については、それぞれのコンポーネント Buildpack のホームページを参照してください。
+使用できる JVM  Java Buildpack は Bellsoft Liberica の JRE および JDK を使用します。 JVM をインストールするのは BellSoft Liberica Buildpack です。 JDK をインストールするのはビルド用のコンテナだけで、最終的なコンテナイメージには JRE をインストールします。</description>
+    </item>
+    
+    <item>
+      <title>Java Native Image Buildpack リファレンス</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/java-native-image-reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/java-native-image-reference/</guid>
+      <description>This reference documentation offers an in-depth description of the behavior and configuration options of the Paketo Java Native Image Buildpack. For explanations of how to use the buildpack for several common use-cases, see the Paketo Java Native Image Buildpack How To documentation.
+[Paketo Java Native Image Buildpack][bp/java-native-image] は、GraalVM の native-image でビルドしたアプリケーションのコンテナイメージを作成します。 Java Native Image Buildpack では Java Buildpack と同じ ビルドツールおよび設定項目 を使用できます。 ただし、実行可能形式の jar ファイル をビルドしなければなりません。
+対応しているアプリケーション  アプリケーションを native-image でビルドするには、ビルド時に環境変数 BP_NATIVE_IMAGE へ true を設定します。</description>
+    </item>
+    
+    <item>
+      <title>NGINX Buildpack リファレンス</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/nginx-reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/nginx-reference/</guid>
+      <description>This reference documentation offers an in-depth description of the behavior and configuration options of the Paketo NGINX Buildpack. For explanations of how to use the buildpack for several common use-cases, see the Paketo NGINX Buildpack How To documentation.
+NGINX Paketo Buildpack はコンテナの $PATH に含まれるディレクトリへ Nginx のバイナリアーカイブを展開します。 展開した内容は後に続く Buildpack から利用できます。
+対応している依存対象  NGINX Paketo Buildpack は NGINX の複数のバージョンに対応しています。 具体的なバージョンは Buildpack のリリースノート で確認してください。
+振る舞い  NGINX Buildpack を使用すると次のいずれかの処理を実行します。
+ アプリケーションのソースコードに nginx.conf が 存在する場合 、Buildpack は NGINX server がその設定ファイルを使うようにします アプリケーションのソースコードに nginx.</description>
+    </item>
+    
+    <item>
+      <title>Node.js Buildpack リファレンス</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/nodejs-reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/nodejs-reference/</guid>
+      <description>このドキュメントでは Paketo Node.js Buildpack の振る舞いや設定項目について詳しく説明します。 一般的な使用例については Node.js のチュートリアル を参照してください。
+対応している依存対象  Node.js Buildpack は Node.js ランタイムの複数のバージョンに対応しています。 具体的なバージョンは Buildpack のリリースノート で確認してください。
+Buildpack の設定する環境変数  Node.js Buildpack はアプリケーションライフサイクルのビルドフェーズや起動フェーズでいくつかの環境変数を設定します。 このセクションではアプリケーションに影響するであろう環境変数について説明します。
+MEMORY_AVAILABLE  環境変数 MEMORY_AVAILABLE にはアプリケーションから利用できるメモリサイズの合計値を設定します。 Node.js Buildpack は OS の /sys/fs/cgroup/memory/memory.limit_in_bytes を参照して値を計算します。
+ Set by: profile.d Phases: launch Value: non-negative integer  NODE_ENV  環境変数 NODE_ENV にはアプリケーションを実行するときの環境種類を設定します。
+ Set by: node-engine buildpack Phases: build Value: production  NODE_HOME  環境変数 NODE_HOME には Node.js をインストールしたディレクトリのパスを設定します。</description>
+    </item>
+    
+    <item>
+      <title>PHP Buildpack リファレンス</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/php-reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/php-reference/</guid>
+      <description>This reference documentation offers an in-depth description of the behavior and configuration options of the Paketo PHP Buildpack. For explanations of how to use the buildpack for several common use-cases, see the Paketo PHP Buildpack How To documentation.
+対応している依存対象  PHP Paketo Buildpack は PHP ランタイムの複数のバージョンに対応しています。 具体的なバージョンは Buildpack のリリースノート で確認してください。
+Buildpack の設定する環境変数  PHP Buildpack はアプリケーションライフサイクルのビルドフェーズや起動フェーズでいくつかの環境変数を設定します。 このセクションではアプリケーションに影響するであろう環境変数について説明します。
+APP_ROOT   Set by: httpd buildpack Phases: launch Value: path of app source  SERVER_ROOT   Set by: httpd buildpack Phases: launch Value: path of the httpd installation  MIBDIRS   Set by: php-dist buildpack Phases: build and launch Value: See php documentation  PATH   Set by: php-dist buildpack Phases: build and launch Value: path to the php executable  PHP_API   Set by: php-dist buildpack Phases: build and launch Value: internl api version (YYYYMMDD)  PHP_EXTENSION_DIR   Set by: php-dist buildpack Phases: build and launch Value: location of directory with dynamic libraries for extensions  PHP_HOME   Set by: php-dist buildpack Phases: build and launch Value: location of php installation  PHP_INI_SCAN_DIR   Set by: php-web buildpack Phases: build and launch Value: &amp;lt;APP-ROOT&amp;gt;/.</description>
+    </item>
+    
+    <item>
+      <title>Python Buildpack リファレンス</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/python-reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/python-reference/</guid>
+      <description>This reference documentation offers an in-depth description of the behavior and configuration options of the Paketo Python Buildpack. For explanations of how to use the buildpack for several common use-cases, see the Paketo Python Buildpack How To documentation.
+対応している依存対象  Python Buildpack は CPython や pip や Pipenv の複数のバージョンに対応しています。 具体的なバージョンは Buildpack のリリースノート で確認してください。
+Buildpack の設定する環境変数  Python Buildpack はアプリケーションライフサイクルのビルドフェーズや起動フェーズでいくつかの環境変数を設定します。 このセクションではアプリケーションに影響するであろう環境変数について説明します。
+PYTHONPATH  環境変数 PYTHONPATH には、アプリケーションを実行するときに Python がモジュールを探索するパスを追加します。
+ Set by: CPython, Pip and Pipenv Phases: build and launch  CPython Buildpack は Python をインストールしたディレクトリと、Pip をインストールしたディレクトリのパスを PYTHONPATH へ追加します。 Pipenv Buildpack は site-packages のパスを PYTHONPATH へ追加します。 site-packages とはパッケージをインストールするディレクトリのことです。</description>
+    </item>
+    
+    <item>
+      <title>Ruby Buildpack リファレンス</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/ruby-reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/ruby-reference/</guid>
+      <description>This reference documentation offers an in-depth description of the behavior and configuration options of the Paketo Ruby Buildpack. For explanations of how to use the buildpack for several common use-cases, see the Paketo Ruby Buildpack How To documentation.
+対応している依存対象  Ruby Paketo Buildpack は MRI や Bundler やさまざまな Ruby 用の Web サーバーや、タスクランナーの複数のバージョンに対応しています。 具体的なバージョンは Buildpack のリリースノート で確認してください。
+パッケージ管理  Ruby Buildpack はアプリケーションに必要な gem をインストールしたり管理したりするために Bundler を使用します。 アプリケーションのソースコードに Gemfile を入れると、bundle-install buildpack が bundle install コマンドで依存パッケージをインスト―ルします。</description>
+    </item>
+    
+  </channel>
+</rss>

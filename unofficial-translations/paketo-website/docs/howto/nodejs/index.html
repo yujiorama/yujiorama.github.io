@@ -1,0 +1,859 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>How to Build Node.js Apps with Paketo Buildpacks - Paketo Buildpacks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1 viewport-fit=cover">
+
+
+
+
+<meta name="og:site_name" content="Paketo Buildpacks">
+<meta name="og:title" content="How to Build Node.js Apps with Paketo Buildpacks">
+<meta name="og:url" content="https://yujiorama.github.io/unofficial-translations/paketo-website/docs/howto/nodejs/">
+<meta name="twitter:title" content="Paketo Buildpacks" />
+<meta name="twitter:url" content="https://yujiorama.github.io/unofficial-translations/paketo-website/docs/howto/nodejs/" />
+<meta name="twitter:card" content="" />
+
+
+
+<link rel="stylesheet" href="/unofficial-translations/paketo-website/css/main.min.e65e899d7edbb046f43d58e402eca40ec1064082b810ea2ea4f62b1e70614850.css">
+
+</head>
+
+<body>
+    
+    <div id="header-skip-link" class="screenreader-container">
+    <a href="#title" class="screenreader-text">Skip to Content</a>
+</div>
+
+    
+
+
+
+
+<header class="header--narrow">
+    
+    <a class="paketo-p-logo" href="/">
+        <img class="paketo-p-logo__image" src="/v2/images/logo-paketo-p.svg" alt="Paketo Buildpacks Homepage">
+    </a>
+    
+    <div id="navigation" class="right-overlay">
+        <div class="nav-opener">
+            <span class="nav-opener__bar nav-opener__bar-top"></span>
+            <span class="nav-opener__bar nav-opener__bar-middle"></span>
+            <span class="nav-opener__bar nav-opener__bar-bottom"></span>
+        </div>
+        <div class="nav-container" id="nav-container">
+            <nav class="nav" id="nav-tray" >
+                <div class="nav__linkarea text--400">
+                    <a class="nav-link" href="/docs">docs</a>
+                    <a class="nav-link" href="/community">community</a>
+                    <a class="nav-link" href="https://blog.paketo.io">blog</a>
+                    <a class="nav-link" href="https://github.com/paketo-buildpacks">github</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="desktop-nav">
+        
+        
+        
+        <a class="nav-link nav-link--desktop  nav-link--desktop--active" href="/docs">docs</a>
+        
+        <a class="nav-link nav-link--desktop   " href="/community">community</a>
+        <a class="nav-link nav-link--desktop " href="https://blog.paketo.io">blog</a>
+        <a class="nav-link nav-link--desktop " href="https://github.com/paketo-buildpacks">github</a>
+    </div>
+</header>
+
+
+    <div class="docs">
+    <div class="docs-sidebar">
+        
+<input type="text" id="docs-search" class="algolia-autocomplete__search-bar" placeholder="Search docs..." data-api-key="bf2d426728685665ceaf22fac947f10f" data-index="paketo"/>
+<nav class="docs-menu">
+    <ul class="docs-menu__top-level-list">
+        
+        
+            
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Getting Started</span>
+            </a>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header docs-menu__section-header--opened">
+                
+                <span>How To</span>
+                <button class="expander-button expander-button--opened docs-menu__expander-button">
+                    <svg class="expander-button__triangle expander-button__triangle--opened" width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list docs-menu__children-list--opened">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/dotnet-core/" class="docs-menu__item docs-menu__link ">
+                
+                <span>.NET Core</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/go/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Go</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/web-servers/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Web Servers</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/java/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/nodejs/" class="docs-menu__item docs-menu__link docs-menu__link--active">
+                
+                <span>Node.js</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/python/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Python</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/php/" class="docs-menu__item docs-menu__link ">
+                
+                <span>PHP</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/ruby/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Ruby</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/create-paketo-buildpack/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Create a Paketo Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/bom/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Access the Bill of Materials</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header ">
+                
+                <span>Concepts</span>
+                <button class="expander-button  docs-menu__expander-button">
+                    <svg class="expander-button__triangle " width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list ">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/concepts/buildpacks/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Buildpacks</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/concepts/builders/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Builders</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/concepts/stacks/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Stacks</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/concepts/bom/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Bill of Materials</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header ">
+                
+                <span>Reference</span>
+                <button class="expander-button  docs-menu__expander-button">
+                    <svg class="expander-button__triangle " width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list ">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/configuration/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Configuring Paketo Buildpacks</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/httpd-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>HTTPD Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/dotnet-core-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>.NET Core Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/go-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Go Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/java-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/java-native-image-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java Native Image Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/nginx-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>NGINX Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/nodejs-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Node.js Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/php-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>PHP Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/python-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Python Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/ruby-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Ruby Buildpack</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+    </ul>
+</nav>
+
+
+
+    </div>
+    <div class="docs-body">
+        <div class="docs-body__container">
+            
+  <a href="http://github.com/paketo-buildpacks/paketo-website/edit/main/content/docs%5chowto%5cnodejs.md" target="_blank" class="github-edit" style="text-decoration:none">
+    <div class="github-edit__content">
+      <div class="github-edit__logo-container">
+        <img class="github-edit__logo" src="/images/github-mark.png">
+      </div>
+        <div class="github-edit__text">Edit</div>
+    </div>
+</a>
+
+            <h1 id="title">How to Build Node.js Apps with Paketo Buildpacks</h1>
+            
+<div class="docs-body__table-of-contents-container docs-body__table-of-contents-container--mobile">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#build-a-sample-app">Build a Sample App</a></li>
+    <li><a href="#install-a-specific-node-engine-version">Install a Specific Node Engine Version</a>
+      <ul>
+        <li><a href="#using-bp_node_version">Using BP_NODE_VERSION</a></li>
+        <li><a href="#using-packagejson">Using package.json</a></li>
+        <li><a href="#using-nvmrc">Using .nvmrc</a></li>
+        <li><a href="#using-node-version">Using .node-version</a></li>
+        <li><a href="#deprecated-using-buildpackyml">Deprecated: Using buildpack.yml</a></li>
+      </ul>
+    </li>
+    <li><a href="#enable-heap-memory-optimization">Enable Heap Memory Optimization</a>
+      <ul>
+        <li><a href="#using-bp_node_optimize_memory-environment-variable">Using <code>BP_NODE_OPTIMIZE_MEMORY</code> Environment Variable</a></li>
+        <li><a href="#deprecated-using-buildpackyml-1">Deprecated: Using buildpack.yml</a></li>
+      </ul>
+    </li>
+    <li><a href="#build-an-app-from-source-in-a-subdirectory">Build an App From Source in a Subdirectory</a></li>
+    <li><a href="#specifying-scripts-to-run-during-build-phase">Specifying Scripts to Run During Build Phase</a></li>
+    <li><a href="#build-an-app-that-uses-npm">Build an App that Uses NPM</a>
+      <ul>
+        <li><a href="#configure-npm-during-the-build">Configure NPM During the Build</a></li>
+      </ul>
+    </li>
+    <li><a href="#build-an-app-that-uses-yarn">Build an App that Uses Yarn</a>
+      <ul>
+        <li><a href="#configure-yarn-during-the-build">Configure Yarn During the Build</a></li>
+      </ul>
+    </li>
+    <li><a href="#compile-native-extensions-with-node-gyp">Compile Native Extensions with <code>node-gyp</code></a>
+      <ul>
+        <li><a href="#with-pack-and-a-command-line-flag">With pack and a Command-Line Flag</a></li>
+      </ul>
+    </li>
+    <li><a href="#build-an-app-without-package-management">Build an App Without Package Management</a>
+      <ul>
+        <li><a href="#specify-a-custom-entrypoint">Specify A Custom Entrypoint</a></li>
+      </ul>
+    </li>
+    <li><a href="#install-a-custom-ca-certificate">Install a Custom CA Certificate</a></li>
+    <li><a href="#override-the-start-process-set-by-the-buildpack">Override the Start Process Set by the Buildpack</a></li>
+    <li><a href="#set-environment-variables-for-app-launch-time">Set Environment Variables for App Launch Time</a></li>
+    <li><a href="#add-custom-labels-to-the-app-image">Add Custom Labels to the App Image</a></li>
+  </ul>
+</nav>
+</div>
+
+            <div class="docs-body__markdown">
+                <p>This documentation explains how to use the <a href="https://github.com/paketo-buildpacks/nodejs">Paketo Node.js Buildpack</a>
+to build applications for several common use-cases. For more in-depth
+description of the buildpack&rsquo;s behavior and configuration see the Node.js
+Buildpack Reference <a href="/docs/reference/nodejs-reference">documentation</a>.</p>
+<h2 id="build-a-sample-app" class="markup-heading">
+    <a class="markup-heading__link" href="#build-a-sample-app">
+        Build a Sample App
+    </a>
+</h2><p>To build a sample app locally with this buildpack using the pack CLI, run</p>
+<pre class="copyable"><code class="copyable__code">git clone https://github.com/paketo-buildpacks/samples
+cd samples/nodejs/npm
+pack build my-app --buildpack gcr.io/paketo-buildpacks/nodejs \
+  --builder paketobuildpacks/builder:base
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<p>See <a href="https://github.com/paketo-buildpacks/samples/tree/main/nodejs/npm">samples</a>
+for how to run the app.</p>
+<p><strong>NOTE: Though the example above uses the Paketo Base builder, this buildpack is
+also compatible with the Paketo Full builder. The Paketo Full builder is
+required if your app utilizes common C libraries.</strong></p>
+<h2 id="install-a-specific-node-engine-version" class="markup-heading">
+    <a class="markup-heading__link" href="#install-a-specific-node-engine-version">
+        Install a Specific Node Engine Version
+    </a>
+</h2><p>The Node.js buildpack allows you to specify a version of Node.js to use during
+deployment. This version can be specified in a number of ways, including
+through the <code>BP_NODE_VERSION</code> environment variable, a <code>package.json</code>, <code>.nvmrc</code> or <code>.node-version</code> files. When specifying a
+version of the Node.js engine, you must choose a version that is available
+within the buildpack. The supported versions can be found on the Paketo Node Engine
+component buildpack&rsquo;s <a href="https://github.com/paketo-buildpacks/node-engine/releases/latest">releases page</a>.</p>
+<p>The buildpack prioritizes the versions specified in
+each possible configuration location with the following precedence, from
+highest to lowest: <code>BP_NODE_VERSION</code>, <code>package.json</code>, <code>.nvmrc</code> and <code>.node-version</code>.</p>
+<h3 id="using-bp_node_version" class="markup-heading">
+    <a class="markup-heading__link" href="#using-bp_node_version">
+        Using BP_NODE_VERSION
+    </a>
+</h3><p>To configure the buildpack to use Node.js v12.12.0 when deploying your app, set the
+following environment variable at build time, either directly (ex. <code>pack build my-app --env BP_NODE_VERSION=12.12.0</code>) or through a
+<a href="https://github.com/buildpacks/spec/blob/main/extensions/project-descriptor.md">project.toml</a>
+file:</p>
+<pre class="copyable"><code class="copyable__code">BP_NODE_VERSION=&#34;12.12.0&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h3 id="using-packagejson" class="markup-heading">
+    <a class="markup-heading__link" href="#using-packagejson">
+        Using package.json
+    </a>
+</h3><p>If your apps use <code>npm</code> or <code>yarn</code>, you can specify the Node.js version your apps use
+during deployment by configuring the <code>engines</code> field in the <code>package.json</code>
+file. To configure the buildpack to use Node.js v12.12.0 when deploying your
+app, include the values below in your <code>package.json</code> file:</p>
+<pre class="copyable"><code class="copyable__code">{
+  &#34;engines&#34;: {
+    &#34;node&#34;: &#34;12.12.0&#34;
+  }
+}
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<p>For more information about the <code>engines</code> configuration option in the
+<code>package.json</code> file, see the
+<a href="https://docs.npmjs.com/files/package.json#engines">engines</a> section of the
+<em>npm-package.json</em> topic in the NPM documentation.</p>
+<h3 id="using-nvmrc" class="markup-heading">
+    <a class="markup-heading__link" href="#using-nvmrc">
+        Using .nvmrc
+    </a>
+</h3><p>Node Version Manager is a common option for managing the Node.js version an app
+uses. To specify the Node.js version your apps use during deployment, include a
+<code>.nvmrc</code> file with the version number. For more information about the contents
+of a <code>.nvmrc</code> file, see <a href="https://github.com/nvm-sh/nvm#nvmrc">.nvmrc</a> in the
+Node Version Manager repository on GitHub.</p>
+<h3 id="using-node-version" class="markup-heading">
+    <a class="markup-heading__link" href="#using-node-version">
+        Using .node-version
+    </a>
+</h3><p><code>.node-version</code> is another common option that is compatible with Node.js version managers
+such as <code>asdf</code> and <code>nodenv</code>. You can use a <code>.node-version</code> file to set the Node.js version
+that your apps use during deployment, according to one of the following formats:</p>
+<pre class="copyable"><code class="copyable__code">12.12.0
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<p>OR</p>
+<pre class="copyable"><code class="copyable__code">v12.12.0
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<p>OR</p>
+<pre class="copyable"><code class="copyable__code">12.12
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h3 id="deprecated-using-buildpackyml" class="markup-heading">
+    <a class="markup-heading__link" href="#deprecated-using-buildpackyml">
+        Deprecated: Using buildpack.yml
+    </a>
+</h3><p>Specifying the Node version through <code>buildpack.yml</code> configuration will be deprecated in Node Engine Buildpack v1.0.0.
+To migrate from using <code>buildpack.yml</code> please set the <code>$BP_NODE_VERSION</code> environment variable.</p>
+<h2 id="enable-heap-memory-optimization" class="markup-heading">
+    <a class="markup-heading__link" href="#enable-heap-memory-optimization">
+        Enable Heap Memory Optimization
+    </a>
+</h2><p>Node.js limits the total size of all objects on the heap. Enabling the
+<code>optimize-memory</code> feature sets this value to three-quarters of the total memory
+available in the container. For example, if your app is limited to 1 GB
+at run time, the heap of your Node.js app is limited to 768 MB.</p>
+<p>You can enable memory optimization through the <code>BP_NODE_OPTIMIZE_MEMORY</code> environment variable.</p>
+<h3 id="using-bp_node_optimize_memory-environment-variable" class="markup-heading">
+    <a class="markup-heading__link" href="#using-bp_node_optimize_memory-environment-variable">
+        Using <code>BP_NODE_OPTIMIZE_MEMORY</code> Environment Variable
+    </a>
+</h3><p>To enable memory optimization through the <code>BP_NODE_OPTIMIZE_MEMORY</code> environment
+variable, set it to <code>true</code>.</p>
+<pre class="copyable"><code class="copyable__code">pack build my-app \
+  --buildpack gcr.io/paketo-buildpacks/nodejs \
+  --env BP_NODE_OPTIMIZE_MEMORY=true
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h3 id="deprecated-using-buildpackyml-1" class="markup-heading">
+    <a class="markup-heading__link" href="#deprecated-using-buildpackyml-1">
+        Deprecated: Using buildpack.yml
+    </a>
+</h3><p>Enabling memory optimization through your <code>buildpack.yml</code> file will be
+deprecated in Node Engine Buildpack v1.0.0. To migrate from using
+<code>buildpack.yml</code> please set the <code>BP_NODE_OPTIMIZE_MEMORY</code> environment variable
+mentioned above.</p>
+<h2 id="build-an-app-from-source-in-a-subdirectory" class="markup-heading">
+    <a class="markup-heading__link" href="#build-an-app-from-source-in-a-subdirectory">
+        Build an App From Source in a Subdirectory
+    </a>
+</h2><p>To specify a subdirectory to be used as the root of the app, please use the
+<code>BP_NODE_PROJECT_PATH</code> environment variable at build time either directly or
+through a <a href="https://buildpacks.io/docs/app-developer-guide/using-project-descriptor"><code>project.toml</code></a>.
+This could be useful if your app is a part of a monorepo.</p>
+<p>For example, if your project has the following structure:</p>
+<pre tabindex="0"><code>.
+├── go-app
+│   ├── go.mod
+│   └── main.go
+└── node-app
+    ├── file.js
+    ├── index.js
+    └── package.json
+</code></pre><p>you could then set the following at build time.</p>
+<pre tabindex="0"><code>$BP_NODE_PROJECT_PATH=node-app
+</code></pre><h2 id="specifying-scripts-to-run-during-build-phase" class="markup-heading">
+    <a class="markup-heading__link" href="#specifying-scripts-to-run-during-build-phase">
+        Specifying Scripts to Run During Build Phase
+    </a>
+</h2><p>To specify a script or series of scripts to run during build phase, please use the
+<code>BP_NODE_RUN_SCRIPTS</code> environment variable at build time either directly or through a
+<a href="https://buildpacks.io/docs/app-developer-guide/using-project-descriptor"><code>project.toml</code></a>. This
+could be useful if your app uses a framework like Angular, React, or Vue where you need to run
+scripts to build your app into a production state.</p>
+<p>For example, if your project&rsquo;s <code>package.json</code> has the following scripts:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;scripts&#34;</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="nt">&#34;start&#34;</span><span class="p">:</span> <span class="s2">&#34;react-scripts start&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;build&#34;</span><span class="p">:</span> <span class="s2">&#34;react-scripts build&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;test&#34;</span><span class="p">:</span> <span class="s2">&#34;react-scripts test&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;lint&#34;</span><span class="p">:</span> <span class="s2">&#34;eslint src/**/*.js src/**/*.jsx&#34;</span><span class="p">,</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>and your environment variable was set:</p>
+<pre tabindex="0"><code>$BP_NODE_RUN_SCRIPTS=lint,build
+</code></pre><p>then the <code>lint</code> and then <code>build</code> scripts would be run via npm or yarn, during build phase. Note that the
+value for <code>BP_NODE_RUN_SCRIPTS</code> must be a comma separated list of script names.</p>
+<h2 id="build-an-app-that-uses-npm" class="markup-heading">
+    <a class="markup-heading__link" href="#build-an-app-that-uses-npm">
+        Build an App that Uses NPM
+    </a>
+</h2><p>The Node.js buildpack can detect automatically if an app requires <code>npm</code>.</p>
+<h3 id="configure-npm-during-the-build" class="markup-heading">
+    <a class="markup-heading__link" href="#configure-npm-during-the-build">
+        Configure NPM During the Build
+    </a>
+</h3><p>The Node.js buildpack respects native configuration options for NPM. If you would
+like to learn more about NPM native configuration please check the NPM
+Configuration <a href="https://docs.npmjs.com/cli/v6/using-npm/config">documentation</a>
+and the <code>.npmrc</code>
+<a href="https://docs.npmjs.com/cli/v6/configuring-npm/npmrc">documentation</a>.</p>
+<h2 id="build-an-app-that-uses-yarn" class="markup-heading">
+    <a class="markup-heading__link" href="#build-an-app-that-uses-yarn">
+        Build an App that Uses Yarn
+    </a>
+</h2><p>The Node.js buildpack can detect automatically if an app requires <code>yarn</code>, by
+checking for a <code>yarn.lock</code> file.</p>
+<h3 id="configure-yarn-during-the-build" class="markup-heading">
+    <a class="markup-heading__link" href="#configure-yarn-during-the-build">
+        Configure Yarn During the Build
+    </a>
+</h3><p>The Node.js buildpack respects native configuration options for Yarn. If you would
+like to learn more about Yarn configuration using <code>.yarnrc</code> please visit <a href="https://classic.yarnpkg.com/en/docs/yarnrc">the
+Yarn documentation</a>.</p>
+<h2 id="compile-native-extensions-with-node-gyp" class="markup-heading">
+    <a class="markup-heading__link" href="#compile-native-extensions-with-node-gyp">
+        Compile Native Extensions with <code>node-gyp</code>
+    </a>
+</h2><p>If your app requires compilation of native extensions using <code>node-gyp</code>, the Node.js buildpack requires that
+you use the Paketo Full Builder. This is because <code>node-gyp</code> requires <code>python</code> which is excluded from the
+the Paketo Base Builder&rsquo;s stack, and the module may require other shared objects.</p>
+<h3 id="with-pack-and-a-command-line-flag" class="markup-heading">
+    <a class="markup-heading__link" href="#with-pack-and-a-command-line-flag">
+        With pack and a Command-Line Flag
+    </a>
+</h3><p>When building with the pack CLI, specify the latest Paketo Full Builder at build time
+with the <code>--builder</code> flag.</p>
+<pre class="copyable"><code class="copyable__code">pack build my-app --builder paketobuildpacks/builder:full
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h2 id="build-an-app-without-package-management" class="markup-heading">
+    <a class="markup-heading__link" href="#build-an-app-without-package-management">
+        Build an App Without Package Management
+    </a>
+</h2><p>The Node.js buildpack supports building apps without <code>node_modules</code> or a <code>package.json</code>.
+It will detect this type of app automatically, by looking for one of these four files in
+the root of your application directory:</p>
+<ul>
+<li><code>server.js</code></li>
+<li><code>app.js</code></li>
+<li><code>main.js</code></li>
+<li><code>index.js</code></li>
+</ul>
+<h3 id="specify-a-custom-entrypoint" class="markup-heading">
+    <a class="markup-heading__link" href="#specify-a-custom-entrypoint">
+        Specify A Custom Entrypoint
+    </a>
+</h3><p>If your app&rsquo;s entrypoint file is not one of the four files named above,
+you can specify a different file name (or path) by setting the <code>BP_LAUNCHPOINT</code>
+environment variable at build time.</p>
+<h4 id="using-bp_launchpoint" class="markup-heading">
+    <a class="markup-heading__link" href="#using-bp_launchpoint">
+        Using BP_LAUNCHPOINT
+    </a>
+</h4><p><code>BP_LAUNCHPOINT</code> can be set as follows:</p>
+<pre class="copyable"><code class="copyable__code">BP_LAUNCHPOINT=&#34;./src/launchpoint.js&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<p>The image produced by the build will run <code>node src/launchpoint.js</code>
+as its start command.</p>
+<h2 id="install-a-custom-ca-certificate" class="markup-heading">
+    <a class="markup-heading__link" href="#install-a-custom-ca-certificate">
+        Install a Custom CA Certificate
+    </a>
+</h2><p>Node.js Buildpack users can provide their own CA certificates and have them
+included in the container root truststore at build-time and runtime by
+following the instructions outlined in the <a href="docs/reference/configuration/#ca-certificates">CA
+Certificates</a>
+section of our configuration docs.</p>
+<h2 id="override-the-start-process-set-by-the-buildpack" class="markup-heading">
+    <a class="markup-heading__link" href="#override-the-start-process-set-by-the-buildpack">
+        Override the Start Process Set by the Buildpack
+    </a>
+</h2><p>Node.js Buildpack users can set custom start processes for their app image by
+following the instructions in the
+<a href="https://paketo.io/docs/reference/configuration/#procfiles">Procfiles</a> section
+of our configuration docs.</p>
+<h2 id="set-environment-variables-for-app-launch-time" class="markup-heading">
+    <a class="markup-heading__link" href="#set-environment-variables-for-app-launch-time">
+        Set Environment Variables for App Launch Time
+    </a>
+</h2><p>Node.js Buildpack users can embed launch-time environment variables in their
+app image by following the documentation for the <a href="https://github.com/paketo-buildpacks/environment-variables/blob/main/README.md">Environment Variables
+Buildpack</a>.</p>
+<h2 id="add-custom-labels-to-the-app-image" class="markup-heading">
+    <a class="markup-heading__link" href="#add-custom-labels-to-the-app-image">
+        Add Custom Labels to the App Image
+    </a>
+</h2><p>Node.js Buildpack users can add labels to their app image by following the
+instructions in the <a href="/docs/reference/configuration/#applying-custom-labels">Applying Custom
+Labels</a>
+section of our configuration docs.</p>
+
+            </div>
+            
+  <a href="http://github.com/paketo-buildpacks/paketo-website/edit/main/content/docs%5chowto%5cnodejs.md" target="_blank" class="github-edit" style="text-decoration:none">
+    <div class="github-edit__content">
+      <div class="github-edit__logo-container">
+        <img class="github-edit__logo" src="/images/github-mark.png">
+      </div>
+        <div class="github-edit__text">Edit</div>
+    </div>
+</a>
+
+            <p class="docs-mod-time"><strong>Last modified:</strong> September 9, 2021</p>
+        </div>
+        
+<div class="docs-body__table-of-contents-container docs-body__table-of-contents-container--desktop">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#build-a-sample-app">Build a Sample App</a></li>
+    <li><a href="#install-a-specific-node-engine-version">Install a Specific Node Engine Version</a>
+      <ul>
+        <li><a href="#using-bp_node_version">Using BP_NODE_VERSION</a></li>
+        <li><a href="#using-packagejson">Using package.json</a></li>
+        <li><a href="#using-nvmrc">Using .nvmrc</a></li>
+        <li><a href="#using-node-version">Using .node-version</a></li>
+        <li><a href="#deprecated-using-buildpackyml">Deprecated: Using buildpack.yml</a></li>
+      </ul>
+    </li>
+    <li><a href="#enable-heap-memory-optimization">Enable Heap Memory Optimization</a>
+      <ul>
+        <li><a href="#using-bp_node_optimize_memory-environment-variable">Using <code>BP_NODE_OPTIMIZE_MEMORY</code> Environment Variable</a></li>
+        <li><a href="#deprecated-using-buildpackyml-1">Deprecated: Using buildpack.yml</a></li>
+      </ul>
+    </li>
+    <li><a href="#build-an-app-from-source-in-a-subdirectory">Build an App From Source in a Subdirectory</a></li>
+    <li><a href="#specifying-scripts-to-run-during-build-phase">Specifying Scripts to Run During Build Phase</a></li>
+    <li><a href="#build-an-app-that-uses-npm">Build an App that Uses NPM</a>
+      <ul>
+        <li><a href="#configure-npm-during-the-build">Configure NPM During the Build</a></li>
+      </ul>
+    </li>
+    <li><a href="#build-an-app-that-uses-yarn">Build an App that Uses Yarn</a>
+      <ul>
+        <li><a href="#configure-yarn-during-the-build">Configure Yarn During the Build</a></li>
+      </ul>
+    </li>
+    <li><a href="#compile-native-extensions-with-node-gyp">Compile Native Extensions with <code>node-gyp</code></a>
+      <ul>
+        <li><a href="#with-pack-and-a-command-line-flag">With pack and a Command-Line Flag</a></li>
+      </ul>
+    </li>
+    <li><a href="#build-an-app-without-package-management">Build an App Without Package Management</a>
+      <ul>
+        <li><a href="#specify-a-custom-entrypoint">Specify A Custom Entrypoint</a></li>
+      </ul>
+    </li>
+    <li><a href="#install-a-custom-ca-certificate">Install a Custom CA Certificate</a></li>
+    <li><a href="#override-the-start-process-set-by-the-buildpack">Override the Start Process Set by the Buildpack</a></li>
+    <li><a href="#set-environment-variables-for-app-launch-time">Set Environment Variables for App Launch Time</a></li>
+    <li><a href="#add-custom-labels-to-the-app-image">Add Custom Labels to the App Image</a></li>
+  </ul>
+</nav>
+</div>
+
+    </div>
+</div>
+
+
+    <footer class="footer text--light">
+    <div class="footer-social-links-container">
+        <a class="footer-social-link" href="https://twitter.com/Paketo_io">
+            <div class="footer-social-link__image-container">
+                <div class="logo">
+                    <img class="logo__image" src="/v2/images/logo-twitter.svg" alt="Blue Twitter bird logo">
+                </div>
+            </div>
+            <div class="text--light text--400">
+                Twitter
+            </div>
+        </a>
+        <a class="footer-social-link" href="https://slack.paketo.io/">
+            <div class="footer-social-link__image-container">
+                <div class="logo">
+                    <img class="logo__image" src="/v2/images/logo-slack.svg" alt="Slack logo">
+                </div>
+            </div>
+            <div class="text--light text--400">
+                Slack
+            </div>
+        </a>
+        <a class="footer-social-link" href="https://github.com/paketo-buildpacks">
+            <div class="footer-social-link__image-container">
+                <div class="logo logo--github">
+                    <img class="logo__image"  src="/v2/images/logo-github-cropped.svg" alt="GitHub Octocat logo"/>
+                </div>
+            </div>
+            <div class="text--light text--400">
+                GitHub
+            </div>
+        </a>
+    </div>
+    <div class="footer-privacy-policy">
+        <div class="footer-text--small">Paketo Buildpacks is a <a class="text--light" href="https://www.cloudfoundry.org/">Cloud Foundry</a> Project</div>
+        <img class="cloudfoundry-logo" src="/v2/images/logo-cloudfoundry-light.svg" alt="Cloud Foundry logo" />
+        <a class="footer-text--small text--light" href="https://www.linuxfoundation.org/privacy">Privacy Policy</a>
+    </div>
+</footer><script src="/unofficial-translations/paketo-website/js/main.7b2c859f76ebea65f7468883b2f720537f395fc48d504f5e3b4d33c389e860f2.js"></script>
+
+    <div id="footer-skip-link" class="screenreader-container">
+    <a href="#header-skip-link" class="screenreader-text">Skip to Header</a>
+</div>
+
+</body>
+
+</html>

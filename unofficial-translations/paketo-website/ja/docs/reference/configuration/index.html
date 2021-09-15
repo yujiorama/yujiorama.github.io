@@ -1,0 +1,956 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Paketo Buildpacks の設定 - Paketo Buildpacks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1 viewport-fit=cover">
+
+
+
+
+<meta name="og:site_name" content="Paketo Buildpacks">
+<meta name="og:title" content="Paketo Buildpacks の設定">
+<meta name="og:url" content="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/configuration/">
+<meta name="twitter:title" content="Paketo Buildpacks" />
+<meta name="twitter:url" content="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/configuration/" />
+<meta name="twitter:card" content="" />
+
+
+
+<link rel="stylesheet" href="/unofficial-translations/paketo-website/css/main.min.e65e899d7edbb046f43d58e402eca40ec1064082b810ea2ea4f62b1e70614850.css">
+
+</head>
+
+<body>
+    
+    <div id="header-skip-link" class="screenreader-container">
+    <a href="#title" class="screenreader-text">Skip to Content</a>
+</div>
+
+    
+
+
+
+
+<header class="header--narrow">
+    
+    <a class="paketo-p-logo" href="/">
+        <img class="paketo-p-logo__image" src="/v2/images/logo-paketo-p.svg" alt="Paketo Buildpacks Homepage">
+    </a>
+    
+    <div id="navigation" class="right-overlay">
+        <div class="nav-opener">
+            <span class="nav-opener__bar nav-opener__bar-top"></span>
+            <span class="nav-opener__bar nav-opener__bar-middle"></span>
+            <span class="nav-opener__bar nav-opener__bar-bottom"></span>
+        </div>
+        <div class="nav-container" id="nav-container">
+            <nav class="nav" id="nav-tray" >
+                <div class="nav__linkarea text--400">
+                    <a class="nav-link" href="/docs">docs</a>
+                    <a class="nav-link" href="/community">community</a>
+                    <a class="nav-link" href="https://blog.paketo.io">blog</a>
+                    <a class="nav-link" href="https://github.com/paketo-buildpacks">github</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="desktop-nav">
+        
+        
+        
+        <a class="nav-link nav-link--desktop  nav-link--desktop--active" href="/docs">docs</a>
+        
+        <a class="nav-link nav-link--desktop   " href="/community">community</a>
+        <a class="nav-link nav-link--desktop " href="https://blog.paketo.io">blog</a>
+        <a class="nav-link nav-link--desktop " href="https://github.com/paketo-buildpacks">github</a>
+    </div>
+</header>
+
+
+    <div class="docs">
+    <div class="docs-sidebar">
+        
+<input type="text" id="docs-search" class="algolia-autocomplete__search-bar" placeholder="Search docs..." data-api-key="bf2d426728685665ceaf22fac947f10f" data-index="paketo"/>
+<nav class="docs-menu">
+    <ul class="docs-menu__top-level-list">
+        
+        
+            
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Paketo Buildpacks 入門</span>
+            </a>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header ">
+                
+                <span>使い方</span>
+                <button class="expander-button  docs-menu__expander-button">
+                    <svg class="expander-button__triangle " width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list ">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/dotnet-core/" class="docs-menu__item docs-menu__link ">
+                
+                <span>.NET Core</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/go/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Go</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/web-servers/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Web Servers</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/java/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/nodejs/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Node.js</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/python/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Python</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/php/" class="docs-menu__item docs-menu__link ">
+                
+                <span>PHP</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/ruby/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Ruby</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/create-paketo-buildpack/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Paketo Buildpack を作成する</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/bom/" class="docs-menu__item docs-menu__link ">
+                
+                <span>部品表（Bill of Materials）へアクセスする</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header ">
+                
+                <span>考え方</span>
+                <button class="expander-button  docs-menu__expander-button">
+                    <svg class="expander-button__triangle " width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list ">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/buildpacks/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Buildpacks</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/builders/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Builders</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/stacks/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Stacks</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/bom/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Bill of Materials</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header docs-menu__section-header--opened">
+                
+                <span>リファレンス</span>
+                <button class="expander-button expander-button--opened docs-menu__expander-button">
+                    <svg class="expander-button__triangle expander-button__triangle--opened" width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list docs-menu__children-list--opened">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/httpd-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>HTTPD Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/configuration/" class="docs-menu__item docs-menu__link docs-menu__link--active">
+                
+                <span>Paketo Buildpacks の設定</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/dotnet-core-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>.NET Core Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/go-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Go Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/java-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/java-native-image-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java Native Image Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/nginx-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>NGINX Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/nodejs-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Node.js Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/php-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>PHP Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/python-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Python Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/ruby-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Ruby Buildpack</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+    </ul>
+</nav>
+
+
+
+    </div>
+    <div class="docs-body">
+        <div class="docs-body__container">
+            
+  <a href="http://github.com/paketo-buildpacks/paketo-website/edit/main/content/docs%5creference%5cconfiguration.ja.md" target="_blank" class="github-edit" style="text-decoration:none">
+    <div class="github-edit__content">
+      <div class="github-edit__logo-container">
+        <img class="github-edit__logo" src="/images/github-mark.png">
+      </div>
+        <div class="github-edit__text">Edit</div>
+    </div>
+</a>
+
+            <h1 id="title">Paketo Buildpacks の設定</h1>
+            
+<div class="docs-body__table-of-contents-container docs-body__table-of-contents-container--mobile">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#設定例について">設定例について</a></li>
+    <li><a href="#設定の種類">設定の種類</a>
+      <ul>
+        <li><a href="#環境変数">環境変数</a></li>
+        <li><a href="#buildpackyml">buildpack.yml</a></li>
+        <li><a href="#バインディング">バインディング</a></li>
+        <li><a href="#procfiles">Procfiles</a></li>
+      </ul>
+    </li>
+    <li><a href="#ファイアーウォールの内側でビルドする">ファイアーウォールの内側でビルドする</a>
+      <ul>
+        <li><a href="#プロキシの設定">プロキシの設定</a></li>
+        <li><a href="#依存関係の対応付け">依存関係の対応付け</a></li>
+      </ul>
+    </li>
+    <li><a href="#ca-証明書">CA 証明書</a></li>
+    <li><a href="#独自ラベルを指定する">独自ラベルを指定する</a></li>
+    <li><a href="#ロケールを設定する">ロケールを設定する</a></li>
+  </ul>
+</nav>
+</div>
+
+            <div class="docs-body__markdown">
+                <h2 id="設定例について" class="markup-heading">
+    <a class="markup-heading__link" href="#%e8%a8%ad%e5%ae%9a%e4%be%8b%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6">
+        設定例について
+    </a>
+</h2><!-- raw HTML omitted -->
+<p><a href="https://github.com/paketo-buildpacks/samples">サンプルアプリケーション</a> で設定例を説明します。</p>
+<!-- raw HTML omitted -->
+<p>それぞれの例では、サンプルアプリケーションのリポジトリのルートディレクトリを作業ディレクトリとします。</p>
+<pre class="copyable"><code class="copyable__code">git clone https://github.com/paketo-buildpacks/samples
+cd samples
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<p>全ての例で使用する <a href="https://github.com/buildpacks/pack">pack CLI</a> は、Paketo Buildpack を使用してコンテナイメージをビルドできる Cloud Native Buildpack <a href="https://buildpacks.io/docs/concepts/components/platform/">Platform</a> の1つです。</p>
+<!-- raw HTML omitted -->
+<p>それぞれの例では、既定のビルダーとして <a href="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/concepts/builders/#base">Paketo Base ビルダー</a> を使用します。</p>
+<pre class="copyable"><code class="copyable__code">pack config default-builder paketobuildpacks/builder:base
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h2 id="設定の種類" class="markup-heading">
+    <a class="markup-heading__link" href="#%e8%a8%ad%e5%ae%9a%e3%81%ae%e7%a8%ae%e9%a1%9e">
+        設定の種類
+    </a>
+</h2><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Paketo Buildpack は次のような仕組みを通じて設定できます。</p>
+<ul>
+<li><a href="#environment-variables">環境変数</a> - <strong>ビルド時点</strong> と <strong>実行時点</strong> の両方で使用できる汎用的な設定方法です</li>
+<li><a href="#buildpackyml">buildpack.yml</a> - <strong>ビルド時点</strong> で使用できる汎用的な設定方法です</li>
+<li><a href="#bindings">バインディング</a> - <strong>ビルド時点</strong> と <strong>実行時点</strong> の両方で、<strong>秘匿情報</strong> の設定に使用できる設定方法です</li>
+<li><a href="#procfiles">Procfiles</a> - <strong>ビルド時点</strong> で独自の <strong>プロセス種類</strong> を指定できる設定方法です</li>
+</ul>
+<h3 id="環境変数" class="markup-heading">
+    <a class="markup-heading__link" href="#%e7%92%b0%e5%a2%83%e5%a4%89%e6%95%b0">
+        環境変数
+    </a>
+</h3><h4 id="ビルド時に環境変数を指定する" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%83%93%e3%83%ab%e3%83%89%e6%99%82%e3%81%ab%e7%92%b0%e5%a2%83%e5%a4%89%e6%95%b0%e3%82%92%e6%8c%87%e5%ae%9a%e3%81%99%e3%82%8b">
+        ビルド時に環境変数を指定する
+    </a>
+</h4><!-- raw HTML omitted -->
+<p>利用者は、Buildpack の環境で使用する環境変数を指定することでビルドの仕方を変更できます。
+ビルド時に使用できるのは名前が <code>BP_</code> で始まる変数や、Paketo Buildpack の外部で慣習的に使用されている変数（<code>http_proxy</code> など）です。</p>
+<!-- raw HTML omitted -->
+<p>Java Buildpack がインストールする JVM のバージョンを環境変数で指定するときは次のように実行します。</p>
+<pre class="copyable"><code class="copyable__code">pack build samples/java  \
+  --path java/jar \
+  --env BP_JVM_VERSION=8
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<p>ビルド処理の途中、Buildpack は環境変数で指定された設定を引き継ぐようにして外部プログラムを実行します。
+利用者は外部プログラムを普通に実行するときと同じように、環境変数を渡すことができるのです。
+例えば、<a href="https://maven.apache.org/configure.html#maven_opts-environment-variable"><code>MAVEN_OPTS</code></a> で Maven の使用する JVM のメモリ設定を変更するときは次のように実行します。</p>
+<pre class="copyable"><code class="copyable__code">pack build samples/java  \
+  --path java/maven \
+  --env &#34;MAVEN_OPTS=-Xms256m -Xmx512m&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h4 id="実行時に環境変数を指定する" class="markup-heading">
+    <a class="markup-heading__link" href="#%e5%ae%9f%e8%a1%8c%e6%99%82%e3%81%ab%e7%92%b0%e5%a2%83%e5%a4%89%e6%95%b0%e3%82%92%e6%8c%87%e5%ae%9a%e3%81%99%e3%82%8b">
+        実行時に環境変数を指定する
+    </a>
+</h4><!-- raw HTML omitted -->
+<p>利用者は、コンテナイメージを実行するときの環境変数を通じて、実行時の設定を変更できます。
+Buildpack の提供するランタイムコンポーネント（プロファイルスクリプトやプロセス種類）は名前が <code>BPL_</code> で始まる変数や、Paketo Buildpack の外部で慣習的に使用されている変数（<code>JAVA_TOOL_OPTIONS</code> など）です。</p>
+<!-- raw HTML omitted -->
+<p>Spring Boot のサンプルアプリケーションについて、環境変数 <code>JAVA_TOOL_OPTIONS</code> で待ち受けポート番号を指定するには次のように実行します。</p>
+<pre class="copyable"><code class="copyable__code">docker run --rm --publish 8082:8082 --env &#34;JAVA_TOOL_OPTIONS=-Dserver.port=8082&#34; samples/java
+curl -s http://localhost:8082/actuator/health
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<p>アプリケーションだけでなく、実行時に起動するプログラムは、普通に実行した場合と同じように環境変数を参照できます。</p>
+<h4 id="コンテナイメージに環境変数を埋め込む" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%82%b3%e3%83%b3%e3%83%86%e3%83%8a%e3%82%a4%e3%83%a1%e3%83%bc%e3%82%b8%e3%81%ab%e7%92%b0%e5%a2%83%e5%a4%89%e6%95%b0%e3%82%92%e5%9f%8b%e3%82%81%e8%be%bc%e3%82%80">
+        コンテナイメージに環境変数を埋め込む
+    </a>
+</h4><!-- raw HTML omitted -->
+<p><a href="https://github.com/paketo-buildpacks/environment-variables">Environment Variables buildpack</a> を使うと、コンテナイメージ自体に環境変数を埋め込むことができます。
+Environment Variables buildpack は名前が <code>BPE_*</code> にマッチする環境変数を探索し、アプリケーションを起動した環境で利用できるよう、起動環境を変更します。
+秘匿性の低い設定項目の初期値を設定したり、利用者が設定する必要のない設定項目の環境変数を変更できます。</p>
+<!-- raw HTML omitted -->
+<p>Environment Variables buildpack は次のような環境変数の操作に対応しています。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<table>
+<thead>
+<tr>
+<th>環境変数名</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$BPE_&lt;NAME&gt;</code></td>
+<td>環境変数 <code>NAME</code> を設定します。同じ名前の変数は上書きします</td>
+</tr>
+<tr>
+<td><code>$BPE_APPEND_&lt;NAME&gt;</code></td>
+<td>環境変数 <code>NAME</code> の後ろに指定した値を追加します</td>
+</tr>
+<tr>
+<td><code>$BPE_DEFAULT_&lt;NAME&gt;</code></td>
+<td>環境変数 <code>NAME</code> の初期値を設定します</td>
+</tr>
+<tr>
+<td><code>$BPE_OVERRIDE_&lt;NAME&gt;</code></td>
+<td>環境変数 <code>NAME</code> を設定します。同じ名前の変数は上書きします</td>
+</tr>
+<tr>
+<td><code>$BPE_PREPEND_&lt;NAME&gt;</code></td>
+<td>環境変数 <code>NAME</code> の前に指定した値を追加します</td>
+</tr>
+</tbody>
+</table>
+<!-- raw HTML omitted -->
+<p>環境変数の操作について詳しくは <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules">CNB の仕様</a> を参照してください。</p>
+<!-- raw HTML omitted -->
+<p>環境変数 <code>BPE_DELIM_&lt;NAME&gt;</code> で、前後に値を追加するときの区切り文字を変更できます。
+初期値は空文字列、すなわち、区切り文字なしになっています。
+例えば、区切り文字が「コロン（:）」の環境変数 <code>PATH</code> や <code>LD_LIBRARY_PATH</code> へパス要素を追加するときに使うといいでしょう。</p>
+<!-- raw HTML omitted -->
+<p><strong>絶対にやらないでください</strong>：Environment Variables buildpack で、秘匿性の高い資格情報をコンテナイメージに埋め込むのはやめましょう。
+ビルドツールの生成したコンテナイメージに何らかの情報を埋め込むということは、そのコンテナイメージにアクセスできる人なら誰でも埋め込まれた情報を参照できることになるからです。</p>
+<h3 id="buildpackyml" class="markup-heading">
+    <a class="markup-heading__link" href="#buildpackyml">
+        buildpack.yml
+    </a>
+</h3><!-- raw HTML omitted -->
+<p>多くの Paketo Buildpack は、アプリケーションのソースコードリポジトリの直下に置かれた <code>buildpack.yml</code> の設定を読み取ることができます。</p>
+<!-- raw HTML omitted -->
+<p>例えば、Node.js Buildpack のインストールする Node.js のバージョンを指定するには、サンプルリポジトリの <code>nodejs/yarn</code> ディレクトリへ、次のような内容の <code>buildpack.yml</code> を配置します。</p>
+<pre class="copyable"><code class="copyable__code">nodejs:
+  version: 12.12.0
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<p>同じようにビルドすると、指定したバージョンの Node.js をインストールします。</p>
+<pre class="copyable"><code class="copyable__code">pack build samples/nodejs --path nodejs/yarn
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h3 id="バインディング" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%83%90%e3%82%a4%e3%83%b3%e3%83%87%e3%82%a3%e3%83%b3%e3%82%b0">
+        バインディング
+    </a>
+</h3><h4 id="バインディングとは何か" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%83%90%e3%82%a4%e3%83%b3%e3%83%87%e3%82%a3%e3%83%b3%e3%82%b0%e3%81%a8%e3%81%af%e4%bd%95%e3%81%8b">
+        バインディングとは何か
+    </a>
+</h4><!-- raw HTML omitted -->
+<p>Paketo Buildpack や、Paketo Buildpack がインストールするコンポーネントの中には、ビルド時点と実行時点の両方で、バインディングに配置した資格情報やそれ以外の秘匿情報を使用できるものがあります。
+一般的には、外部サービスへ接続するためのアドレス情報や資格情報を提供するためにバインディングを使用します。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>外部サービスの中には、ビルド時点でバインディングを必要とするものがあります。</p>
+<ul>
+<li>プライベートアーティファクトリポジトリ</li>
+<li>SaaS のセキュリティスキャンツール</li>
+</ul>
+<!-- raw HTML omitted -->
+<p>例えば、Maven Buildpack がプライベート Maven リポジトリへ接続するためのアドレス情報と資格情報はバインディングで構成できます。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>外部サービスの中には、実行時点でバインディングを必要とするものがあります。</p>
+<ul>
+<li>APM</li>
+<li>データストア</li>
+<li>OAuth2 プロバイダ</li>
+</ul>
+<!-- raw HTML omitted -->
+<p>例えば、Spring Boot Buildpack のインストールする <a href="https://github.com/spring-cloud/spring-cloud-bindings">Spring Cloud Bindings</a> は、バインディングで指定したさまざまな外部サービスの接続情報を、Spring Boot アプリケーションの自動構成プロパティとして使用できるようにします。</p>
+<h4 id="バインディングには何が入っているのか" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%83%90%e3%82%a4%e3%83%b3%e3%83%87%e3%82%a3%e3%83%b3%e3%82%b0%e3%81%ab%e3%81%af%e4%bd%95%e3%81%8c%e5%85%a5%e3%81%a3%e3%81%a6%e3%81%84%e3%82%8b%e3%81%ae%e3%81%8b">
+        バインディングには何が入っているのか
+    </a>
+</h4><!-- raw HTML omitted -->
+<p>バインディングには次のような内容を含みます。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ol>
+<li><strong>name（名前）</strong>：バインディングを識別する名前です。基本的にビルド時点や実行時点の振る舞いには影響しませんが、ログ出力などでバインディングを参照するときの情報として使われる場合があります</li>
+<li><strong>type（種類）あるいは kind（種類）</strong>：バインディングに格納した資格情報の種類を表します。例えば、<code>ApplicationInsights</code> なら Azure Application Insights へ接続するための資格情報を含むことになります</li>
+<li><strong>provider（プロバイダー）</strong>：任意要素です。バインディングの提供元を表します。例えば、PaaS ではバインディングを提供するサービスブローカーを使う場合があります</li>
+<li>キー・値の対：設定項目と値です。例えば <code>ApplicationInsights</code> のバインディングならキー <code>InstrumentationKey</code> とその値からなる対を含めることになります</li>
+</ol>
+<!-- raw HTML omitted -->
+<p>Buildpack にはコンテナファイルシステムのディレクトリとしてバインディングを連携します（ボリュームマウントを利用する場合が多いでしょう）。
+ディレクトリ名がバインディングの名前を表します。
+バインディングの（ディレクトリの）要素は次のいずれかの形式に従うようにします。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ul>
+<li><a href="https://github.com/k8s-service-bindings/spec">Kubernetes サービスバインディング仕様</a>：実行環境が対応しているなら CNB バインディング仕様よりこちらの仕様に従うことをお勧めします</li>
+<li><a href="https://github.com/buildpacks/spec/blob/main/extensions/bindings.md">Cloud Native Buildpacks バインディング仕様</a>：伝統的な Buildpack のバインディング仕様ですが [廃止予定] です</li>
+</ul>
+<!-- raw HTML omitted -->
+<p>Paketo Buildpack はビルド時に参照するバインディングを <code>/platform/bindings</code> ディレクトリから探索します。
+また、実行時に参照するバインディングは、環境変数 <code>SERVICE_BINDING_ROOT</code> あるいは <code>CNB_BINDINGS</code> の値が指すディレクトリから探索します。</p>
+<!-- raw HTML omitted -->
+<p>例えば、Maven Buildpack は <code>type</code> が <code>maven</code> 、キーが <code>settings.xml</code> で値が <a href="http://maven.apache.org/settings.html">Maven settings</a> になっているバインディングを受け付けます。
+ビルド用コンテナでは、次のいずれかの場所で見つけた <code>settings.xml</code> を使用するのです。</p>
+<pre class="copyable"><code class="copyable__code">/platform
+└── bindings
+    └── &lt;name&gt;
+        ├── settings.xml
+        └── type
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<pre class="copyable"><code class="copyable__code">/platform
+└── bindings
+    └──&lt;name&gt;
+        └── metadata
+        |   └── kind
+        └── secret
+            └── settings.xml
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<h4 id="バインディングの使い方" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%83%90%e3%82%a4%e3%83%b3%e3%83%87%e3%82%a3%e3%83%b3%e3%82%b0%e3%81%ae%e4%bd%bf%e3%81%84%e6%96%b9">
+        バインディングの使い方
+    </a>
+</h4><!-- raw HTML omitted -->
+<p>バインディングの作成方法や、ビルド時に指定する方法は、プラットフォームによって異なります。
+例えば、pack コマンドなら、 <code>--volume</code> フラグでボリュームマウントさせたディレクトリを使用します。
+kpack コマンドなら、キーと値の対を Kubernetes の Secret リソースへ登録し、コンテナスペックのメタデータで secret フィールドに指定します。詳しくは <a href="https://github.com/pivotal/kpack/blob/master/docs/servicebindings.md#service-bindings">kpack でサービスバインディングを使う方法</a> を参照してください。</p>
+<!-- raw HTML omitted -->
+<p><strong>例</strong>：<code>pack build</code> コマンドにバインディングを指定する</p>
+<!-- raw HTML omitted -->
+<p>あるディレクトリをビルド時に使用するバインディングとして使用する場合、<code>--volume</code> フラグで指定します。</p>
+<pre class="copyable"><code class="copyable__code">pack build --volume &lt;absolute-path-to-binding&gt;:/platform/bindings/&lt;binding-name&gt; &lt;image-name&gt;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<p><strong>例</strong>：<code>docker run</code> にバインディングを指定する</p>
+<!-- raw HTML omitted -->
+<p>あるディレクトリを実行時に使用するバインディングとして使用する場合、<code>--volume</code> フラグと <code>--env</code> フラグで指定します。</p>
+<pre class="copyable"><code class="copyable__code">docker run --env SERVICE_BINDING_ROOT=/bindings --volume &lt;absolute-path-to-binding&gt;:/bindings/&lt;binding-name&gt; &lt;image-name&gt;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h3 id="procfiles" class="markup-heading">
+    <a class="markup-heading__link" href="#procfiles">
+        Procfiles
+    </a>
+</h3><!-- raw HTML omitted -->
+<p>利用者は <code>Procfile</code> で Paketo Buildpack の提供する type（プロセス種類）を上書きしたり、使用できるプロセス種類を追加したりできます。
+<code>Procfile</code> を処理できるのは <a href="https://github.com/paketo-buildpacks/procfile">Paketo Procfile Buildpack</a> です。
+Procfile Buildpack はアプリケーションのルートディレクトリで <code>Procfile</code> を探索します。
+<code>Procfile</code> の形式は次のとおりです。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain">&lt;type&gt;: &lt;command&gt;
+</code></pre></div><!-- raw HTML omitted -->
+<p>指定された <a href="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/concepts/buildpacks/">言語モジュール Buildpack</a> に Procfile Buildpack が含まれていないときは、pack コマンドを実行するとき、明示的に指定します。</p>
+<!-- raw HTML omitted -->
+<p><strong>例</strong>：Procfile で Hello World</p>
+<!-- raw HTML omitted -->
+<p>プロセス種類に追加した <code>hello</code> を初期値にするときは次のようにします。</p>
+<pre class="copyable"><code class="copyable__code">echo &#34;hello: echo hello world&#34; &gt; nodejs/yarn/Procfile
+pack build samples/nodejs \
+  --path nodejs/yarn \
+  --buildpack gcr.io/paketo-buildpacks/nodejs \
+  --buildpack gcr.io/paketo-buildpacks/procfile \
+  --default-process hello
+docker run samples/nodejs # should print &#34;hello world&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h2 id="ファイアーウォールの内側でビルドする" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%83%95%e3%82%a1%e3%82%a4%e3%82%a2%e3%83%bc%e3%82%a6%e3%82%a9%e3%83%bc%e3%83%ab%e3%81%ae%e5%86%85%e5%81%b4%e3%81%a7%e3%83%93%e3%83%ab%e3%83%89%e3%81%99%e3%82%8b">
+        ファイアーウォールの内側でビルドする
+    </a>
+</h2><h3 id="プロキシの設定" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%83%97%e3%83%ad%e3%82%ad%e3%82%b7%e3%81%ae%e8%a8%ad%e5%ae%9a">
+        プロキシの設定
+    </a>
+</h3><!-- raw HTML omitted -->
+<p>Paketo Buildpack は環境変数 <code>http_proxy</code> や <code>https_proxy</code> や <code>no_proxy</code> で http トラフィックを送信するプロキシアドレスを変更できます。
+ホストマシンで <code>pack</code> コマンドを実行するときにこれらの環境変数を設定すると、ビルドコンテナに継承させることができます。</p>
+<h3 id="依存関係の対応付け" class="markup-heading">
+    <a class="markup-heading__link" href="#%e4%be%9d%e5%ad%98%e9%96%a2%e4%bf%82%e3%81%ae%e5%af%be%e5%bf%9c%e4%bb%98%e3%81%91">
+        依存関係の対応付け
+    </a>
+</h3><!-- raw HTML omitted -->
+<p>Paketo Buildpack はさまざまな依存対象をインターネットからダウンロードします。
+例えば、Java Buildpack なら BellSoft Liberica JRE を Liberica の <a href="https://github.com/bell-sw/Liberica/releases">github releases</a> からダウンロードします。</p>
+<!-- raw HTML omitted -->
+<p>依存対象の URI がビルド環境からアクセスできないネットワークにある場合、依存対象の URI として <a href="#bindings">バインディング</a> と対応付けることができます。
+組織としてアクセスを許可する場所へ検査済みの依存対象（の複製）をアップロードすれば、開発者や CI/CD パイプラインはバインディングで指定した場所から、依存対象へアクセスできるようになります。</p>
+<!-- raw HTML omitted -->
+<p>URI の対応付けをするのは、<code>type</code> を <code>dependency-mapping</code> にした1つ以上のバインディングです。
+それぞれのバインディングには、キー <code>sha256</code> の値として依存対象を参照可能な URI を格納します。
+Buildpack が依存対象をダウンロードするために必要な情報（<code>sha256</code> や元の <code>uri</code> を含む）は、それぞれのコンポーネント Buildpack の <code>buildpack.toml</code> で定義されています。</p>
+<!-- raw HTML omitted -->
+<p><strong>例</strong>：JRE を内部ネットワークの URI へ対応付ける</p>
+<!-- raw HTML omitted -->
+<p>GitHub へアクセスできない環境で、Bellsoft Liberica JRE を依存対象として含むビルドを成功させるには、次のようにします。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ol>
+<li><a href="https://github.com/paketo-buildpacks/bellsoft-liberica">Bellsoft Liberica buildpack</a> の <a href="https://github.com/paketo-buildpacks/bellsoft-liberica/blob/main/buildpack.toml">buildpack.toml</a> から必要な依存対象の <code>sha256</code> と元の <code>uri</code> を確認する。以下は具体例です
+<ul>
+<li><code>sha256</code>: <code>b4cb31162ff6d7926dd09e21551fa745fa3ae1758c25148b48dadcf78ab0c24c</code></li>
+<li><code>uri</code>: <code>https://github.com/bell-sw/Liberica/releases/download/11.0.8+10/bellsoft-jre11.0.8+10-linux-amd64.tar.gz</code></li>
+</ul>
+</li>
+<li><code>uri</code> から依存対象をダウンロードして、ビルド中にアクセスできる内部ネットワークのどこかへ配置する</li>
+<li>バインディングを作成する
+<ul>
+<li><code>type</code>: <code>dependency-mapping</code></li>
+<li><code>sha256</code>: 内部ネットワークに配置した依存対象の URI</li>
+</ul>
+</li>
+<li>作成したバインディングを指定してコンテナイメージをビルドします</li>
+</ol>
+<h2 id="ca-証明書" class="markup-heading">
+    <a class="markup-heading__link" href="#ca-%e8%a8%bc%e6%98%8e%e6%9b%b8">
+        CA 証明書
+    </a>
+</h2><!-- raw HTML omitted -->
+<p><a href="https://github.com/paketo-buildpacks/ca-certificates">Paketo CA Certificates Buildpack</a> を使うとシステムのトラストストアへ CA 証明書を追加できます。</p>
+<!-- raw HTML omitted -->
+<p>CA 証明書を追加するには <code>type</code> が <code>ca-certficates</code> の <a href="#bindings">バインディング</a> を使用します。
+キーは証明書の名前、値は PEM 形式にした単独の CA 証明書にします。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain">&lt;binding-name&gt;
+├── &lt;cert file name&gt;
+└── type
+</code></pre></div><!-- raw HTML omitted -->
+<p>指定された <a href="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/concepts/buildpacks/">言語モジュール Buildpack</a> に CA Certficates Buildpack が含まれていないときは、pack コマンドを実行するとき、明示的に指定します。</p>
+<!-- raw HTML omitted -->
+<p><strong>例</strong>：CA 証明書を追加する</p>
+<!-- raw HTML omitted -->
+<p>サンプルリポジトリの Go アプリケーションは指定した URL に <code>HEAD</code> リクエストを送信します。</p>
+<!-- raw HTML omitted -->
+<p>ファイル <code>&lt;your-ca.pem&gt;</code> は、<code>&lt;url&gt;</code> への TLS 通信をするための証明書で、PEM 形式にしておきます。
+このファイルをバインディングへ追加しましょう。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">cp &lt;your-ca.pem&gt; ca-certificates/binding/
+</code></pre></div><!-- raw HTML omitted -->
+<p>CA Certificates Buildpack を指定して <code>pack build</code> コマンドを実行します。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack build samples/ca-certificates <span class="se">\
+</span><span class="se"></span>    --path ca-certificates <span class="se">\
+</span><span class="se"></span>    --buildpack paketo-buildpacks/ca-certificates <span class="se">\
+</span><span class="se"></span>    --buildpack paketo-buildpacks/go
+</code></pre></div><!-- raw HTML omitted -->
+<p>バインディングを指定して、引数に <code>&lt;url&gt;</code> を指定してサンプルアプリケーションを実行します。
+成功すれば <code>SUCCESS!</code> と表示されます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker run --rm <span class="se">\
+</span><span class="se"></span>  --env <span class="nv">SERVICE_BINDING_ROOT</span><span class="o">=</span>/bindings <span class="se">\
+</span><span class="se"></span>  --volume <span class="s2">&#34;</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">/ca-certficates/binding:/bindings/ca-certificates&#34;</span> <span class="se">\
+</span><span class="se"></span>  samples/ca-certificates &lt;url&gt;
+</code></pre></div><!-- raw HTML omitted -->
+<p><strong>CA 証明書を無効化する</strong></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>言語モジュール Buildpack に Paketo CA Certifcates Buildpack が含まれている場合、コンテナイメージを実行するとき、常に証明書ファイルを探索し、追加するようになります。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>この振る舞いを変更するには、ビルド時に環境変数 <code>BP_ENABLE_RUNTIME_CERT_BINDING</code> へ <code>false</code> を設定します。
+そうすると、実行時に証明書を探索する機能は無効化され、CA Certifcates Buildpack はビルド時にバインディングで指定した証明書ファイルだけを探索するようになります。</p>
+<h2 id="独自ラベルを指定する" class="markup-heading">
+    <a class="markup-heading__link" href="#%e7%8b%ac%e8%87%aa%e3%83%a9%e3%83%99%e3%83%ab%e3%82%92%e6%8c%87%e5%ae%9a%e3%81%99%e3%82%8b">
+        独自ラベルを指定する
+    </a>
+</h2><!-- raw HTML omitted -->
+<p><a href="https://github.com/paketo-buildpacks/image-labels">Image Labels Buildpack</a>を使うと、コンテナイメージにラベルを追加できます。</p>
+<!-- raw HTML omitted -->
+<p>名前が <code>BP_OCI_</code> で始まる環境変数は <a href="https://github.com/opencontainers/image-spec/blob/master/annotations.md#pre-defined-annotation-keys">OCI 特有のラベル</a> を設定するために使用できます。
+例えば、ビルド時に <code>BP_OCI_AUTHORS</code> を指定すると、Image Labels Buildpack はキー <code>org.opencontainers.image.authors</code> のラベルを設定します。</p>
+<!-- raw HTML omitted -->
+<p>環境変数 <code>BP_IMAGE_LABELS</code> の値に、空白文字を区切り文字として並べたキーと値の対を指定すると、複数の任意のラベルを設定できます。
+ラベルの値に空白文字を含む場合はクォート文字でエスケープできます。</p>
+<!-- raw HTML omitted -->
+<p><a href="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/concepts/buildpacks/">言語モジュール Buildpack</a> に Image Labels Buildpack が含まれていないときは、pack コマンドを実行するとき、明示的に指定します。</p>
+<!-- raw HTML omitted -->
+<p><strong>例</strong>：独自のラベルを設定する</p>
+<pre class="copyable"><code class="copyable__code">pack build samples/nodejs \
+  --path nodejs/yarn \
+  --buildpack  gcr.io/paketo-buildpacks/nodejs \
+  --buildpack  gcr.io/paketo-buildpacks/image-labels \
+  --env &#34;BP_OCI_DESCRIPTION=Demo Application&#34; \
+  --env &#39;BP_IMAGE_LABELS=io.packeto.example=&#34;Adding Custom Labels&#34;&#39;
+docker inspect samples/nodejs | jq &#39;.[].Config.Labels[&#34;org.opencontainers.image.description&#34;]&#39; # should print &#34;Demo Application&#34;
+docker inspect samples/nodejs | jq &#39;.[].Config.Labels[&#34;io.packeto.example&#34;]&#39; # should print &#34;Adding Custom Labels&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h2 id="ロケールを設定する" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%83%ad%e3%82%b1%e3%83%bc%e3%83%ab%e3%82%92%e8%a8%ad%e5%ae%9a%e3%81%99%e3%82%8b">
+        ロケールを設定する
+    </a>
+</h2><!-- raw HTML omitted -->
+<p>初期設定では、Paketo Buildpack で作成したコンテナイメージにロケールは設定されていません。
+<code>locale</code> コマンドを実行すると次のように表示されるでしょう。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">LANG</span><span class="o">=</span>
+<span class="nv">LANGUAGE</span><span class="o">=</span>
+<span class="nv">LC_CTYPE</span><span class="o">=</span><span class="s2">&#34;POSIX&#34;</span>
+<span class="nv">LC_NUMERIC</span><span class="o">=</span><span class="s2">&#34;POSIX&#34;</span>
+<span class="nv">LC_TIME</span><span class="o">=</span><span class="s2">&#34;POSIX&#34;</span>
+<span class="nv">LC_COLLATE</span><span class="o">=</span><span class="s2">&#34;POSIX&#34;</span>
+<span class="nv">LC_MONETARY</span><span class="o">=</span><span class="s2">&#34;POSIX&#34;</span>
+<span class="nv">LC_MESSAGES</span><span class="o">=</span><span class="s2">&#34;POSIX&#34;</span>
+<span class="nv">LC_PAPER</span><span class="o">=</span><span class="s2">&#34;POSIX&#34;</span>
+<span class="nv">LC_NAME</span><span class="o">=</span><span class="s2">&#34;POSIX&#34;</span>
+<span class="nv">LC_ADDRESS</span><span class="o">=</span><span class="s2">&#34;POSIX&#34;</span>
+<span class="nv">LC_TELEPHONE</span><span class="o">=</span><span class="s2">&#34;POSIX&#34;</span>
+<span class="nv">LC_MEASUREMENT</span><span class="o">=</span><span class="s2">&#34;POSIX&#34;</span>
+<span class="nv">LC_IDENTIFICATION</span><span class="o">=</span><span class="s2">&#34;POSIX&#34;</span>
+<span class="nv">LC_ALL</span><span class="o">=</span>
+</code></pre></div><!-- raw HTML omitted -->
+<p>ロケールを設定するには適切な環境変数を指定しなければなりません。
+例えば、Docker でコンテナイメージを実行するなら <code>docker run -e LANG=en_US.utf8 ...</code> のようにします。</p>
+<!-- raw HTML omitted -->
+<p>常に必要な設定ではありませんが、アプリケーションの出力に影響する場合があります。
+例えば、アプリケーションがユニコード文字列を標準出力と標準エラー出力へ書き込んでも、ユニコードに対応したロケールを設定していなければ、<code>docker logs</code> などで正しく表示されない可能性があります。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+
+            </div>
+            
+  <a href="http://github.com/paketo-buildpacks/paketo-website/edit/main/content/docs%5creference%5cconfiguration.ja.md" target="_blank" class="github-edit" style="text-decoration:none">
+    <div class="github-edit__content">
+      <div class="github-edit__logo-container">
+        <img class="github-edit__logo" src="/images/github-mark.png">
+      </div>
+        <div class="github-edit__text">Edit</div>
+    </div>
+</a>
+
+            <p class="docs-mod-time"><strong>Last modified:</strong> September 14, 2021</p>
+        </div>
+        
+<div class="docs-body__table-of-contents-container docs-body__table-of-contents-container--desktop">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#設定例について">設定例について</a></li>
+    <li><a href="#設定の種類">設定の種類</a>
+      <ul>
+        <li><a href="#環境変数">環境変数</a></li>
+        <li><a href="#buildpackyml">buildpack.yml</a></li>
+        <li><a href="#バインディング">バインディング</a></li>
+        <li><a href="#procfiles">Procfiles</a></li>
+      </ul>
+    </li>
+    <li><a href="#ファイアーウォールの内側でビルドする">ファイアーウォールの内側でビルドする</a>
+      <ul>
+        <li><a href="#プロキシの設定">プロキシの設定</a></li>
+        <li><a href="#依存関係の対応付け">依存関係の対応付け</a></li>
+      </ul>
+    </li>
+    <li><a href="#ca-証明書">CA 証明書</a></li>
+    <li><a href="#独自ラベルを指定する">独自ラベルを指定する</a></li>
+    <li><a href="#ロケールを設定する">ロケールを設定する</a></li>
+  </ul>
+</nav>
+</div>
+
+    </div>
+</div>
+
+
+    <footer class="footer text--light">
+    <div class="footer-social-links-container">
+        <a class="footer-social-link" href="https://twitter.com/Paketo_io">
+            <div class="footer-social-link__image-container">
+                <div class="logo">
+                    <img class="logo__image" src="/v2/images/logo-twitter.svg" alt="Blue Twitter bird logo">
+                </div>
+            </div>
+            <div class="text--light text--400">
+                Twitter
+            </div>
+        </a>
+        <a class="footer-social-link" href="https://slack.paketo.io/">
+            <div class="footer-social-link__image-container">
+                <div class="logo">
+                    <img class="logo__image" src="/v2/images/logo-slack.svg" alt="Slack logo">
+                </div>
+            </div>
+            <div class="text--light text--400">
+                Slack
+            </div>
+        </a>
+        <a class="footer-social-link" href="https://github.com/paketo-buildpacks">
+            <div class="footer-social-link__image-container">
+                <div class="logo logo--github">
+                    <img class="logo__image"  src="/v2/images/logo-github-cropped.svg" alt="GitHub Octocat logo"/>
+                </div>
+            </div>
+            <div class="text--light text--400">
+                GitHub
+            </div>
+        </a>
+    </div>
+    <div class="footer-privacy-policy">
+        <div class="footer-text--small">Paketo Buildpacks is a <a class="text--light" href="https://www.cloudfoundry.org/">Cloud Foundry</a> Project</div>
+        <img class="cloudfoundry-logo" src="/v2/images/logo-cloudfoundry-light.svg" alt="Cloud Foundry logo" />
+        <a class="footer-text--small text--light" href="https://www.linuxfoundation.org/privacy">Privacy Policy</a>
+    </div>
+</footer><script src="/unofficial-translations/paketo-website/js/main.7b2c859f76ebea65f7468883b2f720537f395fc48d504f5e3b4d33c389e860f2.js"></script>
+
+    <div id="footer-skip-link" class="screenreader-container">
+    <a href="#header-skip-link" class="screenreader-text">Skip to Header</a>
+</div>
+
+</body>
+
+</html>

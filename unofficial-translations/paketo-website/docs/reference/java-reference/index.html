@@ -1,0 +1,672 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Java Buildpack Reference - Paketo Buildpacks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1 viewport-fit=cover">
+
+
+
+
+<meta name="og:site_name" content="Paketo Buildpacks">
+<meta name="og:title" content="Java Buildpack Reference">
+<meta name="og:url" content="https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/java-reference/">
+<meta name="twitter:title" content="Paketo Buildpacks" />
+<meta name="twitter:url" content="https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/java-reference/" />
+<meta name="twitter:card" content="" />
+
+
+
+<link rel="stylesheet" href="/unofficial-translations/paketo-website/css/main.min.e65e899d7edbb046f43d58e402eca40ec1064082b810ea2ea4f62b1e70614850.css">
+
+</head>
+
+<body>
+    
+    <div id="header-skip-link" class="screenreader-container">
+    <a href="#title" class="screenreader-text">Skip to Content</a>
+</div>
+
+    
+
+
+
+
+<header class="header--narrow">
+    
+    <a class="paketo-p-logo" href="/">
+        <img class="paketo-p-logo__image" src="/v2/images/logo-paketo-p.svg" alt="Paketo Buildpacks Homepage">
+    </a>
+    
+    <div id="navigation" class="right-overlay">
+        <div class="nav-opener">
+            <span class="nav-opener__bar nav-opener__bar-top"></span>
+            <span class="nav-opener__bar nav-opener__bar-middle"></span>
+            <span class="nav-opener__bar nav-opener__bar-bottom"></span>
+        </div>
+        <div class="nav-container" id="nav-container">
+            <nav class="nav" id="nav-tray" >
+                <div class="nav__linkarea text--400">
+                    <a class="nav-link" href="/docs">docs</a>
+                    <a class="nav-link" href="/community">community</a>
+                    <a class="nav-link" href="https://blog.paketo.io">blog</a>
+                    <a class="nav-link" href="https://github.com/paketo-buildpacks">github</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="desktop-nav">
+        
+        
+        
+        <a class="nav-link nav-link--desktop  nav-link--desktop--active" href="/docs">docs</a>
+        
+        <a class="nav-link nav-link--desktop   " href="/community">community</a>
+        <a class="nav-link nav-link--desktop " href="https://blog.paketo.io">blog</a>
+        <a class="nav-link nav-link--desktop " href="https://github.com/paketo-buildpacks">github</a>
+    </div>
+</header>
+
+
+    <div class="docs">
+    <div class="docs-sidebar">
+        
+<input type="text" id="docs-search" class="algolia-autocomplete__search-bar" placeholder="Search docs..." data-api-key="bf2d426728685665ceaf22fac947f10f" data-index="paketo"/>
+<nav class="docs-menu">
+    <ul class="docs-menu__top-level-list">
+        
+        
+            
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Getting Started</span>
+            </a>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header ">
+                
+                <span>How To</span>
+                <button class="expander-button  docs-menu__expander-button">
+                    <svg class="expander-button__triangle " width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list ">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/dotnet-core/" class="docs-menu__item docs-menu__link ">
+                
+                <span>.NET Core</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/go/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Go</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/web-servers/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Web Servers</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/java/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/nodejs/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Node.js</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/python/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Python</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/php/" class="docs-menu__item docs-menu__link ">
+                
+                <span>PHP</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/ruby/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Ruby</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/create-paketo-buildpack/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Create a Paketo Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/howto/bom/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Access the Bill of Materials</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header ">
+                
+                <span>Concepts</span>
+                <button class="expander-button  docs-menu__expander-button">
+                    <svg class="expander-button__triangle " width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list ">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/concepts/buildpacks/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Buildpacks</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/concepts/builders/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Builders</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/concepts/stacks/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Stacks</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/concepts/bom/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Bill of Materials</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header docs-menu__section-header--opened">
+                
+                <span>Reference</span>
+                <button class="expander-button expander-button--opened docs-menu__expander-button">
+                    <svg class="expander-button__triangle expander-button__triangle--opened" width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list docs-menu__children-list--opened">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/configuration/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Configuring Paketo Buildpacks</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/httpd-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>HTTPD Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/dotnet-core-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>.NET Core Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/go-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Go Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/java-reference/" class="docs-menu__item docs-menu__link docs-menu__link--active">
+                
+                <span>Java Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/java-native-image-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java Native Image Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/nginx-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>NGINX Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/nodejs-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Node.js Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/php-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>PHP Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/python-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Python Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/docs/reference/ruby-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Ruby Buildpack</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+    </ul>
+</nav>
+
+
+
+    </div>
+    <div class="docs-body">
+        <div class="docs-body__container">
+            
+  <a href="http://github.com/paketo-buildpacks/paketo-website/edit/main/content/docs%5creference%5cjava-reference.md" target="_blank" class="github-edit" style="text-decoration:none">
+    <div class="github-edit__content">
+      <div class="github-edit__logo-container">
+        <img class="github-edit__logo" src="/images/github-mark.png">
+      </div>
+        <div class="github-edit__text">Edit</div>
+    </div>
+</a>
+
+            <h1 id="title">Java Buildpack Reference</h1>
+            
+<div class="docs-body__table-of-contents-container docs-body__table-of-contents-container--mobile">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#about-the-jvm">About the JVM</a></li>
+    <li><a href="#memory-calculator">Memory Calculator</a></li>
+    <li><a href="#spring-boot-applications">Spring Boot Applications</a>
+      <ul>
+        <li><a href="#additional-metadata">Additional Metadata</a></li>
+        <li><a href="#optimizations">Optimizations</a></li>
+      </ul>
+    </li>
+    <li><a href="#components">Components</a></li>
+  </ul>
+</nav>
+</div>
+
+            <div class="docs-body__markdown">
+                <p>This reference documentation offers an in-depth description of the behavior
+and configuration options of the
+<a href="https://github.com/paketo-buildpacks/java">Paketo Java Buildpack</a>. For explanations of how to use the buildpack for several common use-cases, see
+the  Paketo Java Buildpack  How To <a href="/docs/howto/java">documentation</a>.</p>
+<p>The <a href="https://github.com/paketo-buildpacks/java">Paketo Java Buildpack</a> allows users to create an image containing a JVM application from a precompiled artifact or directly from source.</p>
+<p>The Java Buildpack is a <a href="https://yujiorama.github.io/unofficial-translations/paketo-website/docs/concepts/buildpacks/#component-buildpacks">composite buildpack</a> and each step in a build is handled by one of its <a href="#components">components</a>. For a full set of configuration options and capabilities see the homepages for the component buildpacks.</p>
+<h2 id="about-the-jvm" class="markup-heading">
+    <a class="markup-heading__link" href="#about-the-jvm">
+        About the JVM
+    </a>
+</h2><p>The Java Buildpack uses the <a href="https://bell-sw.com/">BellSoft Liberica</a> implementations of the JRE and JDK. JVM installation is handled by the <a href="https://github.com/paketo-buildpacks/bellsoft-liberica">BellSoft Liberica Buildpack</a>. The JDK will be installed in the build container but only the JRE will be contributed to the application image.</p>
+<p>See the <a href="https://github.com/paketo-buildpacks/bellsoft-liberica">homepage</a> for the Bellsoft Liberica Buildpack for a full set of configuration options.</p>
+<h2 id="memory-calculator" class="markup-heading">
+    <a class="markup-heading__link" href="#memory-calculator">
+        Memory Calculator
+    </a>
+</h2><p>The Java Buildpack installs a component called the Memory Calculator which will configure JVM memory based on the resources available to the container at runtime. The calculated flags will be appended to <code>JAVA_TOOL_OPTIONS</code>.</p>
+<h2 id="spring-boot-applications" class="markup-heading">
+    <a class="markup-heading__link" href="#spring-boot-applications">
+        Spring Boot Applications
+    </a>
+</h2><p>If the application uses Spring Boot the <a href="https://github.com/paketo-buildpacks/spring-boot">Spring Boot Buildpack</a> will enhance the resulting image by adding additional metadata to the image config,
+applying Boot-specific performance optimizations, and enabling runtime auto-configuration.</p>
+<h3 id="additional-metadata" class="markup-heading">
+    <a class="markup-heading__link" href="#additional-metadata">
+        Additional Metadata
+    </a>
+</h3><p>The Spring Boot Buildpack adds the following additional image labels:</p>
+<ul>
+<li><code>org.opencontainers.image.title</code> - set to the value of <code>Implementation-Title</code> from  <code>MANIFEST.MF</code>.</li>
+<li><code>org.opencontainers.image.version</code> - set to the values of <code>Implementation-Version</code> from <code>MANIFEST.MF</code>.</li>
+<li><code>org.springframework.boot.version</code> - set to the value of <code>Spring-Boot-Version</code> from <code>MANIFEST.MF</code>.</li>
+<li><code>org.springframework.cloud.dataflow.spring-configuration-metadata.json</code> - containing [configuration metadata][spring boot configuration metadata].</li>
+<li><code>org.springframework.cloud.dataflow.spring-configuration-metadata.json</code> - containing <code>dataflow-configuration-metadata.properties</code>, if present.</li>
+</ul>
+<p>In addition, the buildpack will add an entry with name <code>dependencies</code> to the Bill-of-Materials listing the application dependencies.</p>
+<h3 id="optimizations" class="markup-heading">
+    <a class="markup-heading__link" href="#optimizations">
+        Optimizations
+    </a>
+</h3><p>The Spring Boot Buildpack can apply domain-specific knowledge to optimize the performance of Spring Boot applications. For example, if the buildpack detects that the application is a reactive web application the thread count will be reduced to <code>50</code> from a default of <code>250</code>.</p>
+<h2 id="components" class="markup-heading">
+    <a class="markup-heading__link" href="#components">
+        Components
+    </a>
+</h2><p>The following component buildpacks compose the Java Buildpack. Buildpacks are listed in the order they are executed.</p>
+<table>
+<thead>
+<tr>
+<th>Buildpack</th>
+<th>Required/Optional</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/paketo-buildpacks/ca-certificates">Paketo CA Certificates Buildpack</a></td>
+<td>Optional</td>
+<td>Adds CA certificates to the system truststore at build and runtime.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/paketo-buildpacks/bellsoft-liberica">Paketo BellSoft Liberica Buildpack</a></td>
+<td><strong>Required</strong></td>
+<td>Provides the JDK and/or JRE.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/paketo-buildpacks/gradle">Paketo Gradle Buildpack</a></td>
+<td>Optional</td>
+<td>Builds Gradle-based applications from source.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/paketo-buildpacks/leiningen">Paketo Leiningen Buildpack</a></td>
+<td>Optional</td>
+<td>Builds Leiningen-based applications from source.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/paketo-buildpacks/maven">Paketo Maven Buildpack</a></td>
+<td>Optional</td>
+<td>Builds Maven-based applications from source.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/paketo-buildpacks/sbt">Paketo SBT Buildpack</a></td>
+<td>Optional</td>
+<td>Builds SBT-based applications from source.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/paketo-buildpacks/executable-jar">Paketo Executable JAR Buildpack</a></td>
+<td>Optional</td>
+<td>Contributes a process Type that launches an executable JAR.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/paketo-buildpacks/apache-tomcat">Paketo Apache Tomcat Buildpack</a></td>
+<td>Optional</td>
+<td>Contributes Apache Tomcat and a process type that launches a WAR with Tomcat.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/paketo-buildpacks/dist-zip">Paketo DistZip Buildpack</a></td>
+<td>Optional</td>
+<td>Contributes a process type that launches a DistZip-style application.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/paketo-buildpacks/spring-boot">Paketo Spring Boot Buildpack</a></td>
+<td>Optional</td>
+<td>Contributes configuration and metadata to Spring Boot applications.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/paketo-buildpacks/procfile">Paketo Procfile Buildpack</a></td>
+<td>Optional</td>
+<td>Allows the application to define or redefine process types with a [Procfile][procfiles]</td>
+</tr>
+<tr>
+<td><a href="https://github.com/paketo-buildpacks/azure-application-insights">Paketo Azure Application Insights Buildpack</a></td>
+<td>Optional</td>
+<td>Contributes the Application Insights Agent and configures it to connect to the service.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/paketo-buildpacks/debug">Paketo Debug Buildpack</a></td>
+<td>Optional</td>
+<td>Configures debugging for JVM applications.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/paketo-buildpacks/google-stackdriver">Paketo Google Stackdriver Buildpack</a></td>
+<td>Optional</td>
+<td>Contributes Stackdriver agents and configures them to connect to the service.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/paketo-buildpacks/jmx">Paketo JMX Buildpack</a></td>
+<td>Optional</td>
+<td>Configures JMX for JVM applications.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/paketo-buildpacks/encrypt-at-rest">Paketo Encrypt At Rest Buildpack</a></td>
+<td>Optional</td>
+<td>Encrypts an application layer and contributes a profile script that decrypts it at launch time.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/paketo-buildpacks/environment-variables">Paketo Environment Variables Buildpack</a></td>
+<td>Optional</td>
+<td>Contributes arbitrary user-provided environment variables to the image.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/paketo-buildpacks/image-labels">Paketo Image Labels Buildpack</a></td>
+<td>Optional</td>
+<td>Contributes OCI-specific and arbitrary user-provided labels to the image.</td>
+</tr>
+</tbody>
+</table>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+
+            </div>
+            
+  <a href="http://github.com/paketo-buildpacks/paketo-website/edit/main/content/docs%5creference%5cjava-reference.md" target="_blank" class="github-edit" style="text-decoration:none">
+    <div class="github-edit__content">
+      <div class="github-edit__logo-container">
+        <img class="github-edit__logo" src="/images/github-mark.png">
+      </div>
+        <div class="github-edit__text">Edit</div>
+    </div>
+</a>
+
+            <p class="docs-mod-time"><strong>Last modified:</strong> September 9, 2021</p>
+        </div>
+        
+<div class="docs-body__table-of-contents-container docs-body__table-of-contents-container--desktop">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#about-the-jvm">About the JVM</a></li>
+    <li><a href="#memory-calculator">Memory Calculator</a></li>
+    <li><a href="#spring-boot-applications">Spring Boot Applications</a>
+      <ul>
+        <li><a href="#additional-metadata">Additional Metadata</a></li>
+        <li><a href="#optimizations">Optimizations</a></li>
+      </ul>
+    </li>
+    <li><a href="#components">Components</a></li>
+  </ul>
+</nav>
+</div>
+
+    </div>
+</div>
+
+
+    <footer class="footer text--light">
+    <div class="footer-social-links-container">
+        <a class="footer-social-link" href="https://twitter.com/Paketo_io">
+            <div class="footer-social-link__image-container">
+                <div class="logo">
+                    <img class="logo__image" src="/v2/images/logo-twitter.svg" alt="Blue Twitter bird logo">
+                </div>
+            </div>
+            <div class="text--light text--400">
+                Twitter
+            </div>
+        </a>
+        <a class="footer-social-link" href="https://slack.paketo.io/">
+            <div class="footer-social-link__image-container">
+                <div class="logo">
+                    <img class="logo__image" src="/v2/images/logo-slack.svg" alt="Slack logo">
+                </div>
+            </div>
+            <div class="text--light text--400">
+                Slack
+            </div>
+        </a>
+        <a class="footer-social-link" href="https://github.com/paketo-buildpacks">
+            <div class="footer-social-link__image-container">
+                <div class="logo logo--github">
+                    <img class="logo__image"  src="/v2/images/logo-github-cropped.svg" alt="GitHub Octocat logo"/>
+                </div>
+            </div>
+            <div class="text--light text--400">
+                GitHub
+            </div>
+        </a>
+    </div>
+    <div class="footer-privacy-policy">
+        <div class="footer-text--small">Paketo Buildpacks is a <a class="text--light" href="https://www.cloudfoundry.org/">Cloud Foundry</a> Project</div>
+        <img class="cloudfoundry-logo" src="/v2/images/logo-cloudfoundry-light.svg" alt="Cloud Foundry logo" />
+        <a class="footer-text--small text--light" href="https://www.linuxfoundation.org/privacy">Privacy Policy</a>
+    </div>
+</footer><script src="/unofficial-translations/paketo-website/js/main.7b2c859f76ebea65f7468883b2f720537f395fc48d504f5e3b4d33c389e860f2.js"></script>
+
+    <div id="footer-skip-link" class="screenreader-container">
+    <a href="#header-skip-link" class="screenreader-text">Skip to Header</a>
+</div>
+
+</body>
+
+</html>

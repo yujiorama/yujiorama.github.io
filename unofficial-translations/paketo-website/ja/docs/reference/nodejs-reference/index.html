@@ -1,0 +1,884 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Node.js Buildpack リファレンス - Paketo Buildpacks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1 viewport-fit=cover">
+
+
+
+
+<meta name="og:site_name" content="Paketo Buildpacks">
+<meta name="og:title" content="Node.js Buildpack リファレンス">
+<meta name="og:url" content="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/nodejs-reference/">
+<meta name="twitter:title" content="Paketo Buildpacks" />
+<meta name="twitter:url" content="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/nodejs-reference/" />
+<meta name="twitter:card" content="" />
+
+
+
+<link rel="stylesheet" href="/unofficial-translations/paketo-website/css/main.min.e65e899d7edbb046f43d58e402eca40ec1064082b810ea2ea4f62b1e70614850.css">
+
+</head>
+
+<body>
+    
+    <div id="header-skip-link" class="screenreader-container">
+    <a href="#title" class="screenreader-text">Skip to Content</a>
+</div>
+
+    
+
+
+
+
+<header class="header--narrow">
+    
+    <a class="paketo-p-logo" href="/">
+        <img class="paketo-p-logo__image" src="/v2/images/logo-paketo-p.svg" alt="Paketo Buildpacks Homepage">
+    </a>
+    
+    <div id="navigation" class="right-overlay">
+        <div class="nav-opener">
+            <span class="nav-opener__bar nav-opener__bar-top"></span>
+            <span class="nav-opener__bar nav-opener__bar-middle"></span>
+            <span class="nav-opener__bar nav-opener__bar-bottom"></span>
+        </div>
+        <div class="nav-container" id="nav-container">
+            <nav class="nav" id="nav-tray" >
+                <div class="nav__linkarea text--400">
+                    <a class="nav-link" href="/docs">docs</a>
+                    <a class="nav-link" href="/community">community</a>
+                    <a class="nav-link" href="https://blog.paketo.io">blog</a>
+                    <a class="nav-link" href="https://github.com/paketo-buildpacks">github</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="desktop-nav">
+        
+        
+        
+        <a class="nav-link nav-link--desktop  nav-link--desktop--active" href="/docs">docs</a>
+        
+        <a class="nav-link nav-link--desktop   " href="/community">community</a>
+        <a class="nav-link nav-link--desktop " href="https://blog.paketo.io">blog</a>
+        <a class="nav-link nav-link--desktop " href="https://github.com/paketo-buildpacks">github</a>
+    </div>
+</header>
+
+
+    <div class="docs">
+    <div class="docs-sidebar">
+        
+<input type="text" id="docs-search" class="algolia-autocomplete__search-bar" placeholder="Search docs..." data-api-key="bf2d426728685665ceaf22fac947f10f" data-index="paketo"/>
+<nav class="docs-menu">
+    <ul class="docs-menu__top-level-list">
+        
+        
+            
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Paketo Buildpacks 入門</span>
+            </a>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header ">
+                
+                <span>使い方</span>
+                <button class="expander-button  docs-menu__expander-button">
+                    <svg class="expander-button__triangle " width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list ">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/dotnet-core/" class="docs-menu__item docs-menu__link ">
+                
+                <span>.NET Core</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/go/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Go</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/web-servers/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Web Servers</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/java/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/nodejs/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Node.js</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/python/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Python</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/php/" class="docs-menu__item docs-menu__link ">
+                
+                <span>PHP</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/ruby/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Ruby</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/create-paketo-buildpack/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Paketo Buildpack を作成する</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/bom/" class="docs-menu__item docs-menu__link ">
+                
+                <span>部品表（Bill of Materials）へアクセスする</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header ">
+                
+                <span>考え方</span>
+                <button class="expander-button  docs-menu__expander-button">
+                    <svg class="expander-button__triangle " width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list ">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/buildpacks/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Buildpacks</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/builders/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Builders</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/stacks/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Stacks</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/bom/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Bill of Materials</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header docs-menu__section-header--opened">
+                
+                <span>リファレンス</span>
+                <button class="expander-button expander-button--opened docs-menu__expander-button">
+                    <svg class="expander-button__triangle expander-button__triangle--opened" width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list docs-menu__children-list--opened">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/httpd-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>HTTPD Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/configuration/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Paketo Buildpacks の設定</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/dotnet-core-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>.NET Core Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/go-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Go Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/java-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/java-native-image-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java Native Image Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/nginx-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>NGINX Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/nodejs-reference/" class="docs-menu__item docs-menu__link docs-menu__link--active">
+                
+                <span>Node.js Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/php-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>PHP Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/python-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Python Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/ruby-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Ruby Buildpack</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+    </ul>
+</nav>
+
+
+
+    </div>
+    <div class="docs-body">
+        <div class="docs-body__container">
+            
+  <a href="http://github.com/paketo-buildpacks/paketo-website/edit/main/content/docs%5creference%5cnodejs-reference.ja.md" target="_blank" class="github-edit" style="text-decoration:none">
+    <div class="github-edit__content">
+      <div class="github-edit__logo-container">
+        <img class="github-edit__logo" src="/images/github-mark.png">
+      </div>
+        <div class="github-edit__text">Edit</div>
+    </div>
+</a>
+
+            <h1 id="title">Node.js Buildpack リファレンス</h1>
+            
+<div class="docs-body__table-of-contents-container docs-body__table-of-contents-container--mobile">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#対応している依存対象">対応している依存対象</a></li>
+    <li><a href="#buildpack-の設定する環境変数">Buildpack の設定する環境変数</a>
+      <ul>
+        <li><a href="#memory_available">MEMORY_AVAILABLE</a></li>
+        <li><a href="#node_env">NODE_ENV</a></li>
+        <li><a href="#node_home">NODE_HOME</a></li>
+        <li><a href="#node_verbose">NODE_VERBOSE</a></li>
+        <li><a href="#npm_config_loglevel">NPM_CONFIG_LOGLEVEL</a></li>
+        <li><a href="#npm_config_production">NPM_CONFIG_PRODUCTION</a></li>
+        <li><a href="#path">PATH</a></li>
+      </ul>
+    </li>
+    <li><a href="#npm-によるパッケージ管理">NPM によるパッケージ管理</a>
+      <ul>
+        <li><a href="#npm-によるパッケージのインストール">NPM によるパッケージのインストール</a></li>
+        <li><a href="#node-モジュールレイヤーを再利用するか判断する">Node モジュールレイヤーを再利用するか判断する</a></li>
+      </ul>
+    </li>
+    <li><a href="#yarn-によるパッケージ管理">Yarn によるパッケージ管理</a>
+      <ul>
+        <li><a href="#yarn-によるパッケージのインストール">Yarn によるパッケージのインストール</a></li>
+        <li><a href="#yarn-でパッケージ管理する場合の起動コマンド">Yarn でパッケージ管理する場合の起動コマンド</a></li>
+      </ul>
+    </li>
+    <li><a href="#起動コマンドを決定する">起動コマンドを決定する</a></li>
+    <li><a href="#パッケージ管理を使わないプロジェクト">パッケージ管理を使わないプロジェクト</a>
+      <ul>
+        <li><a href="#起動コマンド">起動コマンド</a></li>
+      </ul>
+    </li>
+    <li><a href="#部品表bombill-of-materials">部品表（BOM：Bill of Materials）</a></li>
+  </ul>
+</nav>
+</div>
+
+            <div class="docs-body__markdown">
+                <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>このドキュメントでは <a href="https://github.com/paketo-buildpacks/nodejs">Paketo Node.js Buildpack</a> の振る舞いや設定項目について詳しく説明します。
+一般的な使用例については <a href="/docs/howto/nodejs">Node.js のチュートリアル</a> を参照してください。</p>
+<h2 id="対応している依存対象" class="markup-heading">
+    <a class="markup-heading__link" href="#%e5%af%be%e5%bf%9c%e3%81%97%e3%81%a6%e3%81%84%e3%82%8b%e4%be%9d%e5%ad%98%e5%af%be%e8%b1%a1">
+        対応している依存対象
+    </a>
+</h2><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Node.js Buildpack は Node.js ランタイムの複数のバージョンに対応しています。
+具体的なバージョンは <a href="https://github.com/paketo-buildpacks/nodejs/releases">Buildpack のリリースノート</a> で確認してください。</p>
+<h2 id="buildpack-の設定する環境変数" class="markup-heading">
+    <a class="markup-heading__link" href="#buildpack-%e3%81%ae%e8%a8%ad%e5%ae%9a%e3%81%99%e3%82%8b%e7%92%b0%e5%a2%83%e5%a4%89%e6%95%b0">
+        Buildpack の設定する環境変数
+    </a>
+</h2><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Node.js Buildpack はアプリケーションライフサイクルのビルドフェーズや起動フェーズでいくつかの環境変数を設定します。
+このセクションではアプリケーションに影響するであろう環境変数について説明します。</p>
+<h3 id="memory_available" class="markup-heading">
+    <a class="markup-heading__link" href="#memory_available">
+        MEMORY_AVAILABLE
+    </a>
+</h3><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>環境変数 <code>MEMORY_AVAILABLE</code> にはアプリケーションから利用できるメモリサイズの合計値を設定します。
+Node.js Buildpack は OS の <code>/sys/fs/cgroup/memory/memory.limit_in_bytes</code> を参照して値を計算します。</p>
+<ul>
+<li>Set by: <code>profile.d</code></li>
+<li>Phases: <code>launch</code></li>
+<li>Value: non-negative integer</li>
+</ul>
+<h3 id="node_env" class="markup-heading">
+    <a class="markup-heading__link" href="#node_env">
+        NODE_ENV
+    </a>
+</h3><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>環境変数 <code>NODE_ENV</code> にはアプリケーションを実行するときの環境種類を設定します。</p>
+<ul>
+<li>Set by: <code>node-engine</code> buildpack</li>
+<li>Phases: <code>build</code></li>
+<li>Value: production</li>
+</ul>
+<h3 id="node_home" class="markup-heading">
+    <a class="markup-heading__link" href="#node_home">
+        NODE_HOME
+    </a>
+</h3><!-- raw HTML omitted -->
+<p>環境変数 <code>NODE_HOME</code> には Node.js をインストールしたディレクトリのパスを設定します。</p>
+<ul>
+<li>Set by: <code>node-engine</code> buildpack</li>
+<li>Phases: <code>build</code></li>
+<li>Value: path to the <code>node</code> installation</li>
+</ul>
+<h3 id="node_verbose" class="markup-heading">
+    <a class="markup-heading__link" href="#node_verbose">
+        NODE_VERBOSE
+    </a>
+</h3><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>環境変数 <code>NODE_VERBOSE</code> には NPM が依存ぱっけー所をインストールするときに出力するログを調整する値を設定します。</p>
+<ul>
+<li>Set by: <code>node-engine</code> buildpack</li>
+<li>Phases: <code>build</code></li>
+<li>Value: false</li>
+</ul>
+<h3 id="npm_config_loglevel" class="markup-heading">
+    <a class="markup-heading__link" href="#npm_config_loglevel">
+        NPM_CONFIG_LOGLEVEL
+    </a>
+</h3><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>環境変数 <code>NPM_CONFIG_LOGLEVEL</code> には NPM のログ出力レベルを調整する値を設定します。</p>
+<ul>
+<li>Set by: <code>npm-install</code> buildpack</li>
+<li>Phases: <code>build</code></li>
+<li>Value: &ldquo;error&rdquo;</li>
+</ul>
+<h3 id="npm_config_production" class="markup-heading">
+    <a class="markup-heading__link" href="#npm_config_production">
+        NPM_CONFIG_PRODUCTION
+    </a>
+</h3><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>環境変数 <code>NPM_CONFIG_PRODUCTION</code> には NPM が production の依存ライブラリだけをインストールするかどうかを制御する値を設定します。</p>
+<ul>
+<li>Set by: <code>npm-install</code> buildpack</li>
+<li>Phases: <code>build</code></li>
+<li>Value: false</li>
+</ul>
+<h3 id="path" class="markup-heading">
+    <a class="markup-heading__link" href="#path">
+        PATH
+    </a>
+</h3><!-- raw HTML omitted -->
+<p>環境変数 <code>PATH</code> には <code>node_modules/.bin</code> を追加します。</p>
+<ul>
+<li>Set by: <code>yarn-install</code> or <code>npm-install</code> buildpacks</li>
+<li>Phases: <code>build</code></li>
+<li>Value: path to the <code>node_modules/.bin</code> directory</li>
+</ul>
+<h2 id="npm-によるパッケージ管理" class="markup-heading">
+    <a class="markup-heading__link" href="#npm-%e3%81%ab%e3%82%88%e3%82%8b%e3%83%91%e3%83%83%e3%82%b1%e3%83%bc%e3%82%b8%e7%ae%a1%e7%90%86">
+        NPM によるパッケージ管理
+    </a>
+</h2><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>多くの Node.js アプリケーションで、一般的なタスクや振る舞いを実現するためにサードパーティのライブラリを使用しています。
+NPM は、Node.js Buildpack が完全に対応している、サードパーティのライブラリを管理する方法の1つです。
+Buildpack は、アプリケーションのソースコードに <code>package.json</code> があれば、NPM によるサードパーティライブラリのインストールを試みます。
+このセクションでは Buildpack が NPM によるインストールをどのように実行するのか説明します。</p>
+<h3 id="npm-によるパッケージのインストール" class="markup-heading">
+    <a class="markup-heading__link" href="#npm-%e3%81%ab%e3%82%88%e3%82%8b%e3%83%91%e3%83%83%e3%82%b1%e3%83%bc%e3%82%b8%e3%81%ae%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab">
+        NPM によるパッケージのインストール
+    </a>
+</h3><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>NPM には依存パッケージをインストールするためのさまざまな方法が用意されています。
+Node.js Buildpack は <a href="https://docs.npmjs.com/cli-commands/install"><code>npm install</code></a> や <a href="https://docs.npmjs.com/cli-commands/rebuild.html"><code>npm rebuild</code></a> や <a href="https://docs.npmjs.com/cli-commands/ci.html"><code>npm ci</code></a> を実行します。
+実行するコマンドは、ソースコードに含まれる特定のファイルやディレクトリから判断します。
+また、実行するコマンドに基づいて、アプリケーションレイヤーを再利用するか、それとも再作成するかを判断します。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>次の表は Node.js Buildpack が NPM で依存パッケージをインストールする方法を判断する条件です。
+アプリケーションのソースコードに存在するファイルやディレクトリに応じて、必要な依存パッケージを正確に再現できるインストール方法を判断します。</p>
+<table>
+<thead>
+<tr>
+<th><code>package-lock.json</code></th>
+<th><code>node_modules</code></th>
+<th><code>npm-cache</code></th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td><code>npm install</code></td>
+</tr>
+<tr>
+<td>X</td>
+<td>X</td>
+<td>✓</td>
+<td><code>npm install</code></td>
+</tr>
+<tr>
+<td>X</td>
+<td>✓</td>
+<td>X</td>
+<td><code>npm rebuild</code></td>
+</tr>
+<tr>
+<td>X</td>
+<td>✓</td>
+<td>✓</td>
+<td><code>npm rebuild</code></td>
+</tr>
+<tr>
+<td>✓</td>
+<td>X</td>
+<td>X</td>
+<td><code>npm ci</code></td>
+</tr>
+<tr>
+<td>✓</td>
+<td>X</td>
+<td>✓</td>
+<td><code>npm ci</code></td>
+</tr>
+<tr>
+<td>✓</td>
+<td>✓</td>
+<td>X</td>
+<td><code>npm rebuild</code></td>
+</tr>
+<tr>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td><code>npm ci</code></td>
+</tr>
+</tbody>
+</table>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>このセクションの残りでは、前の表に並んでいるファイルについて説明し、意図したとおりの結果にする方法を説明します。</p>
+<h4 id="package-lockjson" class="markup-heading">
+    <a class="markup-heading__link" href="#package-lockjson">
+        package-lock.json
+    </a>
+</h4><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><code>package-lock.json</code> は <code>npm install</code> コマンドを実行すると生成されるファイルです。
+詳しくは <a href="https://docs.npmjs.com/files/package-lock.json">Node のドキュメント</a> を参照してください。</p>
+<h4 id="node_modules" class="markup-heading">
+    <a class="markup-heading__link" href="#node_modules">
+        node_modules
+    </a>
+</h4><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><code>node_modules</code> ディレクトリには、 <code>npm install</code> でインストールした全てのパッケージの複製が存在します。
+詳しくは <a href="https://docs.npmjs.com/files/folders.html#node-modules">Node Mudules</a> で <em>rpm-folders</em> のセクションを参照してください。</p>
+<h4 id="npm-cache" class="markup-heading">
+    <a class="markup-heading__link" href="#npm-cache">
+        npm-cache
+    </a>
+</h4><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><code>npm-cache</code> ディレクトリには、パッケージに関する全ての情報を、コンテンツをアドレス指定できるデータとして格納します。
+加えて、キャッシュが利用できる場合、アプリケーションをビルドするために必要な全ての依存パッケージをオフライン環境で利用できることになります。</p>
+<!-- raw HTML omitted -->
+<p><code>npm-cache</code> ディレクトリへデータを追加するには次のように実行します。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre class="copyable"><code class="copyable__code">cd &lt;your source code directory&gt;
+npm ci --cache npm-cache
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>NPM キャッシュについて詳しくは <a href="https://docs.npmjs.com/cli/cache">NPM キャッシュのドキュメント</a> を参照してください。</p>
+<h3 id="node-モジュールレイヤーを再利用するか判断する" class="markup-heading">
+    <a class="markup-heading__link" href="#node-%e3%83%a2%e3%82%b8%e3%83%a5%e3%83%bc%e3%83%ab%e3%83%ac%e3%82%a4%e3%83%a4%e3%83%bc%e3%82%92%e5%86%8d%e5%88%a9%e7%94%a8%e3%81%99%e3%82%8b%e3%81%8b%e5%88%a4%e6%96%ad%e3%81%99%e3%82%8b">
+        Node モジュールレイヤーを再利用するか判断する
+    </a>
+</h3><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>アプリケーションのビルド時間を短縮するため、Node.js Buildpack には先に実行したビルドの結果を再利用する方法があります。
+依存パッケージのインストール方法に応じて、Buildpack が先に実行したビルドの結果を再利用できるか判断する方法は異なります。</p>
+<!-- raw HTML omitted -->
+<p><code>npm install</code> の場合、先に実行したビルドで作成した <code>node_modules</code> ディレクトリは再利用できません。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><code>npm rebuild</code> の場合、アプリケーションのソースコードに含まれる <code>node_modules</code> ディレクトリが、先に実行したビルドで変更されていなければ再利用できます。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><code>npm ci</code> の場合、アプリケーションのソースコードに含まれる <code>package-lock.json</code> が、先に実行したビルドで変更されていなければ、<code>node_modules</code> ディレクトリを再利用できます。</p>
+<h2 id="yarn-によるパッケージ管理" class="markup-heading">
+    <a class="markup-heading__link" href="#yarn-%e3%81%ab%e3%82%88%e3%82%8b%e3%83%91%e3%83%83%e3%82%b1%e3%83%bc%e3%82%b8%e7%ae%a1%e7%90%86">
+        Yarn によるパッケージ管理
+    </a>
+</h2><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>多くの Node.js アプリケーションで、一般的なタスクや振る舞いを実現するためにサードパーティのライブラリを使用しています。
+Yarn は、Node.js Buildpack が対応している、サードパーティのライブラリを管理する方法の1つです。
+Buildpack は、アプリケーションのソースコードに <code>package.json</code> と <code>yarn.lock</code> があれば、Yarn によるサードパーティライブラリのインストールを試みます。
+このセクションでは Buildpack が Yarn によるインストールをどのように実行するのか説明します。</p>
+<h3 id="yarn-によるパッケージのインストール" class="markup-heading">
+    <a class="markup-heading__link" href="#yarn-%e3%81%ab%e3%82%88%e3%82%8b%e3%83%91%e3%83%83%e3%82%b1%e3%83%bc%e3%82%b8%e3%81%ae%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab">
+        Yarn によるパッケージのインストール
+    </a>
+</h3><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Node.js Buildpack は <code>yarn install</code> あるいは <code>yarn.check</code> でサードパーティの依存パッケージがインストールできていることを保証します。
+<code>yarn.lock</code> ファイルには Yarn の管理する依存パッケージに関する完全な情報が格納されています。
+詳しくは <a href="https://yarnpkg.com/lang/en/docs/yarn-lock/">Yarn のドキュメント</a> を参照してください。</p>
+<h3 id="yarn-でパッケージ管理する場合の起動コマンド" class="markup-heading">
+    <a class="markup-heading__link" href="#yarn-%e3%81%a7%e3%83%91%e3%83%83%e3%82%b1%e3%83%bc%e3%82%b8%e7%ae%a1%e7%90%86%e3%81%99%e3%82%8b%e5%a0%b4%e5%90%88%e3%81%ae%e8%b5%b7%e5%8b%95%e3%82%b3%e3%83%9e%e3%83%b3%e3%83%89">
+        Yarn でパッケージ管理する場合の起動コマンド
+    </a>
+</h3><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Node.js Buildpack はビルド処理の一部としてコンテナイメージの起動コマンドを生成します。
+起動コマンドはアプリケーションのパッケージ管理の方法により異なります。
+Node.js Buildpack が <code>yarn</code> を使用するときは、起動コマンドに <code>yarn start</code> を設定します。</p>
+<h2 id="起動コマンドを決定する" class="markup-heading">
+    <a class="markup-heading__link" href="#%e8%b5%b7%e5%8b%95%e3%82%b3%e3%83%9e%e3%83%b3%e3%83%89%e3%82%92%e6%b1%ba%e5%ae%9a%e3%81%99%e3%82%8b">
+        起動コマンドを決定する
+    </a>
+</h2><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Node.js Buildpack はビルド処理の一部としてコンテナイメージの起動コマンドを生成します。
+起動コマンドはアプリケーションのパッケージ管理の方法により異なります。
+Node.js Buildpack が <code>npm</code> か <code>yarn</code> を使用するときは、<code>package.json</code> の内容から生成した起動コマンドを設定します。</p>
+<h2 id="パッケージ管理を使わないプロジェクト" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%83%91%e3%83%83%e3%82%b1%e3%83%bc%e3%82%b8%e7%ae%a1%e7%90%86%e3%82%92%e4%bd%bf%e3%82%8f%e3%81%aa%e3%81%84%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88">
+        パッケージ管理を使わないプロジェクト
+    </a>
+</h2><!-- raw HTML omitted -->
+<p>Node.js Buildpack はサードパーティパッケージを使わない、単純なアプリケーションにも対応しています。</p>
+<h3 id="起動コマンド" class="markup-heading">
+    <a class="markup-heading__link" href="#%e8%b5%b7%e5%8b%95%e3%82%b3%e3%83%9e%e3%83%b3%e3%83%89">
+        起動コマンド
+    </a>
+</h3><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Node.js Buildpack はパッケージ管理ツールを使っていないアプリケーションについて、一般的なエントリポイントとなるファイルを探索します。</p>
+<ul>
+<li><code>server.js</code></li>
+<li><code>app.js</code></li>
+<li><code>main.js</code></li>
+<li><code>index.js</code></li>
+</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Buildpack はこれらのファイルを発見すると、起動コマンドに <code>node &lt;entrypoint filename&gt;</code> を設定します。</p>
+<h2 id="部品表bombill-of-materials" class="markup-heading">
+    <a class="markup-heading__link" href="#%e9%83%a8%e5%93%81%e8%a1%a8bombill-of-materials">
+        部品表（BOM：Bill of Materials）
+    </a>
+</h2><!-- raw HTML omitted -->
+<p>Node.js Buildpack は <a href="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/concepts/bom/">BOM</a> に完全対応しています。
+Node.js アプリケーションの BOM には次のような内容が含まれます。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ul>
+<li><a href="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/concepts/bom/#buildpack-entries">Buildpack 要素</a> - <code>node engine</code> - Node.js のランタイムに関する情報です</li>
+<li><a href="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/concepts/bom/#language-module-entries">言語モジュール要素</a> - <code>node module</code> - <code>node_modules</code> に展開した依存パッケージに関する情報です</li>
+</ul>
+<!-- raw HTML omitted -->
+<p><code>node module</code> 要素は最終的なコンテナイメージに含まれる依存パッケージの全体像を提供します。
+<code>purl</code> フィールドを見れば、どの NPM レジストリから取得できるのか分かります。
+詳しくは <a href="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/bom/">部品表（Bill of Materials）へアクセスする</a> を参照してください。</p>
+
+            </div>
+            
+  <a href="http://github.com/paketo-buildpacks/paketo-website/edit/main/content/docs%5creference%5cnodejs-reference.ja.md" target="_blank" class="github-edit" style="text-decoration:none">
+    <div class="github-edit__content">
+      <div class="github-edit__logo-container">
+        <img class="github-edit__logo" src="/images/github-mark.png">
+      </div>
+        <div class="github-edit__text">Edit</div>
+    </div>
+</a>
+
+            <p class="docs-mod-time"><strong>Last modified:</strong> September 15, 2021</p>
+        </div>
+        
+<div class="docs-body__table-of-contents-container docs-body__table-of-contents-container--desktop">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#対応している依存対象">対応している依存対象</a></li>
+    <li><a href="#buildpack-の設定する環境変数">Buildpack の設定する環境変数</a>
+      <ul>
+        <li><a href="#memory_available">MEMORY_AVAILABLE</a></li>
+        <li><a href="#node_env">NODE_ENV</a></li>
+        <li><a href="#node_home">NODE_HOME</a></li>
+        <li><a href="#node_verbose">NODE_VERBOSE</a></li>
+        <li><a href="#npm_config_loglevel">NPM_CONFIG_LOGLEVEL</a></li>
+        <li><a href="#npm_config_production">NPM_CONFIG_PRODUCTION</a></li>
+        <li><a href="#path">PATH</a></li>
+      </ul>
+    </li>
+    <li><a href="#npm-によるパッケージ管理">NPM によるパッケージ管理</a>
+      <ul>
+        <li><a href="#npm-によるパッケージのインストール">NPM によるパッケージのインストール</a></li>
+        <li><a href="#node-モジュールレイヤーを再利用するか判断する">Node モジュールレイヤーを再利用するか判断する</a></li>
+      </ul>
+    </li>
+    <li><a href="#yarn-によるパッケージ管理">Yarn によるパッケージ管理</a>
+      <ul>
+        <li><a href="#yarn-によるパッケージのインストール">Yarn によるパッケージのインストール</a></li>
+        <li><a href="#yarn-でパッケージ管理する場合の起動コマンド">Yarn でパッケージ管理する場合の起動コマンド</a></li>
+      </ul>
+    </li>
+    <li><a href="#起動コマンドを決定する">起動コマンドを決定する</a></li>
+    <li><a href="#パッケージ管理を使わないプロジェクト">パッケージ管理を使わないプロジェクト</a>
+      <ul>
+        <li><a href="#起動コマンド">起動コマンド</a></li>
+      </ul>
+    </li>
+    <li><a href="#部品表bombill-of-materials">部品表（BOM：Bill of Materials）</a></li>
+  </ul>
+</nav>
+</div>
+
+    </div>
+</div>
+
+
+    <footer class="footer text--light">
+    <div class="footer-social-links-container">
+        <a class="footer-social-link" href="https://twitter.com/Paketo_io">
+            <div class="footer-social-link__image-container">
+                <div class="logo">
+                    <img class="logo__image" src="/v2/images/logo-twitter.svg" alt="Blue Twitter bird logo">
+                </div>
+            </div>
+            <div class="text--light text--400">
+                Twitter
+            </div>
+        </a>
+        <a class="footer-social-link" href="https://slack.paketo.io/">
+            <div class="footer-social-link__image-container">
+                <div class="logo">
+                    <img class="logo__image" src="/v2/images/logo-slack.svg" alt="Slack logo">
+                </div>
+            </div>
+            <div class="text--light text--400">
+                Slack
+            </div>
+        </a>
+        <a class="footer-social-link" href="https://github.com/paketo-buildpacks">
+            <div class="footer-social-link__image-container">
+                <div class="logo logo--github">
+                    <img class="logo__image"  src="/v2/images/logo-github-cropped.svg" alt="GitHub Octocat logo"/>
+                </div>
+            </div>
+            <div class="text--light text--400">
+                GitHub
+            </div>
+        </a>
+    </div>
+    <div class="footer-privacy-policy">
+        <div class="footer-text--small">Paketo Buildpacks is a <a class="text--light" href="https://www.cloudfoundry.org/">Cloud Foundry</a> Project</div>
+        <img class="cloudfoundry-logo" src="/v2/images/logo-cloudfoundry-light.svg" alt="Cloud Foundry logo" />
+        <a class="footer-text--small text--light" href="https://www.linuxfoundation.org/privacy">Privacy Policy</a>
+    </div>
+</footer><script src="/unofficial-translations/paketo-website/js/main.7b2c859f76ebea65f7468883b2f720537f395fc48d504f5e3b4d33c389e860f2.js"></script>
+
+    <div id="footer-skip-link" class="screenreader-container">
+    <a href="#header-skip-link" class="screenreader-text">Skip to Header</a>
+</div>
+
+</body>
+
+</html>

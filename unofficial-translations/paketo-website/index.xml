@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Paketo Buildpacks</title>
+    <link>https://yujiorama.github.io/unofficial-translations/paketo-website/</link>
+    <description>Recent content on Paketo Buildpacks</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://yujiorama.github.io/unofficial-translations/paketo-website/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configuring Paketo Buildpacks</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/configuration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/configuration/</guid>
+      <description>About the Examples  Configuration examples will use the Paketo sample applications.
+Examples assume that the root of this repository is the working directory: git clone https://github.com/paketo-buildpacks/samples cd samples Copied! The pack CLI is used throughout the examples. pack is just one of several Cloud Native Buildpack platforms than can execute builds with Paketo Buildpacks.
+Examples assume that the Paketo Base builder is the default builder: pack config default-builder paketobuildpacks/builder:base Copied!</description>
+    </item>
+    
+    <item>
+      <title>HTTPD Buildpack Reference</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/httpd-reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/httpd-reference/</guid>
+      <description>This reference documentation offers an in-depth description of the behavior and configuration options of the Paketo HTTPD Buildpack. For explanations of how to use the buildpack for several common use-cases, see the Paketo HTTPD Buildpack How To documentation.
+The HTTPD Paketo Buildpack supports the installation of the Apache HTTP Server binary distribution onto the $PATH inside a container. This makes it available to subsequent buildpacks.
+Supported Dependencies  The HTTPD Paketo Buildpack supports several versions of Apache HTTP Server.</description>
+    </item>
+    
+    <item>
+      <title>How to Build .NET Core Apps with Paketo Buildpacks</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/howto/dotnet-core/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/howto/dotnet-core/</guid>
+      <description>This documentation explains how to use the Paketo .NET Core Buildpack to build applications for several common use-cases. For more in-depth description of the buildpack&amp;rsquo;s behavior and configuration see the Paketo .NET Core Buildpack Reference documentation.
+Build a Sample App  To build your app locally with the buildpack using the pack CLI, run
+git clone https://github.com/paketo-buildpacks/samples cd samples/dotnet-core/aspnet pack build my-app --buildpack gcr.io/paketo-buildpacks/dotnet-core \ --builder paketobuildpacks/builder:base Copied! See samples for how to run the app.</description>
+    </item>
+    
+    <item>
+      <title>How to Build Go Apps with Paketo Buildpacks</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/howto/go/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/howto/go/</guid>
+      <description>This documentation explains how to use the Paketo Go Buildpack to build applications for several common use-cases. For more in-depth description of the buildpack&amp;rsquo;s behavior and configuration see the Paketo Go Buildpack Reference documentation.
+Build a Sample Go Application  You can quickly build a sample Go app into a runnable OCI image on your local machine with Paketo buildpacks.
+Prerequisites
+ docker CLI pack CLI    Clone the Paketo samples and navigate to a Go sample app.</description>
+    </item>
+    
+    <item>
+      <title>How to Build Web Servers with Paketo Buildpacks</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/howto/web-servers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/howto/web-servers/</guid>
+      <description>This documentation explains how to use Paketo buildpacks to build applications that run web servers like HTTPD and NGINX. These docs focus on explaining common user workflows. For more in-depth description of the buildpacks&#39; behavior and configuration, see the reference documentation for each web server buildpack.
+HTTPD  This documentation explains how to use the Paketo HTTPD Buildpack to build applications for several common use-cases. For more in-depth description of the buildpack&amp;rsquo;s behavior and configuration see the Paketo HTTPD Buildpack Reference documentation.</description>
+    </item>
+    
+    <item>
+      <title>How to Build Java Apps with Paketo Buildpacks</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/howto/java/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/howto/java/</guid>
+      <description>This documentation explains how to use the Paketo buildpacks to build Java applications for several common use-cases. For more in-depth description of the buildpacks&#39; behavior and configuration see the Paketo Java Buildpack and Paketo Java Native Image Buildpack reference documentation.
+About the Examples  All Java Buildpack examples will use the Paketo sample applications.
+Examples assume that the root of this repository is the working directory: git clone https://github.com/paketo-buildpacks/samples cd samples Copied!</description>
+    </item>
+    
+    <item>
+      <title>How to Build Node.js Apps with Paketo Buildpacks</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/howto/nodejs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/howto/nodejs/</guid>
+      <description>This documentation explains how to use the Paketo Node.js Buildpack to build applications for several common use-cases. For more in-depth description of the buildpack&amp;rsquo;s behavior and configuration see the Node.js Buildpack Reference documentation.
+Build a Sample App  To build a sample app locally with this buildpack using the pack CLI, run
+git clone https://github.com/paketo-buildpacks/samples cd samples/nodejs/npm pack build my-app --buildpack gcr.io/paketo-buildpacks/nodejs \ --builder paketobuildpacks/builder:base Copied! See samples for how to run the app.</description>
+    </item>
+    
+    <item>
+      <title>How to Build Python Apps with Paketo Buildpacks</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/howto/python/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/howto/python/</guid>
+      <description>This documentation explains how to use the Paketo Python Buildpack to build applications for several common use-cases. For more in-depth description of the buildpack&amp;rsquo;s behavior and configuration see the Paketo Python Buildpack Reference documentation.
+Build a Sample App  To build a sample app locally with this buildpack using the pack CLI, run
+git clone https://github.com/paketo-buildpacks/python cd samples/python/pip pack build my-app --buildpack gcr.io/paketo-buildpacks/python \ --builder paketobuildpacks/builder:base Copied! See samples for how to run the app.</description>
+    </item>
+    
+    <item>
+      <title>How to Build PHP Apps with Paketo Buildpacks</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/howto/php/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/howto/php/</guid>
+      <description>This documentation explains how to use the Paketo PHP Buildpack to build applications for several common use-cases. For more in-depth description of the buildpack&amp;rsquo;s behavior and configuration see the Paketo PHP Buildpack Reference documentation.
+Build a Sample App  To build a sample app locally with this CNB using the pack CLI, run
+git clone https://github.com/paketo-buildpacks/samples cd samples/php/webserver pack build my-app --buildpack gcr.io/paketo-buildpacks/php \ --builder paketobuildpacks/builder:full Copied! See samples for how to run the app.</description>
+    </item>
+    
+    <item>
+      <title>How to Build Ruby Apps with Paketo Buildpacks</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/howto/ruby/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/howto/ruby/</guid>
+      <description>This documentation explains how to use the Paketo Ruby Buildpack to build applications for several common use-cases. For more in-depth description of the buildpack&amp;rsquo;s behavior and configuration see the Paketo Ruby Buildpack Reference documentation.
+Build a Sample App  To build a sample app locally with this buildpack using the pack CLI, run
+git clone &amp;lt;https://github.com/paketo-buildpacks/samples&amp;gt; cd samples/ruby/puma pack build my-app --buildpack gcr.io/paketo-buildpacks/ruby \ --builder paketobuildpacks/builder:base Copied! See samples for how to run the app.</description>
+    </item>
+    
+    <item>
+      <title>Create a Paketo Buildpack</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/howto/create-paketo-buildpack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/howto/create-paketo-buildpack/</guid>
+      <description>If the entire Cloud Native Buildpack experience is new to you, you may want to stop and take some time to read about authoring a a Cloud Native Buildpack (CNB). Packit is a Go library that is an abstraction that conforms to the CNB specification that takes a minimal approach in terms of the features that are implemented giving a lot of fine control to the buildpack author.
+This tutorial&amp;rsquo;s goal is to take you from nothing to a buildpack that puts a dependency on the filesystem as fast as possible, so with that let&amp;rsquo;s get started!</description>
+    </item>
+    
+    <item>
+      <title>How to Access the Bill of Materials</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/howto/bom/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/howto/bom/</guid>
+      <description>This documentation explains how to access the bill of materials (BOM) on an app image built using Paketo buildpacks. For more in-depth field definitions and details check out the bill of materials concept page.
+Access the Bill of Materials on a Sample Node Application  You can access the bill of materials in the metadata of any app image created with Paketo buildpacks.
+  Follow the Node.js Getting Started tutorial to build the Node.</description>
+    </item>
+    
+    <item>
+      <title>Buildpacks</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/concepts/buildpacks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/concepts/buildpacks/</guid>
+      <description>In the Getting Started tutorial, you ran a pack build command to build a sample app. This resulted in some output similar to this block:
+... ===&amp;gt; DETECTING paketo-buildpacks/node-engine 0.1.1 paketo-buildpacks/npm-install 0.2.0 paketo-buildpacks/npm-start 0.0.2 ... ===&amp;gt; BUILDING Paketo Node Engine Buildpack 0.1.1 ... Paketo NPM Install Buildpack 0.2.0 ... Paketo NPM Start Buildpack 0.0.2 ... In this section, we will make sense of this output and explain how the buildpacks detect what dependencies are needed by your app to build it into a runnable app image.</description>
+    </item>
+    
+    <item>
+      <title>Builders</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/concepts/builders/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/concepts/builders/</guid>
+      <description>In the Getting Started tutorial, you used the pack CLI and the base builder to create a runnable image with your application. This section explains what builders are and what builders are released by the Paketo project.
+What is a builder?  A builder is an image that contains three components:
+ a set of buildpacks, which provide your app&amp;rsquo;s dependencies a stack, which provides the OS layer for your app image the CNB lifecycle, which puts everything together to produce your final app image  For more information about builders, see buildpacks.</description>
+    </item>
+    
+    <item>
+      <title>Stacks</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/concepts/stacks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/concepts/stacks/</guid>
+      <description>In the Getting Started tutorial, you used the Paketo builder to build a Node.js app. One of the core pieces to Buildpacks and Builders are Stack Images. Stacks provide the buildpack lifecycle with build-time and run-time environments in the form of images.
+What is a stack?  A stack consists of two images:
+ build image: the environment in which your app is built run image: the OS layer for your app image  For more information about stacks, see buildpacks.</description>
+    </item>
+    
+    <item>
+      <title>Bill of Materials</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/concepts/bom/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/concepts/bom/</guid>
+      <description>In the Getting Started tutorial, you used the Paketo builder to build a Node.js app. Once you have an app image, you can access metadata about all of the dependencies present in the final app image using the bill of materials.
+What is the bill of materials?  A bill of materials (BOM) is an industry standard mechanism of surfacing metadata about dependencies in images or applications. The metadata consists of various fields such as:</description>
+    </item>
+    
+    <item>
+      <title>.NET Core Buildpack Reference</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/dotnet-core-reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/dotnet-core-reference/</guid>
+      <description>This reference documentation offers an in-depth description of the behavior and configuration options of the Paketo .NET Core Buildpack. For explanations of how to use the buildpack for several common use-cases, see the Paketo .NET Core Buildpack How To documentation.
+Supported Dependencies  The .Net Core Paketo Buildpack supports several versions of the .Net Core Framework. For more details on the specific versions supported in a given buildpack version, see the release notes.</description>
+    </item>
+    
+    <item>
+      <title>Go Buildpack Reference</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/go-reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/go-reference/</guid>
+      <description>This reference documentation offers an in-depth description of the behavior and configuration options of the Paketo Go Buildpack. For explanations of how to use the buildpack for several common use-cases, see the Paketo Go Buildpack How To documentation.
+Supported Dependencies  The Go Paketo Buildpack supports several versions of Go. For more details on the specific versions supported in a given buildpack version, see the release notes.
+Behavior  The Paketo Go Buildpack is a composite buildpack designed to build applications written in Go.</description>
+    </item>
+    
+    <item>
+      <title>Java Buildpack Reference</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/java-reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/java-reference/</guid>
+      <description>This reference documentation offers an in-depth description of the behavior and configuration options of the Paketo Java Buildpack. For explanations of how to use the buildpack for several common use-cases, see the Paketo Java Buildpack How To documentation.
+The Paketo Java Buildpack allows users to create an image containing a JVM application from a precompiled artifact or directly from source.
+The Java Buildpack is a composite buildpack and each step in a build is handled by one of its components.</description>
+    </item>
+    
+    <item>
+      <title>Java Native Image Buildpack Reference</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/java-native-image-reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/java-native-image-reference/</guid>
+      <description>This reference documentation offers an in-depth description of the behavior and configuration options of the Paketo Java Native Image Buildpack. For explanations of how to use the buildpack for several common use-cases, see the Paketo Java Native Image Buildpack How To documentation.
+The [Paketo Java Native Image Buildpack][bp/java-native-image] allows users to create an image containing a GraalVM native image application. The Java Native Image Buildpack supports the same build tools and configuration options as the Java Buildpack.</description>
+    </item>
+    
+    <item>
+      <title>NGINX Buildpack Reference</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/nginx-reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/nginx-reference/</guid>
+      <description>This reference documentation offers an in-depth description of the behavior and configuration options of the Paketo NGINX Buildpack. For explanations of how to use the buildpack for several common use-cases, see the Paketo NGINX Buildpack How To documentation.
+The NGINX Paketo Buildpack supports the installation of the NGINX binary distribution onto the $PATH inside a container. This makes it available to subsequent buildpacks.
+Supported Dependencies  The NGINX Paketo Buildpack supports several versions of NGINX.</description>
+    </item>
+    
+    <item>
+      <title>Node.js Buildpack Reference</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/nodejs-reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/nodejs-reference/</guid>
+      <description>This reference documentation offers an in-depth description of the behavior and configuration options of the Paketo Node.js Buildpack. For explanations of how to use the buildpack for several common use-cases, see the Node.js How To documentation.
+Supported Dependencies  The Node.js buildpack supports several versions of Node.js. For more details on the specific versions supported in a given buildpack version, see the release notes.
+Buildpack-Set Environment Variables  The Node.js buildpack sets a number of environment variables during the build and launch phases of the app lifecycle.</description>
+    </item>
+    
+    <item>
+      <title>PHP Buildpack Reference</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/php-reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/php-reference/</guid>
+      <description>This reference documentation offers an in-depth description of the behavior and configuration options of the Paketo PHP Buildpack. For explanations of how to use the buildpack for several common use-cases, see the Paketo PHP Buildpack How To documentation.
+Supported Dependencies  The PHP Paketo Buildpack supports several versions of PHP. For more details on the specific versions supported in a given buildpack version, see the release notes.
+Buildpack-Set Environment Variables  The PHP CNB sets a number of environment variables during the build and launch phases of the app lifecycle.</description>
+    </item>
+    
+    <item>
+      <title>Python Buildpack Reference</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/python-reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/python-reference/</guid>
+      <description>This reference documentation offers an in-depth description of the behavior and configuration options of the Paketo Python Buildpack. For explanations of how to use the buildpack for several common use-cases, see the Paketo Python Buildpack How To documentation.
+Supported Dependencies  The Python buildpack supports several versions of CPython, Pip and Pipenv. For more details on the specific versions supported in a given buildpack version, see the release notes.
+Buildpack-Set Environment Variables  The Python Buildpack sets a few environment variables during the build and launch phases of the app lifecycle.</description>
+    </item>
+    
+    <item>
+      <title>Ruby Buildpack Reference</title>
+      <link>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/ruby-reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yujiorama.github.io/unofficial-translations/paketo-website/docs/reference/ruby-reference/</guid>
+      <description>This reference documentation offers an in-depth description of the behavior and configuration options of the Paketo Ruby Buildpack. For explanations of how to use the buildpack for several common use-cases, see the Paketo Ruby Buildpack How To documentation.
+Supported Dependencies  The Ruby Paketo Buildpack supports several versions of MRI, Bundler, and common Ruby webservers and task runners. For more details on the specific versions supported in a given buildpack version, see the release notes.</description>
+    </item>
+    
+  </channel>
+</rss>

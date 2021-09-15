@@ -1,0 +1,709 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Bill of Materials - Paketo Buildpacks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1 viewport-fit=cover">
+
+
+
+
+<meta name="og:site_name" content="Paketo Buildpacks">
+<meta name="og:title" content="Bill of Materials">
+<meta name="og:url" content="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/concepts/bom/">
+<meta name="twitter:title" content="Paketo Buildpacks" />
+<meta name="twitter:url" content="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/concepts/bom/" />
+<meta name="twitter:card" content="" />
+
+
+
+<link rel="stylesheet" href="/unofficial-translations/paketo-website/css/main.min.e65e899d7edbb046f43d58e402eca40ec1064082b810ea2ea4f62b1e70614850.css">
+
+</head>
+
+<body>
+    
+    <div id="header-skip-link" class="screenreader-container">
+    <a href="#title" class="screenreader-text">Skip to Content</a>
+</div>
+
+    
+
+
+
+
+<header class="header--narrow">
+    
+    <a class="paketo-p-logo" href="/">
+        <img class="paketo-p-logo__image" src="/v2/images/logo-paketo-p.svg" alt="Paketo Buildpacks Homepage">
+    </a>
+    
+    <div id="navigation" class="right-overlay">
+        <div class="nav-opener">
+            <span class="nav-opener__bar nav-opener__bar-top"></span>
+            <span class="nav-opener__bar nav-opener__bar-middle"></span>
+            <span class="nav-opener__bar nav-opener__bar-bottom"></span>
+        </div>
+        <div class="nav-container" id="nav-container">
+            <nav class="nav" id="nav-tray" >
+                <div class="nav__linkarea text--400">
+                    <a class="nav-link" href="/docs">docs</a>
+                    <a class="nav-link" href="/community">community</a>
+                    <a class="nav-link" href="https://blog.paketo.io">blog</a>
+                    <a class="nav-link" href="https://github.com/paketo-buildpacks">github</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="desktop-nav">
+        
+        
+        
+        <a class="nav-link nav-link--desktop  nav-link--desktop--active" href="/docs">docs</a>
+        
+        <a class="nav-link nav-link--desktop   " href="/community">community</a>
+        <a class="nav-link nav-link--desktop " href="https://blog.paketo.io">blog</a>
+        <a class="nav-link nav-link--desktop " href="https://github.com/paketo-buildpacks">github</a>
+    </div>
+</header>
+
+
+    <div class="docs">
+    <div class="docs-sidebar">
+        
+<input type="text" id="docs-search" class="algolia-autocomplete__search-bar" placeholder="Search docs..." data-api-key="bf2d426728685665ceaf22fac947f10f" data-index="paketo"/>
+<nav class="docs-menu">
+    <ul class="docs-menu__top-level-list">
+        
+        
+            
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Paketo Buildpacks 入門</span>
+            </a>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header ">
+                
+                <span>使い方</span>
+                <button class="expander-button  docs-menu__expander-button">
+                    <svg class="expander-button__triangle " width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list ">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/dotnet-core/" class="docs-menu__item docs-menu__link ">
+                
+                <span>.NET Core</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/go/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Go</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/web-servers/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Web Servers</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/java/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/nodejs/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Node.js</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/python/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Python</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/php/" class="docs-menu__item docs-menu__link ">
+                
+                <span>PHP</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/ruby/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Ruby</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/create-paketo-buildpack/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Paketo Buildpack を作成する</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/bom/" class="docs-menu__item docs-menu__link ">
+                
+                <span>部品表（Bill of Materials）へアクセスする</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header docs-menu__section-header--opened">
+                
+                <span>考え方</span>
+                <button class="expander-button expander-button--opened docs-menu__expander-button">
+                    <svg class="expander-button__triangle expander-button__triangle--opened" width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list docs-menu__children-list--opened">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/buildpacks/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Buildpacks</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/builders/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Builders</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/stacks/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Stacks</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/bom/" class="docs-menu__item docs-menu__link docs-menu__link--active">
+                
+                <span>Bill of Materials</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header ">
+                
+                <span>リファレンス</span>
+                <button class="expander-button  docs-menu__expander-button">
+                    <svg class="expander-button__triangle " width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list ">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/httpd-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>HTTPD Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/configuration/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Paketo Buildpacks の設定</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/dotnet-core-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>.NET Core Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/go-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Go Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/java-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/java-native-image-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java Native Image Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/nginx-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>NGINX Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/nodejs-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Node.js Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/php-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>PHP Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/python-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Python Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/ruby-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Ruby Buildpack</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+    </ul>
+</nav>
+
+
+
+    </div>
+    <div class="docs-body">
+        <div class="docs-body__container">
+            
+  <a href="http://github.com/paketo-buildpacks/paketo-website/edit/main/content/docs%5cconcepts%5cbom.ja.md" target="_blank" class="github-edit" style="text-decoration:none">
+    <div class="github-edit__content">
+      <div class="github-edit__logo-container">
+        <img class="github-edit__logo" src="/images/github-mark.png">
+      </div>
+        <div class="github-edit__text">Edit</div>
+    </div>
+</a>
+
+            <h1 id="title">Bill of Materials</h1>
+            
+<div class="docs-body__table-of-contents-container docs-body__table-of-contents-container--mobile">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#部品表bill-of-materialsとは何か">部品表（bill of materials）とは何か</a></li>
+    <li><a href="#bom-が役に立つ理由">BOM が役に立つ理由</a>
+      <ul>
+        <li><a href="#脆弱性スキャン">脆弱性スキャン</a></li>
+        <li><a href="#コンプライアンスチェック">コンプライアンスチェック</a></li>
+      </ul>
+    </li>
+    <li><a href="#paketo-bom-の出力形式">Paketo BOM の出力形式</a>
+      <ul>
+        <li><a href="#buildpack-要素">Buildpack 要素</a></li>
+        <li><a href="#言語モジュール要素">言語モジュール要素</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+
+            <div class="docs-body__markdown">
+                <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>部品表（bill of materials）を使用すると、作成したコンテナイメージの使用する全ての依存ライブラリに関する情報をメタデータとして参照できます。</p>
+<h2 id="部品表bill-of-materialsとは何か" class="markup-heading">
+    <a class="markup-heading__link" href="#%e9%83%a8%e5%93%81%e8%a1%a8bill-of-materials%e3%81%a8%e3%81%af%e4%bd%95%e3%81%8b">
+        部品表（bill of materials）とは何か
+    </a>
+</h2><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>部品表（BOM：bill of materials）とは、コンテナイメージやアプリケーションの依存対象に関する情報をメタデータとして公開する、業界標準の仕組みのことです。
+メタデータは次のようなフィールドで構成されています。</p>
+<ul>
+<li><code>version</code>: 依存対象のバージョン</li>
+<li><code>uri</code>: コンパイル済みファイルへアクセスできる URI</li>
+<li><code>checksum</code>: <a href="https://cyclonedx.org/">CycloneDX</a> が対応しているハッシュアルゴリズム（SHA-256 など）、および、依存対象に関するチェックサムの値</li>
+<li><a href="#compliance-checking"><code>licenses</code></a>: 依存対象の、<a href="https://spdx.dev/">SPDX</a> 形式のライセンス</li>
+<li><code>deprecation-date</code>: 依存対象（のバージョン）が非推奨になる日時</li>
+<li><code>source uri</code>: 依存対象の上流の元データへアクセスできる URI</li>
+<li><code>source checksum</code>: <a href="https://cyclonedx.org/">CycloneDX</a> が対応しているハッシュアルゴリズム（SHA-256 など）、および、依存対象の上流の元データに関するチェックサムの値</li>
+<li><a href="#cpes"><code>CPE</code></a>: 共通するプラットフォームの一覧</li>
+<li><a href="#purls"><code>pURL</code></a>: パッケージの URL</li>
+</ul>
+<h2 id="bom-が役に立つ理由" class="markup-heading">
+    <a class="markup-heading__link" href="#bom-%e3%81%8c%e5%bd%b9%e3%81%ab%e7%ab%8b%e3%81%a4%e7%90%86%e7%94%b1">
+        BOM が役に立つ理由
+    </a>
+</h2><!-- raw HTML omitted -->
+<p>BOM の情報は、主に、アプリケーションのセキュリティサプライチェインに含まれる依存対象を理解するのに役立ちます。</p>
+<h3 id="脆弱性スキャン" class="markup-heading">
+    <a class="markup-heading__link" href="#%e8%84%86%e5%bc%b1%e6%80%a7%e3%82%b9%e3%82%ad%e3%83%a3%e3%83%b3">
+        脆弱性スキャン
+    </a>
+</h3><!-- raw HTML omitted -->
+<p>世の中には、BOM を入力として使用できるさまざまな脆弱性スキャンツールがあります。
+例えば、<a href="https://dependencytrack.org/">Dependency Track</a> や <a href="https://github.com/aquasecurity/trivy">Trivy</a> で脆弱性を発見できます。</p>
+<!-- raw HTML omitted -->
+<p>主に脆弱性を特定するために使用するフィールドが CPE と pURL です。</p>
+<h4 id="cpes" class="markup-heading">
+    <a class="markup-heading__link" href="#cpes">
+        CPEs
+    </a>
+</h4><!-- raw HTML omitted -->
+<p>共通プラットフォーム一覧（CPE：common platform enumeration）は、<a href="https://nvd.nist.gov/products/cpe/search">NIST National Vulnerabilty Database</a> で依存対象の特定のバージョンに関する脆弱性と修正パッチを検索できる標準的な記法です。</p>
+<h4 id="purls" class="markup-heading">
+    <a class="markup-heading__link" href="#purls">
+        pURLs
+    </a>
+</h4><!-- raw HTML omitted -->
+<p>pURL はベンダーやプロジェクトやエコシステムに依存しない、<a href="https://github.com/package-url/purl-spec">汎用的なパッケージ URL 表現</a> です。</p>
+<h3 id="コンプライアンスチェック" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%82%b3%e3%83%b3%e3%83%97%e3%83%a9%e3%82%a4%e3%82%a2%e3%83%b3%e3%82%b9%e3%83%81%e3%82%a7%e3%83%83%e3%82%af">
+        コンプライアンスチェック
+    </a>
+</h3><!-- raw HTML omitted -->
+<p>BOMのライセンス情報を使うと、アプリケーションの法律面のコンプライアンスを確認するのに便利です。
+コンテナイメージに含まれるそれぞれの依存対象のライセンス情報を使いやすい形式で取得できます。</p>
+<h4 id="ライセンス" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%83%a9%e3%82%a4%e3%82%bb%e3%83%b3%e3%82%b9">
+        ライセンス
+    </a>
+</h4><!-- raw HTML omitted -->
+<p>Paketo BOM のライセンス情報は、ライセンス検出ツールで収集したものです。
+ソフトウェアにライセンス情報を含める方法は標準化されていないので、検出ツールは発見したライセンスに「信頼スコア」を割り当てます。
+Paketo プロジェクトでは、重要なライセンス情報を取りこぼすリスクを回避するため、「信頼スコア」の値に関わらず、検出ツールが発見した <strong>全てのライセンス情報</strong> を  BOM へ登録します。
+そのため、詳細なコンプライアンスチェックをするときは、間違って発見した（偽陽性の）ライセンス情報を取り除かなければなりません。</p>
+<h2 id="paketo-bom-の出力形式" class="markup-heading">
+    <a class="markup-heading__link" href="#paketo-bom-%e3%81%ae%e5%87%ba%e5%8a%9b%e5%bd%a2%e5%bc%8f">
+        Paketo BOM の出力形式
+    </a>
+</h2><!-- raw HTML omitted -->
+<p>Buildpack は作成したコンテナイメージのメタデータに BOM を追加します。
+Paketo Buildpack は次のような <code>JSON</code> 形式の情報を追加します。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain">{
+  &#34;name&#34;: &lt;name of the dependency&gt;,
+  &#34;metadata&#34;: {
+    &#34;checksum&#34;: {
+      &#34;algorithm&#34;: &lt;CycloneDX-supported hash algorithm (&#39;MD5&#39;, &#39;SHA-1&#39;, &#39;SHA-256&#39;, &#39;SHA-384&#39;, &#39;SHA-512&#39;, &#39;SHA3-256&#39;, &#39;SHA3-384&#39;, &#39;SHA3-512&#39;, &#39;BLAKE2b-256&#39;, &#39;BLAKE2b-384&#39;, &#39;BLAKE2b-512&#39;, &#39;BLAKE3&#39;)&gt;,
+      &#34;hash&#34;: &lt;hash of the dependency&gt;
+    },
+    &#34;cpe&#34;: &lt;dependency/version specific common platform enumeration&gt;,
+    &#34;deprecation-date&#34;: &lt;date of package deprecation&gt;,
+    &#34;licenses&#34;: &lt;[list of all licensesn SPDX format]&gt;,
+    &#34;purl&#34;: &lt;dependency/version specific package URL&gt;,
+    &#34;source&#34;: {
+      &#34;checksum&#34;: {
+        &#34;algorithm&#34;: &lt;CycloneDX-supported hash algorithm (&#39;MD5&#39;, &#39;SHA-1&#39;, &#39;SHA-256&#39;, &#39;SHA-384&#39;, &#39;SHA-512&#39;, &#39;SHA3-256&#39;, &#39;SHA3-384&#39;, &#39;SHA3-512&#39;, &#39;BLAKE2b-256&#39;, &#39;BLAKE2b-384&#39;, &#39;BLAKE2b-512&#39;, &#39;BLAKE3&#39;)&gt;,
+        &#34;hash&#34;: &lt;hash of the dependency&gt;
+      },
+      &#34;uri&#34;: &lt;package upstream source URI&gt;
+    },
+    &#34;uri&#34;: &#34;&lt;compiled package URI&gt;&#34;,
+    &#34;version&#34;: &lt;dependency version&gt;
+  }
+}
+</code></pre></div><!-- raw HTML omitted -->
+<p>Paketo Buildpack は <strong>Buildpack</strong> と <strong>言語モジュール</strong> という2種類の主要な BOM 要素を出力します。
+ここでは、「<a href="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/bom/#access-the-bill-of-materials-on-a-sample-node-application">部品表（Bill of Materials）へアクセスする</a>」で作成したコンテナイメージの BOM についてそれぞれの内容を説明します。</p>
+<h3 id="buildpack-要素" class="markup-heading">
+    <a class="markup-heading__link" href="#buildpack-%e8%a6%81%e7%b4%a0">
+        Buildpack 要素
+    </a>
+</h3><!-- raw HTML omitted -->
+<p>Buildpack 要素は、Paketo Buildpack が依存性管理ツールを <em>使わずに</em> 直接インストールする依存対象に関する情報です。
+具体的には、JVM や .NET Runtime、Node.js ランタイムなどが挙げられます。
+Buildpack はこれらの依存対象を構築する途中で得られたメタデータを使用して要素を生成します。</p>
+<!-- raw HTML omitted -->
+<p>Buildpack 要素に含まれるのは依存対象に関するバージョン、脆弱性識別子（CPE や pURL）、使用していると考えられるライセンス、元データおよびコンパイル済みデータのチェックサム、元データの情報、名前です。</p>
+<!-- raw HTML omitted -->
+<p>次の例は、<a href="
+https://github.com/paketo-buildpacks/node-engine">Paketo Node Engine buildpack</a> のインストールする Node.js ランタイムに関する Buildpack 要素です。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Node Engine&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;metadata&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;checksum&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;algorithm&#34;</span><span class="p">:</span> <span class="s2">&#34;SHA-256&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;hash&#34;</span><span class="p">:</span> <span class="s2">&#34;a50ee095f936b51fffe5c032a7377a156723145c1ab0291ccc882f04719f1b54&#34;</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;cpe&#34;</span><span class="p">:</span> <span class="s2">&#34;cpe:2.3:a:nodejs:node.js:16.7.0:*:*:*:*:*:*:*&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;deprecation-date&#34;</span><span class="p">:</span> <span class="s2">&#34;2024-04-30T00:00:00Z&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;licenses&#34;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&#34;0BSD&#34;</span><span class="p">,</span>
+      <span class="s2">&#34;Apache-2.0&#34;</span><span class="p">,</span>
+      <span class="s2">&#34;Artistic-2.0&#34;</span><span class="p">,</span>
+      <span class="s2">&#34;BSD-2-Clause&#34;</span><span class="p">,</span>
+      <span class="s2">&#34;BSD-3-Clause&#34;</span><span class="p">,</span>
+      <span class="s2">&#34;BSD-3-Clause-Clear&#34;</span><span class="p">,</span>
+      <span class="s2">&#34;CC0-1.0&#34;</span><span class="p">,</span>
+      <span class="s2">&#34;MIT&#34;</span><span class="p">,</span>
+      <span class="s2">&#34;MIT-0&#34;</span><span class="p">,</span>
+      <span class="s2">&#34;Unicode-TOU&#34;</span>
+    <span class="p">],</span>
+    <span class="nt">&#34;purl&#34;</span><span class="p">:</span> <span class="s2">&#34;pkg:generic/node@v16.7.0?checksum=0c4a82acc5ae67744d56f2c97db54b859f2b3ef8e78deacfb8aed0ed4c7cb690&amp;download_url=https://nodejs.org/dist/v16.7.0/node-v16.7.0.tar.gz&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;source&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;checksum&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;algorithm&#34;</span><span class="p">:</span> <span class="s2">&#34;SHA-256&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;hash&#34;</span><span class="p">:</span> <span class="s2">&#34;0c4a82acc5ae67744d56f2c97db54b859f2b3ef8e78deacfb8aed0ed4c7cb690&#34;</span>
+      <span class="p">},</span>
+      <span class="nt">&#34;uri&#34;</span><span class="p">:</span> <span class="s2">&#34;https://nodejs.org/dist/v16.7.0/node-v16.7.0.tar.gz&#34;</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;stacks&#34;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&#34;io.buildpacks.stacks.bionic&#34;</span>
+    <span class="p">],</span>
+    <span class="nt">&#34;uri&#34;</span><span class="p">:</span> <span class="s2">&#34;https://deps.paketo.io/node/node_v16.7.0_linux_x64_bionic_a50ee095.tgz&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;16.7.0&#34;</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;buildpacks&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;paketo-buildpacks/node-engine&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;1.2.3&#34;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="言語モジュール要素" class="markup-heading">
+    <a class="markup-heading__link" href="#%e8%a8%80%e8%aa%9e%e3%83%a2%e3%82%b8%e3%83%a5%e3%83%bc%e3%83%ab%e8%a6%81%e7%b4%a0">
+        言語モジュール要素
+    </a>
+</h3><!-- raw HTML omitted -->
+<p>言語モジュール要素は、Paketo Buildpack が依存性管理ツールでインストールした依存対象の情報です（Node.js モジュールや Maven パッケージなど）。
+Buildpack はインスト―ルしたそれぞれのパッケージに関するメタデータを収集して要素を生成します。</p>
+<!-- raw HTML omitted -->
+<p>言語モジュール要素に含まれるのは依存対象に関するバージョン、脆弱性識別子（pURL）、使用していると考えられるライセンス、名前です。</p>
+<!-- raw HTML omitted -->
+<p>次の例は、Node.js モジュールに関する言語モジュール要素です。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;httpdispatcher&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;metadata&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;licenses&#34;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&#34;MIT&#34;</span>
+    <span class="p">],</span>
+    <span class="nt">&#34;purl&#34;</span><span class="p">:</span> <span class="s2">&#34;pkg:npm/httpdispatcher@2.1.2&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;2.1.2&#34;</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;buildpack&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;paketo-buildpacks/node-module-bom&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;1.2.3&#34;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><!-- raw HTML omitted -->
+<p><strong>注意</strong>：Paketo Buildpack の生成するメタデータは、業界標準のBOM形式と適合しない場合があります。業界標準の形式の中でも <a href="https://cyclonedx.org/">CycloneDX</a> や <a href="https://spdx.dev/">SPDX</a> は、どちらも <code>JSON</code> 形式で表現できます。将来的にはどちらの形式にも対応する予定です。</p>
+<!-- raw HTML omitted -->
+
+            </div>
+            
+  <a href="http://github.com/paketo-buildpacks/paketo-website/edit/main/content/docs%5cconcepts%5cbom.ja.md" target="_blank" class="github-edit" style="text-decoration:none">
+    <div class="github-edit__content">
+      <div class="github-edit__logo-container">
+        <img class="github-edit__logo" src="/images/github-mark.png">
+      </div>
+        <div class="github-edit__text">Edit</div>
+    </div>
+</a>
+
+            <p class="docs-mod-time"><strong>Last modified:</strong> September 14, 2021</p>
+        </div>
+        
+<div class="docs-body__table-of-contents-container docs-body__table-of-contents-container--desktop">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#部品表bill-of-materialsとは何か">部品表（bill of materials）とは何か</a></li>
+    <li><a href="#bom-が役に立つ理由">BOM が役に立つ理由</a>
+      <ul>
+        <li><a href="#脆弱性スキャン">脆弱性スキャン</a></li>
+        <li><a href="#コンプライアンスチェック">コンプライアンスチェック</a></li>
+      </ul>
+    </li>
+    <li><a href="#paketo-bom-の出力形式">Paketo BOM の出力形式</a>
+      <ul>
+        <li><a href="#buildpack-要素">Buildpack 要素</a></li>
+        <li><a href="#言語モジュール要素">言語モジュール要素</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+
+    </div>
+</div>
+
+
+    <footer class="footer text--light">
+    <div class="footer-social-links-container">
+        <a class="footer-social-link" href="https://twitter.com/Paketo_io">
+            <div class="footer-social-link__image-container">
+                <div class="logo">
+                    <img class="logo__image" src="/v2/images/logo-twitter.svg" alt="Blue Twitter bird logo">
+                </div>
+            </div>
+            <div class="text--light text--400">
+                Twitter
+            </div>
+        </a>
+        <a class="footer-social-link" href="https://slack.paketo.io/">
+            <div class="footer-social-link__image-container">
+                <div class="logo">
+                    <img class="logo__image" src="/v2/images/logo-slack.svg" alt="Slack logo">
+                </div>
+            </div>
+            <div class="text--light text--400">
+                Slack
+            </div>
+        </a>
+        <a class="footer-social-link" href="https://github.com/paketo-buildpacks">
+            <div class="footer-social-link__image-container">
+                <div class="logo logo--github">
+                    <img class="logo__image"  src="/v2/images/logo-github-cropped.svg" alt="GitHub Octocat logo"/>
+                </div>
+            </div>
+            <div class="text--light text--400">
+                GitHub
+            </div>
+        </a>
+    </div>
+    <div class="footer-privacy-policy">
+        <div class="footer-text--small">Paketo Buildpacks is a <a class="text--light" href="https://www.cloudfoundry.org/">Cloud Foundry</a> Project</div>
+        <img class="cloudfoundry-logo" src="/v2/images/logo-cloudfoundry-light.svg" alt="Cloud Foundry logo" />
+        <a class="footer-text--small text--light" href="https://www.linuxfoundation.org/privacy">Privacy Policy</a>
+    </div>
+</footer><script src="/unofficial-translations/paketo-website/js/main.7b2c859f76ebea65f7468883b2f720537f395fc48d504f5e3b4d33c389e860f2.js"></script>
+
+    <div id="footer-skip-link" class="screenreader-container">
+    <a href="#header-skip-link" class="screenreader-text">Skip to Header</a>
+</div>
+
+</body>
+
+</html>

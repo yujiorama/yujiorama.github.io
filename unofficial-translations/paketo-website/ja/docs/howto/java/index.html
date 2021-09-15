@@ -1,0 +1,1196 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Paketo Buildpacks で Java アプリケーションをビルドする - Paketo Buildpacks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1 viewport-fit=cover">
+
+
+
+
+<meta name="og:site_name" content="Paketo Buildpacks">
+<meta name="og:title" content="Paketo Buildpacks で Java アプリケーションをビルドする">
+<meta name="og:url" content="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/java/">
+<meta name="twitter:title" content="Paketo Buildpacks" />
+<meta name="twitter:url" content="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/java/" />
+<meta name="twitter:card" content="" />
+
+
+
+<link rel="stylesheet" href="/unofficial-translations/paketo-website/css/main.min.e65e899d7edbb046f43d58e402eca40ec1064082b810ea2ea4f62b1e70614850.css">
+
+</head>
+
+<body>
+    
+    <div id="header-skip-link" class="screenreader-container">
+    <a href="#title" class="screenreader-text">Skip to Content</a>
+</div>
+
+    
+
+
+
+
+<header class="header--narrow">
+    
+    <a class="paketo-p-logo" href="/">
+        <img class="paketo-p-logo__image" src="/v2/images/logo-paketo-p.svg" alt="Paketo Buildpacks Homepage">
+    </a>
+    
+    <div id="navigation" class="right-overlay">
+        <div class="nav-opener">
+            <span class="nav-opener__bar nav-opener__bar-top"></span>
+            <span class="nav-opener__bar nav-opener__bar-middle"></span>
+            <span class="nav-opener__bar nav-opener__bar-bottom"></span>
+        </div>
+        <div class="nav-container" id="nav-container">
+            <nav class="nav" id="nav-tray" >
+                <div class="nav__linkarea text--400">
+                    <a class="nav-link" href="/docs">docs</a>
+                    <a class="nav-link" href="/community">community</a>
+                    <a class="nav-link" href="https://blog.paketo.io">blog</a>
+                    <a class="nav-link" href="https://github.com/paketo-buildpacks">github</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="desktop-nav">
+        
+        
+        
+        <a class="nav-link nav-link--desktop  nav-link--desktop--active" href="/docs">docs</a>
+        
+        <a class="nav-link nav-link--desktop   " href="/community">community</a>
+        <a class="nav-link nav-link--desktop " href="https://blog.paketo.io">blog</a>
+        <a class="nav-link nav-link--desktop " href="https://github.com/paketo-buildpacks">github</a>
+    </div>
+</header>
+
+
+    <div class="docs">
+    <div class="docs-sidebar">
+        
+<input type="text" id="docs-search" class="algolia-autocomplete__search-bar" placeholder="Search docs..." data-api-key="bf2d426728685665ceaf22fac947f10f" data-index="paketo"/>
+<nav class="docs-menu">
+    <ul class="docs-menu__top-level-list">
+        
+        
+            
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Paketo Buildpacks 入門</span>
+            </a>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header docs-menu__section-header--opened">
+                
+                <span>使い方</span>
+                <button class="expander-button expander-button--opened docs-menu__expander-button">
+                    <svg class="expander-button__triangle expander-button__triangle--opened" width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list docs-menu__children-list--opened">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/dotnet-core/" class="docs-menu__item docs-menu__link ">
+                
+                <span>.NET Core</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/go/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Go</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/web-servers/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Web Servers</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/java/" class="docs-menu__item docs-menu__link docs-menu__link--active">
+                
+                <span>Java</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/nodejs/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Node.js</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/python/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Python</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/php/" class="docs-menu__item docs-menu__link ">
+                
+                <span>PHP</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/ruby/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Ruby</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/create-paketo-buildpack/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Paketo Buildpack を作成する</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/bom/" class="docs-menu__item docs-menu__link ">
+                
+                <span>部品表（Bill of Materials）へアクセスする</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header ">
+                
+                <span>考え方</span>
+                <button class="expander-button  docs-menu__expander-button">
+                    <svg class="expander-button__triangle " width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list ">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/buildpacks/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Buildpacks</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/builders/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Builders</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/stacks/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Stacks</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/bom/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Bill of Materials</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header ">
+                
+                <span>リファレンス</span>
+                <button class="expander-button  docs-menu__expander-button">
+                    <svg class="expander-button__triangle " width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list ">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/httpd-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>HTTPD Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/configuration/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Paketo Buildpacks の設定</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/dotnet-core-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>.NET Core Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/go-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Go Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/java-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/java-native-image-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java Native Image Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/nginx-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>NGINX Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/nodejs-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Node.js Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/php-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>PHP Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/python-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Python Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/ruby-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Ruby Buildpack</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+    </ul>
+</nav>
+
+
+
+    </div>
+    <div class="docs-body">
+        <div class="docs-body__container">
+            
+  <a href="http://github.com/paketo-buildpacks/paketo-website/edit/main/content/docs%5chowto%5cjava.ja.md" target="_blank" class="github-edit" style="text-decoration:none">
+    <div class="github-edit__content">
+      <div class="github-edit__logo-container">
+        <img class="github-edit__logo" src="/images/github-mark.png">
+      </div>
+        <div class="github-edit__text">Edit</div>
+    </div>
+</a>
+
+            <h1 id="title">Paketo Buildpacks で Java アプリケーションをビルドする</h1>
+            
+<div class="docs-body__table-of-contents-container docs-body__table-of-contents-container--mobile">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#サンプルアプリをビルドする">サンプルアプリをビルドする</a></li>
+    <li><a href="#ソースコードからビルドする">ソースコードからビルドする</a>
+      <ul>
+        <li><a href="#ビルドツールを設定する">ビルドツールを設定する</a></li>
+      </ul>
+    </li>
+    <li><a href="#コンパイル済みアーティファクトからビルドする">コンパイル済みアーティファクトからビルドする</a></li>
+    <li><a href="#jvm-のバージョンを確認する">JVM のバージョンを確認する</a></li>
+    <li><a href="#jvm-のインストールするバージョンを指定する">JVM のインストールするバージョンを指定する</a></li>
+    <li><a href="#jvm-の動作を変更する">JVM の動作を変更する</a></li>
+    <li><a href="#別の-jvm-を使用する">別の JVM を使用する</a></li>
+    <li><a href="#別の-native-image-toolkit-を使用する">別の Native Image Toolkit を使用する</a></li>
+    <li><a href="#spring-boot-アプリケーションをビルドする">Spring Boot アプリケーションをビルドする</a>
+      <ul>
+        <li><a href="#spring-boot-アプリケーションの依存ライブラリを確認する">Spring Boot アプリケーションの依存ライブラリを確認する</a></li>
+        <li><a href="#spring-boot-の自動構成を無効にする">Spring Boot の自動構成を無効にする</a></li>
+      </ul>
+    </li>
+    <li><a href="#apm-へ接続する">APM へ接続する</a></li>
+    <li><a href="#リモートデバッグを有効にする">リモートデバッグを有効にする</a></li>
+    <li><a href="#jmx-を有効にする">JMX を有効にする</a></li>
+    <li><a href="#コンテナイメージの起動コマンドに引数を追加する">コンテナイメージの起動コマンドに引数を追加する</a></li>
+    <li><a href="#コンテナイメージの起動コマンドを指定する">コンテナイメージの起動コマンドを指定する</a>
+      <ul>
+        <li><a href="#buildpack-の構成した環境で指定したコマンドを実行する">Buildpack の構成した環境で指定したコマンドを実行する</a></li>
+      </ul>
+    </li>
+    <li><a href="#アプリケーションを-graalvm-のネイティブイメージとしてビルドする">アプリケーションを GraalVM のネイティブイメージとしてビルドする</a>
+      <ul>
+        <li><a href="#ソースコードからビルドする-1">ソースコードからビルドする</a></li>
+        <li><a href="#実行可能形式の-jar-ファイルからビルドする">実行可能形式の jar ファイルからビルドする</a></li>
+        <li><a href="#jvm-のバージョンを確認する-1">JVM のバージョンを確認する</a></li>
+        <li><a href="#graalvm-のバージョンを指定する">GraalVM のバージョンを指定する</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+
+            <div class="docs-body__markdown">
+                <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>このドキュメントでは Paketo Buildpack を使用して Java アプリケーションのコンテナイメージを作成する方法を説明します。
+Buildpack の振る舞いや設定方法を詳しく知りたいときは、<a href="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/java-reference/">Paketo Java Buildpack</a> や <a href="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/java-native-image-reference/">Paketo Java Native Image Buildpack</a> のリファレンスを参照してください。</p>
+<h2 id="サンプルアプリをビルドする" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%82%b5%e3%83%b3%e3%83%97%e3%83%ab%e3%82%a2%e3%83%97%e3%83%aa%e3%82%92%e3%83%93%e3%83%ab%e3%83%89%e3%81%99%e3%82%8b">
+        サンプルアプリをビルドする
+    </a>
+</h2><!-- raw HTML omitted -->
+<p>このドキュメントでは <a href="https://github.com/paketo-buildpacks/samples">Paketo Buildpacs サンプルアプリ</a> を使用します。</p>
+<!-- raw HTML omitted -->
+<p>それぞれの例では、リポジトリ直下を作業ディレクトリとしています。</p>
+<pre class="copyable"><code class="copyable__code">git clone https://github.com/paketo-buildpacks/samples
+cd samples
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<p><a href="https://github.com/buildpacks/pack">pack コマンド</a> も使用します。
+<code>pack</code> は Java Buildpack でビルドを実行できる Cloud Native Buildpack [platform][platform] の1つです。
+例えば、Spring Boot アプリケーションの開発者なら <a href="https://docs.spring.io/spring-boot/docs/current/maven-plugin/reference/html/#build-image">Spring Boot Maven Plugin</a> や <a href="https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/html/#build-image">Spring Boot Gradle Plugin</a> を使用できます。</p>
+<!-- raw HTML omitted -->
+<p>それぞれの例では、 <a href="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/concepts/builders/#base">Paketo Base ビルダー</a> を初期値にしています。</p>
+<pre class="copyable"><code class="copyable__code">pack config default-builder paketobuildpacks/builder:base
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<p>Java アプリケーションのサンプルは、どれも <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-endpoints">actuator health endpoint</a> で <code>{&quot;status&quot;:&quot;UP&quot;}</code> を返すようになっています。</p>
+<pre class="copyable"><code class="copyable__code">docker run --rm --tty --publish 8080:8080 samples/java
+curl -s http://localhost:8080/actuator/health | jq .
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h2 id="ソースコードからビルドする" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%82%bd%e3%83%bc%e3%82%b9%e3%82%b3%e3%83%bc%e3%83%89%e3%81%8b%e3%82%89%e3%83%93%e3%83%ab%e3%83%89%e3%81%99%e3%82%8b">
+        ソースコードからビルドする
+    </a>
+</h2><!-- raw HTML omitted -->
+<p>Java Buildpack は次のようなビルドツールでソースコードをビルドできるようになっています。</p>
+<ul>
+<li><a href="https://gradle.org/">Gradle</a> - <a href="https://github.com/paketo-buildpacks/gradle">Gradle Buildpack</a></li>
+<li><a href="https://leiningen.org/">Leiningen</a> - <a href="https://github.com/paketo-buildpacks/leiningen">Leiningen Buildpack</a></li>
+<li><a href="https://maven.apache.org/">Maven</a> - <a href="https://github.com/paketo-buildpacks/maven">Maven Buildpack</a></li>
+<li><a href="https://www.scala-sbt.org/index.html">SBT</a> - <a href="https://github.com/paketo-buildpacks/sbt">SBT Buildpack</a></li>
+</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>使用するビルドツールはアプリケーションディレクトリの内容に基づいて検出します。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>ビルド処理は <a href="#build-from-a-compiled-artifact">対応しているいずれかの形式のアーティファクト</a> を生成しなければなりません。
+完了すると、buildpack は展開したアーカイブの内容でアプリケーションのソースコードを置き換えます。
+その後の処理については <a href="#build-from-a-compiled-artifact">コンパイル済みアーティファクトからのビルド</a> を参照してください。</p>
+<!-- raw HTML omitted -->
+<p><strong>例</strong>：Maven でビルドする</p>
+<!-- raw HTML omitted -->
+<p>次のコマンドは Maven プロジェクトのソースコードからコンテナイメージを作成します。</p>
+<pre class="copyable"><code class="copyable__code">pack build samples/java \
+  --path java/maven
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h3 id="ビルドツールを設定する" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%83%93%e3%83%ab%e3%83%89%e3%83%84%e3%83%bc%e3%83%ab%e3%82%92%e8%a8%ad%e5%ae%9a%e3%81%99%e3%82%8b">
+        ビルドツールを設定する
+    </a>
+</h3><!-- raw HTML omitted -->
+<p><strong>注意：以降の内容は全ての設定項目を網羅したものではありません。設定項目について、詳しくはビルドツールに対応する Buildpack のリファレンスを参照してください。</strong></p>
+<h4 id="モジュールやアーティファクトを選択する" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%83%a2%e3%82%b8%e3%83%a5%e3%83%bc%e3%83%ab%e3%82%84%e3%82%a2%e3%83%bc%e3%83%86%e3%82%a3%e3%83%95%e3%82%a1%e3%82%af%e3%83%88%e3%82%92%e9%81%b8%e6%8a%9e%e3%81%99%e3%82%8b">
+        モジュールやアーティファクトを選択する
+    </a>
+</h4><!-- raw HTML omitted -->
+<p>以降の説明に登場する <code>&lt;TOOL&gt;</code> には <code>MAVEN</code> や <code>GRADLE</code> や <code>LEIN</code> や <code>SBT</code> のいずれかで置き換えることになります。
+モジュールやアーティファクトを選択するには、次のような環境変数をビルド時に指定します。</p>
+<ul>
+<li><code>BP_&lt;TOOL&gt;_BUILT_MODULE</code>
+<ul>
+<li><strong>初期値</strong> はルートモジュールです。</li>
+<li>マルチモジュールプロジェクトにおいて、Buildpack がアーティファクトをビルドするモジュールを選択します。</li>
+<li><strong>例</strong>：<code>BP_MAVEN_BUILT_MODULE=api</code> と指定すると、Paketo Maven Buildpack は <code>target/api/*.[jw]ar</code> に対応するファイル名のアーティファクトを選択します。</li>
+</ul>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ul>
+<li><code>BP_&lt;TOOL&gt;_BUILT_ARTIFACT</code>
+<ul>
+<li>初期値はビルドツールによって異なります（Maven なら <code>target/*.[jw]ar</code>、Gradle なら <code>build/libs/*.[jw]ar</code>）。ビルドツールに対応する Buildpack のリファレンスを参照してください。</li>
+<li>アーティファクトを探索するパス名のパターンを [Bashのパターンマッチ](bash pattern matching) で指定します。</li>
+<li><code>BP_&lt;TOOL&gt;_BUILT_MODULE</code> に初期値以外が設定されているとしても、こちらの設定を優先します。</li>
+<li><strong>例</strong>：<code>BP_MAVEN_BUILT_ARTIFACT=out/api-*.jar</code> と指定すると、Paketo Maven Buildpack は <code>out/api-1.0.0.jar</code> を発見します。</li>
+</ul>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h4 id="ビルドコマンドを指定する" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%83%93%e3%83%ab%e3%83%89%e3%82%b3%e3%83%9e%e3%83%b3%e3%83%89%e3%82%92%e6%8c%87%e5%ae%9a%e3%81%99%e3%82%8b">
+        ビルドコマンドを指定する
+    </a>
+</h4><!-- raw HTML omitted -->
+<p>以降の説明に登場する <code>&lt;TOOL&gt;</code> には <code>MAVEN</code> や <code>GRADLE</code> や <code>LEIN</code> や <code>SBT</code> のいずれかで置き換えることになります。
+モジュールやアーティファクトを選択するには、次のような環境変数をビルド時に指定します。</p>
+<ul>
+<li><code>BP_&lt;TOOL&gt;_BUILD_ARGUMENTS</code></li>
+</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ul>
+<li><strong>初期値</strong>：ビルドツールによって異なります（Maven なら <code>-Dmaven.test.skip=true package</code>、Gradle なら <code>--no-daemon assemble</code>）。ビルドツールに対応する Buildpack のリファレンスを参照してください。</li>
+<li>指定した値がビルドツールのコマンドの引数になります。</li>
+<li><strong>例</strong>：<code>BP_GRADLE_BUILD_ARGUMENTS=war</code> と指定すると、Paketo Gradle Buildpack は <code>./gradlew war</code> か <code>gradle war</code> を実行します（Gradle Wrapper の有無によって変化します）。</li>
+</ul>
+<h4 id="プライベート-maven-リポジトリを使用する" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%83%97%e3%83%a9%e3%82%a4%e3%83%99%e3%83%bc%e3%83%88-maven-%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%82%92%e4%bd%bf%e7%94%a8%e3%81%99%e3%82%8b">
+        プライベート Maven リポジトリを使用する
+    </a>
+</h4><!-- raw HTML omitted -->
+<p><code>maven</code> <a href="bindings">バインディング</a> のキーに <code>settings.xml</code> を指定すると、独自の <a href="http://maven.apache.org/settings.html">Maven settings</a> を使用できます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain">&lt;binding-name&gt;
+├── settings.xml
+└── type
+</code></pre></div><!-- raw HTML omitted -->
+<p><code>settings.xml</code> ファイルには、プライベート Maven リポジトリへ接続するための資格情報を記述できます。</p>
+<!-- raw HTML omitted -->
+<p><strong>例</strong>: 独自の Maven Settings を構成する</p>
+<!-- raw HTML omitted -->
+<p>作業 PC の <code>settings.xml</code> を使用して、<code>pack</code> コマンドでアプリケーションをビルドする手順を説明します。</p>
+<!-- raw HTML omitted -->
+<ol>
+<li>バインディングリソースを格納するディレクトリを作成します。
+<pre class="copyable"><code class="copyable__code">mkdir java/maven/binding
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+</li>
+</ol>
+<!-- raw HTML omitted -->
+<ol start="2">
+<li>作成したディレクトリに、バインディング種類 <code>maven</code> を含む <code>type</code> ファイルを作成します。
+<pre class="copyable"><code class="copyable__code">echo -n &#34;maven&#34; &gt; java/maven/binding/type
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+</li>
+</ol>
+<!-- raw HTML omitted -->
+<ol start="3">
+<li>作成したディレクトリに、作業PCの <code>settings.xml</code> を複製します。
+<pre class="copyable"><code class="copyable__code">cp ~/.m2/settings.xml java/maven/binding/settings.xml
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+</li>
+</ol>
+<!-- raw HTML omitted -->
+<ol start="4">
+<li>作成したディレクトリを、<code>pack build</code> コマンドの <code>--volume</code> フラグに指定します。
+<pre class="copyable"><code class="copyable__code">pack build samples/java \
+   --path java/maven \
+   --volume $(pwd)/java/maven/binding:/platform/bindings/my-maven-settings
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+</li>
+</ol>
+<h2 id="コンパイル済みアーティファクトからビルドする" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%82%b3%e3%83%b3%e3%83%91%e3%82%a4%e3%83%ab%e6%b8%88%e3%81%bf%e3%82%a2%e3%83%bc%e3%83%86%e3%82%a3%e3%83%95%e3%82%a1%e3%82%af%e3%83%88%e3%81%8b%e3%82%89%e3%83%93%e3%83%ab%e3%83%89%e3%81%99%e3%82%8b">
+        コンパイル済みアーティファクトからビルドする
+    </a>
+</h2><!-- raw HTML omitted -->
+<p>Buildpack を利用するアプリケーション開発者は、次のようなアーカイブ（の形式）からコンテナイメージをビルドできます。</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/JAR_(file_format)#Executable_JAR_files">実行可能 jar ファイル</a> - <a href="https://github.com/paketo-buildpacks/executable-jar">Executable Jar Buildpack</a></li>
+<li><a href="https://en.wikipedia.org/wiki/WAR_(file_format)">war ファイル</a> - <a href="https://github.com/paketo-buildpacks/apache-tomcat">Apache Tomcat Buildpack</a></li>
+<li><a href="https://docs.gradle.org/current/userguide/distribution_plugin.html">配布用 zip アーカイブ</a> - <a href="https://github.com/paketo-buildpacks/dist-zip">DistZip Buildpack</a></li>
+</ul>
+<!-- raw HTML omitted -->
+<p>Java Buildpack はアーカイブを展開した場所をアプリケーションディレクトリとして扱います。
+指定されたアーカイブが何であれ、ほとんどのプラットフォームでは自動的に展開します。</p>
+<!-- raw HTML omitted -->
+<p>Java Buildpack は war ファイルを検出すると <a href="http://tomcat.apache.org">Apache Tomcat</a>(apache tomcat) をインストールします。
+Java Buildpack の使用する Tomcat のバージョンについては、<a href="https://github.com/paketo-buildpacks/java/releases">Paketo Java Buildpack のリリースノート</a> を参照してください。
+Tomcat の設定項目については <a href="https://github.com/paketo-buildpacks/apache-tomcat">Apache Tomcat Buildpack</a> を参照してください。</p>
+<!-- raw HTML omitted -->
+<p>指定したアーティファクトの形式に対応する Buildpack は、作成するコンテナイメージの起動コマンドを指定してくれます。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><strong>注意</strong>：アーティファクトの形式に応じて、 <a href="https://github.com/paketo-buildpacks/apache-tomcat">Apache Tomcat Buildpack</a> 、<a href="https://github.com/paketo-buildpacks/executable-jar">Executable Jar Buildpack</a> 、 <a href="https://github.com/paketo-buildpacks/dist-zip">Dist Zip Buildpack</a> の3種類から1つ以上の Buildpack を選択します。しかし、最終的なコンテナイメージを作成するのはどれか1つの Buildpack です。<a href="#build-from-source">ソースコードからビルドした場合</a> 等、アーティファクトの形式を検出できない場合があります。</p>
+<!-- raw HTML omitted -->
+<p><strong>例</strong>：実行可能 jar ファイルをビルドする</p>
+<!-- raw HTML omitted -->
+<p>Maven でビルドした実行可能 jar ファイルを使用して、<code>pack</code> コマンドでアプリケーションをビルドするには、次のように実行します。</p>
+<pre class="copyable"><code class="copyable__code">cd java/maven
+./mvnw package
+pack build samples/java \
+   --path /target/demo-0.0.1-SNAPSHOT.jar
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<p>作成したコンテナイメージは、「Maven でビルドする」でビルドしたイメージと同じになっているはずです。</p>
+<h2 id="jvm-のバージョンを確認する" class="markup-heading">
+    <a class="markup-heading__link" href="#jvm-%e3%81%ae%e3%83%90%e3%83%bc%e3%82%b8%e3%83%a7%e3%83%b3%e3%82%92%e7%a2%ba%e8%aa%8d%e3%81%99%e3%82%8b">
+        JVM のバージョンを確認する
+    </a>
+</h2><!-- raw HTML omitted -->
+<p>作成したコンテナイメージに含まれる正確な JRE のバージョンは、BOM（Bill-of-Materials） から読み取ることができます。</p>
+<!-- raw HTML omitted -->
+<p><strong>例</strong> JRE のバージョンを確認する</p>
+<!-- raw HTML omitted -->
+<p>サンプルプロジェクトから作成したコンテナイメージ <code>samples/java</code> について、インストールされている JRE のバージョンを表示するには、次のように実行します。</p>
+<pre class="copyable"><code class="copyable__code">pack inspect-image samples/app --bom | jq &#39;.local[] | select(.name==&#34;jre&#34;) | .metadata.version&#39;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h2 id="jvm-のインストールするバージョンを指定する" class="markup-heading">
+    <a class="markup-heading__link" href="#jvm-%e3%81%ae%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab%e3%81%99%e3%82%8b%e3%83%90%e3%83%bc%e3%82%b8%e3%83%a7%e3%83%b3%e3%82%92%e6%8c%87%e5%ae%9a%e3%81%99%e3%82%8b">
+        JVM のインストールするバージョンを指定する
+    </a>
+</h2><!-- raw HTML omitted -->
+<p>JVM のバージョンを指定するときは、ビルド時に次の環境変数を指定します。</p>
+<ul>
+<li><code>BP_JVM_VERSION</code>
+<ul>
+<li>初期値は、Buildpack をリリースした時点で最新の LTS バージョンです。</li>
+<li>JDK あるいは JRE のバージョンを指定します。</li>
+<li><strong>例</strong>：<code>BP_JVM_VERSION=8</code> あるいは <code>BP_JVM_VERSION=8.*</code> とした場合、Buildpack は Java 8 の JDK あるいは JRE の、最新のパッチリリースをインストールします。</li>
+</ul>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="jvm-の動作を変更する" class="markup-heading">
+    <a class="markup-heading__link" href="#jvm-%e3%81%ae%e5%8b%95%e4%bd%9c%e3%82%92%e5%a4%89%e6%9b%b4%e3%81%99%e3%82%8b">
+        JVM の動作を変更する
+    </a>
+</h2><!-- raw HTML omitted -->
+<p>Java Buildpack では環境変数 <code>JAVA_TOOL_OPTIONS</code> で JVM の動作を調整するようになっています。</p>
+<!-- raw HTML omitted -->
+<p>JVM の動作を調整する方法は2種類あります。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ol>
+<li>Buildpack の提供する実行時コンポーネントのメモリー設定計算機が使用する、次のような環境変数を指定します。これらの値は最終的に <code>JAVA_TOOL_OPTIONS</code> へ設定する内容を算出するために使用されます。
+<ul>
+<li><code>BPL_JVM_HEAD_ROOM</code></li>
+<li><code>BPL_JVM_LOADED_CLASS_COUNT</code></li>
+<li><code>BPL_JVM_THREAD_COUNT</code></li>
+</ul>
+</li>
+<li>直接 <code>JAVA_TOOL_OPTIONS</code> を指定します。ユーザーの指定した内容は Buildpack の構成した内容の最後に追加されます。同じ項目を指定した場合、ユーザーの指定した値を優先します。</li>
+</ol>
+<!-- raw HTML omitted -->
+<p>全ての設定項目については <a href="https://github.com/paketo-buildpacks/bellsoft-liberica">Bellsoft Liberica Buildpack のリファレンス</a> を参照してください。</p>
+<h2 id="別の-jvm-を使用する" class="markup-heading">
+    <a class="markup-heading__link" href="#%e5%88%a5%e3%81%ae-jvm-%e3%82%92%e4%bd%bf%e7%94%a8%e3%81%99%e3%82%8b">
+        別の JVM を使用する
+    </a>
+</h2><!-- raw HTML omitted -->
+<p>初期設定の <a href="https://github.com/paketo-buildpacks/java">Paketo Java Buildpack</a> は Liberica JVM を使用します。
+Liberica の代わりに使用できる JVM （と対応する Buildpack） は次のとおりです。</p>
+<table>
+<thead>
+<tr>
+<th>JVM</th>
+<th>Buildpack</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://dragonwell-jdk.io/">Alibaba Dragonwell</a></td>
+<td><a href="https://github.com/paketo-buildpacks/alibaba-dragonwell">Paketo Alibaba Dragonwell Buildpack</a></td>
+</tr>
+<tr>
+<td><a href="https://aws.amazon.com/corretto/">Amazon Corretto</a></td>
+<td><a href="https://github.com/paketo-buildpacks/amazon-corretto">Paketo Amazon Corretto Buildpack</a></td>
+</tr>
+<tr>
+<td><a href="https://www.azul.com/downloads/zulu-community/">Azul Zulu</a></td>
+<td><a href="https://github.com/paketo-buildpacks/azul-zulu">Paketo Azul Zulu Buildpack</a></td>
+</tr>
+<tr>
+<td><a href="https://bell-sw.com/pages/libericajdk/">BellSoft Liberica</a></td>
+<td><a href="https://github.com/paketo-buildpacks/bellsoft-liberica">Paketo BellSoft Liberica Buildpack - Default</a></td>
+</tr>
+<tr>
+<td><a href="https://www.eclipse.org/openj9/">Eclipse OpenJ9</a></td>
+<td><a href="https://github.com/paketo-buildpacks/eclipse-openj9">Paketo Eclipse OpenJ9 Buildpack</a></td>
+</tr>
+<tr>
+<td><a href="https://www.graalvm.org/">GraalVM</a></td>
+<td><a href="https://github.com/paketo-buildpacks/graalvm">Paketo GraalVM Buildpack</a></td>
+</tr>
+<tr>
+<td><a href="https://www.microsoft.com/openjdk">Microsoft OpenJDK</a></td>
+<td><a href="https://github.com/paketo-buildpacks/microsoft-openjdk">Paketo Microsoft OpenJDK Buildpack</a></td>
+</tr>
+<tr>
+<td><a href="https://sap.github.io/SapMachine/">SapMachine</a></td>
+<td><a href="https://github.com/paketo-buildpacks/sap-machine">Paketo SapMachine Buildpack</a></td>
+</tr>
+</tbody>
+</table>
+<!-- raw HTML omitted -->
+<p>別の JVM を使用するときは、<code>pack build</code> コマンドに2つの <code>--buildpack</code> フラグを指定しなければなりません。
+最初に JVM Buildpack を指定し、次に Paketo Java Buildpack を指定します（順番が重要です）。
+そうすると、<code>pack build</code> は2つの JVM Buildpack を使用することになるのですが、最初に指定した Buildpack がビルドプランの要素として登録され、後に指定した Buildpack は何もしない状態になります。</p>
+<!-- raw HTML omitted -->
+<p>次の例は Azul Zulu Buikdpack を使用しています。</p>
+<pre class="copyable"><code class="copyable__code">pack build samples/jar \
+    --buildpack gcr.io/paketo-buildpacks/azul-zulu \
+    --buildpack paketo-buildpacks/java
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<p>この方法には1つ欠点があります。
+CA Certs Buildpack より先に JVM Buildpack を取得するので、JVM ベンダーの提供するコンテンツを取得するとき、CA 証明局は最新化されておらず、信頼できないコンテンツを取得してしまう場合があるのです。
+ですが、ほとんどのユーザーには影響しないものだと考えています。
+ほとんどの JVM Buildpack はデフォルトのシステムトラストストアに含まれている CA が書名した証明書を使用するURL（ドメイン）で提供されているはずだからです。</p>
+<!-- raw HTML omitted -->
+<p>カスタマイズした JVM Buildpack を、既存の CA 認証局が署名してない証明書を使用する URL からダウンロードさせるときは、最初に CA Certs Buildpack を実行するといいでしょう。
+CA Cert Buildpack を重複して実行することになりますが、ライフサイクルは2回目の実行を無視できるくらい簡潔なままです。</p>
+<!-- raw HTML omitted -->
+<p>具体的には次のように実行します。</p>
+<pre class="copyable"><code class="copyable__code">pack build samples/jar \
+    --buildpack paketo-buildpacks/ca-certificates \
+    --buildpack gcr.io/paketo-buildpacks/azul-zulu \
+    --buildpack paketo-buildpacks/java
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<p>常にこのような使い方をしていても、メッセージや処理が冗長になるだけで特に問題はありません。
+また、ほとんどのユーザーは CA Cert Buildpack を先頭にしなくても問題になりません。</p>
+<h2 id="別の-native-image-toolkit-を使用する" class="markup-heading">
+    <a class="markup-heading__link" href="#%e5%88%a5%e3%81%ae-native-image-toolkit-%e3%82%92%e4%bd%bf%e7%94%a8%e3%81%99%e3%82%8b">
+        別の Native Image Toolkit を使用する
+    </a>
+</h2><!-- raw HTML omitted -->
+<p>初期設定の [Paketo Java Native Image Buildpack][bp/java-ntive-image] は GraalVM Native Image Toolkit を使用します。
+代わりに使用できる Native Image Toolkit （と対応する Buildpack） は次のとおりです。</p>
+<table>
+<thead>
+<tr>
+<th>JVM</th>
+<th>Buildpack</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://bell-sw.com/pages/liberica-native-image-kit/">Bellsoft Liberica</a></td>
+<td><a href="https://github.com/paketo-buildpacks/bellsoft-liberica">Paketo Bellsoft Liberica Buildpack</a></td>
+</tr>
+</tbody>
+</table>
+<!-- raw HTML omitted -->
+<p>別の Java Native Image Toolkit を使用するときは、<code>pack build</code> コマンドに2つの <code>--buildpack</code> フラグを指定しなければなりません。
+最初に Java Native Image Toolkit Buildpack を指定し、次に Paketo Java Native Image Buildpack を指定します（順番が重要です）。
+そうすると、<code>pack build</code> は2つの Native Image Toolkit Buildpack を使用することになるのですが、最初に指定した Buildpack がビルドプランの要素として登録され、後に指定した Buildpack は何もしない状態になります。</p>
+<!-- raw HTML omitted -->
+<p>Bellsoft Liberica Buildpack を使う場合は次のように実行します。</p>
+<pre class="copyable"><code class="copyable__code">pack build samples/native-image \
+    --buildpack paketo-buildpacks/bellsoft-liberica \
+    --buildpack paketo-buildpacks/java-native-image
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="spring-boot-アプリケーションをビルドする" class="markup-heading">
+    <a class="markup-heading__link" href="#spring-boot-%e3%82%a2%e3%83%97%e3%83%aa%e3%82%b1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e3%82%92%e3%83%93%e3%83%ab%e3%83%89%e3%81%99%e3%82%8b">
+        Spring Boot アプリケーションをビルドする
+    </a>
+</h2><h3 id="spring-boot-アプリケーションの依存ライブラリを確認する" class="markup-heading">
+    <a class="markup-heading__link" href="#spring-boot-%e3%82%a2%e3%83%97%e3%83%aa%e3%82%b1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e3%81%ae%e4%be%9d%e5%ad%98%e3%83%a9%e3%82%a4%e3%83%96%e3%83%a9%e3%83%aa%e3%82%92%e7%a2%ba%e8%aa%8d%e3%81%99%e3%82%8b">
+        Spring Boot アプリケーションの依存ライブラリを確認する
+    </a>
+</h3><!-- raw HTML omitted -->
+<p>次のコマンドを実行すると、サンプルアプリケーションで作成したコンテナイメージの依存ライブラリを確認できます。</p>
+<pre class="copyable"><code class="copyable__code">pack inspect-image samples/java --bom | \
+jq &#39;.local[] | select(.name==&#34;dependencies&#34;) | .metadata.dependencies[].name&#39;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h3 id="spring-boot-の自動構成を無効にする" class="markup-heading">
+    <a class="markup-heading__link" href="#spring-boot-%e3%81%ae%e8%87%aa%e5%8b%95%e6%a7%8b%e6%88%90%e3%82%92%e7%84%a1%e5%8a%b9%e3%81%ab%e3%81%99%e3%82%8b">
+        Spring Boot の自動構成を無効にする
+    </a>
+</h3><!-- raw HTML omitted -->
+<p>Spring Boot Buildpack はクラスパスに <a href="https://github.com/spring-cloud/spring-cloud-bindings">Spring Cloud Bindings</a> を追加します。
+Spring CloudBindings は、バインディングに配置した資格情報と接続設定に基づいて、外部サービスへ接続するための設定を、実行時に自動的に構成します。
+初期設定で自動構成機能は有効になっていますが、環境変数 <code>BPL_SPRING_CLOUD_BINDINGS_ENABLED</code> を指定すると無効にできます。</p>
+<h2 id="apm-へ接続する" class="markup-heading">
+    <a class="markup-heading__link" href="#apm-%e3%81%b8%e6%8e%a5%e7%b6%9a%e3%81%99%e3%82%8b">
+        APM へ接続する
+    </a>
+</h2><!-- raw HTML omitted -->
+<p>Java Buildpack は次のような <a href="https://en.wikipedia.org/wiki/Application_performance_management">APM</a> と連携できるようになっています。</p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview">Azure Application Insights</a> - <a href="https://github.com/paketo-buildpacks/azure-application-insights">Azure Application Insights Buildpack</a></li>
+<li><a href="https://cloud.google.com/products/operations">Google Stackdriver</a> - <a href="https://github.com/paketo-buildpacks/google-stackdriver">Google Stackdriver Buildpack</a></li>
+</ul>
+<!-- raw HTML omitted -->
+<p>APM 連携機能は <a href="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/configuration/#bindings">バインディング</a> で有効にします。
+ビルド時に適切なバインディング種類が存在する場合、対応する Java エージェントをコンテナイメージに埋め込みます。
+APM へ接続するための資格情報は、実行時にバインディングから読み取ります。</p>
+<!-- raw HTML omitted -->
+<p><strong>例</strong>：Azure Application Insights に接続する</p>
+<!-- raw HTML omitted -->
+<p>次のコマンドは、Azure Application Insights の Java エージェントをコンテナイメージに埋め込みます。</p>
+<pre class="copyable"><code class="copyable__code">pack build samples/java \
+    --volume &#34;$(pwd)/java/application-insights/binding:/platform/bindings/application-insights&#34;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<p>アプリケーションが Azure Application Insights へ接続するには正式な <a href="https://docs.microsoft.com/en-us/azure/azure-monitor/app/create-new-resource#copy-the-instrumentation-key">Instrumentation Key</a> が必要です。</p>
+<pre class="copyable"><code class="copyable__code">echo &#34;&lt;Instrumentation Key&gt;&#34; &gt; java/application-insights/binding/InstrumentationKey
+docker run --rm --tty \
+  --env SERVICE_BINDING_ROOT=/bindings \
+  --volume &#34;$(pwd)/java/application-insights/binding:/bindings/app-insights&#34; \
+  samples/java
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h2 id="リモートデバッグを有効にする" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%83%aa%e3%83%a2%e3%83%bc%e3%83%88%e3%83%87%e3%83%90%e3%83%83%e3%82%b0%e3%82%92%e6%9c%89%e5%8a%b9%e3%81%ab%e3%81%99%e3%82%8b">
+        リモートデバッグを有効にする
+    </a>
+</h2><!-- raw HTML omitted -->
+<p>ビルド時に環境変数 <code>BP_DEBUG_ENABLED</code> を指定すると、 <a href="bp/debug">Debug Buildpack</a> により、Java アプリケーションがデバッグ接続を待ち受けるように設定します。
+そして、実行時に環境変数 <code>BPL_DEBUG_ENABLED</code> を指定すると、Java アプリケーションがデバッグ接続を待ち受けるようになります。
+デバッグ接続用の TCP ポート番号の初期値は <code>8000</code> ですが、実行時に環境変数 <code>BPL_DEBUG_PORT</code> で変更できます。
+実行時に環境変数で <code>BPL_DEBUG_SUSPEND</code> を指定すると、デバッガがアタッチするまで JVM プロセスは実行を中断するようになります。</p>
+<!-- raw HTML omitted -->
+<p><strong>例</strong>：リモートデバッグ</p>
+<!-- raw HTML omitted -->
+<p>リモートデバッグできるコンテナイメージを作成するには次のように実行します。</p>
+<pre class="copyable"><code class="copyable__code">pack build samples/java \
+  --path java/jar \
+  --env BP_DEBUG_ENABLED=true
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<p>デバッグ接続用の TCP ポートを公開するには次のようにコンテナイメージを実行します。</p>
+<pre class="copyable"><code class="copyable__code">docker run --env BPL_DEBUG_ENABLED=true --publish 8000:8000 samples/java
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<p>IDE のデバッガで公開した TCP ポートに接続できます。</p>
+<p><img src="/images/debug-eclipse.png" alt="Eclipse Remote Debug Configuration"></p>
+<h2 id="jmx-を有効にする" class="markup-heading">
+    <a class="markup-heading__link" href="#jmx-%e3%82%92%e6%9c%89%e5%8a%b9%e3%81%ab%e3%81%99%e3%82%8b">
+        JMX を有効にする
+    </a>
+</h2><!-- raw HTML omitted -->
+<p>ビルド時に環境変数 <code>BP_JMX_ENABLED</code> を指定すると、 <a href="https://github.com/paketo-buildpacks/jmx">JMX Buildpack</a> が <a href="https://en.wikipedia.org/wiki/Java_Management_Extensions#:~:text=Java%20Management%20Extensions%20(JMX)%20is,MBeans%20(for%20Managed%20Bean)">JMX</a> を有効にします。
+そして、実行時に環境変数 <code>BPL_JMX_ENABLED</code> を指定すると、Java アプリケーションへ JMX で接続できるようになります。
+JMX 接続に使用する TCP ポート番号の初期値は <code>5000</code> ですが、環境変数 <code>BPL_JMX_PORT</code> で変更できます。</p>
+<!-- raw HTML omitted -->
+<p><strong>例</strong>: JMX を有効にする</p>
+<!-- raw HTML omitted -->
+<p>JMX 接続できるコンテナイメージを作成するには次のように実行します。</p>
+<pre class="copyable"><code class="copyable__code">pack build samples/java \
+  --path java/jar \
+  --env BP_JMX_ENABLED=true
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<p>JMX 接続用の TCP ポートを公開するには次のようにコンテナイメージを実行します。</p>
+<pre class="copyable"><code class="copyable__code">docker run --env BPL_JMX_ENABLED=true --publish 5000:5000 samples/java
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<p><a href="https://openjdk.java.net/tools/svc/jconsole/">JConsole</a> で公開した TCP ポートに接続できます。</p>
+<p><img src="/images/jconsole.png" alt="JConsole"></p>
+<h2 id="コンテナイメージの起動コマンドに引数を追加する" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%82%b3%e3%83%b3%e3%83%86%e3%83%8a%e3%82%a4%e3%83%a1%e3%83%bc%e3%82%b8%e3%81%ae%e8%b5%b7%e5%8b%95%e3%82%b3%e3%83%9e%e3%83%b3%e3%83%89%e3%81%ab%e5%bc%95%e6%95%b0%e3%82%92%e8%bf%bd%e5%8a%a0%e3%81%99%e3%82%8b">
+        コンテナイメージの起動コマンドに引数を追加する
+    </a>
+</h2><!-- raw HTML omitted -->
+<p>コンテナイメージの <a href="https://github.com/opencontainers/image-spec/blob/master/config.md#properties"><code>CMD</code></a> に、起動コマンドの引数を追加できます。
+Kubernetes では <a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#container-v1-core">container</a> リソースの <code>args</code> フィールドへ指定します。</p>
+<!-- raw HTML omitted -->
+<p><strong>例</strong>: サーバーポート番号を指定する</p>
+<!-- raw HTML omitted -->
+<p>アプリケーションの起動コマンドの引数で、待ち受けポート番号として <code>8081</code> を指定するには次のように実行します。
+<pre class="copyable"><code class="copyable__code">docker run --rm --publish 8081:8081 samples/java --server.port=8081
+curl -s http://localhost:8081/actuator/health
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+</p>
+<h2 id="コンテナイメージの起動コマンドを指定する" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%82%b3%e3%83%b3%e3%83%86%e3%83%8a%e3%82%a4%e3%83%a1%e3%83%bc%e3%82%b8%e3%81%ae%e8%b5%b7%e5%8b%95%e3%82%b3%e3%83%9e%e3%83%b3%e3%83%89%e3%82%92%e6%8c%87%e5%ae%9a%e3%81%99%e3%82%8b">
+        コンテナイメージの起動コマンドを指定する
+    </a>
+</h2><!-- raw HTML omitted -->
+<p>Buildpack の構成した起動コマンドは、コンテナイメージの <a href="https://github.com/opencontainers/image-spec/blob/master/config.md#properties"><code>ENTRYPOINT</code></a> で変更できます。</p>
+<!-- raw HTML omitted -->
+<p><strong>例</strong>: 対話形式のシェルを実行する</p>
+<!-- raw HTML omitted -->
+<p>対話形式で Bash を起動するには次のように実行します。
+<pre class="copyable"><code class="copyable__code">docker run --rm --entrypoint bash samples/java
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+</p>
+<h3 id="buildpack-の構成した環境で指定したコマンドを実行する" class="markup-heading">
+    <a class="markup-heading__link" href="#buildpack-%e3%81%ae%e6%a7%8b%e6%88%90%e3%81%97%e3%81%9f%e7%92%b0%e5%a2%83%e3%81%a7%e6%8c%87%e5%ae%9a%e3%81%97%e3%81%9f%e3%82%b3%e3%83%9e%e3%83%b3%e3%83%89%e3%82%92%e5%ae%9f%e8%a1%8c%e3%81%99%e3%82%8b">
+        Buildpack の構成した環境で指定したコマンドを実行する
+    </a>
+</h3><!-- raw HTML omitted -->
+<p>Buildpack で作成したコンテナイメージには、実行可能ファイル <code>launcher</code> が必ず存在します。
+このファイルは、Buildpack の構成する環境変数を設定した状態で指定したコマンドを実行するために使用できます。
+<code>launcher</code> は指定したコマンドを実行する前に、Buildpack の配置した全てのプロファイルスクリプトを実行します。
+環境変数の値を実行時に計算するためです。</p>
+<!-- raw HTML omitted -->
+<p>コンテナイメージの <code>ENTRYPOINT</code> に <code>launcher</code> を指定し、<code>CMD</code> に実行したいコマンドを指定すれば、Buildpack の構成した環境で指定したコマンドを実行できます。</p>
+<!-- raw HTML omitted -->
+<p><strong>例</strong>: Buildpack の構成した <code>JAVA_TOOL_OPTIONS</code> を確認する</p>
+<!-- raw HTML omitted -->
+<p>Buildpack の構成した <code>JAVA_TOOL_OPTIONS</code> の値を表示するには次のように実行します。
+<pre class="copyable"><code class="copyable__code">docker run --rm --entrypoint launcher samples/java echo &#39;JAVA_TOOL_OPTIONS: $JAVA_TOOL_OPTIONS&#39;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+</p>
+<!-- raw HTML omitted -->
+<p><code>launcher</code> に指定したコマンドは実行前にシェルで評価しますが、元のトークン区切りを保持します。
+例えば、<code>'JAVA_TOOL_OPTIONS: $JAVA_TOOL_OPTIONS'</code> という文字列はシングルクォートで囲まれているため、<code>$JAVA_TOOL_OPTIONS</code> の部分はホストのシェルではなく、コンテナ上で評価されます。</p>
+<h2 id="アプリケーションを-graalvm-のネイティブイメージとしてビルドする" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%82%a2%e3%83%97%e3%83%aa%e3%82%b1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e3%82%92-graalvm-%e3%81%ae%e3%83%8d%e3%82%a4%e3%83%86%e3%82%a3%e3%83%96%e3%82%a4%e3%83%a1%e3%83%bc%e3%82%b8%e3%81%a8%e3%81%97%e3%81%a6%e3%83%93%e3%83%ab%e3%83%89%e3%81%99%e3%82%8b">
+        アプリケーションを GraalVM のネイティブイメージとしてビルドする
+    </a>
+</h2><!-- raw HTML omitted -->
+<p><a href="https://github.com/paketo-buildpacks/java-native-image">Paketo Java Native Image Buildpack</a> は、<a href="https://www.graalvm.org/docs/introduction/">GraalVM</a> の <a href="https://www.graalvm.org/reference-manual/native-image/">native image</a> でビルドしたアプリケーションを含む、コンテナイメージを作成します。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Java Native Buildpack は <a href="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/concepts/buildpacks/#composite-buildpacks">合成 Buildpack</a> です。
+<code>build</code> コマンドのそれぞれの段階は、それぞれの <a href="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/java-native-image-reference/#components">コンポーネント</a> が制御するようになっています。
+以降の説明では、基本的な設定項目を説明します。
+全ての設定項目や、利用できる機能については対応するコンポーネント（Buildpack）のリファレンスを参照してください。</p>
+<h3 id="ソースコードからビルドする-1" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%82%bd%e3%83%bc%e3%82%b9%e3%82%b3%e3%83%bc%e3%83%89%e3%81%8b%e3%82%89%e3%83%93%e3%83%ab%e3%83%89%e3%81%99%e3%82%8b-1">
+        ソースコードからビルドする
+    </a>
+</h3><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Java Native Image Buildpack では <a href="https://github.com/paketo-buildpacks/java">Java Buildpack</a> と同じ <a href="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/howto/java/#building-from-source">ビルドツールや設定項目</a> を使用できます。
+ただし、<a href="https://en.wikipedia.org/wiki/JAR_(file_format)#Executable_JAR_files">実行可能形式のjarファイル</a> を生成しなければなりません。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Buildpack はコンパイルとパッケージングを完了すると、作成した jar ファイルを展開してアプリケーションのソースコードを置き換えます。
+そして、 [実行可能形式の jar ファイルからビルド][building-from-an-executable-jar] します。</p>
+<!-- raw HTML omitted -->
+<p><strong>例</strong>： Maven で Native Image をビルドする</p>
+<!-- raw HTML omitted -->
+<p>次のコマンドは Maven プロジェクトのソースコードからコンテナイメージを作成します。</p>
+<pre class="copyable"><code class="copyable__code">pack build samples/java-native \
+  --env BP_NATIVE_IMAGE=true \
+  --path java/native-image/java-native-image-sample
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h3 id="実行可能形式の-jar-ファイルからビルドする" class="markup-heading">
+    <a class="markup-heading__link" href="#%e5%ae%9f%e8%a1%8c%e5%8f%af%e8%83%bd%e5%bd%a2%e5%bc%8f%e3%81%ae-jar-%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab%e3%81%8b%e3%82%89%e3%83%93%e3%83%ab%e3%83%89%e3%81%99%e3%82%8b">
+        実行可能形式の jar ファイルからビルドする
+    </a>
+</h3><!-- raw HTML omitted -->
+<p><a href="https://en.wikipedia.org/wiki/JAR_(file_format)#Executable_JAR_files">実行可能形式の jar ファイル</a> を展開する方法でコンテナイメージを作成できます。
+ほとんどのプラットフォームは指定されたファイルのアーカイブ形式を自動的に判断し、展開できます。</p>
+<!-- raw HTML omitted -->
+<p><strong>例</strong>：実行可能形式の jar ファイルから Native Image をビルドする</p>
+<!-- raw HTML omitted -->
+<p>Maven プロジェクトのソースコードからビルドした実行可能形式の jar ファイルを <code>pack</code> コマンドに指定して、コンテナイメージを作成するときは次のように実行します。</p>
+<pre class="copyable"><code class="copyable__code">cd samples/java/native-image
+./mvnw package
+pack build samples/java-native \
+  --env BP_NATIVE_IMAGE=true \
+  --path java/native-image/java-native-image-sample/target/demo-0.0.1-SNAPSHOT.jar
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<p>作成したコンテナイメージは「Maven で Native Image をビルドする」でビルドしたイメージと同じになっているはずです。</p>
+<h3 id="jvm-のバージョンを確認する-1" class="markup-heading">
+    <a class="markup-heading__link" href="#jvm-%e3%81%ae%e3%83%90%e3%83%bc%e3%82%b8%e3%83%a7%e3%83%b3%e3%82%92%e7%a2%ba%e8%aa%8d%e3%81%99%e3%82%8b-1">
+        JVM のバージョンを確認する
+    </a>
+</h3><!-- raw HTML omitted -->
+<p>作成したコンテナイメージに含まれる正確な Substrate VM のバージョンは、BOM（Bill-of-Materials） から読み取ることができます。</p>
+<!-- raw HTML omitted -->
+<p><strong>例</strong> JRE のバージョンを確認する</p>
+<!-- raw HTML omitted -->
+<p>サンプルプロジェクトから作成したコンテナイメージ <code>samples/java-native</code> について、インストールされている Substrate VM のバージョンを表示するには、次のように実行します。</p>
+<pre class="copyable"><code class="copyable__code">pack inspect-image samples/java-native --bom | \
+jq &#39;.local[] | select(.name==&#34;native-image-svm&#34;) | .metadata.version&#39;
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<h3 id="graalvm-のバージョンを指定する" class="markup-heading">
+    <a class="markup-heading__link" href="#graalvm-%e3%81%ae%e3%83%90%e3%83%bc%e3%82%b8%e3%83%a7%e3%83%b3%e3%82%92%e6%8c%87%e5%ae%9a%e3%81%99%e3%82%8b">
+        GraalVM のバージョンを指定する
+    </a>
+</h3><!-- raw HTML omitted -->
+<p>GraalVM は急速に進歩しているので、互換性を保証しなければならない場合は、コンテナイメージをビルドする GraalVM や関連するツールのバージョンを指定するといいでしょう。
+JVM のバージョンのように直接指定することはできないのですが、代わりに Java Native Image Buildpack のバージョンを指定すれば、対応する GraalVM のバージョンを指定できます。</p>
+<!-- raw HTML omitted -->
+<p>GraalVM と Java Native Image Buildpack のバージョンの対応関係は次のとおりです。</p>
+<table>
+<thead>
+<tr>
+<th>GraalVM Version</th>
+<th>Java Native Image Buildpack Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>21.2</td>
+<td>5.5.0</td>
+</tr>
+<tr>
+<td>21.1</td>
+<td>5.4.0</td>
+</tr>
+<tr>
+<td>21.0</td>
+<td>5.3.0</td>
+</tr>
+</tbody>
+</table>
+<!-- raw HTML omitted -->
+<p>GraalVM 21.1 を使用するには次のように実行します。</p>
+<pre class="copyable"><code class="copyable__code">pack build samples/native \
+    -e BP_NATIVE_IMAGE=true \
+    --buildpack gcr.io/paketo-buildpacks/ca-certificates \
+    --buildpack gcr.io/paketo-buildpacks/java-native-image:5.4.0
+</code><img class="copyable__clipboard" src="/images/clipboard.svg" alt="copy to clipboard" /><div class="copyable__copied copied">Copied!</div></pre>
+
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+
+            </div>
+            
+  <a href="http://github.com/paketo-buildpacks/paketo-website/edit/main/content/docs%5chowto%5cjava.ja.md" target="_blank" class="github-edit" style="text-decoration:none">
+    <div class="github-edit__content">
+      <div class="github-edit__logo-container">
+        <img class="github-edit__logo" src="/images/github-mark.png">
+      </div>
+        <div class="github-edit__text">Edit</div>
+    </div>
+</a>
+
+            <p class="docs-mod-time"><strong>Last modified:</strong> September 13, 2021</p>
+        </div>
+        
+<div class="docs-body__table-of-contents-container docs-body__table-of-contents-container--desktop">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#サンプルアプリをビルドする">サンプルアプリをビルドする</a></li>
+    <li><a href="#ソースコードからビルドする">ソースコードからビルドする</a>
+      <ul>
+        <li><a href="#ビルドツールを設定する">ビルドツールを設定する</a></li>
+      </ul>
+    </li>
+    <li><a href="#コンパイル済みアーティファクトからビルドする">コンパイル済みアーティファクトからビルドする</a></li>
+    <li><a href="#jvm-のバージョンを確認する">JVM のバージョンを確認する</a></li>
+    <li><a href="#jvm-のインストールするバージョンを指定する">JVM のインストールするバージョンを指定する</a></li>
+    <li><a href="#jvm-の動作を変更する">JVM の動作を変更する</a></li>
+    <li><a href="#別の-jvm-を使用する">別の JVM を使用する</a></li>
+    <li><a href="#別の-native-image-toolkit-を使用する">別の Native Image Toolkit を使用する</a></li>
+    <li><a href="#spring-boot-アプリケーションをビルドする">Spring Boot アプリケーションをビルドする</a>
+      <ul>
+        <li><a href="#spring-boot-アプリケーションの依存ライブラリを確認する">Spring Boot アプリケーションの依存ライブラリを確認する</a></li>
+        <li><a href="#spring-boot-の自動構成を無効にする">Spring Boot の自動構成を無効にする</a></li>
+      </ul>
+    </li>
+    <li><a href="#apm-へ接続する">APM へ接続する</a></li>
+    <li><a href="#リモートデバッグを有効にする">リモートデバッグを有効にする</a></li>
+    <li><a href="#jmx-を有効にする">JMX を有効にする</a></li>
+    <li><a href="#コンテナイメージの起動コマンドに引数を追加する">コンテナイメージの起動コマンドに引数を追加する</a></li>
+    <li><a href="#コンテナイメージの起動コマンドを指定する">コンテナイメージの起動コマンドを指定する</a>
+      <ul>
+        <li><a href="#buildpack-の構成した環境で指定したコマンドを実行する">Buildpack の構成した環境で指定したコマンドを実行する</a></li>
+      </ul>
+    </li>
+    <li><a href="#アプリケーションを-graalvm-のネイティブイメージとしてビルドする">アプリケーションを GraalVM のネイティブイメージとしてビルドする</a>
+      <ul>
+        <li><a href="#ソースコードからビルドする-1">ソースコードからビルドする</a></li>
+        <li><a href="#実行可能形式の-jar-ファイルからビルドする">実行可能形式の jar ファイルからビルドする</a></li>
+        <li><a href="#jvm-のバージョンを確認する-1">JVM のバージョンを確認する</a></li>
+        <li><a href="#graalvm-のバージョンを指定する">GraalVM のバージョンを指定する</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+
+    </div>
+</div>
+
+
+    <footer class="footer text--light">
+    <div class="footer-social-links-container">
+        <a class="footer-social-link" href="https://twitter.com/Paketo_io">
+            <div class="footer-social-link__image-container">
+                <div class="logo">
+                    <img class="logo__image" src="/v2/images/logo-twitter.svg" alt="Blue Twitter bird logo">
+                </div>
+            </div>
+            <div class="text--light text--400">
+                Twitter
+            </div>
+        </a>
+        <a class="footer-social-link" href="https://slack.paketo.io/">
+            <div class="footer-social-link__image-container">
+                <div class="logo">
+                    <img class="logo__image" src="/v2/images/logo-slack.svg" alt="Slack logo">
+                </div>
+            </div>
+            <div class="text--light text--400">
+                Slack
+            </div>
+        </a>
+        <a class="footer-social-link" href="https://github.com/paketo-buildpacks">
+            <div class="footer-social-link__image-container">
+                <div class="logo logo--github">
+                    <img class="logo__image"  src="/v2/images/logo-github-cropped.svg" alt="GitHub Octocat logo"/>
+                </div>
+            </div>
+            <div class="text--light text--400">
+                GitHub
+            </div>
+        </a>
+    </div>
+    <div class="footer-privacy-policy">
+        <div class="footer-text--small">Paketo Buildpacks is a <a class="text--light" href="https://www.cloudfoundry.org/">Cloud Foundry</a> Project</div>
+        <img class="cloudfoundry-logo" src="/v2/images/logo-cloudfoundry-light.svg" alt="Cloud Foundry logo" />
+        <a class="footer-text--small text--light" href="https://www.linuxfoundation.org/privacy">Privacy Policy</a>
+    </div>
+</footer><script src="/unofficial-translations/paketo-website/js/main.7b2c859f76ebea65f7468883b2f720537f395fc48d504f5e3b4d33c389e860f2.js"></script>
+
+    <div id="footer-skip-link" class="screenreader-container">
+    <a href="#header-skip-link" class="screenreader-text">Skip to Header</a>
+</div>
+
+</body>
+
+</html>

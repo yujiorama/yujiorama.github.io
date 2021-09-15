@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Paketo Buildpacks</title>
+    <link>https://yujiorama.github.io/unofficial-translations/paketo-website/ja/categories/</link>
+    <description>Recent content in Categories on Paketo Buildpacks</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/categories/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

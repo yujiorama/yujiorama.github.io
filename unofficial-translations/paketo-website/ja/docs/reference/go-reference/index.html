@@ -1,0 +1,757 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Go Buildpack リファレンス - Paketo Buildpacks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1 viewport-fit=cover">
+
+
+
+
+<meta name="og:site_name" content="Paketo Buildpacks">
+<meta name="og:title" content="Go Buildpack リファレンス">
+<meta name="og:url" content="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/go-reference/">
+<meta name="twitter:title" content="Paketo Buildpacks" />
+<meta name="twitter:url" content="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/reference/go-reference/" />
+<meta name="twitter:card" content="" />
+
+
+
+<link rel="stylesheet" href="/unofficial-translations/paketo-website/css/main.min.e65e899d7edbb046f43d58e402eca40ec1064082b810ea2ea4f62b1e70614850.css">
+
+</head>
+
+<body>
+    
+    <div id="header-skip-link" class="screenreader-container">
+    <a href="#title" class="screenreader-text">Skip to Content</a>
+</div>
+
+    
+
+
+
+
+<header class="header--narrow">
+    
+    <a class="paketo-p-logo" href="/">
+        <img class="paketo-p-logo__image" src="/v2/images/logo-paketo-p.svg" alt="Paketo Buildpacks Homepage">
+    </a>
+    
+    <div id="navigation" class="right-overlay">
+        <div class="nav-opener">
+            <span class="nav-opener__bar nav-opener__bar-top"></span>
+            <span class="nav-opener__bar nav-opener__bar-middle"></span>
+            <span class="nav-opener__bar nav-opener__bar-bottom"></span>
+        </div>
+        <div class="nav-container" id="nav-container">
+            <nav class="nav" id="nav-tray" >
+                <div class="nav__linkarea text--400">
+                    <a class="nav-link" href="/docs">docs</a>
+                    <a class="nav-link" href="/community">community</a>
+                    <a class="nav-link" href="https://blog.paketo.io">blog</a>
+                    <a class="nav-link" href="https://github.com/paketo-buildpacks">github</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="desktop-nav">
+        
+        
+        
+        <a class="nav-link nav-link--desktop  nav-link--desktop--active" href="/docs">docs</a>
+        
+        <a class="nav-link nav-link--desktop   " href="/community">community</a>
+        <a class="nav-link nav-link--desktop " href="https://blog.paketo.io">blog</a>
+        <a class="nav-link nav-link--desktop " href="https://github.com/paketo-buildpacks">github</a>
+    </div>
+</header>
+
+
+    <div class="docs">
+    <div class="docs-sidebar">
+        
+<input type="text" id="docs-search" class="algolia-autocomplete__search-bar" placeholder="Search docs..." data-api-key="bf2d426728685665ceaf22fac947f10f" data-index="paketo"/>
+<nav class="docs-menu">
+    <ul class="docs-menu__top-level-list">
+        
+        
+            
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Paketo Buildpacks 入門</span>
+            </a>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header ">
+                
+                <span>使い方</span>
+                <button class="expander-button  docs-menu__expander-button">
+                    <svg class="expander-button__triangle " width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list ">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/dotnet-core/" class="docs-menu__item docs-menu__link ">
+                
+                <span>.NET Core</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/go/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Go</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/web-servers/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Web Servers</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/java/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/nodejs/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Node.js</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/python/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Python</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/php/" class="docs-menu__item docs-menu__link ">
+                
+                <span>PHP</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/ruby/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Ruby</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/create-paketo-buildpack/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Paketo Buildpack を作成する</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/howto/bom/" class="docs-menu__item docs-menu__link ">
+                
+                <span>部品表（Bill of Materials）へアクセスする</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header ">
+                
+                <span>考え方</span>
+                <button class="expander-button  docs-menu__expander-button">
+                    <svg class="expander-button__triangle " width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list ">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/buildpacks/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Buildpacks</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/builders/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Builders</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/stacks/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Stacks</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/concepts/bom/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Bill of Materials</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+            
+    
+        <li class="docs-menu__item docs-menu__parent">
+            
+            <div class="docs-menu__section-header docs-menu__section-header--opened">
+                
+                <span>リファレンス</span>
+                <button class="expander-button expander-button--opened docs-menu__expander-button">
+                    <svg class="expander-button__triangle expander-button__triangle--opened" width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.140625" width="37.0257" height="34" rx="8" fill="#888888" fill-opacity="0.25"/>
+                        <path d="M28.1604 13H8.14648L18.6538 22.5L28.1604 13Z" fill="#FEFCFC"/>
+                        </svg>
+                </button>
+            </div>
+            
+            <ul class="docs-menu__children-list docs-menu__children-list--opened">
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/httpd-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>HTTPD Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/configuration/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Paketo Buildpacks の設定</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/dotnet-core-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>.NET Core Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/go-reference/" class="docs-menu__item docs-menu__link docs-menu__link--active">
+                
+                <span>Go Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/java-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/java-native-image-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Java Native Image Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/nginx-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>NGINX Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/nodejs-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Node.js Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/php-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>PHP Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/python-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Python Buildpack</span>
+            </a>
+        </li>
+    
+                
+                    
+    
+        <li class="docs-menu__leaf">
+            <a href="/unofficial-translations/paketo-website/ja/docs/reference/ruby-reference/" class="docs-menu__item docs-menu__link ">
+                
+                <span>Ruby Buildpack</span>
+            </a>
+        </li>
+    
+                
+            </ul>
+        </li>
+    
+        
+    </ul>
+</nav>
+
+
+
+    </div>
+    <div class="docs-body">
+        <div class="docs-body__container">
+            
+  <a href="http://github.com/paketo-buildpacks/paketo-website/edit/main/content/docs%5creference%5cgo-reference.ja.md" target="_blank" class="github-edit" style="text-decoration:none">
+    <div class="github-edit__content">
+      <div class="github-edit__logo-container">
+        <img class="github-edit__logo" src="/images/github-mark.png">
+      </div>
+        <div class="github-edit__text">Edit</div>
+    </div>
+</a>
+
+            <h1 id="title">Go Buildpack リファレンス</h1>
+            
+<div class="docs-body__table-of-contents-container docs-body__table-of-contents-container--mobile">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#対応している依存対象">対応している依存対象</a></li>
+    <li><a href="#振る舞い">振る舞い</a>
+      <ul>
+        <li><a href="#パッケージ管理">パッケージ管理</a></li>
+        <li><a href="#コンパイル">コンパイル</a></li>
+      </ul>
+    </li>
+    <li><a href="#buildpack-の設定する環境変数">Buildpack の設定する環境変数</a>
+      <ul>
+        <li><a href="#gopath"><code>GOPATH</code></a></li>
+        <li><a href="#gocache"><code>GOCACHE</code></a></li>
+        <li><a href="#depcachedir"><code>DEPCACHEDIR</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#コンポーネント">コンポーネント</a></li>
+  </ul>
+</nav>
+</div>
+
+            <div class="docs-body__markdown">
+                <p>This reference documentation offers an in-depth description of the behavior
+and configuration options of the
+<a href="https://github.com/paketo-buildpacks/go">Paketo Go Buildpack</a>. For explanations of how to use the buildpack for several common use-cases, see
+the  Paketo Go Buildpack  How To <a href="/docs/howto/go">documentation</a>.</p>
+<h2 id="対応している依存対象" class="markup-heading">
+    <a class="markup-heading__link" href="#%e5%af%be%e5%bf%9c%e3%81%97%e3%81%a6%e3%81%84%e3%82%8b%e4%be%9d%e5%ad%98%e5%af%be%e8%b1%a1">
+        対応している依存対象
+    </a>
+</h2><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Go Paketo Buildpack は Go 処理系の複数のバージョンに対応しています。
+具体的なバージョンは <a href="
+https://github.com/paketo-buildpacks/go/releases/latest">Buildpack のリリースノート</a> で確認してください。</p>
+<h2 id="振る舞い" class="markup-heading">
+    <a class="markup-heading__link" href="#%e6%8c%af%e3%82%8b%e8%88%9e%e3%81%84">
+        振る舞い
+    </a>
+</h2><!-- raw HTML omitted -->
+<p>Paketo Go Buildpack は Go アプリケーションをビルドするために設計された <a href="https://yujiorama.github.io/unofficial-translations/paketo-website/ja/docs/concepts/buildpacks/#composite-buildpacks">合成 Buildpack</a> です。</p>
+<h3 id="パッケージ管理" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%83%91%e3%83%83%e3%82%b1%e3%83%bc%e3%82%b8%e7%ae%a1%e7%90%86">
+        パッケージ管理
+    </a>
+</h3><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Go CNB の対応しているアプリケーションのパッケージ管理方法は次のとおりです。</p>
+<ul>
+<li>Go 処理系の <a href="https://github.com/golang/go/wiki/Modules">Go モジュール</a></li>
+<li><a href="https://github.com/golang/dep">dep</a></li>
+<li>パッケージ管理しない</li>
+</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>アプリケーションのパッケージ管理方法は二者択一です。
+以降の内容は、それぞれの管理方法に関する説明です。</p>
+<h4 id="go-モジュールによるパッケージ管理" class="markup-heading">
+    <a class="markup-heading__link" href="#go-%e3%83%a2%e3%82%b8%e3%83%a5%e3%83%bc%e3%83%ab%e3%81%ab%e3%82%88%e3%82%8b%e3%83%91%e3%83%83%e3%82%b1%e3%83%bc%e3%82%b8%e7%ae%a1%e7%90%86">
+        Go モジュールによるパッケージ管理
+    </a>
+</h4><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>アプリケーションのソースコードに <code>go.mod</code> ファイルがあるとき、Buildpack は Go モジュール機能で依存パッケージを外部化します。
+ビルドフェーズでは <a href="
+https://github.com/paketo-buildpacks/go-mod-vendor"><code>go-mod-vendor</code> Buildpack</a> が <code>go mod vendor</code> コマンドを実行し、依存パッケージを展開した <code>vendor</code> ディレクトリを、アプリケーションのルートディレクトリに作成します。</p>
+<h4 id="dep-によるパッケージ管理" class="markup-heading">
+    <a class="markup-heading__link" href="#dep-%e3%81%ab%e3%82%88%e3%82%8b%e3%83%91%e3%83%83%e3%82%b1%e3%83%bc%e3%82%b8%e7%ae%a1%e7%90%86">
+        dep によるパッケージ管理
+    </a>
+</h4><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>dep は Go モジュールとは異なる Go アプリケーションのパッケージ管理ツールです。
+アプリケーションのソースコードに <code>Gopkg.toml</code> ファイルがあるとき、Buildpack は <code>dep</code> コマンドで依存パッケージを外部化します（詳しくは <a href="https://golang.github.io/dep/docs/Gopkg.toml.html">dep のドキュメント</a> を参照してください。）。
+<code>Gopkg.lock</code> ファイルでパッケージごとのバージョン番号を指定する場合もあります。
+ビルドフェーズでは <a href="
+https://github.com/paketo-buildpacks/dep-ensure"><code>dep-ensure</code> Buildpack</a> が <code>dep ensure</code> コマンドを実行し、依存パッケージを展開した <code>vendor</code> ディレクトリを、アプリケーションのルートディレクトリに作成します。</p>
+<h4 id="パッケージを管理しない" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%83%91%e3%83%83%e3%82%b1%e3%83%bc%e3%82%b8%e3%82%92%e7%ae%a1%e7%90%86%e3%81%97%e3%81%aa%e3%81%84">
+        パッケージを管理しない
+    </a>
+</h4><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Buildpack は独自に依存パッケージを外部化したアプリケーションと、依存パッケージを使用しないアプリケーションの両方に対応しています。
+どちらの場合でも外部化処理（vendoring）をしないで、その場にあるソースコードを対象に <code>go build</code> コマンドを実行します。</p>
+<h3 id="コンパイル" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%82%b3%e3%83%b3%e3%83%91%e3%82%a4%e3%83%ab">
+        コンパイル
+    </a>
+</h3><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Go CNB は <code>go build</code> コマンドでソースコードをコンパイルして実行可能ファイルを作成します。
+初期設定では <code>-buildmode=pie</code> を指定します。
+アプリケーションのルートディレクトリに <code>go.mod</code> ファイルがある場合は <code>-mode=vendor</code> も追加します。
+<code>go build</code> について詳しくは <a href="https://pkg.go.dev/cmd/go">Go コマンドのドキュメント</a> を参照してください。</p>
+<h2 id="buildpack-の設定する環境変数" class="markup-heading">
+    <a class="markup-heading__link" href="#buildpack-%e3%81%ae%e8%a8%ad%e5%ae%9a%e3%81%99%e3%82%8b%e7%92%b0%e5%a2%83%e5%a4%89%e6%95%b0">
+        Buildpack の設定する環境変数
+    </a>
+</h2><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Go CNB はアプリケーションライフサイクルのビルドフェーズや起動フェーズでいくつかの環境変数を設定します。
+このセクションではアプリケーションに影響するであろう環境変数について説明します。</p>
+<h3 id="gopath" class="markup-heading">
+    <a class="markup-heading__link" href="#gopath">
+        <code>GOPATH</code>
+    </a>
+</h3><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>環境変数 <code>GOPATH</code> は Go 処理系がソースコードやバイナリファイルなどのアーティファクトを探索する場所を教えるために使用します。
+Go CNB はアプリケーションの使用するパッケージ管理方法に応じて <code>GOPATH</code> を設定します。</p>
+<ul>
+<li>Set by: <code>go-mod-vendor</code>, <code>dep-ensure</code> and <code>go-build</code></li>
+<li>Phases: <code>build</code></li>
+<li>Value: path to Go workspace</li>
+</ul>
+<h4 id="go-モジュール" class="markup-heading">
+    <a class="markup-heading__link" href="#go-%e3%83%a2%e3%82%b8%e3%83%a5%e3%83%bc%e3%83%ab">
+        Go モジュール
+    </a>
+</h4><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Go CNB は Go モジュールを使用するとき、アプリケーションをビルドするためのコンテナイメージに追加するキャッシュモジュールレイヤーのパスを環境変数 <code>GOPATH</code> へ設定します。
+後に続くビルド処理では依存ライブラリをダウンロードする必要がなくなります。
+基本的には <code>go mod vendor</code> で依存ライブラリを探索するときに <code>GOPATH</code> を参照します。
+この時点では関係ありませんが、<code>GOPATH</code> は依存ライブラリを外部化（vendoring）した後、そのまま永続化され続けるわけではありません。
+後に続く Buildpack が上書きする可能性があります。</p>
+<h4 id="dep" class="markup-heading">
+    <a class="markup-heading__link" href="#dep">
+        dep
+    </a>
+</h4><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Go CNB は dep を使用するとき、環境変数 <code>GOPATH</code> に一時ディレクトリのパスを設定します。
+アプリケーションのソースコードを <code>GOPATH</code> のパスへコピーするため、 <code>dep ensure</code> コマンドはソースコードを探索する場所と、依存ライブラリを格納する <code>vendor</code> ディレクトリの場所を知っている状態になります。
+一時ディレクトリの下に作成した <code>vendor</code> ディレクトリは、元のソースコードディレクトリへコピーします。
+環境変数 <code>GOPATH</code> は <code>dep ensure</code> を実行するためにだけ変更するため、後に続く処理では元に戻ります。</p>
+<h4 id="ビルド" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%83%93%e3%83%ab%e3%83%89">
+        ビルド
+    </a>
+</h4><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Go CNB では、アプリケーションのパッケージ管理方法に依らず、常に <code>go-build</code> Buildpack を使用します。
+環境変数 <code>GOPATH</code> には、アプリケーションのソースコードとローカルサブパッケージを含む一時ディレクトリのパスを設定します。
+環境変数 <code>GOPATH</code> はアプリケーションをコンパイルする <code>go build</code> コマンドが使用します。</p>
+<h3 id="gocache" class="markup-heading">
+    <a class="markup-heading__link" href="#gocache">
+        <code>GOCACHE</code>
+    </a>
+</h3><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>環境変数 <code>GOCACHE</code> は、後に続くビルド処理で再利用することになるビルド結果の出力先を設定します。
+<code>go-build</code> Buildpack がビルド用コンテナイメージのキャッシュレイヤーとして作成するため、ビルド処理をしている間は永続的に利用できます。</p>
+<ul>
+<li>Set by: <code>go-build</code></li>
+<li>Phases: <code>build</code></li>
+<li>Value: Go Cache layer path</li>
+</ul>
+<h3 id="depcachedir" class="markup-heading">
+    <a class="markup-heading__link" href="#depcachedir">
+        <code>DEPCACHEDIR</code>
+    </a>
+</h3><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>環境変数 <code>DEPCACHEDIR</code> は、dep が使用するために上流の依存対象が提供するソースコードの場所を設定します。
+コンテナイメージのキャッシュレイヤーに存在するパスを、<code>dep-ensure</code> Buildpack が設定します。</p>
+<ul>
+<li>Set by: <code>dep-ensure</code></li>
+<li>Phases: <code>build</code></li>
+<li>Value: Dep Cache layer path</li>
+</ul>
+<h2 id="コンポーネント" class="markup-heading">
+    <a class="markup-heading__link" href="#%e3%82%b3%e3%83%b3%e3%83%9d%e3%83%bc%e3%83%8d%e3%83%b3%e3%83%88">
+        コンポーネント
+    </a>
+</h2><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<table>
+<thead>
+<tr>
+<th>名前</th>
+<th>必須/任意</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="
+https://github.com/paketo-buildpacks/ca-certificates">Paketo CA Certificates Buildpack</a></td>
+<td>任意</td>
+<td>独自の CA certificates をインストールする</td>
+</tr>
+<tr>
+<td><a href="
+https://github.com/paketo-buildpacks/go-dist">Paketo Go Dist Buildpack</a></td>
+<td>必須</td>
+<td>Go 処理系のツールチェインをインストールする</td>
+</tr>
+<tr>
+<td><a href="
+https://github.com/paketo-buildpacks/go-mod-vendor">Paketo Go Mod Vendor Buildpack</a></td>
+<td>任意</td>
+<td>Go モジュールでアプリケーションの依存パッケージをインストールする</td>
+</tr>
+<tr>
+<td><a href="
+https://github.com/paketo-buildpacks/dep">Paketo Dep Buildpack</a></td>
+<td>任意</td>
+<td><code>dep</code> をインストールする</td>
+</tr>
+<tr>
+<td><a href="
+https://github.com/paketo-buildpacks/dep-ensure">Paketo Dep Ensure Buildpack</a></td>
+<td>任意</td>
+<td><code>dep</code> でアプリケーションの依存パッケージをインストールする</td>
+</tr>
+<tr>
+<td><a href="
+https://github.com/paketo-buildpacks/go-build">Paketo Go Build Buildpack</a></td>
+<td>必須</td>
+<td>ソースコードをコンパイルする</td>
+</tr>
+<tr>
+<td><a href="
+https://github.com/paketo-buildpacks/procfile">Paketo Procfile Buildpack</a></td>
+<td>任意</td>
+<td>起動コマンドを指定する</td>
+</tr>
+<tr>
+<td><a href="
+https://github.com/paketo-buildpacks/environment-variables">Paketo Environment Variables Buildpack</a></td>
+<td>任意</td>
+<td>起動時の環境変数を指定する</td>
+</tr>
+<tr>
+<td><a href="
+https://github.com/paketo-buildpacks/image-labels">Paketo Image Labels Buildpack</a></td>
+<td>任意</td>
+<td>コンテナイメージにラベルを設定する</td>
+</tr>
+</tbody>
+</table>
+<!-- raw HTML omitted -->
+
+            </div>
+            
+  <a href="http://github.com/paketo-buildpacks/paketo-website/edit/main/content/docs%5creference%5cgo-reference.ja.md" target="_blank" class="github-edit" style="text-decoration:none">
+    <div class="github-edit__content">
+      <div class="github-edit__logo-container">
+        <img class="github-edit__logo" src="/images/github-mark.png">
+      </div>
+        <div class="github-edit__text">Edit</div>
+    </div>
+</a>
+
+            <p class="docs-mod-time"><strong>Last modified:</strong> September 15, 2021</p>
+        </div>
+        
+<div class="docs-body__table-of-contents-container docs-body__table-of-contents-container--desktop">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#対応している依存対象">対応している依存対象</a></li>
+    <li><a href="#振る舞い">振る舞い</a>
+      <ul>
+        <li><a href="#パッケージ管理">パッケージ管理</a></li>
+        <li><a href="#コンパイル">コンパイル</a></li>
+      </ul>
+    </li>
+    <li><a href="#buildpack-の設定する環境変数">Buildpack の設定する環境変数</a>
+      <ul>
+        <li><a href="#gopath"><code>GOPATH</code></a></li>
+        <li><a href="#gocache"><code>GOCACHE</code></a></li>
+        <li><a href="#depcachedir"><code>DEPCACHEDIR</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#コンポーネント">コンポーネント</a></li>
+  </ul>
+</nav>
+</div>
+
+    </div>
+</div>
+
+
+    <footer class="footer text--light">
+    <div class="footer-social-links-container">
+        <a class="footer-social-link" href="https://twitter.com/Paketo_io">
+            <div class="footer-social-link__image-container">
+                <div class="logo">
+                    <img class="logo__image" src="/v2/images/logo-twitter.svg" alt="Blue Twitter bird logo">
+                </div>
+            </div>
+            <div class="text--light text--400">
+                Twitter
+            </div>
+        </a>
+        <a class="footer-social-link" href="https://slack.paketo.io/">
+            <div class="footer-social-link__image-container">
+                <div class="logo">
+                    <img class="logo__image" src="/v2/images/logo-slack.svg" alt="Slack logo">
+                </div>
+            </div>
+            <div class="text--light text--400">
+                Slack
+            </div>
+        </a>
+        <a class="footer-social-link" href="https://github.com/paketo-buildpacks">
+            <div class="footer-social-link__image-container">
+                <div class="logo logo--github">
+                    <img class="logo__image"  src="/v2/images/logo-github-cropped.svg" alt="GitHub Octocat logo"/>
+                </div>
+            </div>
+            <div class="text--light text--400">
+                GitHub
+            </div>
+        </a>
+    </div>
+    <div class="footer-privacy-policy">
+        <div class="footer-text--small">Paketo Buildpacks is a <a class="text--light" href="https://www.cloudfoundry.org/">Cloud Foundry</a> Project</div>
+        <img class="cloudfoundry-logo" src="/v2/images/logo-cloudfoundry-light.svg" alt="Cloud Foundry logo" />
+        <a class="footer-text--small text--light" href="https://www.linuxfoundation.org/privacy">Privacy Policy</a>
+    </div>
+</footer><script src="/unofficial-translations/paketo-website/js/main.7b2c859f76ebea65f7468883b2f720537f395fc48d504f5e3b4d33c389e860f2.js"></script>
+
+    <div id="footer-skip-link" class="screenreader-container">
+    <a href="#header-skip-link" class="screenreader-text">Skip to Header</a>
+</div>
+
+</body>
+
+</html>
