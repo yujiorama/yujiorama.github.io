@@ -1,0 +1,114 @@
+//Theme for syntax highlighting
+// Colors
+$code-text: $oc-gray-9;
+$code-background: $oc-gray-1;
+$code-red: #d33682;
+$code-green: #859900;
+$code-yellow: #b58900;
+$code-blue: #268bd2;
+$code-purple: #6c71c4;
+$code-cyan: #2aa198;
+$code-gray: #c5c5c2;
+
+//Styles
+.highlight {
+  background-color: $code-background;
+  border-radius: 10px;
+}
+.highlight pre code, pre code {
+  display: block;
+  color: $code-text;
+  padding: 10px;
+  background-color: $code-background;
+
+  .hll {
+    background-color: $code-yellow;
+  }
+  .gd {
+    color: #8b080b;
+  }
+  .ge {
+    text-decoration: underline;
+  }
+  .gi,
+  .gh,
+  .gu {
+    font-weight: bold;
+  }
+
+  .go {
+    color: $code-background;
+  }
+
+  .bp {
+    font-style: italic;
+  }
+
+  // red 
+  .k,
+  .o,
+  .cp,
+  .kc,
+  .kn,
+  .kp,
+  .kr,
+  .nt,
+  .ow {
+    color: $code-red;
+  }
+  // green 
+  .s,
+  .na,
+  .nc,
+  .nf,
+  .fm {
+    color: $code-green;
+  }
+  // yellow 
+  .sa,
+  .sb,
+  .sc,
+  .dl,
+  .sd,
+  .s2,
+  .se,
+  .sh,
+  .si,
+  .sx,
+  .sr,
+  .s1,
+  .ss {
+    color: $code-yellow;
+  }
+  // blue 
+  .kt {
+    color: $code-blue;
+  }
+  .kd,
+  .nb,
+  .nl,
+  .nv,
+  .vc,
+  .vg,
+  .vi,
+  .vm {
+    color: $code-blue;
+    font-style: italic;
+  }
+  //purple 
+  .c,
+  .mb,
+  .mf,
+  .mh,
+  .mi,
+  .mo,
+  .il,
+  .m,
+  .ch,
+  .cm,
+  .cpf,
+  .c1,
+  .cs {
+    color: $code-purple;
+  }
+}

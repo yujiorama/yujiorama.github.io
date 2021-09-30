@@ -1,0 +1,3246 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+  <meta charset="utf-8">
+  <title>SOURCE_DATE_EPOCH &mdash; reproducible-builds.org</title>
+
+  <link rel="stylesheet" href="/unofficial-translations/reproducible-builds/assets/styles/main.css">
+  <link rel="shortcut icon" type="image/png" href="/unofficial-translations/reproducible-builds/assets/images/favicon.png"/>
+
+  <link href="/unofficial-translations/reproducible-builds/assets/fonts/overpass.css" rel="stylesheet">
+  <link href="/unofficial-translations/reproducible-builds/assets/fonts/overpass-mono.css" rel="stylesheet">
+  <link rel="stylesheet" href="/unofficial-translations/reproducible-builds/assets/static/open-iconic-bootstrap.css" />
+  <link rel="stylesheet" href="/unofficial-translations/reproducible-builds/assets/static/bootstrap.min.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top rb-navbar__top">
+  <a class="navbar-brand" href="/unofficial-translations/reproducible-builds/ja/">
+    <img src="/unofficial-translations/reproducible-builds/assets/images/logo-text-white.png" height="30" width="auto" alt=""></img>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse " id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto display-xs">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/unofficial-translations/reproducible-builds/ja/">Home</a>
+      </li>
+      
+      
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/unofficial-translations/reproducible-builds/ja/news/">News</a>
+      </li>
+      
+      
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/unofficial-translations/reproducible-builds/ja/docs/">Documentation</a>
+      </li>
+      
+      
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/unofficial-translations/reproducible-builds/ja/tools/">Tools</a>
+      </li>
+      
+      
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/unofficial-translations/reproducible-builds/ja/projects/">Who is involved?</a>
+      </li>
+      
+      
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/unofficial-translations/reproducible-builds/ja/resources/">Talks</a>
+      </li>
+      
+      
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/unofficial-translations/reproducible-builds/ja/events/">Events</a>
+      </li>
+      
+      
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/unofficial-translations/reproducible-builds/ja/citests/">Continuous tests</a>
+      </li>
+      
+      
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/unofficial-translations/reproducible-builds/ja/contribute/">Contribute</a>
+      </li>
+      
+      
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/unofficial-translations/reproducible-builds/ja/sponsors/">Our sponsors</a>
+      </li>
+      
+      
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="languagesNavbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img class="half-opacity" src="/unofficial-translations/reproducible-builds/assets/images/icons/translate-white-24dp.svg" alt="change language" height="24" width="24"/>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="languagesNavbarDropdown">
+          
+          <a class="dropdown-item" href="/unofficial-translations/reproducible-builds/ja/docs/source-date-epoch/">English</a>
+          
+          <a class="dropdown-item" href="/de/docs/source-date-epoch/">Deutsch</a>
+          
+          <a class="dropdown-item disabled" href="/unofficial-translations/reproducible-builds/ja/docs/source-date-epoch/">日本語</a>
+          
+        </div>
+      </li>
+
+    </ul>
+
+  </div>
+
+  <ul class="navbar-nav display-md">
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img class="half-opacity" src="/unofficial-translations/reproducible-builds/assets/images/icons/translate-white-24dp.svg" alt="change language" height="24" width="24"/>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+        
+        <a class="dropdown-item" href="/unofficial-translations/reproducible-builds/ja/docs/source-date-epoch/">English</a>
+        
+        <a class="dropdown-item" href="/de/docs/source-date-epoch/">Deutsch</a>
+        
+        <a class="dropdown-item disabled" href="/unofficial-translations/reproducible-builds/ja/docs/source-date-epoch/">日本語</a>
+        
+      </div>
+    </li>
+  </ul>
+
+</nav>
+
+
+    <div class="row h-100">
+      <div class="col-md-2 col-sm-3 d-none d-sm-block p-0 position-fixed">
+        <div class="sidebar rb-sidebar__1" id="sidebar1">
+
+  <div class="row">
+  <ul class="list-group pt-5">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="list-group-item rb-main-sidebar">
+      <a href="/unofficial-translations/reproducible-builds/ja/" class="sidebar__link__darkGray never-active">Home</a>
+    </li>
+    
+    
+    
+    <li class="list-group-item rb-main-sidebar">
+      <a href="/unofficial-translations/reproducible-builds/ja/news/" class="sidebar__link__darkGray ">News</a>
+    </li>
+    
+    
+    
+    <li class="list-group-item rb-main-sidebar">
+      <a href="/unofficial-translations/reproducible-builds/ja/docs/" class="sidebar__link__darkGray ">Documentation</a>
+    </li>
+    
+    
+    
+    <li class="list-group-item rb-main-sidebar">
+      <a href="/unofficial-translations/reproducible-builds/ja/tools/" class="sidebar__link__darkGray ">Tools</a>
+    </li>
+    
+    
+    
+    <li class="list-group-item rb-main-sidebar">
+      <a href="/unofficial-translations/reproducible-builds/ja/projects/" class="sidebar__link__darkGray ">Who is involved?</a>
+    </li>
+    
+    
+    
+    <li class="list-group-item rb-main-sidebar">
+      <a href="/unofficial-translations/reproducible-builds/ja/resources/" class="sidebar__link__darkGray ">Talks</a>
+    </li>
+    
+    
+    
+    <li class="list-group-item rb-main-sidebar">
+      <a href="/unofficial-translations/reproducible-builds/ja/events/" class="sidebar__link__darkGray ">Events</a>
+    </li>
+    
+    
+    
+    <li class="list-group-item rb-main-sidebar">
+      <a href="/unofficial-translations/reproducible-builds/ja/citests/" class="sidebar__link__darkGray ">Continuous tests</a>
+    </li>
+    
+    
+    
+    <li class="list-group-item rb-main-sidebar">
+      <a href="/unofficial-translations/reproducible-builds/ja/contribute/" class="sidebar__link__darkGray ">Contribute</a>
+    </li>
+    
+    
+    
+    <li class="list-group-item rb-main-sidebar">
+      <a href="/unofficial-translations/reproducible-builds/ja/sponsors/" class="sidebar__link__darkGray ">Our sponsors</a>
+    </li>
+    
+    
+  </ul>
+  </div>
+
+
+
+
+<div class="row">
+<div class="fixed-bottom">
+    
+    <div class="col-md-2 col-sm-3 mb-2 p-2">
+        <div class="card text-center">
+            <a href="https://security.googleblog.com/" name="Google Open Source Security Team">
+                <img class="w-100 p-1" src="/unofficial-translations/reproducible-builds/assets/images/sponsors/google-open-source.png" alt="Google Open Source Security Team">
+            </a>
+        </div>
+    </div>
+    
+</div>
+</div>
+
+
+
+
+
+</div>
+
+      </div>
+      <div class="col-md-10 col-xs-12 col-sm-9 p-0 dyn-left">
+        <main role="main" class="content-scroll p-5" data-spy="scroll" data-target="#components-nav" data-offset="0">
+          
+
+
+<p class="d-lg-none">&larr; <a href="/unofficial-translations/reproducible-builds/ja/docs/">Documentation index</a></p>
+
+
+<div class="row">
+  <div class="col-lg-9">
+    <h1 class="mb-4">SOURCE_DATE_EPOCH</h1>
+
+    <!-- `SOURCE_DATE_EPOCH` is a [standardised environment variable](https://reproducible-builds.org/specs/source-date-epoch/) that distributions can set centrally and have build tools consume this in order to produce reproducible output. -->
+<p><code>SOURCE_DATE_EPOCH</code> は <a href="https://reproducible-builds.org/specs/source-date-epoch/">標準化された環境変数</a> の1つです。
+ディストリビューションとして中央集権的に設定できるし、ビルドツールは再現性のあるビルド結果を生成するために使用できます。</p>
+
+<!-- Before implementing this, you should scan through [our checklist](https://wiki.debian.org/ReproducibleBuilds/StandardEnvironmentVariables#Checklist) to see if you can avoid implementing it. -->
+<p>自分たちで実装できるか判断するため、<a href="https://wiki.debian.org/ReproducibleBuilds/StandardEnvironmentVariables#Checklist">Debian としてのチェックリスト</a> を確認してください。</p>
+
+<!-- If you find that it's ideal for your use-case, please feel free to jump straight to our **[published specification](https://reproducible-builds.org/specs/source-date-epoch/)**. -->
+<p>自分たちのユースケースにとって理想的であることが分かっているなら、次は <strong><a href="https://reproducible-builds.org/specs/source-date-epoch/">公開された仕様</a></strong> に読み進めてください。</p>
+
+<h2 id="提案内容">提案内容</h2>
+
+<!-- Please read our [SOURCE_DATE_EPOCH specification](https://reproducible-builds.org/specs/source-date-epoch/) for details. -->
+<p>詳しくは <a href="https://reproducible-builds.org/specs/source-date-epoch/">公開された仕様</a> を参照してください。</p>
+
+<!-- See [Standard Environment Variables](https://wiki.debian.org/ReproducibleBuilds/StandardEnvironmentVariables) for more detailed discussion of the rationales behind this mechanism. -->
+<p>より詳細な理論や仕組みについては <a href="https://wiki.debian.org/ReproducibleBuilds/StandardEnvironmentVariables">標準化された環境変数</a> を参照してください。</p>
+
+<!-- Below we also have more detailed discussion about this specific variable, as well as documentation on history and alternative proposals. -->
+<p>ここでは、<code>SOURCE_DATE_EPOCH</code> という環境変数に関する過去の経緯や、代替案について説明します。</p>
+
+<h2 id="環境変数を設定する">環境変数を設定する</h2>
+
+<h3 id="debian">Debian</h3>
+
+<!-- In Debian, this is automatically set to the same time as the latest entry in `debian/changelog`, i.e. the same as the output of `dpkg-parsechangelog -SDate`. -->
+<p>Debian では、<code>debian/changelog</code> の最新項目と同じ日時を自動的に設定します。
+つまり <code>dpkg-parsechangelog -SDate</code> と同じ日時になります。</p>
+
+<!--  1. For packages using debhelper, versions >= 9.20151004 (Bug:791823) exports this variable during builds, so you probably don't need to change anything. One exception is if your `debian/rules` needs this variable in non-debhelper parts, in which case you can try (3) or (4). -->
+<ol>
+  <li>バージョン 9.20151004 (Bug:791823) 以上の debhelper を使用するパッケージでは、ビルド時に環境変数を export するため、何もする必要がありません。
+ただし、debhelper を未使用のパッケージについて <code>debian/rules</code> で環境変数する場合は、(3) か (4) の方法を試してください。</li>
+</ol>
+
+<!--  2. For packages using CDBS, versions >= 0.4.131 (Bug:794241) exports this variable during builds, so no changes are needed.
+ -->
+<ol>
+  <li>バージョン 0.4.131 (Bug:794241) 以上の CDBS を使用するパッケージでは、ビルド時に環境変数を export するため、何もする必要がありません。</li>
+</ol>
+
+<!--  3. With dpkg >= 1.18.8 (Bug:824572) you can either `include /usr/share/dpkg/pkg-info.mk` or `include /usr/share/dpkg/default.mk`. -->
+<ol>
+  <li>バージョン 1.18.8 (Bug:824572) 以上の dpkg では <code>include /usr/share/dpkg/pkg-info.mk</code> か <code>include /usr/share/dpkg/default.mk</code> を使用できます。</li>
+</ol>
+
+<!--  4. If none of the above options are good (you should have a ''very good reason'') then package maintainers may set and export this variable manually in `debian/rules`: -->
+<ol>
+  <li>どの方法でも上手くいかない場合（そしてそれをするだけの ‘‘確固とした理由がある’’ 場合）、<code>debian/rules</code> にパッケージメンテナとして環境変数を設定してください。</li>
+</ol>
+
+<pre><code> export SOURCE_DATE_EPOCH ?= $(shell dpkg-parsechangelog -STimestamp)
+</code></pre>
+
+<p><!-- If you need/want to support dpkg versions earlier than 1.18.8: -->
+ バージョン 1.18.8 より前の dpkg を使わなければならないときは次のように記述します。</p>
+
+<pre><code> export SOURCE_DATE_EPOCH ?= $(shell dpkg-parsechangelog -SDate | date -f- +%s)
+</code></pre>
+
+<p><!-- If you need/want to support dpkg versions earlier than 1.17.0: -->
+バージョン 1.17.0 より前の dpkg を使わなければならないときは次のように記述します。</p>
+<pre><code> export SOURCE_DATE_EPOCH ?= $(shell dpkg-parsechangelog | grep -Po '^Date: \K.*' | date -f- +%s)
+</code></pre>
+
+<p><!-- This snippet is believed to work on dpkg versions as far back as 2003. -->
+これらのスニペットは少なくとも 2003 年以降の dpkg で使用できます。</p>
+
+<h3 id="git">Git</h3>
+
+<!-- To set SOURCE_DATE_EPOCH to the last modification of a git repository you can use 'git log', for example in shell: -->
+<p>Git リポジトリの最終更新日時を <code>SOURCE_DATE_EPOCH</code> に設定するときは <code>git log</code> を使用します。`</p>
+
+<pre><code>SOURCE_DATE_EPOCH=$(git log -1 --pretty=%ct)
+</code></pre>
+
+<h2 id="環境変数を読み取る">環境変数を読み取る</h2>
+
+<!-- We are persuading upstream tools to support this directly. You may help by writing patches for these tools; please add links to the bug reports here so we know, and to act as an example resource for future patch writers. -->
+<p>私たちは（Debian は）それぞれのツールの（ソフトウェアの）開発元に、環境変数 <code>SOURCE_DATE_EPOCH</code> へ対応してもらえるよう働きかけています。
+修正パッチの作成など、あなたにも貢献できることがあるはずです。
+そうしたら、未来のパッチ作者の参考になるよう、私たちにバグレポートのリンクを教えてください。</p>
+
+<p>Pending:: <a href="https://bugs.debian.org/792687">gettext</a>, <a href="https://bugs.debian.org/794681">qt4-x11</a>
+ Complete::</p>
+<ul>
+  <li><a href="http://lists.busybox.net/pipermail/busybox/2021-June/088880.html">busybox</a> (&gt;1.33.1)</li>
+  <li><a href="https://gitlab.kitware.com/cmake/cmake/merge_requests/432">cmake</a> (&gt;= 3.8.0)</li>
+  <li><a href="https://bugs.debian.org/791823">debhelper</a> (&gt;= 9.20151004)</li>
+  <li><a href="https://bugs.debian.org/800797">docbook-utils</a> (Debian &gt;= 0.6.14-3.1, upstream TODO)</li>
+  <li><a href="https://bugs.debian.org/792201">doxygen</a> (&gt;= <a href="https://github.com/doxygen/doxygen/commit/9a2c7bbfb0c53b4532db7280e6804c7ce76d70a3">1.8.12</a>, Debian pending)</li>
+  <li><a href="https://bugs.debian.org/790899">epydoc</a> (&gt;= 3.0.1+dfsg-8, upstream <a href="https://sourceforge.net/p/epydoc/bugs/368/">pending</a>)</li>
+  <li><a href="https://gcc.gnu.org/git/?p=gcc.git;a=commitdiff;h=e3e8c48c4a494d9da741c1c8ea6c4c0b7c4ff934">gcc</a> (&gt;= 7, Debian &gt;= 5.3.1-17, Debian &gt;= 6.1.1-1)</li>
+  <li><a href="https://bugs.debian.org/794004">ghostscript</a> (Debian &gt;= 9.16~dfsg-1, upstream <a href="http://bugs.ghostscript.com/show_bug.cgi?id=696765">unfortunately rejected</a> due to additional constraints they have)</li>
+  <li><a href="https://bugs.debian.org/762854">groff</a> (Debian &gt;= 1.22.3-2, upstream <a href="https://lists.gnu.org/archive/html/groff/2015-11/msg00038.html">pending</a>)</li>
+  <li><a href="https://bugs.debian.org/787444">help2man</a> (&gt;= 1.47.1)</li>
+  <li><a href="https://bugs.debian.org/791815">libxslt</a> (&gt;= <a href="https://bugzilla.gnome.org/show_bug.cgi?id=758148">1.1.29</a>, Debian &gt;= 1.1.28-3)</li>
+  <li><a href="https://bugs.debian.org/796130">man2html</a> (Debian &gt;= 1.6g-8, <a href="https://sources.debian.net/src/man2html/1.6g-8/debian/patches/035-source-date-epoch.patch/">needs forwarding</a>)</li>
+  <li><a href="https://bugs.debian.org/824266">mkdocs</a> (&gt;= <a href="https://github.com/mkdocs/mkdocs/pull/939/commits/8b006bd7fda55e47e29412896c511c7244398f82">0.16</a>, Debian pending)</li>
+  <li><a href="https://bugs.debian.org/794586">ocamldoc</a> (&gt;= <a href="https://github.com/ocaml/ocaml/commit/0319173b7d02008e4ce6b81dceaf7c32cf5f8a6f">4.03.0</a>, Debian &gt;= 4.02.3-1)</li>
+  <li><a href="https://bugs.debian.org/807166">pydoctor</a> (&gt;= 0.5+git20151204)</li>
+  <li><a href="https://github.com/rpm-software-management/rpm/pull/144">rpm upstream</a> (&gt;4.13 other relevant patches linked in there)</li>
+  <li><a href="https://github.com/sphinx-doc/sphinx/pull/1954">sphinx</a> (&gt;= 1.4, Debian &gt;= 1.3.1-3)</li>
+  <li><a href="https://bugs.debian.org/783475">texi2html</a> (Debian &gt;= 1.82+dfsg1-4, <a href="https://sources.debian.net/src/texi2html/1.82%2Bdfsg1-5/debian/patches/05_reproducible-build/">needs forwarding</a>)</li>
+  <li><a href="https://bugs.debian.org/792202">texlive-bin</a> (&gt;= 2016.20160512.41045)</li>
+  <li><a href="https://bugs.debian.org/790801">txt2man</a> (&gt;= <a href="https://github.com/mvertes/txt2man/pull/1">1.5.7</a>, Debian &gt;= 1.5.6-4)</li>
+  <li><a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=894476">rcc</a> (Qt5 &gt;= <a href="https://code.qt.io/cgit/qt/qtbase.git/commit/?id=1ffcca4cc208c48ddb06b6a23abf1756f9724351">5.13.0</a>, Debian TODO)</li>
+</ul>
+
+<p>Or search in all Debian sources:
+<a href="https://codesearch.debian.net/search?perpkg=1&amp;q=SOURCE_DATE_EPOCH">https://codesearch.debian.net/search?perpkg=1&amp;q=SOURCE_DATE_EPOCH</a></p>
+
+<h3 id="python">Python</h3>
+
+<pre><code>import os
+import time
+import datetime
+
+build_date = datetime.datetime.utcfromtimestamp(
+    int(os.environ.get('SOURCE_DATE_EPOCH', time.time()))
+)
+</code></pre>
+
+<p>or with less imports, rendering to a string:</p>
+
+<pre><code>import os
+import time
+date_str = time.strftime(
+    "%Y-%m-%d",
+    time.gmtime(int(os.environ.get('SOURCE_DATE_EPOCH', time.time())))
+)
+</code></pre>
+
+<h3 id="bash--posix-shell">Bash / POSIX shell</h3>
+
+<p>For GNU systems:</p>
+
+<pre><code>BUILD_DATE="$(date --utc --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y-%m-%d)"
+</code></pre>
+
+<p>If you need to support BSD date as well you should fallback to trying ther
+<code>-r seconds</code> timestamp variant:</p>
+
+<pre><code>DATE_FMT="+%Y-%m-%d"
+SOURCE_DATE_EPOCH="${SOURCE_DATE_EPOCH:-$(date +%s)}"
+BUILD_DATE=$(date -u -d "@$SOURCE_DATE_EPOCH" "$DATE_FMT" 2&gt;/dev/null || date -u -r "$SOURCE_DATE_EPOCH" "$DATE_FMT" 2&gt;/dev/null || date -u "$DATE_FMT")
+</code></pre>
+
+<h3 id="perl">Perl</h3>
+
+<pre><code>use POSIX qw(strftime);
+my $date = strftime("%Y-%m-%d", gmtime($ENV{SOURCE_DATE_EPOCH} || time));
+</code></pre>
+
+<h3 id="makefile">Makefile</h3>
+
+<pre><code>DATE_FMT = +%Y-%m-%d
+ifdef SOURCE_DATE_EPOCH
+    BUILD_DATE ?= $(shell date -u -d "@$(SOURCE_DATE_EPOCH)" "$(DATE_FMT)" 2&gt;/dev/null || date -u -r "$(SOURCE_DATE_EPOCH)" "$(DATE_FMT)" 2&gt;/dev/null || date -u "$(DATE_FMT)")
+else
+    BUILD_DATE ?= $(shell date "$(DATE_FMT)")
+endif
+</code></pre>
+
+<p>The above will work with either GNU or BSD date, and fallback to ignore
+<code>SOURCE_DATE_EPOCH</code> if both fails.</p>
+
+<h3 id="cmake">CMake</h3>
+
+<pre><code>STRING(TIMESTAMP BUILD_DATE "%Y-%m-%d" UTC)
+</code></pre>
+
+<p>… works with CMake versions 2.8.11 and higher, but it only respects
+<code>SOURCE_DATE_EPOCH</code> since version 3.8.0. If you do not have a modern CMake
+but need reproducibility you can use the less-preferred variant:</p>
+
+<pre><code>if (DEFINED ENV{SOURCE_DATE_EPOCH})
+  execute_process(
+    COMMAND "date" "-u" "-d" "@$ENV{SOURCE_DATE_EPOCH}" "+%Y-%m-%d"
+    OUTPUT_VARIABLE BUILD_DATE
+    OUTPUT_STRIP_TRAILING_WHITESPACE)
+else ()
+  execute_process(
+    COMMAND "date" "+%Y-%m-%d"
+    OUTPUT_VARIABLE BUILD_DATE
+    OUTPUT_STRIP_TRAILING_WHITESPACE)
+endif ()
+</code></pre>
+
+<p>The above will work only with GNU <code>date</code>. See the POSIX shell example on how
+to support BSD date.</p>
+
+<h3 id="meson">Meson</h3>
+
+<p>By deliberate design, <a href="https://github.com/mesonbuild/meson/issues/9#issuecomment-543780613">Meson does not provide access to environment
+variables in build
+files</a>
+which makes accessing <code>SOURCE_DATE_EPOCH</code> troublesome.</p>
+
+<pre><code>date_exe = find_program('date')
+cmd = run_command('sh', '-c', 'echo $SOURCE_DATE_EPOCH')
+source_date_epoch = cmd.stdout().strip()
+if source_date_epoch == ''
+	source_date_epoch = run_command(date_exe, '+%s').stdout().strip()
+endif
+
+formatted_date = run_command(date_exe, '-u', '-d', '@' + source_date_epoch, '+%Y-%m-%d').stdout().strip()
+</code></pre>
+
+<p>The above will work only with GNU <code>date</code>. See the POSIX shell example on how
+to support BSD date variants.</p>
+
+<h3 id="c">C</h3>
+
+<pre><code>#include &lt;errno.h&gt;
+#include &lt;limits.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct tm *build_time;
+time_t now;
+char *source_date_epoch;
+unsigned long long epoch;
+char *endptr;
+
+source_date_epoch = getenv("SOURCE_DATE_EPOCH");
+if (source_date_epoch) {
+	errno = 0;
+	epoch = strtoull(source_date_epoch, &amp;endptr, 10);
+	if ((errno == ERANGE &amp;&amp; (epoch == ULLONG_MAX || epoch == 0))
+			|| (errno != 0 &amp;&amp; epoch == 0)) {
+		fprintf(stderr, "Environment variable $SOURCE_DATE_EPOCH: strtoull: %s\n", strerror(errno));
+		exit(EXIT_FAILURE);
+	}
+	if (endptr == source_date_epoch) {
+		fprintf(stderr, "Environment variable $SOURCE_DATE_EPOCH: No digits were found: %s\n", endptr);
+		exit(EXIT_FAILURE);
+	}
+	if (*endptr != '\0') {
+		fprintf(stderr, "Environment variable $SOURCE_DATE_EPOCH: Trailing garbage: %s\n", endptr);
+		exit(EXIT_FAILURE);
+	}
+	if (epoch &gt; ULONG_MAX) {
+		fprintf(stderr, "Environment variable $SOURCE_DATE_EPOCH: value must be smaller than or equal to %lu but was found to be: %llu \n", ULONG_MAX, epoch);
+		exit(EXIT_FAILURE);
+	}
+	now = epoch;
+} else {
+	now = time(NULL);
+}
+build_time = gmtime(&amp;now);
+</code></pre>
+
+<p>If you want less verbose code and are happy with the assumptions stated
+below, you can use</p>
+
+<pre><code>#include &lt;stdlib.h&gt;
+
+time_t now;
+char *source_date_epoch;
+/* This assumes that the SOURCE_DATE_EPOCH environment variable will contain
+   a correct, positive integer in the time_t range */
+if ((source_date_epoch = getenv("SOURCE_DATE_EPOCH")) == NULL ||
+    (now = (time_t)strtoll(source_date_epoch, NULL, 10)) &lt;= 0)
+        time(&amp;now);
+</code></pre>
+
+<h3 id="c-1">C++</h3>
+
+<pre><code>#include &lt;sstream&gt;
+#include &lt;iostream&gt;
+#include &lt;cstdlib&gt;
+#include &lt;ctime&gt;
+
+  time_t now;
+  char *source_date_epoch = std::getenv("SOURCE_DATE_EPOCH");
+  if (source_date_epoch) {
+    std::istringstream iss(source_date_epoch);
+    iss &gt;&gt; now;
+    if (iss.fail() || !iss.eof()) {
+      std::cerr &lt;&lt; "Error: Cannot parse SOURCE_DATE_EPOCH as integer\n";
+      exit(27);
+    }
+  } else {
+    now = std::time(NULL);
+  }
+</code></pre>
+
+<h3 id="go">Go</h3>
+
+<pre><code>import (
+        "fmt"
+        "os"
+        "strconv"
+        "time"
+)
+
+[...]
+
+source_date_epoch := os.Getenv("SOURCE_DATE_EPOCH")
+var build_date string
+if source_date_epoch == "" {
+        build_date = time.Now().UTC().Format(http.TimeFormat)
+} else {
+        sde, err := strconv.ParseInt(source_date_epoch, 10, 64)
+        if err != nil {
+                panic(fmt.Sprintf("Invalid SOURCE_DATE_EPOCH: %s", err))
+        }
+        build_date = time.Unix(sde, 0).UTC().Format(http.TimeFormat)
+}
+</code></pre>
+
+<h3 id="php">PHP</h3>
+
+<pre><code>\date('Y', (int)\getenv('SOURCE_DATE_EPOCH') ?: \time())
+</code></pre>
+
+<h3 id="emacs-lisp">Emacs-Lisp</h3>
+
+<pre><code>(current-time-string
+  (when (getenv "SOURCE_DATE_EPOCH")
+    (seconds-to-time
+      (string-to-number
+        (getenv "SOURCE_DATE_EPOCH"))))))
+</code></pre>
+
+<h3 id="ocaml">OCaml</h3>
+
+<pre><code>let build_date =
+  try
+    float_of_string (Sys.getenv "SOURCE_DATE_EPOCH")
+  with
+    Not_found -&gt; Unix.time ()
+</code></pre>
+
+<h3 id="java--gradle">Java / gradle</h3>
+
+<pre><code>def buildDate = System.getenv("SOURCE_DATE_EPOCH") == null ?
+  new java.util.Date() :
+  new java.util.Date(1000 * Long.parseLong(System.getenv("SOURCE_DATE_EPOCH")))
+</code></pre>
+
+<h3 id="javascript--nodejs">Javascript / node.js</h3>
+
+<pre><code>var timestamp = new Date(process.env.SOURCE_DATE_EPOCH ? (process.env.SOURCE_DATE_EPOCH * 1000) : new Date().getTime());
+
+// Alternatively, to ensure a fixed timezone:
+
+var now = new Date();
+if (process.env.SOURCE_DATE_EPOCH) {
+  now = new Date((process.env.SOURCE_DATE_EPOCH * 1000) + (now.getTimezoneOffset() * 60000));
+}
+</code></pre>
+
+<h3 id="ruby">Ruby</h3>
+
+<pre><code>if ENV['SOURCE_DATE_EPOCH'].nil?
+  now = Time.now
+else
+  now = Time.at(ENV['SOURCE_DATE_EPOCH'].to_i).gmtime
+end
+
+</code></pre>
+
+<p>Note that Ruby’s Datetime.strftime is locale-independent by default.</p>
+
+<h3 id="scala">Scala</h3>
+
+<p>To get milliseconds since Epoch:</p>
+
+<pre><code class="language-scala">sys.env.get("SOURCE_DATE_EPOCH").map(_.toLong * 1000)
+</code></pre>
+
+<p>To get a <code>java.util.Date</code>:</p>
+
+<pre><code class="language-scala">sys.env.get("SOURCE_DATE_EPOCH")
+  .map(sde =&gt; new java.util.Date(sde.toLong * 1000))
+</code></pre>
+
+<h3 id="last-resort-using-faketime">Last-resort using faketime</h3>
+
+<p>'’As a last resort to be avoided where possible’’ (e.g. if the upstream tool
+is too hard to patch, or too time-consuming for you right now to patch, or
+if they are being uncooperative or unresponsive), package maintainers may
+try something like the following:</p>
+
+<p><code>debian/strip-nondeterminism/a2x</code>:</p>
+
+<pre><code>#!/bin/sh
+# Depends: faketime
+# Eventually the upstream tool should support SOURCE_DATE_EPOCH internally.
+test -n "$SOURCE_DATE_EPOCH" || { echo &gt;&amp;2 "$0: SOURCE_DATE_EPOCH not set"; exit 255; }
+exec env NO_FAKE_STAT=1 faketime -f "$(TZ=UTC date -d "@$SOURCE_DATE_EPOCH" +'%Y-%m-%d %H:%M:%S')" /usr/bin/a2x "$@"
+</code></pre>
+
+<p><code>debian/rules</code>:</p>
+
+<pre><code>export PATH := $(CURDIR)/debian/strip-nondeterminism:$(PATH)
+</code></pre>
+
+<p><code>debian/control</code>:</p>
+
+<pre><code>Build-Depends: faketime
+</code></pre>
+
+<p>But please be aware that this does not work out of the box with pbuilder on
+Debian 7 Wheezy, see <a href="https://bugs.debian.org/778462">#778462</a> against
+faketime and <a href="https://bugs.debian.org/700591">#700591</a> against pbuilder
+(fixed in Jessie, but not Wheezy). Adding an according hook to
+<code>/etc/pbuilder/hook.d</code> which mounts <code>/run/shm</code> inside the chroot should
+suffice as local workaround, though.</p>
+
+<p>TODO: document some other nicer options. Generally, all invocations of
+<code>date(1)</code> need to have a fixed <code>TZ</code> environment set.</p>
+
+<p>NOTE: faketime BREAKS builds on some archs, for example hurd. See #778462
+for details.</p>
+
+<h2 id="more-detailed-discussion">More detailed discussion</h2>
+
+<p>Sometimes developers of build tools do not want to support
+<code>SOURCE_DATE_EPOCH</code>, or they will tweak the suggestion to something related
+but different. We really do think the best approach is to use
+<code>SOURCE_DATE_EPOCH</code> exactly as-is described above in our proposal, without
+any variation. Here we explain our reasoning versus the arguments we have
+encountered.</p>
+
+<p>(See <em>Standard Environment Variables</em> for general arguments.)</p>
+
+<h3 id="lying-about-the-time--violates-language-spec">“Lying about the time” / “violates language spec”</h3>
+
+<p>This argument arises when the tool processes some input which contains a
+static instruction to the effect of “get_current_time()”. The input has a
+specification that defines what this means. The tool executes this
+instruction, then embeds the result in the output. It is argued that
+<code>SOURCE_DATE_EPOCH</code> would break these semantics and violate the
+specification.</p>
+
+<p>In most cases, this argument places too much weight on the absoluteness of
+time. Regardless of what any specification says, the user can set their own
+system clock and achieve an effect similar to <code>SOURCE_DATE_EPOCH</code>. Note:
+Setting the system clock is not enough for ‘‘reliable’’ reproducible builds</p>
+<ul>
+  <li>we need <code>SOURCE_DATE_EPOCH</code> for long-running build processes that take
+varying amounts of time. If the tool was run near the end of the process,
+then merely setting the system clock would not make timestamps here
+reproducible. It is not up to the tool to judge whether the user is lying
+with their system clock, and likewise, it is not up to the tool to judge
+whether <code>SOURCE_DATE_EPOCH</code> is a “lie” or not.</li>
+</ul>
+
+<p>For all intents and purposes, if the user has set <code>SOURCE_DATE_EPOCH</code> then
+they are taking a position that “this <strong>is</strong> the current time; please use
+this instead of whatever clock you normally use”. Yes, the project developer
+wrote “get_current_time()” but I as the user, by setting
+<code>SOURCE_DATE_EPOCH</code>, am choosing to override this with my own idea of what
+time it is. Please execute the build as if the current time was
+<code>SOURCE_DATE_EPOCH</code>. FOSS software should generally prefer to respect
+end-users’ wishes rather than developers’ wishes. (And in practise, we
+haven’t seen ‘‘any’’ instance where a project developer really really
+prefers “time of build” over “modtime of source”.)</p>
+
+<p>In conclusion, the tool may choose to ignore <code>SOURCE_DATE_EPOCH</code> for other
+reasons, but to judge that this is a ‘‘lie’’ is to disrespect the user’s
+wishes. Furthermore, choosing to support this is unlikely to ‘‘actually’’
+violate any specifications, since they generally don’t define
+“current”. This does not take into account, if the specification needs to
+interoperate consistently with other programs in a strong cryptographic
+ledger protocol where time values ‘‘must’’ be consistent across multiple
+entities. However this scenario is unlikely to apply, in the context of
+build tools where <code>SOURCE_DATE_EPOCH</code> would be set.)</p>
+
+<p>Many tools allow the user to override the “current” date -
+e.g. <code>-D__TIME__=xxx</code>, <code>\\year=yyy</code>, etc. In these cases, it makes even less
+sense to ignore <code>SOURCE_DATE_EPOCH</code> for data integrity reasons - you
+‘‘already’’ have a mechanism where the user can “lie” or “break the spec”;
+<code>SOURCE_DATE_EPOCH</code> would just be adding an extra mechanism that makes it
+easier to do this globally across all tools.</p>
+
+<p>If for some reason you’re still conflicted on suddenly changing the meaning
+of your “now()” function and desire another switch other than
+<code>SOURCE_DATE_EPOCH</code> being set or not, the <code>texlive</code> project came up with the
+variable <code>FORCE_SOURCE_DATE</code>; when that environment variable is set to <code>1</code>
+cases that wouldn’t normally obey <code>SOURCE_DATE_EPOCH</code> will do.  We
+<strong>strongly discourage</strong> the usage of such variable; <code>SOURCE_DATE_EPOCH</code> is
+meant to be already a flag forcing a particular timestamp to be used.</p>
+
+<p>OTOH, one alternative we can agree with, that also avoids
+<code>SOURCE_DATE_EPOCH</code>, would be to translate the static instruction
+“get_current_time()” from the input format to ‘‘an equivalent instruction’’
+in the output format, if the output format supports that.</p>
+
+<h2 id="history-and-alternative-proposals">History and alternative proposals</h2>
+
+<p><a href="https://lists.alioth.debian.org/pipermail/reproducible-builds/Week-of-Mon-20150608/001823.html">1</a>
+and the surrounding messages describe the initial motivation behind this,
+including an evaluation of how different programming languages handle date
+formats.</p>
+
+<p>At present, we do not have a proposal that includes anything resembling a
+“time zone”. Developing such a standard requires consideration of various
+issues:</p>
+
+<p>Intuitive and naive ways of handling human-readable dates, such as the POSIX
+date functions, are highly flawed and freely mix implicit not-well-defined
+calendars with absolute time. For example, they don’t specify they mean the
+Gregorian calendar, and/or don’t specify what to do with dates before when
+the Gregorian calendar was introduced, or use named time zones that require
+an up-to-date timezone database (e.g. with historical DST definitions) to
+parse properly.</p>
+
+<p>Since this is meant to be a universal standard that all tools and
+distributions can support, we need to keep things simple and precise, so
+that different groups of people cannot accidentally interpret it in
+different ways. So it is probably unwise to try to standardise anything that
+resembles a named time zone, since that is very very complex.</p>
+
+<p>One likely candidate would be something similar to the git internal
+timestamp format, see <code>man git-commit</code>:</p>
+
+<p>It is <unix timestamp=""> <time zone="" offset="">, where <unix timestamp=""> is the number of seconds since the UNIX epoch.  <time zone="" offset=""> is a positive or negative offset from UTC. For example CET (which is 2 hours ahead UTC) is +0200.</time></unix></time></unix></p>
+
+<p>We already have <code>SOURCE_DATE_EPOCH</code> so the time zone offset could be placed
+in <code>SOURCE_DATE_TZOFFSET</code> or something like that. But all of this needs
+further discussion.</p>
+
+<p>Other non-standard variables that we haven’t yet agreed upon, use at your
+own risk:</p>
+
+<pre><code class="language-bash">export SOURCE_DATE_TZOFFSET = $(shell dpkg-parsechangelog -SDate | tail -c6)
+export SOURCE_DATE_RFC2822 = $(shell dpkg-parsechangelog -SDate)
+export SOURCE_DATE_ISO8601 = $(shell python -c 'import time,email.utils,sys;t=email.utils.parsedate_tz(sys.argv[1]);\
+print(time.strftime("%Y-%m-%dT%H:%M:%S",t[:-1])+"{0:+03d}{1:02d}".format(t[-1]/3600,t[-1]/60%60));' "$(SOURCE_DATE_RFC2822)")
+</code></pre>
+
+<p>The ISO8601 code snippet is complex, in order to preserve the same timezone
+offset as in the RFC2822 form. If one is OK with stripping out this offset,
+i.e. forcing to UTC, then one can just use <code>date -u</code> instead. However, this
+then contains the same information as the unix timestamp, but the latter is
+generally easier to work with in nearly all programming languages.</p>
+
+
+    
+      <hr class="my-5">
+
+      <p class="d-none">&larr; <a href="/unofficial-translations/reproducible-builds/ja/docs/">Documentation index</a></p>
+    
+  </div>
+
+  <div class="col-lg-3">
+    
+    <p class="mt-5 d-lg-block"><a href="/unofficial-translations/reproducible-builds/ja/docs/">Documentation home</a></p>
+    
+
+    
+    <h5>Introduction</h5>
+
+    <ul class="list-unstyled">
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/definition/">定義（Definitions）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/history/">History</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/buy-in/">やってみる（Buy-in）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/plans/">計画する（Making plans）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/publications/">Academic publications</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    </ul>
+    
+    <h5>Achieve deterministic builds</h5>
+
+    <ul class="list-unstyled">
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <strong>SOURCE_DATE_EPOCH</strong>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/deterministic-build-systems/">確実なビルドシステム（Deterministic build systems）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/volatile-inputs/">揮発性のある入力データは消える場合がある（Volatile inputs can disappear）</a>
+          
+        </li>
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/stable-inputs/">入力データの順序を固定する（Stable order for inputs）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/value-initialization/">値を初期化する（Value initialization）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/version-information/">バージョン情報（Version information）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/timestamps/">タイムスタンプ（Timestamps）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/timezones/">タイムゾーン（Timezones）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/locales/">ロケール（Locales）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/archives/">アーカイブのメタデータ（Archive metadata）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/stable-outputs/">出力データの順序を固定する（Stable order for outputs）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/randomness/">無作為性（Randomness）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/build-path/">ビルド時のファイルシステムパス（Build path）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/system-images/">システムイメージ（System images）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/jvm/">JVM</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    </ul>
+    
+    <h5>Define a build environment</h5>
+
+    <ul class="list-unstyled">
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/perimeter/">ビルド環境に含む要素（What's in a build environment?）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/recording/">ビルド環境を記録する（Recording the build environment）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/definition-strategies/">ビルド環境の定義における戦略（Definition strategies）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/proprietary-os/">Proprietary operating systems</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    </ul>
+    
+    <h5>Distribute the environment</h5>
+
+    <ul class="list-unstyled">
+    
+      
+
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/build-toolchain-from-source/">ソースコードからビルドする（Building from source）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/virtual-machine-drivers/">Virtual machine drivers</a>
+          
+        </li>
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/formal-definition/">Formal definition</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    </ul>
+    
+    <h5>Verification</h5>
+
+    <ul class="list-unstyled">
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/checksums/">Cryptographic checksums</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/embedded-signatures/">Embedded signatures</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/sharing-certifications/">Sharing certifications</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/rebuilders/">Rebuilders</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    </ul>
+    
+
+    <h5>Specifications</h5>
+
+    <ul class="list-unstyled">
+      <li>
+        <a href="https://yujiorama.github.io/unofficial-translations/reproducible-builds//ja/specs/source-date-epoch/"><tt>SOURCE_DATE_EPOCH</tt></a>
+      </li>
+      <li>
+        <a href="https://yujiorama.github.io/unofficial-translations/reproducible-builds//ja/specs/build-path-prefix-map/"><tt>BUILD_PATH_PREFIX_MAP</tt> (WIP)</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+          <div class="row">
+  <div class="col-12 p-0">
+    <p class="mt-5 mb-5">
+      <span class="text-muted small d-none d-sm-block">
+        Follow us on Twitter <a href="https://twitter.com/ReproBuilds">@ReproBuilds</a>, Mastodon <a href="https://fosstodon.org/@reproducible_builds">@reproducible_builds@fosstodon.org</a> &amp;
+        <a href="https://reddit.com/r/reproduciblebuilds">Reddit</a> and
+        please consider <a href="/unofficial-translations/reproducible-builds/ja/sponsor/">making a donation</a>.
+        &bull;
+        Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="rb-link" target="_blank">CC BY-SA 4.0</a>,
+        style licensed under <a href="https://opensource.org/licenses/MIT" class="rb-link" title="MIT" target="_blank">MIT</a>.
+        Templates and styles based on the <a href="https://styleguide.torproject.org/" target="_blank">Tor Styleguide</a>.
+        Logos and trademarks belong to their respective owners.
+        &bull;
+        Patches welcome <a href="https://salsa.debian.org/reproducible-builds/reproducible-website">via our Git repository</a>
+        (<a href="/unofficial-translations/reproducible-builds/ja/contribute/salsa/">instructions</a>) or via <a href="https://lists.reproducible-builds.org/listinfo/rb-general">our mailing list</a>.
+        &bull;
+        <a href="/unofficial-translations/reproducible-builds/ja/who/">Full contact info</a>
+      </span>
+    </p>
+
+    <p class="d-none d-md-block float-left">
+      <a href="https://sfconservancy.org"><img src="/unofficial-translations/reproducible-builds/assets/images/footer/conservancy.png" height="66" width="auto" alt=""/></a>
+    </p>
+
+    <p class="text-center float-md-right">
+      <a href="/unofficial-translations/reproducible-builds/ja/"><img src="/unofficial-translations/reproducible-builds/assets/images/footer/logo-text.svg" height="45" width="auto" alt=""/></a>
+    </p>
+  </div>
+</div>
+
+        </main>
+      </div>
+    </div>
+
+    <script src="/unofficial-translations/reproducible-builds/assets/javascript/jquery-3.3.1.slim.min.js"></script>
+<script src="/unofficial-translations/reproducible-builds/assets/javascript/bootstrap.min.js"></script>
+<script type="text/javascript" src="/unofficial-translations/reproducible-builds/assets/javascript/index.js"></script>
+
+  </body>
+</html>
