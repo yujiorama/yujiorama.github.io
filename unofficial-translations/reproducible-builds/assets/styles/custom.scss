@@ -1,0 +1,104 @@
+@media (min-width: 576px) {
+  .dyn-left {
+      left: 25%;
+  }
+}
+@media (min-width:768px) {
+  .dyn-left {
+      left: 16.666667%;
+  }
+}
+
+
+
+main {
+  a {
+    // Use a foreground:background contrast ratio of 7.04:1
+    // https://webaim.org/resources/contrastchecker/
+    color: #0056B3;
+  }
+
+  p a, li a {
+    text-decoration: underline !important;
+  }
+
+  a.btn {
+    text-decoration: none !important;
+  }
+
+  hr {
+    clear: both;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    clear: both;
+    margin-top: 2.5rem;
+  }
+
+  h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    color: inherit;
+  }
+
+  h1 {
+    font-weight: bold;
+    margin-bottom: 2.5rem;
+  }
+
+  img {
+    max-width: 100%;
+    padding-bottom: 0.5rem;
+
+    &.half-opacity {
+      opacity: 0.5;
+    }
+
+    &.project-img {
+      max-height: 165px;
+    }
+    &.sponsor-img-platinum {
+      max-height: 250px;
+    }
+  }
+
+  .blog-post-content {
+    li > p {
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-bottom: 6px;
+      padding-top: 6px;
+    }
+  }
+
+  @media (min-width: 750px) {
+    img[src$="#left"] {
+      float: left;
+      margin-right: 2rem;
+    }
+
+    img[src$="#center"] {
+      margin: 2rem auto;
+      display: block;
+    }
+
+    img[src$="#right"] {
+      float: right;
+      margin-left: 2rem;
+    }
+  }
+
+  blockquote {
+    font-style: italic;
+    margin-left: 2.5rem;
+  }
+
+  .projects .card-title a {
+    color: inherit;
+  }
+
+  @media (min-width: 750px) {
+    .blog-post-content {
+      max-width: 750px;
+      text-align: justify;
+    }
+  }
+}

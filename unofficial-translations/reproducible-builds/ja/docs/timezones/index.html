@@ -1,0 +1,2778 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+  <meta charset="utf-8">
+  <title>タイムゾーン（Timezones） &mdash; reproducible-builds.org</title>
+
+  <link rel="stylesheet" href="/unofficial-translations/reproducible-builds/assets/styles/main.css">
+  <link rel="shortcut icon" type="image/png" href="/unofficial-translations/reproducible-builds/assets/images/favicon.png"/>
+
+  <link href="/unofficial-translations/reproducible-builds/assets/fonts/overpass.css" rel="stylesheet">
+  <link href="/unofficial-translations/reproducible-builds/assets/fonts/overpass-mono.css" rel="stylesheet">
+  <link rel="stylesheet" href="/unofficial-translations/reproducible-builds/assets/static/open-iconic-bootstrap.css" />
+  <link rel="stylesheet" href="/unofficial-translations/reproducible-builds/assets/static/bootstrap.min.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top rb-navbar__top">
+  <a class="navbar-brand" href="/unofficial-translations/reproducible-builds/ja/">
+    <img src="/unofficial-translations/reproducible-builds/assets/images/logo-text-white.png" height="30" width="auto" alt=""></img>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse " id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto display-xs">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/unofficial-translations/reproducible-builds/ja/">Home</a>
+      </li>
+      
+      
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/unofficial-translations/reproducible-builds/ja/news/">News</a>
+      </li>
+      
+      
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/unofficial-translations/reproducible-builds/ja/docs/">Documentation</a>
+      </li>
+      
+      
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/unofficial-translations/reproducible-builds/ja/tools/">Tools</a>
+      </li>
+      
+      
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/unofficial-translations/reproducible-builds/ja/projects/">Who is involved?</a>
+      </li>
+      
+      
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/unofficial-translations/reproducible-builds/ja/resources/">Talks</a>
+      </li>
+      
+      
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/unofficial-translations/reproducible-builds/ja/events/">Events</a>
+      </li>
+      
+      
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/unofficial-translations/reproducible-builds/ja/citests/">Continuous tests</a>
+      </li>
+      
+      
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/unofficial-translations/reproducible-builds/ja/contribute/">Contribute</a>
+      </li>
+      
+      
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/unofficial-translations/reproducible-builds/ja/sponsors/">Our sponsors</a>
+      </li>
+      
+      
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="languagesNavbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img class="half-opacity" src="/unofficial-translations/reproducible-builds/assets/images/icons/translate-white-24dp.svg" alt="change language" height="24" width="24"/>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="languagesNavbarDropdown">
+          
+          <a class="dropdown-item" href="/unofficial-translations/reproducible-builds/ja/docs/timezones/">English</a>
+          
+          <a class="dropdown-item" href="/de/docs/timezones/">Deutsch</a>
+          
+          <a class="dropdown-item disabled" href="/unofficial-translations/reproducible-builds/ja/docs/timezones/">日本語</a>
+          
+        </div>
+      </li>
+
+    </ul>
+
+  </div>
+
+  <ul class="navbar-nav display-md">
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img class="half-opacity" src="/unofficial-translations/reproducible-builds/assets/images/icons/translate-white-24dp.svg" alt="change language" height="24" width="24"/>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+        
+        <a class="dropdown-item" href="/unofficial-translations/reproducible-builds/ja/docs/timezones/">English</a>
+        
+        <a class="dropdown-item" href="/de/docs/timezones/">Deutsch</a>
+        
+        <a class="dropdown-item disabled" href="/unofficial-translations/reproducible-builds/ja/docs/timezones/">日本語</a>
+        
+      </div>
+    </li>
+  </ul>
+
+</nav>
+
+
+    <div class="row h-100">
+      <div class="col-md-2 col-sm-3 d-none d-sm-block p-0 position-fixed">
+        <div class="sidebar rb-sidebar__1" id="sidebar1">
+
+  <div class="row">
+  <ul class="list-group pt-5">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="list-group-item rb-main-sidebar">
+      <a href="/unofficial-translations/reproducible-builds/ja/" class="sidebar__link__darkGray never-active">Home</a>
+    </li>
+    
+    
+    
+    <li class="list-group-item rb-main-sidebar">
+      <a href="/unofficial-translations/reproducible-builds/ja/news/" class="sidebar__link__darkGray ">News</a>
+    </li>
+    
+    
+    
+    <li class="list-group-item rb-main-sidebar">
+      <a href="/unofficial-translations/reproducible-builds/ja/docs/" class="sidebar__link__darkGray ">Documentation</a>
+    </li>
+    
+    
+    
+    <li class="list-group-item rb-main-sidebar">
+      <a href="/unofficial-translations/reproducible-builds/ja/tools/" class="sidebar__link__darkGray ">Tools</a>
+    </li>
+    
+    
+    
+    <li class="list-group-item rb-main-sidebar">
+      <a href="/unofficial-translations/reproducible-builds/ja/projects/" class="sidebar__link__darkGray ">Who is involved?</a>
+    </li>
+    
+    
+    
+    <li class="list-group-item rb-main-sidebar">
+      <a href="/unofficial-translations/reproducible-builds/ja/resources/" class="sidebar__link__darkGray ">Talks</a>
+    </li>
+    
+    
+    
+    <li class="list-group-item rb-main-sidebar">
+      <a href="/unofficial-translations/reproducible-builds/ja/events/" class="sidebar__link__darkGray ">Events</a>
+    </li>
+    
+    
+    
+    <li class="list-group-item rb-main-sidebar">
+      <a href="/unofficial-translations/reproducible-builds/ja/citests/" class="sidebar__link__darkGray ">Continuous tests</a>
+    </li>
+    
+    
+    
+    <li class="list-group-item rb-main-sidebar">
+      <a href="/unofficial-translations/reproducible-builds/ja/contribute/" class="sidebar__link__darkGray ">Contribute</a>
+    </li>
+    
+    
+    
+    <li class="list-group-item rb-main-sidebar">
+      <a href="/unofficial-translations/reproducible-builds/ja/sponsors/" class="sidebar__link__darkGray ">Our sponsors</a>
+    </li>
+    
+    
+  </ul>
+  </div>
+
+
+
+
+<div class="row">
+<div class="fixed-bottom">
+    
+    <div class="col-md-2 col-sm-3 mb-2 p-2">
+        <div class="card text-center">
+            <a href="https://security.googleblog.com/" name="Google Open Source Security Team">
+                <img class="w-100 p-1" src="/unofficial-translations/reproducible-builds/assets/images/sponsors/google-open-source.png" alt="Google Open Source Security Team">
+            </a>
+        </div>
+    </div>
+    
+</div>
+</div>
+
+
+
+
+
+</div>
+
+      </div>
+      <div class="col-md-10 col-xs-12 col-sm-9 p-0 dyn-left">
+        <main role="main" class="content-scroll p-5" data-spy="scroll" data-target="#components-nav" data-offset="0">
+          
+
+
+<p class="d-lg-none">&larr; <a href="/unofficial-translations/reproducible-builds/ja/docs/">Documentation index</a></p>
+
+
+<div class="row">
+  <div class="col-lg-9">
+    <h1 class="mb-4">タイムゾーン（Timezones）</h1>
+
+    <!-- Unless the build timezone is [made part of the build environment](/docs/perimeter/),
+care must be taken to get the build output when the build is run in two
+different timezones. -->
+<p>タイムゾーンが <a href="/unofficial-translations/reproducible-builds/ja/docs/perimeter/">ビルド環境の一部</a> に含まれていない場合でも、異なるタイムゾーンでビルドした場合のビルド結果のことを考慮しなければなりません。</p>
+
+<h2 id="ビルド時のタイムゾーンを書き込まない">ビルド時のタイムゾーンを書き込まない</h2>
+
+<!-- Some tools will write date and time with the associated timezone: -->
+<p>ツールによっては日時にタイムゾーンを含める場合があります。</p>
+
+<div class="wrong">
+
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span></span>$ <span class="nv">LC_ALL</span><span class="o">=</span>C date -d<span class="s1">&#39;@2147483647&#39;</span> --rfc-2822
+Tue, <span class="m">19</span> Jan <span class="m">2038</span> <span class="m">04</span>:14:07 +0100</code></pre></figure>
+
+</div>
+
+<!-- Despite being given a pre-determined time in the form of a [Unix
+time](https://en.wikipedia.org/wiki/Unix_time) (also called *epoch*),
+this output would fail to be reproducible in a different timezone
+than UTC+0100. The easy solution is to set the required environment
+variable to force tools to use UTC as the timezone: -->
+<p><a href="https://en.wikipedia.org/wiki/Unix_time">UNIX時間</a> の形式（<em>エポック</em> と呼ばれています）で時刻を指定したとしても、UTC+0100 と異なるタイムゾーンで出力すると、再現性を損ねてしまう場合があります。
+簡単な解決方法は、適切な環境変数を設定して、強制的にタイムゾーンを UTC にすることです。</p>
+
+<div class="correct">
+
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span></span>$ <span class="nv">LC_ALL</span><span class="o">=</span>C date -u -d<span class="s1">&#39;@2147483647&#39;</span> --rfc-2822
+Tue, <span class="m">19</span> Jan <span class="m">2038</span> <span class="m">03</span>:14:07 +0000</code></pre></figure>
+
+</div>
+
+<!-- When there is no dedicated option, it is most often possible to set the `TZ`
+environment variable: -->
+<p>専用の引数がなければ環境変数 <code>TZ</code> で指定できる場合があります。</p>
+
+<div class="correct">
+
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span></span>$ <span class="nv">TZ</span><span class="o">=</span>UTC <span class="nv">LC_ALL</span><span class="o">=</span>C date -d<span class="s1">&#39;@2147483647&#39;</span> --rfc-2822
+Tue, <span class="m">19</span> Jan <span class="m">2038</span> <span class="m">03</span>:14:07 +0000</code></pre></figure>
+
+</div>
+
+<!-- A related concern is for formats which don't contain timezone
+information. Zip archives are a good example: the same timezone must
+always be used to unpack them to prevent variations on the file
+modification times. -->
+<p>タイムゾーンを含まない書式にも関連する問題があります。
+例えば Zip アーカイブを展開したときのファイル変更日時を維持するには、アーカイブを作成したときと同じタイムゾーンにしなければならないのです。</p>
+
+<h2 id="タイムゾーンを含む書式を使用する">タイムゾーンを含む書式を使用する</h2>
+
+<!-- Time strings like “Wed, 21 Oct 2015 11:18:50” are inherently ambiguous.
+Which timezone does it use? How should it be understood? -->
+<p>“Wed, 21 Oct 2015 11:18:50” のような日時文字列には、タイムゾーンの解釈に関する曖昧性があります。</p>
+
+<!-- In the context of reproducible builds, it's best if time strings all
+contain timezone information. A fallback option is to assume they are all
+specified as UTC. -->
+<p>再現性のあるビルドにおいて、日時文字列にはタイムゾーンを含めるのが一番です。
+代替案は UTC を前提にすることです。</p>
+
+<!-- If time strings without timezone specification are parsed in the
+timezone of the build system, hard to understand behavior might happen.
+An example is doing time difference computations in timezones
+with different daylight saving changes. As different timezones have
+different policies, a user might get more or less hours depending on
+the timezone used to perform the build. -->
+<p>何らかのタイムゾーンを指定したビルドシステムにおけるタイムゾーンを含まない日時文字列の扱いを理解するのは困難です。
+例えば、サマータイムの異なるタイムゾーン同士で時間差を計算する場合など。
+タイムゾーンによって方針も異なるため、ビルドを実行するときのタイムゾーンによっては、ビルドを実行する時間が伸び縮みしてしまうのです。</p>
+
+
+    
+      <hr class="my-5">
+
+      <p class="d-none">&larr; <a href="/unofficial-translations/reproducible-builds/ja/docs/">Documentation index</a></p>
+    
+  </div>
+
+  <div class="col-lg-3">
+    
+    <p class="mt-5 d-lg-block"><a href="/unofficial-translations/reproducible-builds/ja/docs/">Documentation home</a></p>
+    
+
+    
+    <h5>Introduction</h5>
+
+    <ul class="list-unstyled">
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/definition/">定義（Definitions）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/history/">History</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/buy-in/">やってみる（Buy-in）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/plans/">計画する（Making plans）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/publications/">Academic publications</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    </ul>
+    
+    <h5>Achieve deterministic builds</h5>
+
+    <ul class="list-unstyled">
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/source-date-epoch/">SOURCE_DATE_EPOCH</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/deterministic-build-systems/">確実なビルドシステム（Deterministic build systems）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/volatile-inputs/">揮発性のある入力データは消える場合がある（Volatile inputs can disappear）</a>
+          
+        </li>
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/stable-inputs/">入力データの順序を固定する（Stable order for inputs）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/value-initialization/">値を初期化する（Value initialization）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/version-information/">バージョン情報（Version information）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/timestamps/">タイムスタンプ（Timestamps）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <strong>タイムゾーン（Timezones）</strong>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/locales/">ロケール（Locales）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/archives/">アーカイブのメタデータ（Archive metadata）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/stable-outputs/">出力データの順序を固定する（Stable order for outputs）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/randomness/">無作為性（Randomness）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/build-path/">ビルド時のファイルシステムパス（Build path）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/system-images/">システムイメージ（System images）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/jvm/">JVM</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    </ul>
+    
+    <h5>Define a build environment</h5>
+
+    <ul class="list-unstyled">
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/perimeter/">ビルド環境に含む要素（What's in a build environment?）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/recording/">ビルド環境を記録する（Recording the build environment）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/definition-strategies/">ビルド環境の定義における戦略（Definition strategies）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/proprietary-os/">Proprietary operating systems</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    </ul>
+    
+    <h5>Distribute the environment</h5>
+
+    <ul class="list-unstyled">
+    
+      
+
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/build-toolchain-from-source/">ソースコードからビルドする（Building from source）</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/virtual-machine-drivers/">Virtual machine drivers</a>
+          
+        </li>
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/formal-definition/">Formal definition</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    </ul>
+    
+    <h5>Verification</h5>
+
+    <ul class="list-unstyled">
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/checksums/">Cryptographic checksums</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/embedded-signatures/">Embedded signatures</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/sharing-certifications/">Sharing certifications</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+      
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+        <li>
+          
+          <a href="/unofficial-translations/reproducible-builds/ja/docs/rebuilders/">Rebuilders</a>
+          
+        </li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    </ul>
+    
+
+    <h5>Specifications</h5>
+
+    <ul class="list-unstyled">
+      <li>
+        <a href="https://yujiorama.github.io/unofficial-translations/reproducible-builds//ja/specs/source-date-epoch/"><tt>SOURCE_DATE_EPOCH</tt></a>
+      </li>
+      <li>
+        <a href="https://yujiorama.github.io/unofficial-translations/reproducible-builds//ja/specs/build-path-prefix-map/"><tt>BUILD_PATH_PREFIX_MAP</tt> (WIP)</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+          <div class="row">
+  <div class="col-12 p-0">
+    <p class="mt-5 mb-5">
+      <span class="text-muted small d-none d-sm-block">
+        Follow us on Twitter <a href="https://twitter.com/ReproBuilds">@ReproBuilds</a>, Mastodon <a href="https://fosstodon.org/@reproducible_builds">@reproducible_builds@fosstodon.org</a> &amp;
+        <a href="https://reddit.com/r/reproduciblebuilds">Reddit</a> and
+        please consider <a href="/unofficial-translations/reproducible-builds/ja/sponsor/">making a donation</a>.
+        &bull;
+        Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="rb-link" target="_blank">CC BY-SA 4.0</a>,
+        style licensed under <a href="https://opensource.org/licenses/MIT" class="rb-link" title="MIT" target="_blank">MIT</a>.
+        Templates and styles based on the <a href="https://styleguide.torproject.org/" target="_blank">Tor Styleguide</a>.
+        Logos and trademarks belong to their respective owners.
+        &bull;
+        Patches welcome <a href="https://salsa.debian.org/reproducible-builds/reproducible-website">via our Git repository</a>
+        (<a href="/unofficial-translations/reproducible-builds/ja/contribute/salsa/">instructions</a>) or via <a href="https://lists.reproducible-builds.org/listinfo/rb-general">our mailing list</a>.
+        &bull;
+        <a href="/unofficial-translations/reproducible-builds/ja/who/">Full contact info</a>
+      </span>
+    </p>
+
+    <p class="d-none d-md-block float-left">
+      <a href="https://sfconservancy.org"><img src="/unofficial-translations/reproducible-builds/assets/images/footer/conservancy.png" height="66" width="auto" alt=""/></a>
+    </p>
+
+    <p class="text-center float-md-right">
+      <a href="/unofficial-translations/reproducible-builds/ja/"><img src="/unofficial-translations/reproducible-builds/assets/images/footer/logo-text.svg" height="45" width="auto" alt=""/></a>
+    </p>
+  </div>
+</div>
+
+        </main>
+      </div>
+    </div>
+
+    <script src="/unofficial-translations/reproducible-builds/assets/javascript/jquery-3.3.1.slim.min.js"></script>
+<script src="/unofficial-translations/reproducible-builds/assets/javascript/bootstrap.min.js"></script>
+<script type="text/javascript" src="/unofficial-translations/reproducible-builds/assets/javascript/index.js"></script>
+
+  </body>
+</html>
