@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>make-large-scale-changes-incrementally-with-branch-by-abstraction</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#抽象化によるブランチで大規模な変更を段階的に適用する">抽象化によるブランチで大規模な変更を段階的に適用する</a>
+<ul>
+<li><a href="#make-large-scale-changes-incrementally-with-branch-by-abstraction">Make Large Scale Changes Incrementally with Branch By Abstraction</a></li>
+<li><a href="#ibatis-から-hibernate-へ移行する">iBatis から Hibernate へ移行する</a></li>
+<li><a href="#velocity-と-jstemplate-から-jruby-on-rails-へ移行する">Velocity と JsTemplate から JRuby on Rails へ移行する</a></li>
+<li><a href="#抽象化によるブランチのやり方">「抽象化によるブランチ」のやり方</a></li>
+<li><a href="#抽象化によるブランチとバージョン管理システムにおけるブランチの違い">抽象化によるブランチと、バージョン管理システムにおけるブランチの違い</a></li>
+<li><a href="#他のパターンとの関係">他のパターンとの関係</a>
+<ul>
+<li><a href="#リファクタリング">リファクタリング</a></li>
+<li><a href="#フィーチャトグル">フィーチャトグル</a></li>
+<li><a href="#ストラングラーアプリケーション">ストラングラーアプリケーション</a></li>
+<li><a href="#優れたオブジェクト指向設計になっているだけなのでは">優れたオブジェクト指向設計になっているだけなのでは？</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+<section id="抽象化によるブランチで大規模な変更を段階的に適用する" class="level1">
+<h1>抽象化によるブランチで大規模な変更を段階的に適用する</h1>
+<blockquote>
+<p>原文: <a href="https://continuousdelivery.com/2011/05/make-large-scale-changes-incrementally-with-branch-by-abstraction/">https://continuousdelivery.com/2011/05/make-large-scale-changes-incrementally-with-branch-by-abstraction/</a></p>
+</blockquote>
+<hr />
+<section id="make-large-scale-changes-incrementally-with-branch-by-abstraction" class="level2">
+<h2>Make Large Scale Changes Incrementally with Branch By Abstraction</h2>
+<p><em>公開日：2011年5月5日</em> <strong>翻訳:</strong> <a href="http://www.continuousdelivery.info/index.php/2013/01/04/branch_by_abstraction/">中文</a> | <a href="http://cdkr.egloos.com/1594363">한국말</a></p>
+<p>多くの開発チームはバージョン管理システムのブランチ機能を活用しています。 分散バージョン管理システムではブランチ機能がさらに便利に使えるようになりました。 結果として、継続的デリバリーの文脈で「ブランチを使っているなら継続的インテグレーションはできない」という意見が問題になったりしています。 元の定義によると、ブランチのコードは統合されていないことになるからです。 ブランチを使用するのが妥当だと思われる一般的な場面の1つに、大規模な改修が挙げられます。 ただし、それ以外にもブランチが役立つ場合があります。 「抽象化によるブランチ」という手法です。</p>
+<blockquote>
+<p><strong>抽象化によるブランチ</strong>：メインラインで段階的に大規模な変更を行うためのパターンです。</p>
+</blockquote>
+<p>Paul Hammant は<a href="https://paulhammant.com/blog/branch_by_abstraction.html">ブログ</a>で Hibernate から iBatis へ移行する過程を具体的に説明しています。 また、私たちが ThoughtWorks で開発していた継続的インテグレーションとアジャイルなリリース管理ためのプラットフォーム Go は、1年以上かけて iBatis から Hibernate へ移行しました。 同時に Velocity と JsTemplate で構築した UI を JRuby on Rails へ移行しました。</p>
+<p>どちらの変更もゆっくりと、段階的に行われていました。 新しい機能の開発も同時に進めていました。 Mercurial リポジトリのメインラインへ 1日に何回もチェックインしたものです。 どうやったと思いますか。</p>
+</section>
+<section id="ibatis-から-hibernate-へ移行する" class="level2">
+<h2>iBatis から Hibernate へ移行する</h2>
+<p>開発チームが iBatis から Hibernate への移行を決心した理由は2つあります。 1つ目は、自分たちでデータベーススキーマを管理できるようになったので、ORM を効率的に利用できるようになったことでした。 大量に独自の SQL を作成する時間を節約できます。 2つ目は、ORM のセカンドレベルキャッシュによる性能向上が期待できることでした。</p>
+<p>もちろんコードベース全体を一気に移行しようとは思いませんでした。 新しい機能を追加するとき、新しいデータベースクエリは Hibernate で作成しました。 iBatis で実装したクエリを使うときは、それを Hibernate に移植しました。</p>
+<p>永続化処理を段階的に更新する方法としては比較的単純ですが、Go のコードベースは標準的なレイヤーアーキテクチャだったので妥当な方法でした（コントローラーがサービスを使用し、サービスがリポジトリを使用する）。 データベースにアクセスするコードは、<a href="https://martinfowler.com/eaaCatalog/repository.html">リポジトリパターン</a>に基づくリポジトリクラスへカプセル化されていたので、それぞれのクラスを順番に iBatis から Hibernate へ移行するのは簡単でした。 もちろん、サービスレイヤーは永続化フレームワークの変更による影響を受けません。</p>
+<p>同僚の Pavan K S は次のように述べています。</p>
+<blockquote>
+<p>抽象化によるブランチに必要なのは、開発者が古いやり方のコードを追加しないようにすることです。 経験則のようなものですが、たとえ iBatis で実装したクエリのほうが簡単だったり速かったりするとしても、Hibernate で実装しなければなりません。 それが移行を前に進める唯一の方法なのです。 このやり方を徹底するため、iBatis のデータベースクエリを追加したらビルドを失敗させることもできるでしょう。 減らすのはいいですが、増やすのはダメです</p>
+</blockquote>
+</section>
+<section id="velocity-と-jstemplate-から-jruby-on-rails-へ移行する" class="level2">
+<h2>Velocity と JsTemplate から JRuby on Rails へ移行する</h2>
+<p>同じように、Java ベースの UI を JRuby on Rails へ移行したいと思っていました。 そのほうが、UI の開発を加速するためのテストが書きやすかったからです。 やはり、変更は段階的に行うようにしました。 新しい画面を追加するときは JRuby on Rails で作成し、利用できるようになったら元のアプリケーションへ新しい画面へのリンクを追加しました。</p>
+<p>ある画面を大幅に変更しなければならないときも、JRuby on Rails で作成するようにしました。 そして、新しい画面が利用できるようになったら、元のアプリケーションの保持する URI を新しい画面の URI へ変更しました。 この時点で元の画面を削除しました。 結果として、Go のほとんどの画面を JRuby on Rails で実装しても、以前に Java で実装した画面はいくつか残っている状態になりました。 しかし、リンクを辿るだけではどうやっても残りの画面にアクセスできません。スタイルが違うからです。 URI をよく見ると、Velocity の画面にアクセスする URI のパスは <code>/go/tab</code> から始まるようになっています。 それ以外の URI は全て JRuby on Rails へ転送しますが、利用するサービス実装は同じままです。</p>
+</section>
+<section id="抽象化によるブランチのやり方" class="level2">
+<h2>「抽象化によるブランチ」のやり方</h2>
+<p>抽象化によるブランチで大規模な変更を段階的に適用するやり方は次のとおりです。</p>
+<ol type="1">
+<li>変更しなければならない部分に抽象化層を追加します</li>
+<li>システムが抽象化層を使用するようにリファクタリングします</li>
+<li>新しいやり方で新しいクラスを作成し、抽象化層は要求を古いクラスと新しいクラスへ委譲できるようにします</li>
+<li>古い実装（クラス）を削除します</li>
+<li>手順3と手順4を繰り返して洗練しながら、都合のいい時点で定期的にリリースします</li>
+<li>古い実装（クラス）を完全に置き換えられたら、抽象化層をまるごと削除します</li>
+</ol>
+<p><img src="./branch_by_abstraction.png" alt="抽象化によるブランチ" /></p>
+<p>Martin Fowler はこの一連の手順にはさまざまなバリエーションがあることを指摘しました。 「最も単純なのは、全てを網羅する抽象化層を用意して、全ての部分をリファクタリングして、新しい実装に切り替える方法です。 しかし、分解する方法はいろいろあります。 抽象化層で包み込んだ一部の機能だけを新しい実装に移行して、それからまた別の機能を対象に移行することもできるでしょう（新しい機能と古い機能が共存する状態です）。 また、コードの一部が抽象化層を呼び出すようにしたまま、新しい実装と古い実装を残しておくこともできるのです。」</p>
+<p>iBatis から Hibernate への移行に関する例では、リポジトリ層の手前に抽象化層を追加して、使用している永続化フレームワークという実装の詳細を隠蔽するようになっていました。 JRuby on Rails への移行に関する例では、サーブレットエンジンの手前に抽象化層を追加して、URI に基づいて、JRuby on Rails (Rack) と標準的な Java Servlet へ振り分けられるようになっていました。</p>
+<p>Go は小規模なプロジェクトです。開発者は10人未満だし、たかだか数年しか使われていませんでした。 それでも、プロジェクトやチームの規模と関係なく、同じ原則に基づいて大規模な分散開発プロジェクトでもこのパターンを適用できました。</p>
+<p>開発プロセスにとって、抽象化によるブランチを追加することが負担になるのは間違いありません。 特にコードベースが適切に構造化されていない場合は大変になります。 より慎重に考えなければならないし、段階的な変更をするにはより多くの時間が必要になります。 しかし、苦労の量より利点の方が勝る場合が多いはずですし、大規模なリストラをするときは抽象化によるブランチを検討する重要性が高まります。</p>
+<p>抽象化によるブランチの主な利点は、リストラをしている間ずっと動作するコードを維持できるので、継続的デリバリーが可能になることです。 リリーススケジュールとアーキテクチャの変更を完全に分離できるので、ある時点でリストラ作業を中断し、機能追加など優先度の高い別の作業を進められるのです。</p>
+<p>抽象化によるブランチをするときは出口戦略を用意しておくのも重要です。 大規模な変更を最後まで残しておくかどうかを選べるなら、最も重要な部分の移行が完了するまで残しておくこともできるでしょう。 複数の技術要素を扱っている場合、システムの保守は難しくなるし、実際にどこを利用しているのか理解するのが難しくなる場合もあります。 許容できるトレードオフではありますが、チーム全員に理解できるよう可視化しておいたほうがいいでしょう。</p>
+</section>
+<section id="抽象化によるブランチとバージョン管理システムにおけるブランチの違い" class="level2">
+<h2>抽象化によるブランチと、バージョン管理システムにおけるブランチの違い</h2>
+<p>抽象化によるブランチは、大規模な変更をするためにバージョン管理システムでブランチを作成する「別の方法」と誤解しやすい名前です。 メインラインで機能追加やバグ修正を続けるため、大規模な変更をする別のブランチを作成するチームはたくさん存在します。 メインラインへのマージが困難であるとか、その難しさは変更量に応じて増加するとか、ブランチで作業している間にメインラインでも同じくらい作業しなければならないとか、そういう問題があります[1]。</p>
+<blockquote>
+<p>[1] 分散バージョン管理システムを使えば簡単にマージできるのでブランチを恐れなくていい、という意見もありますが、誤解を招く意見だと言える2つの理由があります。 1つ目は、Martin Fowler が述べているとおり、マージを自動化するツールは意味的な衝突を解決できないことです。 2つ目は、ブランチの年齢が長くなれば、どんなに優れたツールを使ったとしてもマージが困難になるということです。 GitHub を少し探せばマージを待っているフォークプロジェクトがたくさん見つかりますが、メインラインから離れすぎているため、統合するには膨大な作業が必要になります。</p>
+</blockquote>
+<p>つまり、バージョン管理システムのブランチを使用する方向の圧力が強ければ強いほど、最後にマージするときの苦痛も強くなってしまうのです。 ブランチでフィーチャを開発しているならさらにひどいことになります。 一般的にフィーチャや大規模な変更のためにブランチを使用するのは間違った考えだと言えるいろいろな理由があります。 最も影響力が強いのは、どちらも継続的デリバリーとリファクタリングをできなくしてしまうことです[2]。 Martin Fowler による素晴らしい文章「<a href="http://martinfowler.com/bliki/FeatureBranch.html">フィーチャブランチのどこが問題なのか</a>」「<a href="https://bliki-ja.github.io/FeatureBranch/">フィーチャフラグの使い方</a>」を読んでみてください。</p>
+<blockquote>
+<p>[2] どんなルールにも例外は存在します。 ブランチの生存期間が極めて短い（1日未満）とか、小規模で経験を積んだチームなら、リリースやスパイク以外のブランチも許容されるでしょう。</p>
+</blockquote>
+<p>バージョン管理システムでブランチを作ること全てを否定しているわけではありません。 アイデアを試してすぐに捨ててしまうような使い方には適しているでしょう。 また、リリース直前に小規模で重要なバグ修正をするためのブランチを作るのもいいでしょう。 しかし、継続的デプロイメントを実践しているチームにとってはどちらも嬉しくありません。 リリースに対する変更量が小さいため、問題をメインラインで修正して新しいバージョンを展開する（ロールフォワードする）ほうが、元に戻す（ロールバックする）より簡単だからです。</p>
+<p>あなたのコードベースが<a href="http://www.laputan.org/mud/mud.html#BigBallOfMud">大きな泥団子</a>になってしまっているとしたら、ブランチで作業するのも容認できるでしょう。 抽象化層を作るのは極めて困難なため、（典型的な静的型付けのオブジェクト指向言語なら）まず一連のインターフェイスからなる「つなぎ目（seem）」を探して、それらを抽象化層に含めることになります。 つなぎ目が見つからないときは、一連のリファクタリングを通じて作成していくことになるのですが、何らかの理由でそれができないときは、ブランチを作成して作業することになります。 とてもエクストリームな作業です。</p>
+</section>
+<section id="他のパターンとの関係" class="level2">
+<h2>他のパターンとの関係</h2>
+<section id="リファクタリング" class="level3">
+<h3>リファクタリング</h3>
+<p><a href="https://bliki-ja.github.io/DefinitionOfRefactoring/">リファクタリングの定義</a>は「外部から見たときの振る舞いを保ちつつ、理解や修正が簡単になるように、ソフトウェアの内部構造を変更させること」です。 つまり、抽象化によるブランチの例として説明した話はどちらもリファクタリングの例になっているのでした。 抽象化によるブランチは実質的にリファクタリングに関連するプログラミング作業であり、アプリケーションアーキテクチャを大幅に変更した結果なのです。 メインラインの開発でおそらく最も重要な利点は、ソフトウェアをいつでもリリースできる能力と、リファクタリングできる能力です。</p>
+</section>
+<section id="フィーチャトグル" class="level3">
+<h3>フィーチャトグル</h3>
+<p>抽象化によるブランチと<a href="http://martinfowler.com/bliki/FeatureToggle.html">フィーチャトグル</a>を混同する場合が多いようです。 どちらも、メインラインで段階的な変更を可能にするパターンです。 フィーチャトグルは新しく追加した機能をユーザーから見えないままにするためのパターンです。 デプロイ時や実行時に、特定の機能や複数の機能をユーザーから見えるようにするかどうかを制御します。</p>
+<p>抽象化によるブランチは大規模な変更を段階的に進めていく開発手法です。 フィーチャトグルと組み合わせることができます。 例えば、特定のデータベースアクセスについて、iBatis と Hibernate の性能を比較するため、実行時に切り替えるようなことができるでしょう。 普通は開発者が選択するので、ハードコードするか、ビルド時に決定するか、あるいは依存性注入フレームワークで設定する場合もあるでしょう。</p>
+</section>
+<section id="ストラングラーアプリケーション" class="level3">
+<h3>ストラングラーアプリケーション</h3>
+<p><a href="https://bliki-ja.github.io/StranglerApplication/">ストラングラーアプリケーション</a>も、段階的に既存のシステムを新しいシステムへ置き換えていくパターンです。 段階的にシステムの（コンポーネントの）実装を変更する抽象化によるブランチより、抽象度の高い戦術です。 サービス指向アーキテクチャではこれらの違いは曖昧になります。</p>
+</section>
+<section id="優れたオブジェクト指向設計になっているだけなのでは" class="level3">
+<h3>優れたオブジェクト指向設計になっているだけなのでは？</h3>
+<p>もちろんです。 <a href="http://blog.objectmentor.com/articles/2009/02/12/getting-a-solid-start">SOLID</a> 原則を守っているコードには適用しやすいパターンです。 特に DIP（依存性注入の原則）とSIP（インターフェイス分離の原則）を守っている場合は特に簡単になります。 ISPは実装を切り替えるちょうどいい粒度になるので重要です。 同僚の David Rice は、抽象化によるブランチが特定のコンポーネントの実装を切り替える方法として「<strong>唯一の</strong>」の実用的なパターンであると述べています。 Martin Fowler も同じ点について、システムを構成するコンポーネントは別の実装に置き換えられる部分だと述べています。</p>
+</section>
+</section>
+</section>
+</body>
+</html>
