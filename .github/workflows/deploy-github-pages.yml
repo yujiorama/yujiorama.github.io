@@ -28,7 +28,34 @@ jobs:
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./
-          destination: ./_site
+          destination: ./.out
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-pages-build
+          path: .out/
+          retention-days: 1
+          overwrite: true
+
+  build-app:
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    strategy:
+      max-parallel: 1
+      matrix:
+        app:
+          - my-gql-proxy
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          pattern: github-pages-build
+          path: .out
 
       - uses: pnpm/action-setup@v4
         name: Install pnpm
@@ -39,34 +66,42 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: my-gql-proxy/.node-version
+          node-version-file: ${{ matrix.app }}/.node-version
           cache: pnpm
-          cache-dependency-path: my-gql-proxy/pnpm-lock.yaml
+          cache-dependency-path: ${{ matrix.app }}/pnpm-lock.yaml
 
-      - name: Install dependencies
-        working-directory: ./my-gql-proxy
-        run: pnpm install --frozen-lockfile
-
-      - name: Build my-gql-proxy
-        working-directory: ./my-gql-proxy
-        run: pnpm run build
-
-      - name: Prepare combined static files (VERY IMPORTANT for subdirectory deployment)
+      - name: Install dependencies and build
+        working-directory: ${{ matrix.app }}
         run: |
-          rm -rf ./_site/my-gql-proxy
-          mkdir ./_site/my-gql-proxy
-          mv ./my-gql-proxy/build/* ./_site/my-gql-proxy/
+          cd ${{ matrix.app }} && pnpm install --frozen-lockfile && pnpm run build
+          cp -a ${{ matrix.app }}/build/* .out/${{ matrix.app }}/
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-pages-build
+          path: .out/
+          retention-days: 1
+          overwrite: true
 
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
+    needs:
+      - build
+      - build-app
     steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          pattern: github-pages-build
+          path: _site
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
