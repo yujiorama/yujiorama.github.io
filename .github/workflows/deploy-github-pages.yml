@@ -1,0 +1,44 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: my-gql-proxy/.node-version
+          cache: pnpm
+
+      - name: Install dependencies
+        working-directory: ./my-gql-proxy
+        run: pnpm install --frozen-lockfile
+
+      - name: Build my-gql-proxy
+        working-directory: ./my-gql-proxy
+        run: pnpm run build
+
+      - name: Prepare combined static files (VERY IMPORTANT for subdirectory deployment)
+        run: |
+          mkdir -p .temp-pages
+          git archive --format=tar ${{ github.ref }} | tar -C .temp-pages -xvf -
+          rm -rf .temp-pages/my-gql-proxy
+          mkdir .temp-pages/my-gql-proxy
+          mv my-gql-proxy/build/* .temp-pages/my-gql-proxy/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: .temp-pages
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
