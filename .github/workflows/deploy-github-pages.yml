@@ -5,12 +5,30 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -28,17 +46,20 @@ jobs:
 
       - name: Prepare combined static files (VERY IMPORTANT for subdirectory deployment)
         run: |
-          mkdir -p .temp-pages
-          git archive --format=tar ${{ github.ref }} | tar -C .temp-pages -xvf -
-          rm -rf .temp-pages/my-gql-proxy
-          mkdir .temp-pages/my-gql-proxy
-          mv my-gql-proxy/build/* .temp-pages/my-gql-proxy/
+          rm -rf ./_site/my-gql-proxy
+          mkdir ./_site/my-gql-proxy
+          mv ./my-gql-proxy/build/* ./_site/my-gql-proxy/
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: .temp-pages
+        uses: actions/upload-pages-artifact@v3
 
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
