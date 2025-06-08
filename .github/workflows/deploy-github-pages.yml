@@ -41,6 +41,7 @@ jobs:
         with:
           node-version-file: my-gql-proxy/.node-version
           cache: pnpm
+          cache-dependency-path: my-gql-proxy/pnpm-lock.yaml
 
       - name: Install dependencies
         working-directory: ./my-gql-proxy
