@@ -34,7 +34,7 @@ jobs:
           destination: ./.out
 
       - name: remove app directory
-        run: rm -rf .out/my-gql-proxy
+        run: sudo rm -rf .out/my-gql-proxy
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
