@@ -28,13 +28,13 @@ jobs:
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./
-          destination: ${{ github.workspace }}/.out
+          destination: ./.out
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: github-pages-build-jekyll
-          path: ${{ github.workspace }}/.out
+          path: ./.out
           retention-days: 1
           overwrite: true
 
@@ -69,14 +69,15 @@ jobs:
         run: |
           pnpm install --frozen-lockfile
           pnpm run build
-          mkdir -p ${{ github.workspace }}/.out
-          cp -a dist ${{ github.workspace }}/.out/${{ matrix.app }}
+          mkdir -p ${{ env.RUNNER_TEMP }}/.out/${{ matrix.app }}
+          mv dist/* ${{ env.RUNNER_TEMP }}/.out/${{ matrix.app }}
+          ls -lR ${{ env.RUNNER_TEMP }}/.out/${{ matrix.app }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: github-pages-build-${{ matrix.app }}
-          path: ${{ github.workspace }}/.out
+          path: ${{ env.RUNNER_TEMP }}/.out
           retention-days: 1
           overwrite: true
 
