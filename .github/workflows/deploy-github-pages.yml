@@ -73,7 +73,7 @@ jobs:
       - name: Install dependencies and build
         run: |
           cd ${{ matrix.app }} && pnpm install --frozen-lockfile && pnpm run build
-          cp -a ${{ matrix.app }}/build/* .out/${{ matrix.app }}/
+          cp -a ${{ matrix.app }}/dist/* .out/${{ matrix.app }}/
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
