@@ -34,13 +34,15 @@ jobs:
           destination: ./.out
 
       - name: remove app directory
-        run: sudo rm -rf .out/my-gql-proxy
+        run: |
+          sudo chown -R $(id -u):$(id -g) .out
+          rm -rf .out/my-gql-proxy
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: github-pages-build-jekyll
-          path: ./.out/
+          path: .out/
           retention-days: 1
           overwrite: true
 
