@@ -33,14 +33,14 @@ jobs:
           source: ./
           destination: ./.out
 
-      - name: ls -lR
-        run: ls -lR .out
+      - name: remove app directory
+        run: rm -rf .out/my-gql-proxy
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: github-pages-build-jekyll
-          path: ./.out
+          path: ./.out/
           retention-days: 1
           overwrite: true
 
@@ -83,7 +83,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: github-pages-build-${{ matrix.app }}
-          path: ${{ matrix.app }}/.out
+          path: ${{ matrix.app }}/.out/
           retention-days: 1
           overwrite: true
 
