@@ -71,7 +71,6 @@ jobs:
           cache-dependency-path: ${{ matrix.app }}/pnpm-lock.yaml
 
       - name: Install dependencies and build
-        working-directory: ${{ matrix.app }}
         run: |
           cd ${{ matrix.app }} && pnpm install --frozen-lockfile && pnpm run build
           cp -a ${{ matrix.app }}/build/* .out/${{ matrix.app }}/
