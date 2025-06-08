@@ -33,7 +33,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: github-pages-build
+          name: github-pages-build-jekyll
           path: .out/
           retention-days: 1
           overwrite: true
@@ -51,12 +51,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          pattern: github-pages-build
-          path: .out
-
       - uses: pnpm/action-setup@v4
         name: Install pnpm
         with:
@@ -71,14 +65,17 @@ jobs:
           cache-dependency-path: ${{ matrix.app }}/pnpm-lock.yaml
 
       - name: Install dependencies and build
+        working-directory: ${{ matrix.app }}
         run: |
-          cd ${{ matrix.app }} && pnpm install --frozen-lockfile && pnpm run build
-          cp -a ${{ matrix.app }}/dist/* .out/${{ matrix.app }}/
+          pnpm install --frozen-lockfile
+          pnpm run build
+          mkdir -p ${{ github.workspace }}/.out/${{ matrix.app }}
+          cp -a dist/* ${{ github.workspace }}/.out/${{ matrix.app }}/
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: github-pages-build
+          name: github-pages-build-${{ matrix.app }}
           path: .out/
           retention-days: 1
           overwrite: true
@@ -95,8 +92,9 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          pattern: github-pages-build
+          pattern: github-pages-build-*
           path: _site
+          merge-multiple: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
