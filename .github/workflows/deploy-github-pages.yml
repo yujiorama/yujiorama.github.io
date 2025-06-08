@@ -25,32 +25,32 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: mkdir
-        run: mkdir -p .out
+        run: mkdir -p _out
 
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./
-          destination: ./.out
+          destination: ./_out
 
-      - name: Debug .out directory
+      - name: Debug _out directory
         run: |
-          ls -lR .out
+          ls -lR _out
 
       - name: remove app directory
         run: |
-          sudo chown -R $(id -u):$(id -g) .out
-          rm -rf .out/my-gql-proxy
+          sudo chown -R $(id -u):$(id -g) _out
+          rm -rf _out/my-gql-proxy
 
-      - name: Debug .out directory
+      - name: Debug _out directory
         run: |
-          ls -lR .out
+          ls -lR _out
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: github-pages-build-jekyll
-          path: .out
+          path: _out/
           retention-days: 1
           overwrite: true
 
@@ -85,15 +85,15 @@ jobs:
         run: |
           pnpm install --frozen-lockfile
           pnpm run build
-          mkdir -p .out
-          mv dist .out/${{ matrix.app }}
-          ls -lR .out/${{ matrix.app }}
+          mkdir -p _out
+          mv dist _out/${{ matrix.app }}
+          ls -lR _out/${{ matrix.app }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: github-pages-build-${{ matrix.app }}
-          path: ${{ matrix.app }}/.out/
+          path: ${{ matrix.app }}/_out/
           retention-days: 1
           overwrite: true
 
